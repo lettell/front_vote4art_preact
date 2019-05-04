@@ -20,8 +20,13 @@ export default class App extends Component {
 	};
 
 	render() {
+		// document.body.classList.add('mdc-theme--main');
+
 		return (
+			
 			<div id="app">
+				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
+
 				<Header selectedRoute={this.state.currentUrl} />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />

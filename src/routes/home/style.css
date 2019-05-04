@@ -2,8 +2,46 @@
 	padding: 20px;
 	min-height: 100%;
 	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.logo {
+	width: 100%;
+}
+.timmer__block {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
+.timmer {
+	font-size: calc(3px + 10vw);
+	margin-bottom: 0;
+}
+.timmer__text {
+	display: none;
+	font-size: 2em;
+	margin-top: 0;
+}
+.timmer__text__mobile {
+	display: block;
+}
+@media only screen and (min-width: 600px) {
+	.timmer__text__mobile {
+		display: none;
+	}
+	.timmer__text {
+		display: block;
+	}
+  .timmer {
+		max-width: 90%;
+		font-size: 70px !important;
+  }
+}
 .cardHeader {
   padding: 16px;
 }

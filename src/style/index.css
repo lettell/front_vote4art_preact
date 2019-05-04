@@ -1,12 +1,28 @@
+  /* background: #ececec; */
+
+  :root {
+    --mdc-theme-primary: #eccf4f;
+    --mdc-theme-on-primary: #000;
+    --mdc-theme-icon-on-light: red;
+  }
+  .mdc-top-app-bar {
+    background: #ECECEC;
+    color:#000 !important;
+  }
+.topappbar {
+  background: #ECECEC;
+  color: #000;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px #9e8181f2, 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
+}
 html, body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #FAFAFA;
-	font-family: 'Helvetica Neue', arial, sans-serif;
+  background: #ecd8cf;
+  font-family: 'Exo 2', sans-serif;
 	font-weight: 400;
-	color: #444;
+	color: #4056a1;;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -43,10 +59,11 @@ html, body {
 	height: 100%;
 }
 
-.mdc-theme--dark {
+/* .mdc-theme--main {
 	background-color: #333;
-	color: #fff;
-}
+	color: rgb(219, 3, 3);
+} */
+  
 
 .mdc-theme--dark .mdc-card {
   color: #444;
