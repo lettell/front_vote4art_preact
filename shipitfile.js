@@ -3,7 +3,7 @@ module.exports = shipit => {
   shipit.initConfig({
     default: {
       workspace: '/tmp/vote4art',
-      repositoryUrl: 'git@github.com:lettell/vote4art.git',
+      repositoryUrl: 'git@github.com:lettell/front_vote4art.git',
       ignores: ['.git', 'node_modules', '.vscode'],
       keepReleases: 5,
       deleteOnRollback: false,
