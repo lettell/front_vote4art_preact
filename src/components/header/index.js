@@ -34,7 +34,6 @@ export default class Header extends Component {
 
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
-	goToMyGame = this.linkTo('/game');
 
 	toggleDarkTheme = () => {
 		this.setState(
@@ -62,11 +61,11 @@ export default class Header extends Component {
 							<TopAppBar.Icon menu onClick={this.openDrawer}>
 								menu
 							</TopAppBar.Icon>
-							<TopAppBar.Title>vote4art</TopAppBar.Title>
+							<TopAppBar.Title>Preact app</TopAppBar.Title>
 						</TopAppBar.Section>
-						{/* <TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
+						<TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
 							<TopAppBar.Icon>settings</TopAppBar.Icon>
-						</TopAppBar.Section> */}
+						</TopAppBar.Section>
 					</TopAppBar.Row>
 				</TopAppBar>
 				<Drawer modal ref={this.drawerRef}>
@@ -75,13 +74,9 @@ export default class Header extends Component {
 							<List.ItemGraphic>home</List.ItemGraphic>
 							Home
 						</Drawer.DrawerItem>
-						{/* <Drawer.DrawerItem selected={props.selectedRoute === '/profile'} onClick={this.goToMyProfile}>
+						<Drawer.DrawerItem selected={props.selectedRoute === '/profile'} onClick={this.goToMyProfile}>
 							<List.ItemGraphic>account_circle</List.ItemGraphic>
 							Profile
-						</Drawer.DrawerItem> */}
-						<Drawer.DrawerItem selected={props.selectedRoute === '/game'} onClick={this.goToMyGame}>
-							<List.ItemGraphic>account_circle</List.ItemGraphic>
-							Game
 						</Drawer.DrawerItem>
 					</Drawer.DrawerContent>
 				</Drawer>

@@ -8,7 +8,7 @@ export default class Home extends Component {
 	render() {
 		return (
 			<div class={`${style.home} page`}>
-				<h1>Homes routes</h1>
+				<h1>Home route</h1>
 				<Card>
 					<div class={style.cardHeader}>
 						<h2 class=" mdc-typography--title">Home card</h2>

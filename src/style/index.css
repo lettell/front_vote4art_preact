@@ -53,11 +53,5 @@ html, body {
 }
 
 #app .page {
-  padding-top: 64px;
-}
-
-@media (max-width: 599px) {
-	#app .page {
-		padding-top: 56px;
-	}
+  padding-top: 56px;
 }
