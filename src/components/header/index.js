@@ -75,10 +75,10 @@ export default class Header extends Component {
 							<List.ItemGraphic>home</List.ItemGraphic>
 							Home
 						</Drawer.DrawerItem>
-						<Drawer.DrawerItem selected={props.selectedRoute === '/profile'} onClick={this.goToMyProfile}>
+						{/* <Drawer.DrawerItem selected={props.selectedRoute === '/profile'} onClick={this.goToMyProfile}>
 							<List.ItemGraphic>account_circle</List.ItemGraphic>
 							Profile
-						</Drawer.DrawerItem>
+						</Drawer.DrawerItem> */}
 						<Drawer.DrawerItem selected={props.selectedRoute === '/game'} onClick={this.goToMyGame}>
 							<List.ItemGraphic>account_circle</List.ItemGraphic>
 							Game
