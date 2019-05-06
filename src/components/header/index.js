@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import TopAppBar from 'preact-material-components/TopAppBar';
-
+import Auth from '../auth';
 import Dialog from 'preact-material-components/Dialog';
 import Switch from 'preact-material-components/Switch';
 import 'preact-material-components/Switch/style.css';
@@ -65,17 +65,15 @@ export default class Header extends Component {
 						</TopAppBar.Section>
 					</TopAppBar.Row>
 				</TopAppBar>
-				{/* <Dialog ref={this.dialogRef}>
-					<Dialog.Header>Settings</Dialog.Header>
+				<Dialog ref={this.dialogRef}>
+					<Dialog.Header>auth.title</Dialog.Header>
 					<Dialog.Body>
-						<div>
-							Enable dark theme <Switch onClick={this.toggleDarkTheme} />
-						</div>
+						<Auth />
 					</Dialog.Body>
 					<Dialog.Footer>
 						<Dialog.FooterButton accept>OK</Dialog.FooterButton>
 					</Dialog.Footer>
-				</Dialog> */}
+				</Dialog>
 			</div>
 		);
 	}

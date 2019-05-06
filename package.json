@@ -33,6 +33,7 @@
     "shipit-deploy": "^4.1.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
     "preact-material-components": "^1.4.3",
