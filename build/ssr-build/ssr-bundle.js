@@ -6016,7 +6016,7 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 // const BASE_URL = 'http://localhost:3000/api/v1/';
 
 // production
-var vote4art_api_BASE_URL = 'http://api.vote4art.eu';
+var vote4art_api_BASE_URL = 'http://api.vote4art.eu/api/v1/';
 
 
 
