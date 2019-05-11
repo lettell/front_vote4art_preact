@@ -11,10 +11,11 @@ import style from './style';
 
 export default class Board extends Component {
 		// callback
-		setColor = (currentColor) => {
+		setColor(currentColor) {
 			// if (!this.isEditable) return;
-			this.setState({currentColor})
-		};
+			console.log(currentColor)
+			this.setState(currentColor);
+		}
 	
 		saveCallback = (reload) => {
 			if (!this.isEditable) return;
@@ -83,8 +84,9 @@ export default class Board extends Component {
 	}
 
 
-	putPixel=()=> {
-		if (!this.state.currentColor) return;
+	putPixel() {
+		console.log(this.state)
+		if (!this.state.color) return;
 		let svg = document.getElementById('voteForArt')
 		let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);
@@ -93,9 +95,9 @@ export default class Board extends Component {
 		p.setAttributeNS(null, 'x', this.pixelPoint[0]);
 		p.setAttributeNS(null, 'y',this.pixelPoint[1]);
 
-		p.setAttributeNS(null, 'fill', this.state.currentColor.color );
+		p.setAttributeNS(null, 'fill', this.state.color );
 		svg.appendChild(p)
-		alert('padetas x:'+this.pixelPoint[0]+'y:'+this.pixelPoint[1],'spalva:'+this.state.currentColor.color)
+		alert(`padetas x:${this.pixelPoint[0]}y:${this.pixelPoint[1]}spalva:${this.state.color}`)
 		this.setState({ pixelPlaced: true });
 
 	}
