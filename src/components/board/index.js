@@ -26,7 +26,9 @@ export default class Board extends Component {
 	constructor() {
 		super();
 		this.getCord = this.getCord.bind(this);
+		this.setColor = this.setColor.bind(this);
 		this.putPixel = this.putPixel.bind(this);
+
 		this.scaledPixel = 1000;
 		this.scaledX = 499;
 		this.scaledY = 499;
