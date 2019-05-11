@@ -83,9 +83,8 @@ export default class Board extends Component {
 	}
 
 
-	putPixel(color){
-		const colo = this.state.currentColor.color || color;
-		if(!colo) return; // msg reikia pasirinkt spalva
+	putPixel(){
+		if (!this.state.currentColor) return;
 		let svg = document.getElementById('voteForArt')
 		let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);
@@ -94,10 +93,10 @@ export default class Board extends Component {
 		p.setAttributeNS(null, 'x', this.pixelPoint[0]);
 		p.setAttributeNS(null, 'y',this.pixelPoint[1]);
 
-		p.setAttributeNS(null, 'fill', colo );
+		p.setAttributeNS(null, 'fill', this.state.currentColor.color );
 		svg.appendChild(p)
 
-		// this.setState({ pixelPlaced: true });
+		this.setState({ pixelPlaced: true });
 
 	}
 
