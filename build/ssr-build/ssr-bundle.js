@@ -25567,7 +25567,6 @@ var board_Board = function (_Component) {
 		this.svg = src_select('#voteForArt');
 
 		arr.forEach(function (element) {
-			console.log(element);
 			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
 		});
 		this.setState({ activePixels: 'placed_on_board' });
@@ -25578,6 +25577,7 @@ var board_Board = function (_Component) {
 
 		this.svg = src_select('#voteForArt');
 		this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', this.state.color).attr('x', this.pixelPoint[0]).attr('y', this.pixelPoint[1]);
+		postPixel(this.pixelPoint, this.state.color);
 	};
 
 	Board.prototype.componentWillMount = function componentWillMount() {
@@ -25594,10 +25594,11 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {
-		this.setState({ activeBoard: this.base.querySelector('#voteForArt') });
+		console.log('board');
+		var b = this.base.querySelector('#voteForArt');
 		this.loadPixels();
-		this.initZoom(this.state.activeBoard);
-		this.state.activeBoard.addEventListener('mousemove', this.mousePosition);
+		this.initZoom(b);
+		b.addEventListener('mousemove', this.mousePosition);
 	};
 
 	Board.prototype.render = function render(props) {
@@ -25649,7 +25650,7 @@ var board_Board = function (_Component) {
 					height: this.scaledPixel,
 					'class': 'pixelated',
 
-					src: '/assets/images/eye_output-fs8.png'
+					src: '/assets/images/board_first.png'
 				})
 			),
 			Object(preact_min["h"])(
@@ -25692,7 +25693,7 @@ function game__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 var game__ref = Object(preact_min["h"])(
-	'main',
+	'div',
 	null,
 	Object(preact_min["h"])(board_Board, null)
 );
