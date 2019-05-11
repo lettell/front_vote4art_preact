@@ -6013,10 +6013,10 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1/';
+// const BASE_URL = 'http://localhost:3000/api/v1/';
 
 // production
-// const BASE_URL = 'http://api.vote4art.eu';
+var vote4art_api_BASE_URL = 'http://api.vote4art.eu';
 
 
 
