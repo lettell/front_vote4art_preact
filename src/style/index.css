@@ -71,10 +71,7 @@ svg {
 	height: 100%;
 }
 
-/* .mdc-theme--main {
-	background-color: #333;
-	color: rgb(219, 3, 3);
-} */
+
 .pixelated {
   image-rendering:optimizeSpeed;             /* Legal fallback */
   image-rendering:-moz-crisp-edges;          /* Firefox        */

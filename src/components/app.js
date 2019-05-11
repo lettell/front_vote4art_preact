@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
-import { login } from '../utils/auth-service';
+// import { login } from '../utils/auth-service';
 
 import Header from './header';
 import Home from '../routes/home';

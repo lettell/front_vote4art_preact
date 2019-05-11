@@ -17,9 +17,6 @@ export default class Board extends Component {
 		this.setState(currentColor);
 	}
 	
-		saveCallback = (reload) => {
-			if (!this.isEditable) return;
-		};
 
 
 		// functions
@@ -30,6 +27,7 @@ export default class Board extends Component {
 			this.setColor = this.setColor.bind(this);
 			this.putPixel = this.putPixel.bind(this);
 			this.mousePosition = this.mousePosition.bind(this);
+			this.transform = this.transform.bind(this);
 
 			this.scaledPixel = 1000;
 			this.scaledX = 499;
@@ -60,7 +58,7 @@ export default class Board extends Component {
 			this.zoomController = pan;
 		}
 	// pervadinti i zoom
-	transform = (e) => {
+	transform(e) {
 		let position = e.getTransform();
 		this.scaledPixel = Math.floor(1000 * position.scale);
 		this.scale = position.scale;
@@ -71,9 +69,6 @@ export default class Board extends Component {
 	
 	mousePosition(e) {
 		this.mPosition = [(Math.floor((e.clientX - this.scaledX) / this.scale)),( Math.floor((e.clientY - this.scaledY) / this.scale))];
-		// console.log(`
-		// 	bord X/Y: ${this.mPosition}
-		// 	Client X/Y: ${e.clientX}, ${e.clientY}`);
 	}
 	getCord(e) {
 		if ( e.clientX === undefined ) {
@@ -85,13 +80,16 @@ export default class Board extends Component {
 	}
 	loadPixels() {
 		getPixels().then(resp => {
-			this.setState({activePixels: 'loaded'});
-			if (resp.data && resp.data.length) this.setAllPixels(resp.data);
-		}).catch(e => console.error(e.error));
+			this.setState({ activePixels: 'loaded' });
+			if (resp.data && resp.data.length){
+				this.setAllPixels(resp.data);
+			}
+		}
+		).catch(e => console.error(e.error));
 	}
-	async setAllPixels(arr) {
+	setAllPixels(arr) {
 		let svg = document.getElementById('voteForArt');
-		await arr.forEach(element => {
+		arr.forEach(element => {
 			let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 			p.setAttributeNS(null, 'width', 1);
 			p.setAttributeNS(null, 'height', 1);
@@ -100,7 +98,7 @@ export default class Board extends Component {
 			p.setAttributeNS(null, 'fill', element.attributes.color);
 			svg.appendChild(p);
 		});
-		this.setState({activePixels: 'placed_on_board'});
+		this.setState({ activePixels: 'placed_on_board' });
 	}
 	putPixel() {
 		
@@ -113,53 +111,29 @@ export default class Board extends Component {
 		p.setAttributeNS(null, 'y',this.pixelPoint[1]);
 		p.setAttributeNS(null, 'fill', this.state.color );
 		svg.appendChild(p);
-		console.log(`padetas x:${this.pixelPoint[0]}y:${this.pixelPoint[1]}spalva:${this.state.color}`)
 		this.setState({ pixelPlaced: true });
-		postPixel(this.pixelPoint, this.state.color)
+		postPixel(this.pixelPoint, this.state.color);
 	}
 
-	// drawGrid(context) {
-	// 	for (let x = 0.5; x < 10001; x += 10) {
-	// 		context.moveTo(x, 0);
-	// 		context.lineTo(x, 10000);
-	// 	}
-		
-	// 	for (let y = 0.5; y < 10001; y += 10) {
-	// 		context.moveTo(0, y);
-	// 		context.lineTo(10000, y);
-	// 	}
-		
-	// 	context.strokeStyle = '#ddd';
-	// 	context.stroke();
-	// }
 	componentWillMount() {
 		this.pixelPoint = [0, 0];
 		if ( window.innerWidth ) {
 			this.WX = window.innerWidth;
 			this.WY = window.innerHeight;
 		}
- 		else {
+		else {
 			this.WX = document.body.clientWidth;
 			this.WY = document.body.clientHeight;
 		}
 		this.WX = this.WX / 2;
 		this.WY = this.WY / 2;
+
 	}
 	componentDidMount() {
-		this.loadPixels();
 		this.setState({ activeBoard: this.base.querySelector('#voteForArt') });
+		this.loadPixels();
 		this.initZoom(this.state.activeBoard);
 		this.state.activeBoard.addEventListener('mousemove', this.mousePosition);
-
-		// this.canvas = document.getElementById('voteForArt');
-		// this.context = this.canvas.getContext('2d');
-		// this.canvas.addEventListener('click', (evt) => {
-		// 	let mousePos = this.getSquare(evt);
-		// 	this.fillSquare(this.context, mousePos.x, mousePos.y);
-		// }, false);
-		// this.drawGrid(this.context);
-		// this.context.fillStyle = "url('./assets/images/eye_output-fs8.png')";
-
 
 	}
 
@@ -177,19 +151,19 @@ export default class Board extends Component {
 				</div>
 				<h1 style="background:white;position: fixed; top: 160px; z-index: 9999;">Pixel: x:{this.pixelPoint[0]}y:{this.pixelPoint[1]}</h1>
 				<h1 style="background:white;position: fixed; top: 80px; z-index: 9999;">scale{this.scale}</h1>
-			 <div
-				class={style.pixel__center}
-				style={`
-					display: ${ this.state.color ? '' : 'none'};
-					top:${this.WY};
-					left:${this.WX};
-					transform:scale(${this.scale});
+				<div
+					class={style.pixel__center}
+					style={`
+						display: ${ this.state.color ? '' : 'none'};
+						top:${this.WY};
+						left:${this.WX};
+						transform:scale(${this.scale});
 					`}
-			 	>
+			 >
 					 <span class={style.pixel} style={`	
 						 background: ${this.state.color};
 						 `}
-						/>
+					 />
 				</div>
 				<div
 					style={`
@@ -200,20 +174,12 @@ export default class Board extends Component {
 						left: ${this.scaledX}px;
 					`}
 				>
-					{/* <div class={style.board__grid} 
-						style={`
-							// display: ${ this.scale < 8 ? 'none' : 'block'};
-							width:${ this.scaledPixel }px;
-							height:${ this.scaledPixel }px;
-							background-size: ${this.scale}px  ${this.scale}px;
-						`}
-					/> */}
 					<img
-						// width={this.scaledPixel}
-						// height={this.scaledPixel}
-						// class="pixelated"
+						width={this.scaledPixel}
+						height={this.scaledPixel}
+						class="pixelated"
 
-						// src="/assets/images/eye_output-fs8.png"
+						src="/assets/images/eye_output-fs8.png"
 					/>
 				</div>
 				 <svg width="1000%" id="board" height="100%" >
@@ -235,16 +201,6 @@ export default class Board extends Component {
 						/>
 					 </g>
 				</svg>
-					
-				 	{/* <canvas id="voteForArt" class={style.board__view} width="1000" height="1000" style="background: url('./assets/images/eye_output-fs8.png')" /> */}
-				{/* persikelt pasku i component */}
-				{/* <div class={style.board__scale} id="scaller" /> */}
-				{/* <img
-					class={style.board__view}
-
-					id="viewer"
-					src="/assets/images/eye_output-fs8.png"
-				/> */}
 			</div>
 		);
 	}

@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { route } from 'preact-router';
+// import { route } from 'preact-router';
 import style from './style';
 
 
@@ -25,7 +25,6 @@ export default class Colors extends Component {
 
 	setColor(e) {
 		let color = this.state.color === e.target.dataset.color ? null : e.target.dataset.color;
-		console.log(color);
 		this.setState({ color });
 		this.props.callbackFromBoard(this.state);
 	}
