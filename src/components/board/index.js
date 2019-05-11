@@ -28,6 +28,7 @@ export default class Board extends Component {
 			this.putPixel = this.putPixel.bind(this);
 			this.mousePosition = this.mousePosition.bind(this);
 			this.transform = this.transform.bind(this);
+			this.loadPixels = this.loadPixels.bind(this);
 
 			this.scaledPixel = 1000;
 			this.scaledX = 499;
@@ -88,6 +89,7 @@ export default class Board extends Component {
 		).catch(e => console.error(e.error));
 	}
 	setAllPixels(arr) {
+		debugger
 		let svg = document.getElementById('voteForArt');
 		arr.forEach(element => {
 			let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -103,7 +105,6 @@ export default class Board extends Component {
 	putPixel() {
 		
 		if (!this.state.color) return;
-		debugger
 		let svg = document.getElementById('voteForArt');
 		let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);
@@ -186,8 +187,7 @@ export default class Board extends Component {
 				 <svg width="1000%" id="board" height="100%" >
 					<defs>
 						<pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
-							{this.state ? <path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.01" />
-						 :''}
+							<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.01" />
 						</pattern>
 					</defs>
 					 <g id="voteForArt" fill="url(#smallGrid)" >
