@@ -24,7 +24,6 @@ export function login(pramas) {
 		password: pramas.password
 	})
 		.then((response) => {
-      debugger
 			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 			console.log(response);
 		})
@@ -34,16 +33,17 @@ export function login(pramas) {
 }
 export function signup(pramas) {
 	const url = `${BASE_URL}/signup`;
-
 	axios.post(url, {
 		username: pramas.username,
 		password: pramas.password,
 		password_confirmation: pramas.password
 
-	},{ headers: { authorization: getAccessToken() } })
+	})
 		.then((response) => {
       
 			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+			localStorage.setItem(ID_TOKEN_KEY, response.data.jti);
+
 			console.log(response);
 		})
 		.catch((error) => {
@@ -57,9 +57,10 @@ export function logout() {
 	window.location.href = '/';
 }
 
-export function isLogedIn() {
-	const url = `${BASE_URL_PRIVATE}/users`;
-	return axios.get(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
+export function facebookLogin(data) {
+	// // signedRequest
+	// const url = `${BASE_URL}/auth/facebook/callback?code=${data.accessToken}`;
+	// return axios.get(url, data).then(response => console.log(response.data)).catch( e => console.log(e));
 }
 
 function clearIdToken() {

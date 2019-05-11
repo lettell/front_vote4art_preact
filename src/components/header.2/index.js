@@ -62,7 +62,7 @@ export default class Header extends Component {
 							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
 						<TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
-							<TopAppBar.Icon>settings</TopAppBar.Icon>
+							{/* <TopAppBar.Icon>settings</TopAppBar.Icon> */}
 						</TopAppBar.Section>
 					</TopAppBar.Row>
 				</TopAppBar>

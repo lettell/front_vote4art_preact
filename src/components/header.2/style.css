@@ -1,0 +1,12 @@
+.logo {
+  height: 55px;
+  width: auto;
+  align-self: flex-start;
+}
+@media only screen and (max-width: 600px) {
+  .logo {
+    height: 51px;
+    width: auto;
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,61 @@
+.wrap__board {
+  background-color: red;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  image-rendering: optimizeSpeed;             /* Legal fallback */
+  image-rendering: -moz-crisp-edges;          /* Firefox        */
+  image-rendering: -o-crisp-edges;            /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed  */
+  image-rendering: crisp-edges;               /* CSS4 Proposed  */
+  image-rendering: pixelated;                 /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+           */
+}
+/* .board__grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 250px 250px;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: linear-gradient(to right, rgb(13, 0, 85) 1px, transparent 1px), linear-gradient(to bottom, rgb(39, 0, 102) 1px, transparent 1px);
+  top: 0;
+  left: 0;
+  display: block;
+  transition: 250ms ease-out opacity;
+  z-index: 1;
+  background-position: -0.5px -0.5px;
+} */
+.board__scale {
+  width: 100%;
+  height: 100%;
+}
+.pixel {
+  width: 1px;
+  height: 1px;  /* position: absolute; */
+
+  background: green;
+}
+.pixel__center {
+  font-size: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 9999;
+  color: greenyellow;
+}
+.colors_controlls {
+ position: fixed;
+ display: flex;
+ margin: 0 auto;
+ bottom: 0;
+ z-index: 100;
+}
