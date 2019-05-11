@@ -9764,7 +9764,9 @@ var board_Board = function (_Component) {
 		};
 
 		_this.getCord = _this.getCord.bind(_this);
+		_this.setColor = _this.setColor.bind(_this);
 		_this.putPixel = _this.putPixel.bind(_this);
+
 		_this.scaledPixel = 1000;
 		_this.scaledX = 499;
 		_this.scaledY = 499;
