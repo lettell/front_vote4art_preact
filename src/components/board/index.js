@@ -83,7 +83,7 @@ export default class Board extends Component {
 	}
 
 
-	putPixel(){
+	putPixel=()=> {
 		if (!this.state.currentColor) return;
 		let svg = document.getElementById('voteForArt')
 		let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -95,7 +95,7 @@ export default class Board extends Component {
 
 		p.setAttributeNS(null, 'fill', this.state.currentColor.color );
 		svg.appendChild(p)
-
+		alert('padetas x:'+this.pixelPoint[0]+'y:'+this.pixelPoint[1],'spalva:'+this.state.currentColor.color)
 		this.setState({ pixelPlaced: true });
 
 	}

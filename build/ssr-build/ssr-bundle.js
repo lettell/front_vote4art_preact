@@ -9763,6 +9763,22 @@ var board_Board = function (_Component) {
 			_this.setState({ transforming: true });
 		};
 
+		_this.putPixel = function () {
+			if (!_this.state.currentColor) return;
+			var svg = document.getElementById('voteForArt');
+			var p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+			p.setAttributeNS(null, 'width', 1);
+			p.setAttributeNS(null, 'height', 1);
+
+			p.setAttributeNS(null, 'x', _this.pixelPoint[0]);
+			p.setAttributeNS(null, 'y', _this.pixelPoint[1]);
+
+			p.setAttributeNS(null, 'fill', _this.state.currentColor.color);
+			svg.appendChild(p);
+			alert('padetas x:' + _this.pixelPoint[0] + 'y:' + _this.pixelPoint[1], 'spalva:' + _this.state.currentColor.color);
+			_this.setState({ pixelPlaced: true });
+		};
+
 		_this.getCord = _this.getCord.bind(_this);
 		_this.setColor = _this.setColor.bind(_this);
 		_this.putPixel = _this.putPixel.bind(_this);
@@ -9813,23 +9829,6 @@ var board_Board = function (_Component) {
 		this.putPixel();
 	};
 
-	Board.prototype.putPixel = function putPixel(color) {
-		var colo = this.state.currentColor.color || color;
-		if (!colo) return; // msg reikia pasirinkt spalva
-		var svg = document.getElementById('voteForArt');
-		var p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-		p.setAttributeNS(null, 'width', 1);
-		p.setAttributeNS(null, 'height', 1);
-
-		p.setAttributeNS(null, 'x', this.pixelPoint[0]);
-		p.setAttributeNS(null, 'y', this.pixelPoint[1]);
-
-		p.setAttributeNS(null, 'fill', colo);
-		svg.appendChild(p);
-
-		// this.setState({ pixelPlaced: true });
-	};
-
 	// drawGrid(context) {
 	// 	for (let x = 0.5; x < 10001; x += 10) {
 	// 		context.moveTo(x, 0);
@@ -9844,8 +9843,6 @@ var board_Board = function (_Component) {
 	// 	context.strokeStyle = '#ddd';
 	// 	context.stroke();
 	// }
-
-
 	Board.prototype.componentWillMount = function componentWillMount() {
 		this.pixelPoint = [0, 0];
 		if (window.innerWidth) {
