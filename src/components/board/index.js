@@ -103,6 +103,7 @@ export default class Board extends Component {
 	putPixel() {
 		
 		if (!this.state.color) return;
+		debugger
 		let svg = document.getElementById('voteForArt');
 		let p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);

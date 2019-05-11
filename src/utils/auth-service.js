@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const ACCESS_TOKEN_KEY = 'va',
 	    ID_TOKEN_KEY = 'la',
-	BASE_URL = 'http://localhost:3000',
-	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+	// BASE_URL = 'http://localhost:3000',
+	// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-// BASE_URL  'http://api.vote4art.eu';
+BASE_URL = 'https://api.vote4art.eu';
 
 export function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);

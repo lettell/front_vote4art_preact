@@ -5421,10 +5421,11 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'http://localhost:3000',
-    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+
+// BASE_URL = 'http://localhost:3000',
+// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-// BASE_URL  'http://api.vote4art.eu';
+BASE_URL = 'https://api.vote4art.eu';
 
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -6258,6 +6259,7 @@ var board_Board = function (_Component) {
 	Board.prototype.putPixel = function putPixel() {
 
 		if (!this.state.color) return;
+		debugger;
 		var svg = document.getElementById('voteForArt');
 		var p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);
