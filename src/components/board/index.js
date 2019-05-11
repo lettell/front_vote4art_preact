@@ -92,7 +92,6 @@ export default class Board extends Component {
 		this.svg =d3.select('#voteForArt');
 
 		arr.forEach(element => {
-			console.log(element)
 			this.svg.append('svg:rect')
 				.attr('width', 1)
 				.attr('height', 1)
@@ -113,6 +112,7 @@ export default class Board extends Component {
 			.attr('fill', this.state.color)
 			.attr('x', this.pixelPoint[0])
 			.attr('y', this.pixelPoint[1]);
+		postPixel(this.pixelPoint, this.state.color);
 	}
 
 	componentWillMount() {
@@ -130,10 +130,11 @@ export default class Board extends Component {
 
 	}
 	componentDidMount() {
-		this.setState({ activeBoard: this.base.querySelector('#voteForArt') });
+		console.log('board');
+		const b = this.base.querySelector('#voteForArt') 
 		this.loadPixels();
-		this.initZoom(this.state.activeBoard);
-		this.state.activeBoard.addEventListener('mousemove', this.mousePosition);
+		this.initZoom(b);
+		b.addEventListener('mousemove', this.mousePosition);
 
 	}
 
@@ -179,7 +180,7 @@ export default class Board extends Component {
 						height={this.scaledPixel}
 						class="pixelated"
 
-						src="/assets/images/eye_output-fs8.png"
+						src="/assets/images/board_first.png"
 					/>
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1000%" id="board" height="100%" >

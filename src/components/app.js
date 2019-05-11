@@ -35,10 +35,6 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Game path="/game/:x?/:y?/:zoom?" />
-
-					{/* <Profile path="/profile/" user="me" /> */}
-					{/* <Profile path="/profile/:user" /> */}
-
 					<NotFound default />
 				</Router>
 			</div>
