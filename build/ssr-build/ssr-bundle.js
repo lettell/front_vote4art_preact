@@ -6040,7 +6040,7 @@ function postPixel(xy, color) {
 	};
 	var url = vote4art_api_BASE_URL + '/pixels';
 	return axios_default.a.post(url, pramas, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
-		return JSON.parse(response.data);
+		return response.data;
 	});
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
@@ -6154,7 +6154,15 @@ preact_tap_event_plugin_default()();
 
 var board__ref = Object(preact_min["h"])(Slider_default.a, { step: 25, value: 1, max: 250 });
 
-var board__ref2 = Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'gray', 'stroke-width': '0.01' });
+var board__ref2 = Object(preact_min["h"])(
+	'defs',
+	null,
+	Object(preact_min["h"])(
+		'pattern',
+		{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
+		Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'gray', 'stroke-width': '0.01' })
+	)
+);
 
 var board_Board = function (_Component) {
 	board__inherits(Board, _Component);
@@ -6177,6 +6185,7 @@ var board_Board = function (_Component) {
 		_this.putPixel = _this.putPixel.bind(_this);
 		_this.mousePosition = _this.mousePosition.bind(_this);
 		_this.transform = _this.transform.bind(_this);
+		_this.loadPixels = _this.loadPixels.bind(_this);
 
 		_this.scaledPixel = 1000;
 		_this.scaledX = 499;
@@ -6243,6 +6252,7 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.setAllPixels = function setAllPixels(arr) {
+		debugger;
 		var svg = document.getElementById('voteForArt');
 		arr.forEach(function (element) {
 			var p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -6259,7 +6269,6 @@ var board_Board = function (_Component) {
 	Board.prototype.putPixel = function putPixel() {
 
 		if (!this.state.color) return;
-		debugger;
 		var svg = document.getElementById('voteForArt');
 		var p = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 		p.setAttributeNS(null, 'width', 1);
@@ -6347,15 +6356,7 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'svg',
 				{ width: '1000%', id: 'board', height: '100%' },
-				Object(preact_min["h"])(
-					'defs',
-					null,
-					Object(preact_min["h"])(
-						'pattern',
-						{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
-						this.state ? board__ref2 : ''
-					)
-				),
+				board__ref2,
 				Object(preact_min["h"])(
 					'g',
 					{ id: 'voteForArt', fill: 'url(#smallGrid)' },
