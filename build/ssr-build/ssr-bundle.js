@@ -25595,6 +25595,19 @@ preact_tap_event_plugin_default()();
 
 var board__ref = Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'grey', 'stroke-width': '0.03' });
 
+var board__ref2 = Object(preact_min["h"])(
+	'g',
+	{ id: 'voteForArt', fill: 'none' },
+	Object(preact_min["h"])('rect', {
+		fill: 'url(#smallGrid)',
+		id: 'bgImage',
+		width: '1000',
+		height: '1000',
+		x: '0',
+		y: '0'
+	})
+);
+
 var board_Board = function (_Component) {
 	board__inherits(Board, _Component);
 
@@ -25778,21 +25791,21 @@ var board_Board = function (_Component) {
 						this.state.grid ? board__ref : ""
 					)
 				),
+				board__ref2,
 				Object(preact_min["h"])(
 					'g',
-					{ id: 'voteForArt', fill: 'none' },
+					{ fill: 'none' },
 					Object(preact_min["h"])('rect', {
 						fill: 'url(#smallGrid)',
-						id: 'bgImage',
-						width: '1000',
-						height: '1000',
-						x: '0',
-						y: '0',
+						width: this.scaledPixel,
+						onTouchTap: this.getCord,
+						height: this.scaledPixel,
+						x: this.scaledX,
+						y: this.scaledY,
 						onClick: this.getCord,
 						style: 'cursor: pointer;'
 					})
-				),
-				Object(preact_min["h"])('g', { id: 'activePixels' })
+				)
 			)
 		);
 	};
