@@ -25,6 +25,6 @@ function postPixel(xy, color) {
 
 	};
 	const url = `${BASE_URL}/pixels`;
-	return axios.post(url, pramas, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => response.data);
+	return axios.post(url, pramas, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => JSON.parse(response.data));
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));

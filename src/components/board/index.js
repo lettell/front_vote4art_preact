@@ -90,8 +90,9 @@ export default class Board extends Component {
 			this.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
+				this.currentPhoto = `https://nuotraukos.vote4art.eu/${resp.meta.photo}` 
 				this.setState({
-					currentPhoto: `https://nuotraukos.vote4art.eu/${resp.meta.photo}` 
+					currentPhoto: resp.meta.photo
 				});
 			}
 		}
@@ -100,8 +101,6 @@ export default class Board extends Component {
 
 	setAllPixels(arr) {
 		this.svg =d3.select('#voteForArt');
-		// let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
-		// console.log(forNode);
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
@@ -129,9 +128,11 @@ export default class Board extends Component {
 		postPixel(this.pixelPoint, this.state.color).then( resp => {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
-				this.setState({
-					currentPhoto: `https://nuotraukos.vote4art.eu/${resp.meta.photo}` 
-				});
+				if (this.currentPhoto !== `https://nuotraukos.vote4art.eu/${resp.meta.photo}` ){
+					this.setState({ photoUpdate: resp.meta.photo});
+					this.currentPhoto =  `https://nuotraukos.vote4art.eu/${resp.meta.photo}`
+				}
+
 			}
 		});
 	}
@@ -191,11 +192,11 @@ export default class Board extends Component {
 						background-color: white;
 					`}
 				>
-					{this.state.currentPhoto ? <img
+					{this.currentPhoto ? <img
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
-						src={this.state.currentPhoto}
+						src={this.currentPhoto}
 					/> : ''}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1000%" id="board" height="100%" >
