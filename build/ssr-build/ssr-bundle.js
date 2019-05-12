@@ -25694,7 +25694,7 @@ var board_Board = function (_Component) {
 			if (resp.data && resp.data.length) {
 				_this2.setAllPixels(resp.data);
 				_this2.setState({
-					currentPhoto: 'https://nuotraukos.vote4art.eu/timelaps/' + resp.meta.photo
+					currentPhoto: 'https://nuotraukos.vote4art.eu/' + resp.meta.photo
 				});
 			}
 		}).catch(function (e) {
@@ -25728,7 +25728,7 @@ var board_Board = function (_Component) {
 			if (resp.data && resp.data.length) {
 				_this4.setAllPixels(resp.data);
 				_this4.setState({
-					currentPhoto: 'https://nuotraukos.vote4art.eu/timelaps/' + resp.meta.photo
+					currentPhoto: 'https://nuotraukos.vote4art.eu/' + resp.meta.photo
 				});
 			}
 		});
