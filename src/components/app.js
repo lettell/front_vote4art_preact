@@ -5,8 +5,8 @@ import { Router } from 'preact-router';
 import Header from './header';
 import Home from '../routes/home';
 import NotFound from '../routes/404';
-import Game from 'async!../routes/game';
-import Registration from 'async!../routes/registration';
+import Game from '../routes/game';
+import Registration from '../routes/registration';
 
 import Helmet from 'preact-helmet';
 
