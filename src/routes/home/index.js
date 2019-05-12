@@ -49,24 +49,21 @@ export default class Home extends Component {
 		}
 	
 	}
-	
+	shouldComponentUpdate() {
+		console.log('tines should')
+	}
 	render() {
 		return (
 			<div class={`${style.home} page`}>
 				<div>
 					<img class={style.logo} src="/assets/images/vote4art_logo.png" />
-
 					<h1>Iki žaidimo pradžios liko:</h1>
 					<Card class={style.timmer__block} >
 						<h1 class={style.timmer} id="countDown" />
 						<h1 class={style.timmer__text} id="countText">  diena valanda minutė sekundė</h1>
 						<h1 class={style.timmer__text__mobile}>  d. val. min. sek.</h1>
-
 					</Card>
-
 				</div>
-
-
 			</div>
 		);
 	}

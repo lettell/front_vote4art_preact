@@ -23,6 +23,7 @@ export default class Board extends Component {
 
 	constructor() {
 		super();
+
 		this.getCord = this.getCord.bind(this);
 		this.setColor = this.setColor.bind(this);
 		this.putPixel = this.putPixel.bind(this);
@@ -70,7 +71,9 @@ export default class Board extends Component {
 	
 	mousePosition(e) {
 		this.mPosition = [(Math.floor((e.clientX - this.scaledX) / this.scale)),( Math.floor((e.clientY - this.scaledY) / this.scale))];
+		console.log(this.mPosition);
 	}
+	
 	getCord(e) {
 		if ( e.clientX === undefined ) {
 			e = e.changedTouches[0];
@@ -79,6 +82,7 @@ export default class Board extends Component {
 		this.setState({ pixelPoint: [Math.floor((e.clientX - this.scaledX)  / this.scale), Math.floor((e.clientY - this.scaledY)  / this.scale)] });
 		this.putPixel();
 	}
+
 	loadPixels() {
 		getPixels().then(resp => {
 			this.setState({ activePixels: 'loaded' });
@@ -88,9 +92,11 @@ export default class Board extends Component {
 		}
 		).catch(e => console.error(e.error));
 	}
+
 	setAllPixels(arr) {
 		this.svg =d3.select('#voteForArt');
-
+		let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
+		console.log(forNode);
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
@@ -101,10 +107,12 @@ export default class Board extends Component {
 		});
 		this.setState({ activePixels: 'placed_on_board' });
 	}
+
 	putPixel() {
 		if (!this.state.color) return;
-
-	
+		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
+		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
+		// this.zoomController.pause();
 		this.svg =d3.select('#voteForArt');
 		this.svg.append('svg:rect')
 			.attr('width', 1)
@@ -129,13 +137,13 @@ export default class Board extends Component {
 		this.WY = this.WY / 2;
 
 	}
+
 	componentDidMount() {
-		console.log('board');
-		const b = this.base.querySelector('#voteForArt') 
+		const b = this.base.querySelector('#voteForArt');
+		const a = this.base.querySelector('#board') 
 		this.loadPixels();
 		this.initZoom(b);
-		b.addEventListener('mousemove', this.mousePosition);
-
+		a.addEventListener('mousemove', this.mousePosition);
 	}
 
 
@@ -173,26 +181,44 @@ export default class Board extends Component {
 						position: absolute;
 						top: ${this.scaledY}px;
 						left: ${this.scaledX}px;
+						background-color: white;
 					`}
 				>
-					<img
+					{/* <img
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
 
-						src="/assets/images/board_first.png"
-					/>
+						src="/assets/images/test_image.png"
+					/> */}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1000%" id="board" height="100%" >
 					<defs>
 						<pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
-							<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.01" />
+							<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="grey" stroke-width="0.01" />
 						</pattern>
 					</defs>
-					 <g id="voteForArt" fill="url(#smallGrid)" >
-					 </g>
-					 <g id="activePixels" fill="transparent" >
+					 <g id="voteForArt" fill="none" >
 						<rect
+								fill="url(#smallGrid)"
+								width="1000"
+								height="1000"
+								x="0"
+								y="0"
+								style="cursor: pointer;"
+							/>
+						</g>
+					 <g id="activePixels"  >
+					 <rect
+								fill="blue"
+								width="1"
+								height="1"
+								x="1"
+								y="1"
+							/>
+						
+						<rect
+							fill="url(#smallGrid)"
 							id="test"
 							width="1000"
 							onTouchTap={this.getCord}

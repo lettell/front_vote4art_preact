@@ -6,7 +6,7 @@ import Header from './header';
 import Home from '../routes/home';
 import NotFound from '../routes/404';
 import Game from 'async!../routes/game';
-// import Profile from 'async!../routes/profile';
+import Registration from 'async!../routes/registration';
 
 import Helmet from 'preact-helmet';
 
@@ -35,6 +35,7 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Game path="/game/:x?/:y?/:zoom?" />
+					<Registration path="/registration" />
 					<NotFound default />
 				</Router>
 			</div>

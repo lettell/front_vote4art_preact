@@ -52,6 +52,7 @@ export default class Header extends Component {
 	}
 
 	render(props) {
+		console.log('times')
 		return (
 			<div>
 				<TopAppBar className="topappbar mdc-elevation--z3">
