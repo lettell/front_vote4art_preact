@@ -16,9 +16,9 @@ export default class App extends Component {
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
-		this.setState({
-			currentUrl: e.url
-		});
+		// this.setState({
+		// 	currentUrl: e.url
+		// });
 	};
 
 	render() {
