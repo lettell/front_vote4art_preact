@@ -203,22 +203,21 @@ export default class Board extends Component {
 								height="1000"
 								x="0"
 								y="0"
-								onClick={this.getCord}
-								style="cursor: pointer;"
 							/>
+
 						</g>
-					 <g id="activePixels"  >
-					
-						{/* <rect
+					<g fill="none">
+						<rect
 							fill="url(#smallGrid)"
-							width="1000"
+							width={this.scaledPixel}
 							onTouchTap={this.getCord}
-							height="1000"
-							x="0"
-							y="0"
+							height={this.scaledPixel}
+							x={this.scaledX}
+							y={this.scaledY}
+							onClick={this.getCord}
 							style="cursor: pointer;"
-						/> */}
-					 </g>
+						/>
+				 </g>
 				</svg>
 			</div>
 		);
