@@ -25632,12 +25632,6 @@ var board_Board = function (_Component) {
 		_this.scaledX = 499;
 		_this.scaledY = 499;
 		_this.pixelPoint = [0, 0];
-
-		_this.windowCenter = {
-			h: window.innerHeight / 2,
-			w: window.innerWidth / 2
-		};
-
 		return _this;
 	}
 
@@ -25716,15 +25710,11 @@ var board_Board = function (_Component) {
 
 	Board.prototype.componentWillMount = function componentWillMount() {
 		this.pixelPoint = [0, 0];
-		if (window.innerWidth) {
-			this.WX = window.innerWidth;
-			this.WY = window.innerHeight;
-		} else {
-			this.WX = document.body.clientWidth;
-			this.WY = document.body.clientHeight;
-		}
-		this.WX = this.WX / 2;
-		this.WY = this.WY / 2;
+
+		// 	this.WX = document.body.clientWidth;
+		// 	this.WY = document.body.clientHeight;
+		// this.WX = this.WX / 2;
+		// this.WY = this.WY / 2;
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {

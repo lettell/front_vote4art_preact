@@ -44,12 +44,6 @@ export default class Board extends Component {
 		this.scaledX = 499;
 		this.scaledY = 499;
 		this.pixelPoint = [0, 0];
-
-		this.windowCenter = {
-			h: window.innerHeight/2,
-			w: window.innerWidth/2
-		};
-
 	}
 	
 	initZoom(elm) {
@@ -133,16 +127,11 @@ export default class Board extends Component {
 
 	componentWillMount() {
 		this.pixelPoint = [0, 0];
-		if ( window.innerWidth ) {
-			this.WX = window.innerWidth;
-			this.WY = window.innerHeight;
-		}
-		else {
-			this.WX = document.body.clientWidth;
-			this.WY = document.body.clientHeight;
-		}
-		this.WX = this.WX / 2;
-		this.WY = this.WY / 2;
+
+		// 	this.WX = document.body.clientWidth;
+		// 	this.WY = document.body.clientHeight;
+		// this.WX = this.WX / 2;
+		// this.WY = this.WY / 2;
 
 	}
 
