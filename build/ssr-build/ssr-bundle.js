@@ -5730,7 +5730,7 @@ function header__inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 // import TabBar from 'preact-material-components/TabBar';
 
-var _ref = Object(preact_min["h"])(TopAppBar_default.a.Title, null);
+var header__ref = Object(preact_min["h"])(TopAppBar_default.a.Title, null);
 
 var _ref2 = Object(preact_min["h"])(
 	TopAppBar_default.a.Icon,
@@ -5811,7 +5811,7 @@ var header_Header = function (_Component) {
 					Object(preact_min["h"])(
 						TopAppBar_default.a.Section,
 						{ 'align-start': true },
-						_ref
+						header__ref
 					),
 					Object(preact_min["h"])(
 						TopAppBar_default.a.Section,
@@ -25451,6 +25451,125 @@ var colors_Colors = function (_Component) {
 var board_style = __webpack_require__("prn+");
 var board_style_default = /*#__PURE__*/__webpack_require__.n(board_style);
 
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Theme/style.css
+var Theme_style = __webpack_require__("a81U");
+var Theme_style_default = /*#__PURE__*/__webpack_require__.n(Theme_style);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Fab/index.js
+var Fab = __webpack_require__("jGKv");
+var Fab_default = /*#__PURE__*/__webpack_require__.n(Fab);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Fab/style.css
+var Fab_style = __webpack_require__("MRE3");
+var Fab_style_default = /*#__PURE__*/__webpack_require__.n(Fab_style);
+
+// EXTERNAL MODULE: ./components/board/controls/style.css
+var controls_style = __webpack_require__("ZPQf");
+var controls_style_default = /*#__PURE__*/__webpack_require__.n(controls_style);
+
+// CONCATENATED MODULE: ./components/board/controls/index.js
+
+
+function controls__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function controls__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function controls__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+// import { route } from 'preact-router';
+
+
+
+
+
+
+
+
+var controls__ref = Object(preact_min["h"])(
+	Fab_default.a.Icon,
+	{ id: 'zoomIn' },
+	'zoom_in'
+);
+
+var controls__ref2 = Object(preact_min["h"])(
+	Fab_default.a.Icon,
+	null,
+	'zoom_out'
+);
+
+var controls__ref3 = Object(preact_min["h"])(
+	Fab_default.a.Icon,
+	null,
+	'crop_square'
+);
+
+var controls__ref4 = Object(preact_min["h"])(
+	Fab_default.a.Icon,
+	null,
+	'border_all'
+);
+
+var controls_Controls = function (_Component) {
+	controls__inherits(Controls, _Component);
+
+	Controls.prototype.zoom = function zoom(e) {
+		e.preventDefault();
+		var container = document.body.querySelector('#bgImage');
+		var rect = container.getBBox();
+		var cx = rect.x + rect.width / 2;
+		var cy = rect.y + rect.height / 2;
+		var isZoomIn = e.target.id === 'zoomIn';
+		var zoomBy = isZoomIn ? 2 : 0.5;
+		var params = { cx: cx, cy: cy, zoomBy: zoomBy };
+		this.props.callbackFromBoard(params);
+	};
+
+	Controls.prototype.grid = function grid(e) {
+		this.setState({ grid: !this.state.grid });
+		this.props.callbackFromBoardSecond(this.state.grid);
+	};
+
+	function Controls() {
+		controls__classCallCheck(this, Controls);
+
+		var _this = controls__possibleConstructorReturn(this, _Component.call(this));
+
+		_this.zoom = _this.zoom.bind(_this);
+		_this.grid = _this.grid.bind(_this);
+
+		_this.state = {
+			grid: false
+		};
+		return _this;
+	}
+
+	Controls.prototype.render = function render(props) {
+		return Object(preact_min["h"])(
+			'div',
+			{ 'class': controls_style_default.a.container },
+			Object(preact_min["h"])(
+				Fab_default.a,
+				{ mini: true, 'class': controls_style_default.a.btn_grid, id: 'zoomIn', ripple: true, raised: true, onClick: this.zoom },
+				controls__ref
+			),
+			Object(preact_min["h"])(
+				Fab_default.a,
+				{ mini: true, 'class': controls_style_default.a.btn_grid, id: 'zoomOut', ripple: true, raised: true, onClick: this.zoom },
+				controls__ref2
+			),
+			Object(preact_min["h"])(
+				Fab_default.a,
+				{ mini: true, 'class': controls_style_default.a.btn_grid, ripple: true, raised: true, onClick: this.grid },
+				this.state.grid ? controls__ref3 : controls__ref4
+			)
+		);
+	};
+
+	return Controls;
+}(preact_min["Component"]);
+
+
 // CONCATENATED MODULE: ./components/board/index.js
 
 
@@ -25473,38 +25592,8 @@ preact_tap_event_plugin_default()();
 
 
 
-var board__ref = Object(preact_min["h"])(Slider_default.a, { step: 25, value: 1, max: 250 });
 
-var board__ref2 = Object(preact_min["h"])(
-	'defs',
-	null,
-	Object(preact_min["h"])(
-		'pattern',
-		{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
-		Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'grey', 'stroke-width': '0.01' })
-	)
-);
-
-var board__ref3 = Object(preact_min["h"])(
-	'g',
-	{ id: 'voteForArt', fill: 'none' },
-	Object(preact_min["h"])('rect', {
-		fill: 'url(#smallGrid)',
-		width: '1000',
-		height: '1000',
-		x: '0',
-		y: '0',
-		style: 'cursor: pointer;'
-	})
-);
-
-var board__ref4 = Object(preact_min["h"])('rect', {
-	fill: 'blue',
-	width: '1',
-	height: '1',
-	x: '1',
-	y: '1'
-});
+var board__ref = Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'grey', 'stroke-width': '0.03' });
 
 var board_Board = function (_Component) {
 	board__inherits(Board, _Component);
@@ -25513,6 +25602,14 @@ var board_Board = function (_Component) {
 	Board.prototype.setColor = function setColor(currentColor) {
 		// if (!this.isEditable) return;
 		this.setState(currentColor);
+	};
+
+	Board.prototype.setZoom = function setZoom(zoom) {
+		this.zoomController.smoothZoom(zoom.cx, zoom.cy, zoom.zoomBy);
+	};
+
+	Board.prototype.setGrid = function setGrid(grid) {
+		this.setState({ grid: grid });
 	};
 
 	// functions
@@ -25528,6 +25625,8 @@ var board_Board = function (_Component) {
 		_this.mousePosition = _this.mousePosition.bind(_this);
 		_this.transform = _this.transform.bind(_this);
 		_this.loadPixels = _this.loadPixels.bind(_this);
+		_this.setZoom = _this.setZoom.bind(_this);
+		_this.setGrid = _this.setGrid.bind(_this);
 
 		_this.scaledPixel = 1000;
 		_this.scaledX = 499;
@@ -25569,7 +25668,6 @@ var board_Board = function (_Component) {
 
 	Board.prototype.mousePosition = function mousePosition(e) {
 		this.mPosition = [Math.floor((e.clientX - this.scaledX) / this.scale), Math.floor((e.clientY - this.scaledY) / this.scale)];
-		console.log(this.mPosition);
 	};
 
 	Board.prototype.getCord = function getCord(e) {
@@ -25598,10 +25696,8 @@ var board_Board = function (_Component) {
 		var _this3 = this;
 
 		this.svg = src_select('#voteForArt');
-		var forNode = arr.map(function (e) {
-			return [e.attributes.x, e.attributes.y, e.attributes.color];
-		});
-		console.log(forNode);
+		// let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
+		// console.log(forNode);
 		arr.forEach(function (element) {
 			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
 		});
@@ -25634,6 +25730,7 @@ var board_Board = function (_Component) {
 	Board.prototype.componentDidMount = function componentDidMount() {
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#board');
+
 		this.loadPixels();
 		this.initZoom(b);
 		a.addEventListener('mousemove', this.mousePosition);
@@ -25646,14 +25743,12 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': board_style_default.a.board__controlls },
-				board__ref
+				Object(preact_min["h"])(controls_Controls, { callbackFromBoard: this.setZoom, callbackFromBoardSecond: this.setGrid })
 			),
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': board_style_default.a.colors_controlls },
-				Object(preact_min["h"])(colors_Colors, {
-					callbackFromBoard: this.setColor
-				})
+				Object(preact_min["h"])(colors_Colors, { callbackFromBoard: this.setColor })
 			),
 			Object(preact_min["h"])(
 				'h1',
@@ -25684,23 +25779,30 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'svg',
 				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '1000%', id: 'board', height: '100%' },
-				board__ref2,
-				board__ref3,
+				Object(preact_min["h"])(
+					'defs',
+					null,
+					Object(preact_min["h"])(
+						'pattern',
+						{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
+						this.state.grid ? board__ref : ""
+					)
+				),
 				Object(preact_min["h"])(
 					'g',
-					{ id: 'activePixels' },
-					board__ref4,
+					{ id: 'voteForArt', fill: 'none' },
 					Object(preact_min["h"])('rect', {
 						fill: 'url(#smallGrid)',
-						id: 'test',
+						id: 'bgImage',
 						width: '1000',
-						onTouchTap: this.getCord,
 						height: '1000',
 						x: '0',
 						y: '0',
+						onClick: this.getCord,
 						style: 'cursor: pointer;'
 					})
-				)
+				),
+				Object(preact_min["h"])('g', { id: 'activePixels' })
 			)
 		);
 	};
@@ -25722,13 +25824,7 @@ function game__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
-var game__ref = Object(preact_min["h"])(
-	'div',
-	null,
-	Object(preact_min["h"])(board_Board, null)
-);
-
-var Game = function (_Component) {
+var game_Game = function (_Component) {
 	game__inherits(Game, _Component);
 
 	function Game() {
@@ -25737,8 +25833,16 @@ var Game = function (_Component) {
 		return game__possibleConstructorReturn(this, _Component.apply(this, arguments));
 	}
 
-	Game.prototype.render = function render() {
-		return game__ref;
+	Game.prototype.render = function render(_ref) {
+		var x = _ref.x,
+		    y = _ref.y,
+		    zoom = _ref.zoom;
+
+		return Object(preact_min["h"])(
+			'div',
+			null,
+			Object(preact_min["h"])(board_Board, { x: x, y: y, zoom: zoom })
+		);
 	};
 
 	return Game;
@@ -25821,13 +25925,15 @@ var app__ref = Object(preact_min["h"])(Helmet_default.a, {
 
 var app__ref2 = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
-var app__ref3 = Object(preact_min["h"])(home_Home, { path: '/' });
+var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
-var app__ref4 = Object(preact_min["h"])(Game, { path: '/game/:x?/:y?/:zoom?' });
+var app__ref4 = Object(preact_min["h"])(home_Home, { path: '/' });
 
-var app__ref5 = Object(preact_min["h"])(Registration, { path: '/registration' });
+var app__ref5 = Object(preact_min["h"])(game_Game, { path: '/game/:x?/:y?/:zoom?' });
 
-var _ref6 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var _ref6 = Object(preact_min["h"])(Registration, { path: '/registration' });
+
+var _ref7 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -25861,14 +25967,15 @@ var app_App = function (_Component) {
 			{ id: 'app' },
 			app__ref,
 			app__ref2,
+			app__ref3,
 			Object(preact_min["h"])(header_Header, { selectedRoute: this.state.currentUrl }),
 			Object(preact_min["h"])(
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
-				app__ref3,
 				app__ref4,
 				app__ref5,
-				_ref6
+				_ref6,
+				_ref7
 			)
 		);
 	};
@@ -26799,6 +26906,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     }
   });
 };
+
+/***/ }),
+
+/***/ "MRE3":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -33290,6 +33404,14 @@ module.exports = {"home":"home__MseGd","logo":"logo__1yT4h","timmer__block":"tim
 
 /***/ }),
 
+/***/ "ZPQf":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"container":"container__2drX2","btn_grid":"btn_grid__3c5O0"};
+
+/***/ }),
+
 /***/ "ZeD7":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33364,6 +33486,13 @@ module.exports = function parseHeaders(headers) {
 module.exports = function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
 };
+
+/***/ }),
+
+/***/ "a81U":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -34212,6 +34341,114 @@ function makeAggregateRaf() {
     backBuffer.delete(callback);
   }
 }
+
+/***/ }),
+
+/***/ "jGKv":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _interopRequireDefault = __webpack_require__("SpGf");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.Fab = exports.FabIcon = void 0;
+
+var _createClass2 = _interopRequireDefault(__webpack_require__("P8NW"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__("0fcM"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("0421"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__("UJE0"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__("d4H2"));
+
+var _preact = __webpack_require__("KM04");
+
+var _MaterialComponent2 = _interopRequireDefault(__webpack_require__("uc5p"));
+
+var _Icon2 = _interopRequireDefault(__webpack_require__("MeGi"));
+
+var _generateThemeClass = _interopRequireDefault(__webpack_require__("QTRl"));
+
+var FabIcon =
+/*#__PURE__*/
+function (_Icon) {
+  (0, _inherits2.default)(FabIcon, _Icon);
+
+  function FabIcon() {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, FabIcon);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(FabIcon).apply(this, arguments));
+    _this.componentName = 'fab__icon';
+    return _this;
+  }
+
+  return FabIcon;
+}(_Icon2.default);
+
+exports.FabIcon = FabIcon;
+
+var Fab =
+/*#__PURE__*/
+function (_MaterialComponent) {
+  (0, _inherits2.default)(Fab, _MaterialComponent);
+
+  function Fab() {
+    var _this2;
+
+    (0, _classCallCheck2.default)(this, Fab);
+    _this2 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Fab).apply(this, arguments));
+    _this2.componentName = 'fab';
+    _this2.mdcProps = ['mini', 'exited'];
+    _this2.themeProps = ['primary', 'secondary'];
+    return _this2;
+  }
+
+  (0, _createClass2.default)(Fab, [{
+    key: "materialDom",
+    value: function materialDom(props) {
+      var classNames = [];
+      this.themeProps.forEach(function (themeProp) {
+        if (themeProp in props && props[themeProp] !== false) {
+          classNames.push((0, _generateThemeClass.default)(themeProp));
+        }
+      });
+      return (0, _preact.h)("button", _extends({
+        ref: this.setControlRef
+      }, props, {
+        className: classNames.join(' ')
+      }), props.children);
+    }
+  }]);
+  return Fab;
+}(_MaterialComponent2.default);
+
+exports.Fab = Fab;
+
+var default_1 =
+/*#__PURE__*/
+function (_Fab) {
+  (0, _inherits2.default)(default_1, _Fab);
+
+  function default_1() {
+    (0, _classCallCheck2.default)(this, default_1);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(default_1).apply(this, arguments));
+  }
+
+  return default_1;
+}(Fab);
+
+exports.default = default_1;
+default_1.Icon = FabIcon;
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -35070,7 +35307,7 @@ module.exports.default = axios;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"wrap__board":"wrap__board__3d7FD","board__grid":"board__grid__sXuEq","board__scale":"board__scale__2TJlE","pixel":"pixel__2bIXC","pixel__center":"pixel__center__lBBDE","colors_controlls":"colors_controlls__3f0kp"};
+module.exports = {"wrap__board":"wrap__board__3d7FD","board__grid":"board__grid__sXuEq","board__scale":"board__scale__2TJlE","pixel":"pixel__2bIXC","pixel__center":"pixel__center__lBBDE","colors_controlls":"colors_controlls__3f0kp","board__controlls":"board__controlls__2P_9K"};
 
 /***/ }),
 
