@@ -10,6 +10,7 @@ import Slider from 'preact-material-components/Slider';
 import 'preact-material-components/Slider/style.css';
 import Colors from './colors';
 import style from './style';
+import Controls from './controls';
 
 export default class Board extends Component {
 	// callback
@@ -17,7 +18,13 @@ export default class Board extends Component {
 		// if (!this.isEditable) return;
 		this.setState(currentColor);
 	}
-
+	setZoom(zoom) {
+		this.zoomController
+			.smoothZoom(zoom.cx, zoom.cy, zoom.zoomBy);
+	}
+	setGrid(grid) {
+		this.setState({ grid });
+	}
 
 	// functions
 
@@ -30,6 +37,8 @@ export default class Board extends Component {
 		this.mousePosition = this.mousePosition.bind(this);
 		this.transform = this.transform.bind(this);
 		this.loadPixels = this.loadPixels.bind(this);
+		this.setZoom = this.setZoom.bind(this);
+		this.setGrid = this.setGrid.bind(this);
 
 		this.scaledPixel = 1000;
 		this.scaledX = 499;
@@ -71,7 +80,6 @@ export default class Board extends Component {
 	
 	mousePosition(e) {
 		this.mPosition = [(Math.floor((e.clientX - this.scaledX) / this.scale)),( Math.floor((e.clientY - this.scaledY) / this.scale))];
-		console.log(this.mPosition);
 	}
 	
 	getCord(e) {
@@ -95,8 +103,8 @@ export default class Board extends Component {
 
 	setAllPixels(arr) {
 		this.svg =d3.select('#voteForArt');
-		let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
-		console.log(forNode);
+		// let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
+		// console.log(forNode);
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
@@ -140,7 +148,8 @@ export default class Board extends Component {
 
 	componentDidMount() {
 		const b = this.base.querySelector('#voteForArt');
-		const a = this.base.querySelector('#board') 
+		const a = this.base.querySelector('#board');
+
 		this.loadPixels();
 		this.initZoom(b);
 		a.addEventListener('mousemove', this.mousePosition);
@@ -151,12 +160,10 @@ export default class Board extends Component {
 		return (
 			<div class={style.wrap__board}>
 				<div class={style.board__controlls}>
-					<Slider step={25} value={1} max={250} />
+					<Controls callbackFromBoard={this.setZoom} callbackFromBoardSecond={this.setGrid} />
 				</div>
 				<div class={style.colors_controlls}>
-					<Colors
-						callbackFromBoard={this.setColor}
-					/>
+					<Colors	callbackFromBoard={this.setColor}	/>
 				</div>
 				<h1 style="background:white;position: fixed; top: 160px; z-index: 9999;">Pixel: x:{this.pixelPoint[0]}y:{this.pixelPoint[1]}</h1>
 				<h1 style="background:white;position: fixed; top: 80px; z-index: 9999;">scale{this.scale}</h1>
@@ -188,45 +195,40 @@ export default class Board extends Component {
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
-
 						src="/assets/images/test_image.png"
 					/> */}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1000%" id="board" height="100%" >
 					<defs>
 						<pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
-							<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="grey" stroke-width="0.01" />
+							{this.state.grid ?
+								<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="grey" stroke-width="0.03" />:
+							""}
 						</pattern>
 					</defs>
 					 <g id="voteForArt" fill="none" >
 						<rect
 								fill="url(#smallGrid)"
+								id="bgImage"
 								width="1000"
 								height="1000"
 								x="0"
 								y="0"
+								onClick={this.getCord}
 								style="cursor: pointer;"
 							/>
 						</g>
 					 <g id="activePixels"  >
-					 <rect
-								fill="blue"
-								width="1"
-								height="1"
-								x="1"
-								y="1"
-							/>
-						
-						<rect
+					
+						{/* <rect
 							fill="url(#smallGrid)"
-							id="test"
 							width="1000"
 							onTouchTap={this.getCord}
 							height="1000"
 							x="0"
 							y="0"
 							style="cursor: pointer;"
-						/>
+						/> */}
 					 </g>
 				</svg>
 			</div>

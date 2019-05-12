@@ -31,6 +31,7 @@ export default class App extends Component {
 					// base={{ target: '_blank', href: 'http://localhost:8080/' }}
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
+				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 				<Header selectedRoute={this.state.currentUrl} />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
