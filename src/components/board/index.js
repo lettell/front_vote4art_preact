@@ -91,7 +91,7 @@ export default class Board extends Component {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
 				this.setState({
-					currentPhoto: `https://nuotraukos.vote4art.eu/timelaps/${resp.meta.photo}` 
+					currentPhoto: `https://nuotraukos.vote4art.eu/${resp.meta.photo}` 
 				});
 			}
 		}
@@ -130,7 +130,7 @@ export default class Board extends Component {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
 				this.setState({
-					currentPhoto: `https://nuotraukos.vote4art.eu/timelaps/${resp.meta.photo}` 
+					currentPhoto: `https://nuotraukos.vote4art.eu/${resp.meta.photo}` 
 				});
 			}
 		});
