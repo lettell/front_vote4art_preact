@@ -25709,7 +25709,7 @@ var board_Board = function (_Component) {
 }(preact_min["Component"]);
 
 
-// CONCATENATED MODULE: ../node_modules/preact-cli/lib/lib/webpack/dummy-loader.js!./routes/game/index.js
+// CONCATENATED MODULE: ./routes/game/index.js
 
 
 function game__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25749,7 +25749,7 @@ var Game = function (_Component) {
 var registration_style = __webpack_require__("2n+x");
 var registration_style_default = /*#__PURE__*/__webpack_require__.n(registration_style);
 
-// CONCATENATED MODULE: ../node_modules/preact-cli/lib/lib/webpack/dummy-loader.js!./routes/registration/index.js
+// CONCATENATED MODULE: ./routes/registration/index.js
 
 
 function registration__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25842,9 +25842,9 @@ var app_App = function (_Component) {
 		}
 
 		return _ret = (_temp = (_this = app__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleRoute = function (e) {
-			_this.setState({
-				currentUrl: e.url
-			});
+			// this.setState({
+			// 	currentUrl: e.url
+			// });
 		}, _temp), app__possibleConstructorReturn(_this, _ret);
 	}
 	/** Gets fired when the route changes.
