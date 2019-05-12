@@ -6053,7 +6053,7 @@ function postPixel(xy, color) {
 	};
 	var url = vote4art_api_BASE_URL + '/pixels';
 	return axios_default.a.post(url, pramas, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
-		return response.data;
+		return JSON.parse(response.data);
 	});
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
@@ -25693,8 +25693,9 @@ var board_Board = function (_Component) {
 			_this2.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length) {
 				_this2.setAllPixels(resp.data);
+				_this2.currentPhoto = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
 				_this2.setState({
-					currentPhoto: 'https://nuotraukos.vote4art.eu/' + resp.meta.photo
+					currentPhoto: resp.meta.photo
 				});
 			}
 		}).catch(function (e) {
@@ -25706,8 +25707,6 @@ var board_Board = function (_Component) {
 		var _this3 = this;
 
 		this.svg = src_select('#voteForArt');
-		// let forNode = arr.map(e => [e.attributes.x, e.attributes.y, e.attributes.color]);
-		// console.log(forNode);
 		arr.forEach(function (element) {
 			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
 		});
@@ -25727,9 +25726,10 @@ var board_Board = function (_Component) {
 		postPixel(this.pixelPoint, this.state.color).then(function (resp) {
 			if (resp.data && resp.data.length) {
 				_this4.setAllPixels(resp.data);
-				_this4.setState({
-					currentPhoto: 'https://nuotraukos.vote4art.eu/' + resp.meta.photo
-				});
+				if (_this4.currentPhoto !== 'https://nuotraukos.vote4art.eu/' + resp.meta.photo) {
+					_this4.setState({ photoUpdate: resp.meta.photo });
+					_this4.currentPhoto = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
+				}
 			}
 		});
 	};
@@ -25794,11 +25794,11 @@ var board_Board = function (_Component) {
 				{
 					style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t\tbackground-color: white;\n\t\t\t\t\t'
 				},
-				this.state.currentPhoto ? Object(preact_min["h"])('img', {
+				this.currentPhoto ? Object(preact_min["h"])('img', {
 					width: this.scaledPixel,
 					height: this.scaledPixel,
 					'class': 'pixelated',
-					src: this.state.currentPhoto
+					src: this.currentPhoto
 				}) : ''
 			),
 			Object(preact_min["h"])(
