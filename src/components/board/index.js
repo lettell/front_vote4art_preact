@@ -90,6 +90,9 @@ export default class Board extends Component {
 			this.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
+				this.setState({
+					currentPhoto: `https://nuotraukos.vote4art.eu/timelaps/${resp.meta.photo}` 
+				});
 			}
 		}
 		).catch(e => console.error(e.error));
@@ -122,7 +125,15 @@ export default class Board extends Component {
 			.attr('fill', this.state.color)
 			.attr('x', this.pixelPoint[0])
 			.attr('y', this.pixelPoint[1]);
-		postPixel(this.pixelPoint, this.state.color);
+
+		postPixel(this.pixelPoint, this.state.color).then( resp => {
+			if (resp.data && resp.data.length){
+				this.setAllPixels(resp.data);
+				this.setState({
+					currentPhoto: `https://nuotraukos.vote4art.eu/timelaps/${resp.meta.photo}` 
+				});
+			}
+		});
 	}
 
 	componentWillMount() {
@@ -180,12 +191,12 @@ export default class Board extends Component {
 						background-color: white;
 					`}
 				>
-					{/* <img
+					{this.state.currentPhoto ? <img
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
-						src="/assets/images/test_image.png"
-					/> */}
+						src={this.state.currentPhoto}
+					/> : ''}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1000%" id="board" height="100%" >
 					<defs>
@@ -214,7 +225,6 @@ export default class Board extends Component {
 							height={this.scaledPixel}
 							x={this.scaledX}
 							y={this.scaledY}
-							onClick={this.getCord}
 							style="cursor: pointer;"
 						/>
 				 </g>

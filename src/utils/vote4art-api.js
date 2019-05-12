@@ -2,10 +2,10 @@ import axios from 'axios';
 import { getAccessToken } from './auth-service';
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1/';
+const BASE_URL = 'http://localhost:3000/api/v1';
 
 // production
-const BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 export { getPixels, postPixel };
 
