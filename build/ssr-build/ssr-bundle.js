@@ -316,6 +316,14 @@ module.exports = _classCallCheck;
 
 /***/ }),
 
+/***/ "2n+x":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__IcC0C"};
+
+/***/ }),
+
 /***/ "3JCP":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5790,6 +5798,7 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.render = function render(props) {
+		console.log('times');
 		return Object(preact_min["h"])(
 			'div',
 			null,
@@ -5909,6 +5918,10 @@ var home_Home = function (_Component) {
 			default:
 				return 0;
 		}
+	};
+
+	Home.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
+		console.log('tines should');
 	};
 
 	Home.prototype.render = function render() {
@@ -25468,11 +25481,30 @@ var board__ref2 = Object(preact_min["h"])(
 	Object(preact_min["h"])(
 		'pattern',
 		{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
-		Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'gray', 'stroke-width': '0.01' })
+		Object(preact_min["h"])('path', { d: 'M 10 0.0 L 0 0 0 10', fill: 'none', stroke: 'grey', 'stroke-width': '0.01' })
 	)
 );
 
-var board__ref3 = Object(preact_min["h"])('g', { id: 'voteForArt', fill: 'url(#smallGrid)' });
+var board__ref3 = Object(preact_min["h"])(
+	'g',
+	{ id: 'voteForArt', fill: 'none' },
+	Object(preact_min["h"])('rect', {
+		fill: 'url(#smallGrid)',
+		width: '1000',
+		height: '1000',
+		x: '0',
+		y: '0',
+		style: 'cursor: pointer;'
+	})
+);
+
+var board__ref4 = Object(preact_min["h"])('rect', {
+	fill: 'blue',
+	width: '1',
+	height: '1',
+	x: '1',
+	y: '1'
+});
 
 var board_Board = function (_Component) {
 	board__inherits(Board, _Component);
@@ -25537,6 +25569,7 @@ var board_Board = function (_Component) {
 
 	Board.prototype.mousePosition = function mousePosition(e) {
 		this.mPosition = [Math.floor((e.clientX - this.scaledX) / this.scale), Math.floor((e.clientY - this.scaledY) / this.scale)];
+		console.log(this.mPosition);
 	};
 
 	Board.prototype.getCord = function getCord(e) {
@@ -25565,7 +25598,10 @@ var board_Board = function (_Component) {
 		var _this3 = this;
 
 		this.svg = src_select('#voteForArt');
-
+		var forNode = arr.map(function (e) {
+			return [e.attributes.x, e.attributes.y, e.attributes.color];
+		});
+		console.log(forNode);
 		arr.forEach(function (element) {
 			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
 		});
@@ -25574,7 +25610,9 @@ var board_Board = function (_Component) {
 
 	Board.prototype.putPixel = function putPixel() {
 		if (!this.state.color) return;
-
+		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000) return;
+		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
+		// this.zoomController.pause();
 		this.svg = src_select('#voteForArt');
 		this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', this.state.color).attr('x', this.pixelPoint[0]).attr('y', this.pixelPoint[1]);
 		postPixel(this.pixelPoint, this.state.color);
@@ -25594,11 +25632,11 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {
-		console.log('board');
 		var b = this.base.querySelector('#voteForArt');
+		var a = this.base.querySelector('#board');
 		this.loadPixels();
 		this.initZoom(b);
-		b.addEventListener('mousemove', this.mousePosition);
+		a.addEventListener('mousemove', this.mousePosition);
 	};
 
 	Board.prototype.render = function render(props) {
@@ -25640,19 +25678,9 @@ var board_Board = function (_Component) {
 				Object(preact_min["h"])('span', { 'class': board_style_default.a.pixel, style: '\t\n\t\t\t\t\t\t background: ' + this.state.color + ';\n\t\t\t\t\t\t '
 				})
 			),
-			Object(preact_min["h"])(
-				'div',
-				{
-					style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t'
-				},
-				Object(preact_min["h"])('img', {
-					width: this.scaledPixel,
-					height: this.scaledPixel,
-					'class': 'pixelated',
-
-					src: '/assets/images/board_first.png'
-				})
-			),
+			Object(preact_min["h"])('div', {
+				style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t\tbackground-color: white;\n\t\t\t\t\t'
+			}),
 			Object(preact_min["h"])(
 				'svg',
 				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '1000%', id: 'board', height: '100%' },
@@ -25660,8 +25688,10 @@ var board_Board = function (_Component) {
 				board__ref3,
 				Object(preact_min["h"])(
 					'g',
-					{ id: 'activePixels', fill: 'transparent' },
+					{ id: 'activePixels' },
+					board__ref4,
 					Object(preact_min["h"])('rect', {
+						fill: 'url(#smallGrid)',
 						id: 'test',
 						width: '1000',
 						onTouchTap: this.getCord,
@@ -25715,6 +25745,50 @@ var Game = function (_Component) {
 }(preact_min["Component"]);
 
 
+// EXTERNAL MODULE: ./routes/registration/style.css
+var registration_style = __webpack_require__("2n+x");
+var registration_style_default = /*#__PURE__*/__webpack_require__.n(registration_style);
+
+// CONCATENATED MODULE: ../node_modules/preact-cli/lib/lib/webpack/dummy-loader.js!./routes/registration/index.js
+
+
+function registration__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function registration__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function registration__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var registration__ref = Object(preact_min["h"])(
+	'div',
+	null,
+	Object(preact_min["h"])(
+		'h1',
+		null,
+		' regitration '
+	)
+);
+
+var Registration = function (_Component) {
+	registration__inherits(Registration, _Component);
+
+	function Registration() {
+		registration__classCallCheck(this, Registration);
+
+		return registration__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	Registration.prototype.render = function render() {
+		return registration__ref;
+	};
+
+	return Registration;
+}(preact_min["Component"]);
+
+
 // EXTERNAL MODULE: ../node_modules/preact-helmet/lib/Helmet.js
 var Helmet = __webpack_require__("FJnM");
 var Helmet_default = /*#__PURE__*/__webpack_require__.n(Helmet);
@@ -25736,7 +25810,7 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
-// import Profile from 'async!../routes/profile';
+
 
 
 
@@ -25751,7 +25825,9 @@ var app__ref3 = Object(preact_min["h"])(home_Home, { path: '/' });
 
 var app__ref4 = Object(preact_min["h"])(Game, { path: '/game/:x?/:y?/:zoom?' });
 
-var app__ref5 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref5 = Object(preact_min["h"])(Registration, { path: '/registration' });
+
+var _ref6 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -25791,7 +25867,8 @@ var app_App = function (_Component) {
 				{ onChange: this.handleRoute },
 				app__ref3,
 				app__ref4,
-				app__ref5
+				app__ref5,
+				_ref6
 			)
 		);
 	};
