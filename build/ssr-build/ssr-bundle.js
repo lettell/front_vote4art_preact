@@ -5429,11 +5429,10 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-
-// BASE_URL = 'http://localhost:3000',
+    BASE_URL = 'http://localhost:3000';
 // BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-BASE_URL = 'https://api.vote4art.eu';
+// BASE_URL = 'https://api.vote4art.eu';
 
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -6027,10 +6026,10 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1/';
+var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
 
 // production
-var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 
@@ -25693,6 +25692,9 @@ var board_Board = function (_Component) {
 			_this2.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length) {
 				_this2.setAllPixels(resp.data);
+				_this2.setState({
+					currentPhoto: 'https://nuotraukos.vote4art.eu/timelaps/' + resp.meta.photo
+				});
 			}
 		}).catch(function (e) {
 			return console.error(e.error);
@@ -25712,13 +25714,23 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.putPixel = function putPixel() {
+		var _this4 = this;
+
 		if (!this.state.color) return;
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000) return;
 		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
 		// this.zoomController.pause();
 		this.svg = src_select('#voteForArt');
 		this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', this.state.color).attr('x', this.pixelPoint[0]).attr('y', this.pixelPoint[1]);
-		postPixel(this.pixelPoint, this.state.color);
+
+		postPixel(this.pixelPoint, this.state.color).then(function (resp) {
+			if (resp.data && resp.data.length) {
+				_this4.setAllPixels(resp.data);
+				_this4.setState({
+					currentPhoto: 'https://nuotraukos.vote4art.eu/timelaps/' + resp.meta.photo
+				});
+			}
+		});
 	};
 
 	Board.prototype.componentWillMount = function componentWillMount() {
@@ -25776,9 +25788,18 @@ var board_Board = function (_Component) {
 				Object(preact_min["h"])('span', { 'class': board_style_default.a.pixel, style: '\t\n\t\t\t\t\t\t background: ' + this.state.color + ';\n\t\t\t\t\t\t '
 				})
 			),
-			Object(preact_min["h"])('div', {
-				style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t\tbackground-color: white;\n\t\t\t\t\t'
-			}),
+			Object(preact_min["h"])(
+				'div',
+				{
+					style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t\tbackground-color: white;\n\t\t\t\t\t'
+				},
+				this.state.currentPhoto ? Object(preact_min["h"])('img', {
+					width: this.scaledPixel,
+					height: this.scaledPixel,
+					'class': 'pixelated',
+					src: this.state.currentPhoto
+				}) : ''
+			),
 			Object(preact_min["h"])(
 				'svg',
 				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '1000%', id: 'board', height: '100%' },
@@ -25802,7 +25823,6 @@ var board_Board = function (_Component) {
 						height: this.scaledPixel,
 						x: this.scaledX,
 						y: this.scaledY,
-						onClick: this.getCord,
 						style: 'cursor: pointer;'
 					})
 				)
