@@ -3,6 +3,7 @@ import { route } from 'preact-router';
 import { login, facebookLogin, logout, signup } from '../../utils/auth-service';
 import Button from 'preact-material-components/Button';
 import TextField from 'preact-material-components/TextField';
+import LayoutGrid from 'preact-material-components/LayoutGrid';
 // import FacebookLogin from 'react-facebook-login';
 
 import 'preact-material-components/TextField/style.css';
@@ -62,54 +63,39 @@ export default class Auth extends Component {
 	responseFacebook = (response) => {
 		
 		facebookLogin(response);
-	}
-	
+	}	
 
 	render(props) {
 		return (
-
 			<div>
-				<div class="tab disabled">
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.swith}>auth.login </Button>
-					<TextField
-						type="text"
-						name="username"
-						onInput={this.handleInputChange}
-						label="Slapyvardis"
-					/>
-					<TextField
-						type="password"
-						name="password"
-						onInput={this.handleInputChange}
-						label="Slaptažodis"
-					/>
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.registerSimple}>auth.register  </Button>
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.isLogedIn}>auth.facebook  </Button>
-				</div>
-				<div class="tab" >
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.swith}>auth.register </Button>
-					<TextField
-						type="text"
-						name="username"
-						onInput={this.handleInputChange}
-						label="Slapyvardis"
-					/>
-					<TextField
-						type="password"
-						name="password"
-						onInput={this.handleInputChange}
-						label="Slaptažodis"
-					/>
-					 {/* <FacebookLogin
-						appId="284507289101227"
-						autoLoad
-						fields=""
-						redirectUri="http://localhost:9292/auth/facebook/callback"
-						// onClick={componentClicked}
-						callback={this.responseFacebook}
-					 /> */}
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.isLogedIn}>auth.facebook  </Button>
-					<Button raised className="mdc-theme--secondary-bg" onClick={this.loginSimple}>auth.login</Button>
+				<div class="tab" class={style.auth_modal} >
+					<LayoutGrid>
+						<LayoutGrid.Inner>
+							<LayoutGrid.Cell cols="10">
+								<TextField
+									type="text"
+									name="username"
+									onInput={this.handleInputChange}
+									label="Slapyvardis"
+								/>
+							</LayoutGrid.Cell>
+            				<LayoutGrid.Cell cols="10">						
+								<TextField
+									type="password"
+									name="password"
+									onInput={this.handleInputChange}
+									label="Slaptažodis"
+							/>
+							</LayoutGrid.Cell>
+							<LayoutGrid.Cell cols="10">	
+								<Button raised className="mdc-theme--secondary-bg" onClick={this.swith}>auth.login </Button>
+							</LayoutGrid.Cell>
+							<LayoutGrid.Cell cols="10">	
+								<hr />
+								<Button raised className="mdc-theme--secondary-bg" onClick={this.isLogedIn}>auth.facebook  </Button>
+							</LayoutGrid.Cell>
+						</LayoutGrid.Inner>	
+					</LayoutGrid>					
 				</div>
 			</div>
 		);
