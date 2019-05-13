@@ -54,8 +54,10 @@
 .colors_controlls {
  position: fixed;
  display: flex;
+ width: 106px;
  margin: 0 auto;
- bottom: 0;
+ padding: 1em;
+ bottom: 80px;
  right: 0;
  z-index: 2;
  background: white;

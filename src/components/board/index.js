@@ -37,9 +37,10 @@ export default class Board extends Component {
 		this.mouseMove = this.mouseMove.bind(this);
 		this.transform = this.transform.bind(this);
 		this.loadPixels = this.loadPixels.bind(this);
+		this.initZoom = this.initZoom.bind(this);
 		this.setZoom = this.setZoom.bind(this);
 		this.setGrid = this.setGrid.bind(this);
-
+		this.initZo = 0.8;
 		this.scaledPixel = 1000;
 		this.scaledX = 499;
 		this.scaledY = 499;
@@ -57,7 +58,7 @@ export default class Board extends Component {
 		pan.zoomAbs(
 			this.currentZoom.x, // initial x position
 			this.currentZoom.y, // initial y position
-			0.3 // initial zoom
+			this.initZo// initial zoom
 		);
 		pan.on('transform', this.transform);
 		this.setState({ zoom: 'ok' });

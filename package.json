@@ -42,6 +42,8 @@
     "preact-material-components": "^1.5.5",
     "preact-router": "^2.5.5",
     "preact-tap-event-plugin": "^0.1.2",
-    "react-facebook-login": "^4.1.1"
+    "react-color": "^2.17.3",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.4"
   }
 }

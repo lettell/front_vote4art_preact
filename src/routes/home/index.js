@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import Card from 'preact-material-components/Card';
 import 'preact-material-components/Card/style.css';
-import 'preact-material-components/Button/style.css';
+// import 'preact-material-components/Button/style.css';
 import style from './style';
 
 export default class Home extends Component {
@@ -56,7 +56,7 @@ export default class Home extends Component {
 		return (
 			<div class={`${style.home} page`}>
 				<div>
-					<img class={style.logo} src="/assets/images/vote4art_logo.png" />
+					<img class={style.logo} src="/assets/images/logo.png" />
 					<h1>Iki žaidimo pradžios liko:</h1>
 					<Card class={style.timmer__block} >
 						<h1 class={style.timmer} id="countDown" />

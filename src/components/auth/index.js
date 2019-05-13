@@ -6,7 +6,7 @@ import TextField from 'preact-material-components/TextField';
 // import FacebookLogin from 'react-facebook-login';
 
 import 'preact-material-components/TextField/style.css';
-import 'preact-material-components/Button/style.css';
+// import 'preact-material-components/Button/style.css';
 
 
 import style from './style';

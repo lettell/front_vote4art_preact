@@ -1,19 +1,22 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
+import Login from '../auth/login';
+
+// material
 import TopAppBar from 'preact-material-components/TopAppBar';
 import Dialog from 'preact-material-components/Dialog';
 import Button from 'preact-material-components/Button';
 // import Switch from 'preact-material-components/Switch';
 // import TabBar from 'preact-material-components/TabBar';
 
-import 'preact-material-components/Dialog/style.css';
-import 'preact-material-components/Drawer/style.css';
-import 'preact-material-components/List/style.css';
-import 'preact-material-components/TopAppBar/style.scss';
-import style from './style';
+// import 'preact-material-components/Dialog/style.css';
+// import 'preact-material-components/Drawer/style.css';
+// import 'preact-material-components/List/style.css';
+
+import style from './style.scss';
 
 import 'preact-material-components/Menu/style.css';
-import 'preact-material-components/Button/style.css';
+// import 'preact-material-components/Button/style.css';
 import 'preact-material-components/TabBar/style.css';
 
 export default class Header extends Component {
@@ -46,7 +49,7 @@ export default class Header extends Component {
 	render(props) {
 		return (
 			<div>
-				<TopAppBar className="topappbar mdc-elevation--z3">
+				<TopAppBar className={`${style.topappbar} mdc-elevation--z3`}>
 					<TopAppBar.Row>
 						<TopAppBar.Section align-start>
 							<img class={style.logo} src="/assets/images/logo.png" />
@@ -54,7 +57,7 @@ export default class Header extends Component {
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center shrink-to-fit >
 							<div>
-								<Button id="about" onClick={this.openContent} raised className="mdc-theme--secondary-bg">Prisijungti</Button>
+								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 							</div>
 
 						</TopAppBar.Section>
@@ -76,8 +79,9 @@ export default class Header extends Component {
 							this.state.dialogContent === 'rules'?
 								<h1>TAISYKLĖS</h1>:
 								this.state.dialogContent === 'about'?
-									<h1>APIE</h1>: ''
-
+									<h1>APIE</h1>:
+									this.state.dialogContent === 'login'?
+										<h1>PRSIJUNGIMAS</h1>: ''
 						}
 						{/* <Dialog.FooterButton style="float: right;" cancel>
 
@@ -89,7 +93,9 @@ export default class Header extends Component {
 							this.state.dialogContent === 'rules'?
 								<h1>TAISYKLĖS</h1>:
 								this.state.dialogContent === 'about'?
-									<h1>APIE</h1>: ''
+									<h1>APIE</h1>:
+									this.state.dialogContent === 'login'?
+										<Login /> : ''
 						}
 
 					</Dialog.Body>

@@ -5,6 +5,7 @@ import Elevation from 'preact-material-components/Elevation';
 import 'preact-material-components/Elevation/style.css';
 import Fab from 'preact-material-components/Fab';
 import 'preact-material-components/Fab/style.css';
+import CirclePicker from 'react-color/lib/Circle';
 
 export default class Colors extends Component {
 	constructor() {
@@ -38,20 +39,7 @@ export default class Colors extends Component {
 	
 	render(props) {
 		return (
-      	<Elevation z={2}>
-					<div class={style.palete}>
-							{this.colors.map( e => (
-								<div
-									class={`${style.color} ${this.state.color === e ? style.active : ''} `}
-									onClick={this.setColor}
-									data-color={e}
-									style={`background: ${e}`}
-								/>
-							))}
-						</div>
-					<Fab><Fab.Icon>add_box</Fab.Icon></Fab>
-
-				</Elevation>
+      	<CirclePicker />
 		);
 	}
 }
