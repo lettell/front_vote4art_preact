@@ -1,7 +1,10 @@
 import { h, Component } from 'preact';
 // import { route } from 'preact-router';
 import style from './style';
-
+import Elevation from 'preact-material-components/Elevation';
+import 'preact-material-components/Elevation/style.css';
+import Fab from 'preact-material-components/Fab';
+import 'preact-material-components/Fab/style.css';
 
 export default class Colors extends Component {
 	constructor() {
@@ -35,16 +38,20 @@ export default class Colors extends Component {
 	
 	render(props) {
 		return (
-			<div class={style.palete}>
-				{this.colors.map( e => (
-					<div
-						class={`${style.color} ${this.state.color === e ? style.active : ''} `}
-						onClick={this.setColor}
-						data-color={e}
-						style={`background: ${e}`}
-					/>
-				))}
-			</div>
+      	<Elevation z={2}>
+					<div class={style.palete}>
+							{this.colors.map( e => (
+								<div
+									class={`${style.color} ${this.state.color === e ? style.active : ''} `}
+									onClick={this.setColor}
+									data-color={e}
+									style={`background: ${e}`}
+								/>
+							))}
+						</div>
+					<Fab><Fab.Icon>add_box</Fab.Icon></Fab>
+
+				</Elevation>
 		);
 	}
 }

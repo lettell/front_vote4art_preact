@@ -34,7 +34,7 @@ export default class Board extends Component {
 		this.getCord = this.getCord.bind(this);
 		this.setColor = this.setColor.bind(this);
 		this.putPixel = this.putPixel.bind(this);
-		this.mousePosition = this.mousePosition.bind(this);
+		this.mouseMove = this.mouseMove.bind(this);
 		this.transform = this.transform.bind(this);
 		this.loadPixels = this.loadPixels.bind(this);
 		this.setZoom = this.setZoom.bind(this);
@@ -44,6 +44,7 @@ export default class Board extends Component {
 		this.scaledX = 499;
 		this.scaledY = 499;
 		this.pixelPoint = [0, 0];
+		this.mousePosition = [0, 0]
 	}
 	
 	initZoom(elm) {
@@ -72,8 +73,12 @@ export default class Board extends Component {
 		this.setState({ transforming: true });
 	}
 	
-	mousePosition(e) {
-		this.mPosition = [(Math.floor((e.clientX - this.scaledX) / this.scale)),( Math.floor((e.clientY - this.scaledY) / this.scale))];
+	mouseMove(e) {
+		if (!this.state.color) return;
+		console.log(e)
+		this.mousePosition = [e.clientX, e.clientY];
+		console.log(	this.mousePosition)
+		this.setState({nouseMove: true})
 	}
 	
 	getCord(e) {
@@ -149,11 +154,14 @@ export default class Board extends Component {
 
 	componentDidMount() {
 		const b = this.base.querySelector('#voteForArt');
-		const a = this.base.querySelector('#board');
+		const a = this.base.querySelector('#gridArea');
+		const m = this.base.querySelector('#gridArea');
 
 		this.loadPixels();
 		this.initZoom(b);
-		a.addEventListener('mousemove', this.mousePosition);
+		a.addEventListener('mousemove', this.mouseMove);
+		m.addEventListener('mousemove', this.mouseMove);
+
 	}
 
 
@@ -221,13 +229,24 @@ export default class Board extends Component {
 					<g fill="none">
 						<rect
 							fill="url(#smallGrid)"
+							id="gridArea"
 							width={this.scaledPixel}
-							onTouchTap={this.getCord}
 							height={this.scaledPixel}
+							onTouchTap={this.getCord}
 							x={this.scaledX}
 							y={this.scaledY}
 							style="cursor: pointer;"
 						/>
+							<rect
+								fill={this.state.color}
+								id="ghost"
+								width={this.scale}
+								height={this.scale}
+								onTouchTap={this.getCord}
+								x={Math.floor(this.mousePosition[0]-(this.scale/2))}
+								y={this.mousePosition[1]-(this.scale/2)}
+								style="position: absolute;z-index:-1;"
+							/>
 				 </g>
 				</svg>
 			</div>

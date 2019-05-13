@@ -32,6 +32,8 @@ export default class App extends Component {
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+				<link rel="stylesheet" href="assets/animate.css" />
+
 				<Header selectedRoute={this.state.currentUrl} />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
