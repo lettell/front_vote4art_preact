@@ -5,7 +5,7 @@ import style from './style';
 export default class Registration extends Component {
 	render() {
 		return (
-			<div>
+			<div class={`${style.home} page`}>
 				<h1> regitration </h1>
 					
 			</div>

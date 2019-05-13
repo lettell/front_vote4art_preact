@@ -57,7 +57,7 @@
  margin: 0 auto;
  bottom: 0;
  right: 0;
- z-index: 100;
+ z-index: 2;
  background: white;
 
 }
@@ -67,5 +67,5 @@
   margin: 0 auto;
   top: 64px;
   left: 0;
-  z-index: 100;
+  z-index: 2;
  }

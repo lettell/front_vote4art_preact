@@ -55,9 +55,9 @@ export default class Board extends Component {
 			}
 		);
 		pan.zoomAbs(
-			0, // initial x position
-			0, // initial y position
-			1 // initial zoom
+			this.currentZoom.x, // initial x position
+			this.currentZoom.y, // initial y position
+			0.3 // initial zoom
 		);
 		pan.on('transform', this.transform);
 		this.setState({ zoom: 'ok' });
@@ -156,9 +156,12 @@ export default class Board extends Component {
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
 		const m = this.base.querySelector('#gridArea');
-
+		this.currentZoom = {
+		 x: (this.base.clientWidth / 2) ,
+		 y: (this.base.clientHeight / 2)
+		};
 		this.loadPixels();
-		this.initZoom(b);
+		this.initZoom(b, this.currentZoom);
 		a.addEventListener('mousemove', this.mouseMove);
 		m.addEventListener('mousemove', this.mouseMove);
 
@@ -174,8 +177,8 @@ export default class Board extends Component {
 				<div class={style.colors_controlls}>
 					<Colors	callbackFromBoard={this.setColor}	/>
 				</div>
-				<h1 style="background:white;position: fixed; top: 160px; z-index: 9999;">Pixel: x:{this.pixelPoint[0]}y:{this.pixelPoint[1]}</h1>
-				<h1 style="background:white;position: fixed; top: 80px; z-index: 9999;">scale{this.scale}</h1>
+				{/* <h1 style="background:white;position: fixed; top: 160px; z-index: 9999;">Pixel: x:{this.pixelPoint[0]}y:{this.pixelPoint[1]}</h1>
+				<h1 style="background:white;position: fixed; top: 80px; z-index: 9999;">scale{this.scale}</h1> */}
 				<div
 					class={style.pixel__center}
 					style={`
@@ -245,7 +248,7 @@ export default class Board extends Component {
 								onTouchTap={this.getCord}
 								x={Math.floor(this.mousePosition[0]-(this.scale/2))}
 								y={this.mousePosition[1]-(this.scale/2)}
-								style="position: absolute;z-index:-1;"
+								style="position: absolute;pointer-events: none;"
 							/>
 				 </g>
 				</svg>

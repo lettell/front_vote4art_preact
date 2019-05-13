@@ -1,19 +1,20 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import TopAppBar from 'preact-material-components/TopAppBar';
-import Auth from '../auth';
 import Dialog from 'preact-material-components/Dialog';
+import Button from 'preact-material-components/Button';
 // import Switch from 'preact-material-components/Switch';
-import 'preact-material-components/Switch/style.css';
+// import TabBar from 'preact-material-components/TabBar';
+
 import 'preact-material-components/Dialog/style.css';
 import 'preact-material-components/Drawer/style.css';
 import 'preact-material-components/List/style.css';
-import 'preact-material-components/TopAppBar/style.css';
-// import style from './style';
+import 'preact-material-components/TopAppBar/style.scss';
+import style from './style';
 
-
+import 'preact-material-components/Menu/style.css';
+import 'preact-material-components/Button/style.css';
 import 'preact-material-components/TabBar/style.css';
-// import TabBar from 'preact-material-components/TabBar';
 
 export default class Header extends Component {
 	closeDrawer() {
@@ -22,10 +23,18 @@ export default class Header extends Component {
 		};
 	}
 
+	toggleMenu = () => {
+		this.menu.MDComponent.open = !this.menu.MDComponent.open;
 
-	openSettings = () => this.dialog.MDComponent.show();
+	}
+
+	openContent = (e) => {
+		this.setState({ dialogContent: e.target.id });
+		this.dialog.MDComponent.show();
+	}
 
 	dialogRef = dialog => (this.dialog = dialog);
+	menuRef = menu => (this.menu = menu);
 
 	linkTo = path => () => {
 		route(path);
@@ -34,46 +43,55 @@ export default class Header extends Component {
 
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
-
-	toggleDarkTheme = () => {
-		this.setState(
-			{
-				darkThemeEnabled: !this.state.darkThemeEnabled
-			},
-			() => {
-				if (this.state.darkThemeEnabled) {
-					document.body.classList.add('mdc-theme--dark');
-				}
-				else {
-					document.body.classList.remove('mdc-theme--dark');
-				}
-			}
-		);
-	}
-
 	render(props) {
-		console.log('times')
 		return (
 			<div>
 				<TopAppBar className="topappbar mdc-elevation--z3">
 					<TopAppBar.Row>
 						<TopAppBar.Section align-start>
-							{/* <img class={style.logo} src="/assets/images/logo.png" /> */}
-
+							<img class={style.logo} src="/assets/images/logo.png" />
 							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
-						<TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
-							<TopAppBar.Icon>settings</TopAppBar.Icon>
+						<TopAppBar.Section align-center shrink-to-fit >
+							<div>
+								<Button id="about" onClick={this.openContent} raised className="mdc-theme--secondary-bg">Prisijungti</Button>
+							</div>
+
+						</TopAppBar.Section>
+						<TopAppBar.Section align-end shrink-to-fit >
+							<div>
+								<Button id="about" onClick={this.openContent} unelevated>APIE</Button>
+								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
+								<Button id="duk" onClick={this.openContent} unelevated>D.U.K</Button>
+							</div>
+
 						</TopAppBar.Section>
 					</TopAppBar.Row>
 				</TopAppBar>
 
 				<Dialog ref={this.dialogRef}>
-					<Dialog.Header>auth.title
-						<Dialog.FooterButton style="float: right;" cancel>close</Dialog.FooterButton>
+					<Dialog.Header>
+						{this.state.dialogContent === 'duk'?
+							<h1>D.U.K</h1>:
+							this.state.dialogContent === 'rules'?
+								<h1>TAISYKLĖS</h1>:
+								this.state.dialogContent === 'about'?
+									<h1>APIE</h1>: ''
+
+						}
+						{/* <Dialog.FooterButton style="float: right;" cancel>
+
+						</Dialog.FooterButton> */}
 					</Dialog.Header>
 					<Dialog.Body>
-						<Auth />
+						{this.state.dialogContent === 'duk'?
+							<h1>D.U.K</h1>:
+							this.state.dialogContent === 'rules'?
+								<h1>TAISYKLĖS</h1>:
+								this.state.dialogContent === 'about'?
+									<h1>APIE</h1>: ''
+						}
+
 					</Dialog.Body>
 					<Dialog.Footer>
 					</Dialog.Footer>

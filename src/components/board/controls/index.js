@@ -1,9 +1,7 @@
 import { Component } from 'preact';
 // import { route } from 'preact-router';
 
-import Button from 'preact-material-components/Button';
 import 'preact-material-components/Button/style.css';
-import 'preact-material-components/Theme/style.css';
 import Fab from 'preact-material-components/Fab';
 import 'preact-material-components/Fab/style.css';
 import style from './style';

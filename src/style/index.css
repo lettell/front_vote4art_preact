@@ -1,10 +1,30 @@
   /* background: #ececec; */
-
+  @import "./test.scss";
   :root {
-    --mdc-theme-primary: #eccf4f00;
-    --mdc-theme-on-primary: #000;
-    --mdc-theme-icon-on-light: red;
-    box-sizing: border-box; 
+    --mdc-theme-primary: #4056a1;
+    --mdc-theme-secondary: #018786;
+
+    --mdc-theme-background: #fff;
+    --mdc-theme-surface: #fff;
+    --mdc-theme-on-primary: #fff;
+    --mdc-theme-on-secondary: #000;
+    --mdc-theme-on-surface: #000;
+    --mdc-theme-text-primary-on-background: rgba(0, 0, 0, 0.87);
+    --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, 0.54);
+    --mdc-theme-text-hint-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-disabled-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-icon-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-primary-on-light: rgba(0, 0, 0, 0.87);
+    --mdc-theme-text-secondary-on-light: rgba(0, 0, 0, 0.54);
+    --mdc-theme-text-hint-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-icon-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-primary-on-dark: white;
+    --mdc-theme-text-secondary-on-dark: rgba(255, 255, 255, 0.7);
+    --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
+      box-sizing: border-box; 
   }
   .mdc-top-app-bar {
     background: #ECECEC;

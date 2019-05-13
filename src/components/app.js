@@ -7,6 +7,7 @@ import Home from '../routes/home';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
 import Registration from '../routes/registration';
+import Start from '../routes/start';
 
 import Helmet from 'preact-helmet';
 
@@ -38,7 +39,8 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Game path="/game/:x?/:y?/:zoom?" />
-					<Registration path="/registration" />
+					<Registration path="/registration/:city?" />
+					<Start path="/start" />
 					<NotFound default />
 				</Router>
 			</div>
