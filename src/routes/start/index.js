@@ -7,18 +7,18 @@ import style from './style';
 export default class Start extends Component {
 	constructor() {
 		super();
-		this.countDownDate = new Date("May 19, 2019 15:37:25").getTime();
+		this.countDownDate = new Date('May 19, 2019 15:37:25').getTime();
 		this.textTimer = [['sekundės', 'sekundė', 'sekundžių'],['minutės', 'minutė', 'minučių'],['valandos', 'valanda', 'valandų'], ['dienos', 'diena', 'dienų']];
 		this.countDowown();
 	}
 	countDowown () {
 
-		let x = setInterval(() =>{
+		let x = setInterval(() => {
 		
 			// Get todays date and time
 			let now = new Date().getTime();
 			let distance = this.countDownDate - now;
-			let days = ('0'+ Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2)
+			let days = ('0'+ Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2);
 			let hours = ('0'+ Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
 			let minutes = ('0'+ Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
 			let seconds = ('0'+ Math.floor((distance % (1000 * 60)) / 1000)).slice(-2);
@@ -30,7 +30,7 @@ export default class Start extends Component {
 			
 			document.getElementById('countText').innerHTML =  `${this.textTimer[3][this.resT(days)]} ${this.textTimer[2][this.resT(hours)]} ${this.textTimer[1][this.resT(minutes)]} ${this.textTimer[0][this.resT(seconds)]}`;
 			
-			// If the count down is finished, write some text 
+			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
 				document.getElementById('countDown').innerHTML = '';
@@ -50,7 +50,7 @@ export default class Start extends Component {
 	
 	}
 	shouldComponentUpdate() {
-		console.log('tines should')
+		console.log('tines should');
 	}
 	render() {
 		return (

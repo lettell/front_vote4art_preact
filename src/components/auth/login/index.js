@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { route } from 'preact-router';
+// import { route } from 'preact-router';
 import { login, facebookLogin, logout, signup } from '../../../utils/auth-service';
 import Button from 'preact-material-components/Button';
 import TextField from 'preact-material-components/TextField';
@@ -65,7 +65,7 @@ export default class Login extends Component {
 
 	render(props) {
 		return (
-		<div>
+			<div>
 				<TextField
 					type="text"
 					name="username"
@@ -79,11 +79,13 @@ export default class Login extends Component {
 					label="Slaptažodis"
 				/>
 				<Button unelevated onClick={this.loginSimple}>Prisijungti</Button>
+				<Button unelevated onClick={this.navigateToRegister}>Naujas </Button>
+
 				<h1>Arba prisijunkite per</h1>
 				<hr />
 				<FacebookLogin
 					appId="284507289101227"
-					autoLoad
+					// autoLoad
 					fields=""
 					textButton="Facebook"
 					icon="fa-facebook"

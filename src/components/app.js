@@ -10,6 +10,7 @@ import Registration from '../routes/registration';
 import Start from '../routes/start';
 
 import Helmet from 'preact-helmet';
+import Footer from './footer';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
@@ -32,7 +33,7 @@ export default class App extends Component {
 					// base={{ target: '_blank', href: 'http://localhost:8080/' }}
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
-				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 				<link rel="stylesheet" href="assets/animate.css" />
 
 				<Header selectedRoute={this.state.currentUrl} />
@@ -43,6 +44,8 @@ export default class App extends Component {
 					<Start path="/start" />
 					<NotFound default />
 				</Router>
+				<Footer selectedRoute={this.state.currentUrl} />
+
 			</div>
 		);
 	}

@@ -1,9 +1,7 @@
-.palete{
+.color_picker {
   display: flex;
-  width: 120px;
-  height: auto;
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 1em;
+  background: rgba(214, 211, 211, 0.8);
 }
 .color {
   width: 44px;

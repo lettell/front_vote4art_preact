@@ -10,10 +10,10 @@ export default class Controls extends Component {
 
 	zoom(e) {
 		e.preventDefault();
-		let container = document.body.querySelector('#bgImage');
+		let container = document.body.querySelector('#gridArea');
 		let rect = container.getBBox();
-		let cx = rect.x + rect.width / 2;
-		let cy = rect.y + rect.height / 2;
+		let cx = (rect.x + rect.width / 2);
+		let cy = (rect.y + rect.height / 2);
 		let isZoomIn = e.target.id === 'zoomIn';
 		let zoomBy = isZoomIn ? 2 : 0.5;
 		let params = { cx, cy, zoomBy };
