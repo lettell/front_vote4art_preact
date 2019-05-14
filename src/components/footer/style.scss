@@ -22,9 +22,13 @@
   bottom: 0;
   width: 100%;
   height: 64px;
+  position: relative;
 }
 .footer_row {
   padding: 4px;
+  display: flex;
+  padding: 0.5em;
+  justify-content: space-between;
   color: white;
 }
 @media only screen and (max-width: 600px) {

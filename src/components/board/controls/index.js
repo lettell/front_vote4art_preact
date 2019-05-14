@@ -10,7 +10,7 @@ export default class Controls extends Component {
 
 	zoom(e) {
 		e.preventDefault();
-		let container = document.body.querySelector('#gridArea');
+		let container = document.body.querySelector('#zoomArea');
 		let rect = container.getBBox();
 		let cx = (rect.x + rect.width / 2);
 		let cy = (rect.y + rect.height / 2);

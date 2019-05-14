@@ -57,9 +57,9 @@ export default class Login extends Component {
 			[name]: value
 		});
 	}
-	responseFacebook = (response) => {
-		
-		facebookLogin(response);
+	responseFacebook = ({accessToken}) => {
+		console.log(accessToken);
+		// facebookLogin(response);
 	}
 	
 

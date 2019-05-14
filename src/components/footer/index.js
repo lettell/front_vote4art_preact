@@ -25,10 +25,20 @@ export default class Footer extends Component {
 			<div class={`${style.footer} mdc-top-app-bar`}>
 				<div class={style.footer_row}>
 					<div>
-					 ©2019 „Europos Komisijos atstovybė Lietuvoje“
+						<div>
+						©2019 „Europos Komisijos atstovybė Lietuvoje“
+						</div>
+						<div>
+							Sąlygos
+						</div>
 					</div>
 					<div>
-						Sąlygos
+						<div>
+							Susisiekite
+						</div>
+						<div>
+							info@vote4art.eu
+						</div>
 					</div>
 				</div>
 			</div>

@@ -53,3 +53,11 @@
     height: 64px;
   }
 }
+@media (max-width: 492px) {
+  .logo {
+    height: 46px;
+    margin-right: 48px;
+    width: auto;
+    align-self: center;
+  }
+}

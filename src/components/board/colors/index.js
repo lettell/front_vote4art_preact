@@ -7,8 +7,12 @@ import Fab from 'preact-material-components/Fab';
 import 'preact-material-components/Fab/style.css';
 import CirclePicker from 'react-color/lib/Circle';
 import HuePicker from 'react-color/lib/Hue';
+import Icon from 'preact-material-components/Icon';
 
 export default class Colors extends Component {
+	state = {
+		mToggler: false
+	}
 	constructor() {
 		super();
 		this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
@@ -59,6 +63,7 @@ export default class Colors extends Component {
 
 	render(props) {
 		return (
+			<div>
 			<Elevation z={2} >
 				<div class={style.color_picker}>
 					<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
@@ -81,6 +86,12 @@ export default class Colors extends Component {
 					</div>
 				</div>
 			</Elevation>
+			<div class={style.mobile_toggle}>
+				<Fab exited={this.state.mToggler}>
+          <Icon >add_box</Icon>
+        </Fab>
+			</div>
+			</div>
 		);
 	}
 }

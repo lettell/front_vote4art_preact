@@ -214,7 +214,7 @@ export default class Board extends Component {
 						<pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
 							{this.state.grid ?
 								<path d="M 10 0.0 L 0 0 0 10" fill="none" stroke="grey" stroke-width="0.03" />:
-								''}
+								'' }
 						</pattern>
 					</defs>
 					<g>
@@ -231,9 +231,9 @@ export default class Board extends Component {
 						</g>
 						<g fill="none">
 							<rect
-								fill="url(#smallGrid)"
+								// fill="url(#smallGrid)"
 								// id="gridArea"								fill="url(#smallGrid)"
-
+								id="zoomArea"
 								width={this.scaledPixel}
 								height={this.scaledPixel}
 								x={this.scaledX}
@@ -257,10 +257,10 @@ export default class Board extends Component {
 							style="width: 0.1"
 							transform={`translate(${this.scaledX+(3*this.scale)}, ${this.scaledY+(130*this.scale)}) scale(${this.scale}, ${this.scale})`}
 						>
-							<g 					
-									transform="scale(1.26 1.26)"
-									onTouchTap={this.getCord}
-									style="cursor: pointer"
+							<g
+								transform="scale(1.26 1.26)"
+								onTouchTap={this.getCord}
+								style="cursor: pointer"
 
 							>
 								<path
