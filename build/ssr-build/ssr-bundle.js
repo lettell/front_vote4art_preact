@@ -66,6 +66,235 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "+8Yq":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Alpha = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _alpha = __webpack_require__("wayZ");
+
+var alpha = _interopRequireWildcard(_alpha);
+
+var _Checkboard = __webpack_require__("Ihfq");
+
+var _Checkboard2 = _interopRequireDefault(_Checkboard);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var Alpha = exports.Alpha = function (_ref) {
+  _inherits(Alpha, _ref);
+
+  function Alpha() {
+    var _ref2;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Alpha);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Alpha.__proto__ || Object.getPrototypeOf(Alpha)).call.apply(_ref2, [this].concat(args))), _this), _this.handleChange = function (e) {
+      var change = alpha.calculateChange(e, _this.props.hsl, _this.props.direction, _this.props.a, _this.container);
+      change && typeof _this.props.onChange === 'function' && _this.props.onChange(change, e);
+    }, _this.handleMouseDown = function (e) {
+      _this.handleChange(e);
+      window.addEventListener('mousemove', _this.handleChange);
+      window.addEventListener('mouseup', _this.handleMouseUp);
+    }, _this.handleMouseUp = function () {
+      _this.unbindEventListeners();
+    }, _this.unbindEventListeners = function () {
+      window.removeEventListener('mousemove', _this.handleChange);
+      window.removeEventListener('mouseup', _this.handleMouseUp);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Alpha, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unbindEventListeners();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var rgb = this.props.rgb;
+      var styles = (0, _reactcss2.default)({
+        'default': {
+          alpha: {
+            absolute: '0px 0px 0px 0px',
+            borderRadius: this.props.radius
+          },
+          checkboard: {
+            absolute: '0px 0px 0px 0px',
+            overflow: 'hidden',
+            borderRadius: this.props.radius
+          },
+          gradient: {
+            absolute: '0px 0px 0px 0px',
+            background: 'linear-gradient(to right, rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ', 0) 0%,\n           rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ', 1) 100%)',
+            boxShadow: this.props.shadow,
+            borderRadius: this.props.radius
+          },
+          container: {
+            position: 'relative',
+            height: '100%',
+            margin: '0 3px'
+          },
+          pointer: {
+            position: 'absolute',
+            left: rgb.a * 100 + '%'
+          },
+          slider: {
+            width: '4px',
+            borderRadius: '1px',
+            height: '8px',
+            boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
+            background: '#fff',
+            marginTop: '1px',
+            transform: 'translateX(-2px)'
+          }
+        },
+        'vertical': {
+          gradient: {
+            background: 'linear-gradient(to bottom, rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ', 0) 0%,\n           rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ', 1) 100%)'
+          },
+          pointer: {
+            left: 0,
+            top: rgb.a * 100 + '%'
+          }
+        },
+        'overwrite': _extends({}, this.props.style)
+      }, {
+        vertical: this.props.direction === 'vertical',
+        overwrite: true
+      });
+
+      return _react2.default.createElement('div', { style: styles.alpha }, _react2.default.createElement('div', { style: styles.checkboard }, _react2.default.createElement(_Checkboard2.default, { renderers: this.props.renderers })), _react2.default.createElement('div', { style: styles.gradient }), _react2.default.createElement('div', {
+        style: styles.container,
+        ref: function ref(container) {
+          return _this2.container = container;
+        },
+        onMouseDown: this.handleMouseDown,
+        onTouchMove: this.handleChange,
+        onTouchStart: this.handleChange
+      }, _react2.default.createElement('div', { style: styles.pointer }, this.props.pointer ? _react2.default.createElement(this.props.pointer, this.props) : _react2.default.createElement('div', { style: styles.slider }))));
+    }
+  }]);
+
+  return Alpha;
+}(_react.PureComponent || _react.Component);
+
+exports.default = Alpha;
+
+/***/ }),
+
+/***/ "+UAC":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__("VcL+"),
+    baseKeysIn = __webpack_require__("9FAS"),
+    isArrayLike = __webpack_require__("LN6c");
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+
+module.exports = keysIn;
+
+/***/ }),
+
 /***/ "+YqL":
 /***/ (function(module, exports) {
 
@@ -189,6 +418,55 @@ function kinetic(getPoint, scroll, settings) {
 
 /***/ }),
 
+/***/ "+bWy":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("yEjJ");
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+module.exports = listCacheDelete;
+
+/***/ }),
+
+/***/ "/Umn":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hkx6","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__FjaZM","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__SLGQt","mdc-ripple-upgraded":"mdc-ripple-upgraded__1Ci9o","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__3ii8B","mdc-top-app-bar__row":"mdc-top-app-bar__row__1CpRj","mdc-top-app-bar__section":"mdc-top-app-bar__section__1Hipt","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__1Amxj","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__3qNoM","mdc-top-app-bar__title":"mdc-top-app-bar__title__2vzp8","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__2_mx3","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__30Tox","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__3TW14","mdc-top-app-bar--short":"mdc-top-app-bar--short__2F2yR","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__2bmIQ","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3smH_","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__4KUTF","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__10huN","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1Cxpn","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1TOrP","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3rW07","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__1qM7b","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__ziSnV","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__36ESG","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__g2lye","logo":"logo__3-ZOJ","topappbar":"topappbar__mpA_O","c_btn":"c_btn__25OKA","l_vrk":"l_vrk__rLLwQ","l_ek":"l_ek__3JPnA"};
+
+/***/ }),
+
 /***/ "/aYh":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -204,6 +482,168 @@ function _superPropBase(object, property) {
 }
 
 module.exports = _superPropBase;
+
+/***/ }),
+
+/***/ "/s7W":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__("49I8"),
+    arrayEach = __webpack_require__("7D78"),
+    assignValue = __webpack_require__("p/s9"),
+    baseAssign = __webpack_require__("eFjB"),
+    baseAssignIn = __webpack_require__("q2Io"),
+    cloneBuffer = __webpack_require__("s4SJ"),
+    copyArray = __webpack_require__("Mkgn"),
+    copySymbols = __webpack_require__("az4F"),
+    copySymbolsIn = __webpack_require__("K7uZ"),
+    getAllKeys = __webpack_require__("uf6I"),
+    getAllKeysIn = __webpack_require__("l/4E"),
+    getTag = __webpack_require__("tQCT"),
+    initCloneArray = __webpack_require__("f7dW"),
+    initCloneByTag = __webpack_require__("mAMs"),
+    initCloneObject = __webpack_require__("qE2F"),
+    isArray = __webpack_require__("p/0c"),
+    isBuffer = __webpack_require__("iyC2"),
+    isMap = __webpack_require__("rjxD"),
+    isObject = __webpack_require__("u9vI"),
+    isSet = __webpack_require__("7Z5j"),
+    keys = __webpack_require__("HI10");
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_DEEP_FLAG = 1,
+    CLONE_FLAT_FLAG = 2,
+    CLONE_SYMBOLS_FLAG = 4;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values supported by `_.clone`. */
+var cloneableTags = {};
+cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+ * traversed objects.
+ *
+ * @private
+ * @param {*} value The value to clone.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Deep clone
+ *  2 - Flatten inherited properties
+ *  4 - Clone symbols
+ * @param {Function} [customizer] The function to customize cloning.
+ * @param {string} [key] The key of `value`.
+ * @param {Object} [object] The parent object of `value`.
+ * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
+ * @returns {*} Returns the cloned value.
+ */
+function baseClone(value, bitmask, customizer, key, object, stack) {
+  var result,
+      isDeep = bitmask & CLONE_DEEP_FLAG,
+      isFlat = bitmask & CLONE_FLAT_FLAG,
+      isFull = bitmask & CLONE_SYMBOLS_FLAG;
+
+  if (customizer) {
+    result = object ? customizer(value, key, object, stack) : customizer(value);
+  }
+  if (result !== undefined) {
+    return result;
+  }
+  if (!isObject(value)) {
+    return value;
+  }
+  var isArr = isArray(value);
+  if (isArr) {
+    result = initCloneArray(value);
+    if (!isDeep) {
+      return copyArray(value, result);
+    }
+  } else {
+    var tag = getTag(value),
+        isFunc = tag == funcTag || tag == genTag;
+
+    if (isBuffer(value)) {
+      return cloneBuffer(value, isDeep);
+    }
+    if (tag == objectTag || tag == argsTag || isFunc && !object) {
+      result = isFlat || isFunc ? {} : initCloneObject(value);
+      if (!isDeep) {
+        return isFlat ? copySymbolsIn(value, baseAssignIn(result, value)) : copySymbols(value, baseAssign(result, value));
+      }
+    } else {
+      if (!cloneableTags[tag]) {
+        return object ? value : {};
+      }
+      result = initCloneByTag(value, tag, isDeep);
+    }
+  }
+  // Check for circular references and return its corresponding clone.
+  stack || (stack = new Stack());
+  var stacked = stack.get(value);
+  if (stacked) {
+    return stacked;
+  }
+  stack.set(value, result);
+
+  if (isSet(value)) {
+    value.forEach(function (subValue) {
+      result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+    });
+
+    return result;
+  }
+
+  if (isMap(value)) {
+    value.forEach(function (subValue, key) {
+      result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+    });
+
+    return result;
+  }
+
+  var keysFunc = isFull ? isFlat ? getAllKeysIn : getAllKeys : isFlat ? keysIn : keys;
+
+  var props = isArr ? undefined : keysFunc(value);
+  arrayEach(props || value, function (subValue, key) {
+    if (props) {
+      key = subValue;
+      subValue = value[key];
+    }
+    // Recursively populate clone (susceptible to call stack limits).
+    assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+  });
+  return result;
+}
+
+module.exports = baseClone;
 
 /***/ }),
 
@@ -296,6 +736,18 @@ module.exports = _possibleConstructorReturn;
 
 /***/ }),
 
+/***/ "0J1o":
+/***/ (function(module, exports, __webpack_require__) {
+
+var overArg = __webpack_require__("4/4o");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeKeys = overArg(Object.keys, Object);
+
+module.exports = nativeKeys;
+
+/***/ }),
+
 /***/ "0PQN":
 /***/ (function(module, exports) {
 
@@ -316,10 +768,379 @@ module.exports = _classCallCheck;
 
 /***/ }),
 
+/***/ "0nJZ":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("cTKO");
+
+/***/ }),
+
+/***/ "0pJf":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("MIhM");
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function now() {
+  return root.Date.now();
+};
+
+module.exports = now;
+
+/***/ }),
+
+/***/ "1RxS":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("FTXF");
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+module.exports = hashClear;
+
+/***/ }),
+
+/***/ "1qpN":
+/***/ (function(module, exports, __webpack_require__) {
+
+var coreJsData = __webpack_require__("q3B8");
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = function () {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? 'Symbol(src)_1.' + uid : '';
+}();
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && maskSrcKey in func;
+}
+
+module.exports = isMasked;
+
+/***/ }),
+
+/***/ "1ryL":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Swatch = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _interaction = __webpack_require__("JcW8");
+
+var _Checkboard = __webpack_require__("Ihfq");
+
+var _Checkboard2 = _interopRequireDefault(_Checkboard);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var ENTER = 13;
+
+var Swatch = exports.Swatch = function Swatch(_ref) {
+  var color = _ref.color,
+      style = _ref.style,
+      _ref$onClick = _ref.onClick,
+      onClick = _ref$onClick === undefined ? function () {} : _ref$onClick,
+      onHover = _ref.onHover,
+      _ref$title = _ref.title,
+      title = _ref$title === undefined ? color : _ref$title,
+      children = _ref.children,
+      focus = _ref.focus,
+      _ref$focusStyle = _ref.focusStyle,
+      focusStyle = _ref$focusStyle === undefined ? {} : _ref$focusStyle;
+
+  var transparent = color === 'transparent';
+  var styles = (0, _reactcss2.default)({
+    default: {
+      swatch: _extends({
+        background: color,
+        height: '100%',
+        width: '100%',
+        cursor: 'pointer',
+        position: 'relative',
+        outline: 'none'
+      }, style, focus ? focusStyle : {})
+    }
+  });
+
+  var handleClick = function handleClick(e) {
+    return onClick(color, e);
+  };
+  var handleKeyDown = function handleKeyDown(e) {
+    return e.keyCode === ENTER && onClick(color, e);
+  };
+  var handleHover = function handleHover(e) {
+    return onHover(color, e);
+  };
+
+  var optionalEvents = {};
+  if (onHover) {
+    optionalEvents.onMouseOver = handleHover;
+  }
+
+  return _react2.default.createElement('div', _extends({
+    style: styles.swatch,
+    onClick: handleClick,
+    title: title,
+    tabIndex: 0,
+    onKeyDown: handleKeyDown
+  }, optionalEvents), children, transparent && _react2.default.createElement(_Checkboard2.default, {
+    borderRadius: styles.swatch.borderRadius,
+    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)'
+  }));
+};
+
+exports.default = (0, _interaction.handleFocus)(Swatch);
+
+/***/ }),
+
+/***/ "2Axb":
+/***/ (function(module, exports, __webpack_require__) {
+
+var memoize = __webpack_require__("EiMJ");
+
+/** Used as the maximum memoize cache size. */
+var MAX_MEMOIZE_SIZE = 500;
+
+/**
+ * A specialized version of `_.memoize` which clears the memoized function's
+ * cache when it exceeds `MAX_MEMOIZE_SIZE`.
+ *
+ * @private
+ * @param {Function} func The function to have its output memoized.
+ * @returns {Function} Returns the new memoized function.
+ */
+function memoizeCapped(func) {
+  var result = memoize(func, function (key) {
+    if (cache.size === MAX_MEMOIZE_SIZE) {
+      cache.clear();
+    }
+    return key;
+  });
+
+  var cache = result.cache;
+  return result;
+}
+
+module.exports = memoizeCapped;
+
+/***/ }),
+
+/***/ "2L2L":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    isLength = __webpack_require__("GmNU"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+    return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+module.exports = baseIsTypedArray;
+
+/***/ }),
+
+/***/ "2NNl":
+/***/ (function(module, exports) {
+
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeNow = Date.now;
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function () {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+module.exports = shortOut;
+
+/***/ }),
+
 /***/ "2TVm":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "2Tdb":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__("d05+"),
+    eq = __webpack_require__("LIpy");
+
+/**
+ * This function is like `assignValue` except that it doesn't assign
+ * `undefined` values.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignMergeValue(object, key, value) {
+  if (value !== undefined && !eq(object[key], value) || value === undefined && !(key in object)) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignMergeValue;
+
+/***/ }),
+
+/***/ "2ibm":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__("p/0c"),
+    isSymbol = __webpack_require__("bgO7");
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/;
+
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' || value == null || isSymbol(value)) {
+    return true;
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
+}
+
+module.exports = isKey;
 
 /***/ }),
 
@@ -760,6 +1581,46 @@ module.exports.wrap = wrap;
 
 /***/ }),
 
+/***/ "3Q8v":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseHasIn = __webpack_require__("Gsi0"),
+    hasPath = __webpack_require__("E1jM");
+
+/**
+ * Checks if `path` is a direct or inherited property of `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ * @example
+ *
+ * var object = _.create({ 'a': _.create({ 'b': 2 }) });
+ *
+ * _.hasIn(object, 'a');
+ * // => true
+ *
+ * _.hasIn(object, 'a.b');
+ * // => true
+ *
+ * _.hasIn(object, ['a', 'b']);
+ * // => true
+ *
+ * _.hasIn(object, 'b');
+ * // => false
+ */
+function hasIn(object, path) {
+  return object != null && hasPath(object, path, baseHasIn);
+}
+
+module.exports = hasIn;
+
+/***/ }),
+
 /***/ "3bIi":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -782,6 +1643,166 @@ module.exports = function createError(message, config, code, request, response) 
   var error = new Error(message);
   return enhanceError(error, config, code, request, response);
 };
+
+/***/ }),
+
+/***/ "3til":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsArguments = __webpack_require__("pK4Y"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function () {
+    return arguments;
+}()) ? baseIsArguments : function (value) {
+    return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+};
+
+module.exports = isArguments;
+
+/***/ }),
+
+/***/ "3w4y":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("wppe"),
+    arrayMap = __webpack_require__("BblM"),
+    isArray = __webpack_require__("p/0c"),
+    isSymbol = __webpack_require__("bgO7");
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isArray(value)) {
+    // Recursively convert values (susceptible to call stack limits).
+    return arrayMap(value, baseToString) + '';
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+
+module.exports = baseToString;
+
+/***/ }),
+
+/***/ "4/4o":
+/***/ (function(module, exports) {
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function (arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+/***/ }),
+
+/***/ "41+b":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is in the array cache.
+ *
+ * @private
+ * @name has
+ * @memberOf SetCache
+ * @param {*} value The value to search for.
+ * @returns {number} Returns `true` if `value` is found, else `false`.
+ */
+function setCacheHas(value) {
+  return this.__data__.has(value);
+}
+
+module.exports = setCacheHas;
+
+/***/ }),
+
+/***/ "49I8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var ListCache = __webpack_require__("Xk23"),
+    stackClear = __webpack_require__("4y4D"),
+    stackDelete = __webpack_require__("TpjK"),
+    stackGet = __webpack_require__("skbs"),
+    stackHas = __webpack_require__("9ocJ"),
+    stackSet = __webpack_require__("fwYF");
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  var data = this.__data__ = new ListCache(entries);
+  this.size = data.size;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+module.exports = Stack;
 
 /***/ }),
 
@@ -2254,10 +3275,143 @@ var slider_MDCSlider = function (_MDCComponent) {
 
 /***/ }),
 
+/***/ "4N03":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC"),
+    root = __webpack_require__("MIhM");
+
+/* Built-in method references that are verified to be native. */
+var WeakMap = getNative(root, 'WeakMap');
+
+module.exports = WeakMap;
+
+/***/ }),
+
+/***/ "4y4D":
+/***/ (function(module, exports, __webpack_require__) {
+
+var ListCache = __webpack_require__("Xk23");
+
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache();
+  this.size = 0;
+}
+
+module.exports = stackClear;
+
+/***/ }),
+
+/***/ "5CkJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    isArray = __webpack_require__("p/0c"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var stringTag = '[object String]';
+
+/**
+ * Checks if `value` is classified as a `String` primitive or object.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a string, else `false`.
+ * @example
+ *
+ * _.isString('abc');
+ * // => true
+ *
+ * _.isString(1);
+ * // => false
+ */
+function isString(value) {
+    return typeof value == 'string' || !isArray(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
+}
+
+module.exports = isString;
+
+/***/ }),
+
+/***/ "5D9O":
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (false) {
+  var ReactIs = require('react-is');
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = require('./factoryWithTypeCheckers')(ReactIs.isElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__("wVGV")();
+}
+
+/***/ }),
+
 /***/ "5E5G":
 /***/ (function(module, exports) {
 
 module.exports = require("assert");
+
+/***/ }),
+
+/***/ "5U5Y":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__("yeiR");
+
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+
+module.exports = get;
 
 /***/ }),
 
@@ -2344,7 +3498,7 @@ var component = __webpack_require__("EQDb");
 
 
 
-// EXTERNAL MODULE: ../node_modules/@material/ripple/index.js + 4 modules
+// EXTERNAL MODULE: ../node_modules/@material/ripple/index.js + 3 modules
 var ripple = __webpack_require__("vkNc");
 
 // CONCATENATED MODULE: ../node_modules/@material/dialog/constants.js
@@ -2950,6 +4104,60 @@ function plural(ms, msAbs, n, name) {
 
 /***/ }),
 
+/***/ "6QoD":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Circle = __webpack_require__("zdvN");
+
+var _Circle2 = _interopRequireDefault(_Circle);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = _Circle2.default;
+
+/***/ }),
+
+/***/ "6q/8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__("srRO"),
+    getPrototype = __webpack_require__("CXf5"),
+    getSymbols = __webpack_require__("EvLK"),
+    stubArray = __webpack_require__("7Mmb");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+
+/**
+ * Creates an array of the own and inherited enumerable symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbolsIn = !nativeGetSymbols ? stubArray : function (object) {
+  var result = [];
+  while (object) {
+    arrayPush(result, getSymbols(object));
+    object = getPrototype(object);
+  }
+  return result;
+};
+
+module.exports = getSymbolsIn;
+
+/***/ }),
+
 /***/ "6rxR":
 /***/ (function(module, exports) {
 
@@ -3216,6 +4424,93 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "6ykg":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__("49I8"),
+    equalArrays = __webpack_require__("pkMv"),
+    equalByTag = __webpack_require__("oaAh"),
+    equalObjects = __webpack_require__("mFpP"),
+    getTag = __webpack_require__("tQCT"),
+    isArray = __webpack_require__("p/0c"),
+    isBuffer = __webpack_require__("iyC2"),
+    isTypedArray = __webpack_require__("kwIb");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = objIsArr ? arrayTag : getTag(object),
+      othTag = othIsArr ? arrayTag : getTag(other);
+
+  objTag = objTag == argsTag ? objectTag : objTag;
+  othTag = othTag == argsTag ? objectTag : othTag;
+
+  var objIsObj = objTag == objectTag,
+      othIsObj = othTag == objectTag,
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && isBuffer(object)) {
+    if (!isBuffer(other)) {
+      return false;
+    }
+    objIsArr = true;
+    objIsObj = false;
+  }
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new Stack());
+    return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+  }
+  if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+
+      stack || (stack = new Stack());
+      return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+    }
+  }
+  if (!isSameTag) {
+    return false;
+  }
+  stack || (stack = new Stack());
+  return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+}
+
+module.exports = baseIsEqualDeep;
+
+/***/ }),
+
 /***/ "7/2Y":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3348,6 +4643,266 @@ default_1.Icon = ButtonIcon;
 
 /***/ }),
 
+/***/ "71Gl":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArrayLike = __webpack_require__("LN6c");
+
+/**
+ * Creates a `baseEach` or `baseEachRight` function.
+ *
+ * @private
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseEach(eachFunc, fromRight) {
+  return function (collection, iteratee) {
+    if (collection == null) {
+      return collection;
+    }
+    if (!isArrayLike(collection)) {
+      return eachFunc(collection, iteratee);
+    }
+    var length = collection.length,
+        index = fromRight ? length : -1,
+        iterable = Object(collection);
+
+    while (fromRight ? index-- : ++index < length) {
+      if (iteratee(iterable[index], index, iterable) === false) {
+        break;
+      }
+    }
+    return collection;
+  };
+}
+
+module.exports = createBaseEach;
+
+/***/ }),
+
+/***/ "7BjG":
+/***/ (function(module, exports) {
+
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+
+  map.forEach(function (value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+
+module.exports = mapToArray;
+
+/***/ }),
+
+/***/ "7D78":
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.forEach` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns `array`.
+ */
+function arrayEach(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (iteratee(array[index], index, array) === false) {
+      break;
+    }
+  }
+  return array;
+}
+
+module.exports = arrayEach;
+
+/***/ }),
+
+/***/ "7Mmb":
+/***/ (function(module, exports) {
+
+/**
+ * This method returns a new empty array.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {Array} Returns the new empty array.
+ * @example
+ *
+ * var arrays = _.times(2, _.stubArray);
+ *
+ * console.log(arrays);
+ * // => [[], []]
+ *
+ * console.log(arrays[0] === arrays[1]);
+ * // => false
+ */
+function stubArray() {
+  return [];
+}
+
+module.exports = stubArray;
+
+/***/ }),
+
+/***/ "7Z5j":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsSet = __webpack_require__("N/m6"),
+    baseUnary = __webpack_require__("PnXa"),
+    nodeUtil = __webpack_require__("PBPf");
+
+/* Node.js helper references. */
+var nodeIsSet = nodeUtil && nodeUtil.isSet;
+
+/**
+ * Checks if `value` is classified as a `Set` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+ * @example
+ *
+ * _.isSet(new Set);
+ * // => true
+ *
+ * _.isSet(new WeakSet);
+ * // => false
+ */
+var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
+
+module.exports = isSet;
+
+/***/ }),
+
+/***/ "7psR":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "red", function() { return red; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pink", function() { return pink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purple", function() { return purple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepPurple", function() { return deepPurple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indigo", function() { return indigo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blue", function() { return blue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightBlue", function() { return lightBlue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cyan", function() { return cyan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "teal", function() { return teal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "green", function() { return green; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightGreen", function() { return lightGreen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lime", function() { return lime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "yellow", function() { return yellow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "amber", function() { return amber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "orange", function() { return orange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepOrange", function() { return deepOrange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "brown", function() { return brown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "grey", function() { return grey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blueGrey", function() { return blueGrey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "darkText", function() { return darkText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightText", function() { return lightText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "darkIcons", function() { return darkIcons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightIcons", function() { return lightIcons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "white", function() { return white; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "black", function() { return black; });
+var red = { "50": "#ffebee", "100": "#ffcdd2", "200": "#ef9a9a", "300": "#e57373", "400": "#ef5350", "500": "#f44336", "600": "#e53935", "700": "#d32f2f", "800": "#c62828", "900": "#b71c1c", "a100": "#ff8a80", "a200": "#ff5252", "a400": "#ff1744", "a700": "#d50000" };
+var pink = { "50": "#fce4ec", "100": "#f8bbd0", "200": "#f48fb1", "300": "#f06292", "400": "#ec407a", "500": "#e91e63", "600": "#d81b60", "700": "#c2185b", "800": "#ad1457", "900": "#880e4f", "a100": "#ff80ab", "a200": "#ff4081", "a400": "#f50057", "a700": "#c51162" };
+var purple = { "50": "#f3e5f5", "100": "#e1bee7", "200": "#ce93d8", "300": "#ba68c8", "400": "#ab47bc", "500": "#9c27b0", "600": "#8e24aa", "700": "#7b1fa2", "800": "#6a1b9a", "900": "#4a148c", "a100": "#ea80fc", "a200": "#e040fb", "a400": "#d500f9", "a700": "#aa00ff" };
+var deepPurple = { "50": "#ede7f6", "100": "#d1c4e9", "200": "#b39ddb", "300": "#9575cd", "400": "#7e57c2", "500": "#673ab7", "600": "#5e35b1", "700": "#512da8", "800": "#4527a0", "900": "#311b92", "a100": "#b388ff", "a200": "#7c4dff", "a400": "#651fff", "a700": "#6200ea" };
+var indigo = { "50": "#e8eaf6", "100": "#c5cae9", "200": "#9fa8da", "300": "#7986cb", "400": "#5c6bc0", "500": "#3f51b5", "600": "#3949ab", "700": "#303f9f", "800": "#283593", "900": "#1a237e", "a100": "#8c9eff", "a200": "#536dfe", "a400": "#3d5afe", "a700": "#304ffe" };
+var blue = { "50": "#e3f2fd", "100": "#bbdefb", "200": "#90caf9", "300": "#64b5f6", "400": "#42a5f5", "500": "#2196f3", "600": "#1e88e5", "700": "#1976d2", "800": "#1565c0", "900": "#0d47a1", "a100": "#82b1ff", "a200": "#448aff", "a400": "#2979ff", "a700": "#2962ff" };
+var lightBlue = { "50": "#e1f5fe", "100": "#b3e5fc", "200": "#81d4fa", "300": "#4fc3f7", "400": "#29b6f6", "500": "#03a9f4", "600": "#039be5", "700": "#0288d1", "800": "#0277bd", "900": "#01579b", "a100": "#80d8ff", "a200": "#40c4ff", "a400": "#00b0ff", "a700": "#0091ea" };
+var cyan = { "50": "#e0f7fa", "100": "#b2ebf2", "200": "#80deea", "300": "#4dd0e1", "400": "#26c6da", "500": "#00bcd4", "600": "#00acc1", "700": "#0097a7", "800": "#00838f", "900": "#006064", "a100": "#84ffff", "a200": "#18ffff", "a400": "#00e5ff", "a700": "#00b8d4" };
+var teal = { "50": "#e0f2f1", "100": "#b2dfdb", "200": "#80cbc4", "300": "#4db6ac", "400": "#26a69a", "500": "#009688", "600": "#00897b", "700": "#00796b", "800": "#00695c", "900": "#004d40", "a100": "#a7ffeb", "a200": "#64ffda", "a400": "#1de9b6", "a700": "#00bfa5" };
+var green = { "50": "#e8f5e9", "100": "#c8e6c9", "200": "#a5d6a7", "300": "#81c784", "400": "#66bb6a", "500": "#4caf50", "600": "#43a047", "700": "#388e3c", "800": "#2e7d32", "900": "#1b5e20", "a100": "#b9f6ca", "a200": "#69f0ae", "a400": "#00e676", "a700": "#00c853" };
+var lightGreen = { "50": "#f1f8e9", "100": "#dcedc8", "200": "#c5e1a5", "300": "#aed581", "400": "#9ccc65", "500": "#8bc34a", "600": "#7cb342", "700": "#689f38", "800": "#558b2f", "900": "#33691e", "a100": "#ccff90", "a200": "#b2ff59", "a400": "#76ff03", "a700": "#64dd17" };
+var lime = { "50": "#f9fbe7", "100": "#f0f4c3", "200": "#e6ee9c", "300": "#dce775", "400": "#d4e157", "500": "#cddc39", "600": "#c0ca33", "700": "#afb42b", "800": "#9e9d24", "900": "#827717", "a100": "#f4ff81", "a200": "#eeff41", "a400": "#c6ff00", "a700": "#aeea00" };
+var yellow = { "50": "#fffde7", "100": "#fff9c4", "200": "#fff59d", "300": "#fff176", "400": "#ffee58", "500": "#ffeb3b", "600": "#fdd835", "700": "#fbc02d", "800": "#f9a825", "900": "#f57f17", "a100": "#ffff8d", "a200": "#ffff00", "a400": "#ffea00", "a700": "#ffd600" };
+var amber = { "50": "#fff8e1", "100": "#ffecb3", "200": "#ffe082", "300": "#ffd54f", "400": "#ffca28", "500": "#ffc107", "600": "#ffb300", "700": "#ffa000", "800": "#ff8f00", "900": "#ff6f00", "a100": "#ffe57f", "a200": "#ffd740", "a400": "#ffc400", "a700": "#ffab00" };
+var orange = { "50": "#fff3e0", "100": "#ffe0b2", "200": "#ffcc80", "300": "#ffb74d", "400": "#ffa726", "500": "#ff9800", "600": "#fb8c00", "700": "#f57c00", "800": "#ef6c00", "900": "#e65100", "a100": "#ffd180", "a200": "#ffab40", "a400": "#ff9100", "a700": "#ff6d00" };
+var deepOrange = { "50": "#fbe9e7", "100": "#ffccbc", "200": "#ffab91", "300": "#ff8a65", "400": "#ff7043", "500": "#ff5722", "600": "#f4511e", "700": "#e64a19", "800": "#d84315", "900": "#bf360c", "a100": "#ff9e80", "a200": "#ff6e40", "a400": "#ff3d00", "a700": "#dd2c00" };
+var brown = { "50": "#efebe9", "100": "#d7ccc8", "200": "#bcaaa4", "300": "#a1887f", "400": "#8d6e63", "500": "#795548", "600": "#6d4c41", "700": "#5d4037", "800": "#4e342e", "900": "#3e2723" };
+var grey = { "50": "#fafafa", "100": "#f5f5f5", "200": "#eeeeee", "300": "#e0e0e0", "400": "#bdbdbd", "500": "#9e9e9e", "600": "#757575", "700": "#616161", "800": "#424242", "900": "#212121" };
+var blueGrey = { "50": "#eceff1", "100": "#cfd8dc", "200": "#b0bec5", "300": "#90a4ae", "400": "#78909c", "500": "#607d8b", "600": "#546e7a", "700": "#455a64", "800": "#37474f", "900": "#263238" };
+var darkText = { "primary": "rgba(0, 0, 0, 0.87)", "secondary": "rgba(0, 0, 0, 0.54)", "disabled": "rgba(0, 0, 0, 0.38)", "dividers": "rgba(0, 0, 0, 0.12)" };
+var lightText = { "primary": "rgba(255, 255, 255, 1)", "secondary": "rgba(255, 255, 255, 0.7)", "disabled": "rgba(255, 255, 255, 0.5)", "dividers": "rgba(255, 255, 255, 0.12)" };
+var darkIcons = { "active": "rgba(0, 0, 0, 0.54)", "inactive": "rgba(0, 0, 0, 0.38)" };
+var lightIcons = { "active": "rgba(255, 255, 255, 1)", "inactive": "rgba(255, 255, 255, 0.5)" };
+var white = "#ffffff";
+var black = "#000000";
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  red: red,
+  pink: pink,
+  purple: purple,
+  deepPurple: deepPurple,
+  indigo: indigo,
+  blue: blue,
+  lightBlue: lightBlue,
+  cyan: cyan,
+  teal: teal,
+  green: green,
+  lightGreen: lightGreen,
+  lime: lime,
+  yellow: yellow,
+  amber: amber,
+  orange: orange,
+  deepOrange: deepOrange,
+  brown: brown,
+  grey: grey,
+  blueGrey: blueGrey,
+  darkText: darkText,
+  lightText: lightText,
+  darkIcons: darkIcons,
+  lightIcons: lightIcons,
+  white: white,
+  black: black
+});
+
+/***/ }),
+
+/***/ "85ue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("ZC1a");
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+module.exports = mapCacheHas;
+
+/***/ }),
+
 /***/ "8NLT":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3367,10 +4922,87 @@ if (typeof process === 'undefined' || process.type === 'renderer' || process.bro
 
 /***/ }),
 
+/***/ "92s5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var copyObject = __webpack_require__("dtkN"),
+    keysIn = __webpack_require__("+UAC");
+
+/**
+ * Converts `value` to a plain object flattening inherited enumerable string
+ * keyed properties of `value` to own properties of the plain object.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {Object} Returns the converted plain object.
+ * @example
+ *
+ * function Foo() {
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.assign({ 'a': 1 }, new Foo);
+ * // => { 'a': 1, 'b': 2 }
+ *
+ * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
+ * // => { 'a': 1, 'b': 2, 'c': 3 }
+ */
+function toPlainObject(value) {
+  return copyObject(value, keysIn(value));
+}
+
+module.exports = toPlainObject;
+
+/***/ }),
+
 /***/ "97RM":
 /***/ (function(module, exports) {
 
 module.exports = require("stream");
+
+/***/ }),
+
+/***/ "9FAS":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("u9vI"),
+    isPrototype = __webpack_require__("nhsl"),
+    nativeKeysIn = __webpack_require__("uy4o");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeysIn(object) {
+  if (!isObject(object)) {
+    return nativeKeysIn(object);
+  }
+  var isProto = isPrototype(object),
+      result = [];
+
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeysIn;
 
 /***/ }),
 
@@ -3548,11 +5180,122 @@ formatters.O = function (v) {
 
 /***/ }),
 
+/***/ "9ocJ":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+module.exports = stackHas;
+
+/***/ }),
+
+/***/ "A+gr":
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+
+  return !!length && (type == 'number' || type != 'symbol' && reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+}
+
+module.exports = isIndex;
+
+/***/ }),
+
+/***/ "A8RV":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseToString = __webpack_require__("3w4y");
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+module.exports = toString;
+
+/***/ }),
+
 /***/ "AZ2D":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"palete":"palete__2Kli4","color":"color__1NDm2","active":"active__25DOn","logo":"logo__1ECGO"};
+module.exports = {"color_picker":"color_picker__3nt0y","color":"color__1NDm2","active":"active__25DOn","logo":"logo__1ECGO"};
+
+/***/ }),
+
+/***/ "Ag0p":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("FTXF");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value;
+  return this;
+}
+
+module.exports = hashSet;
 
 /***/ }),
 
@@ -3572,10 +5315,65 @@ module.exports = _setPrototypeOf;
 
 /***/ }),
 
+/***/ "Asjh":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+/***/ }),
+
 /***/ "Axko":
 /***/ (function(module, exports) {
 
 module.exports = require("tty");
+
+/***/ }),
+
+/***/ "B/Nj":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isPrototype = __webpack_require__("nhsl"),
+    nativeKeys = __webpack_require__("0J1o");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeys;
 
 /***/ }),
 
@@ -3676,6 +5474,33 @@ module.exports = defaults;
 
 /***/ }),
 
+/***/ "BblM":
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.map` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      result = Array(length);
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+
+module.exports = arrayMap;
+
+/***/ }),
+
 /***/ "Bcfi":
 /***/ (function(module, exports) {
 
@@ -3683,10 +5508,721 @@ module.exports = require("util");
 
 /***/ }),
 
-/***/ "CtuI":
-/***/ (function(module, exports) {
+/***/ "C8N4":
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var hashClear = __webpack_require__("1RxS"),
+    hashDelete = __webpack_require__("qBl2"),
+    hashGet = __webpack_require__("hClK"),
+    hashHas = __webpack_require__("YIaf"),
+    hashSet = __webpack_require__("Ag0p");
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+    var index = -1,
+        length = entries == null ? 0 : entries.length;
+
+    this.clear();
+    while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+    }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+module.exports = Hash;
+
+/***/ }),
+
+/***/ "CXDc":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.autoprefix = undefined;
+
+var _forOwn2 = __webpack_require__("SC1V");
+
+var _forOwn3 = _interopRequireDefault(_forOwn2);
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var transforms = {
+  borderRadius: function borderRadius(value) {
+    return {
+      msBorderRadius: value,
+      MozBorderRadius: value,
+      OBorderRadius: value,
+      WebkitBorderRadius: value,
+      borderRadius: value
+    };
+  },
+  boxShadow: function boxShadow(value) {
+    return {
+      msBoxShadow: value,
+      MozBoxShadow: value,
+      OBoxShadow: value,
+      WebkitBoxShadow: value,
+      boxShadow: value
+    };
+  },
+  userSelect: function userSelect(value) {
+    return {
+      WebkitTouchCallout: value,
+      KhtmlUserSelect: value,
+      MozUserSelect: value,
+      msUserSelect: value,
+      WebkitUserSelect: value,
+      userSelect: value
+    };
+  },
+
+  flex: function flex(value) {
+    return {
+      WebkitBoxFlex: value,
+      MozBoxFlex: value,
+      WebkitFlex: value,
+      msFlex: value,
+      flex: value
+    };
+  },
+  flexBasis: function flexBasis(value) {
+    return {
+      WebkitFlexBasis: value,
+      flexBasis: value
+    };
+  },
+  justifyContent: function justifyContent(value) {
+    return {
+      WebkitJustifyContent: value,
+      justifyContent: value
+    };
+  },
+
+  transition: function transition(value) {
+    return {
+      msTransition: value,
+      MozTransition: value,
+      OTransition: value,
+      WebkitTransition: value,
+      transition: value
+    };
+  },
+
+  transform: function transform(value) {
+    return {
+      msTransform: value,
+      MozTransform: value,
+      OTransform: value,
+      WebkitTransform: value,
+      transform: value
+    };
+  },
+  absolute: function absolute(value) {
+    var direction = value && value.split(' ');
+    return {
+      position: 'absolute',
+      top: direction && direction[0],
+      right: direction && direction[1],
+      bottom: direction && direction[2],
+      left: direction && direction[3]
+    };
+  },
+  extend: function extend(name, otherElementStyles) {
+    var otherStyle = otherElementStyles[name];
+    if (otherStyle) {
+      return otherStyle;
+    }
+    return {
+      'extend': name
+    };
+  }
+};
+
+var autoprefix = exports.autoprefix = function autoprefix(elements) {
+  var prefixed = {};
+  (0, _forOwn3.default)(elements, function (styles, element) {
+    var expanded = {};
+    (0, _forOwn3.default)(styles, function (value, key) {
+      var transform = transforms[key];
+      if (transform) {
+        expanded = _extends({}, expanded, transform(value));
+      } else {
+        expanded[key] = value;
+      }
+    });
+    prefixed[element] = expanded;
+  });
+  return prefixed;
+};
+
+exports.default = autoprefix;
+
+/***/ }),
+
+/***/ "CXf5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var overArg = __webpack_require__("4/4o");
+
+/** Built-in value references. */
+var getPrototype = overArg(Object.getPrototypeOf, Object);
+
+module.exports = getPrototype;
+
+/***/ }),
+
+/***/ "CXfR":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("u9vI"),
+    now = __webpack_require__("0pJf"),
+    toNumber = __webpack_require__("iS0Z");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        timeWaiting = wait - timeSinceLastCall;
+
+    return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+module.exports = debounce;
+
+/***/ }),
+
+/***/ "Cv2I":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _interopRequireDefault = __webpack_require__("SpGf");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.TextField = exports.TextFieldInput = exports.Label = exports.HelperText = void 0;
+
+var _get2 = _interopRequireDefault(__webpack_require__("J5U+"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__("0fcM"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__("P8NW"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("0421"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__("UJE0"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__("d4H2"));
+
+var _textfield = __webpack_require__("VcCu");
+
+var _preact = __webpack_require__("KM04");
+
+var _MaterialComponent4 = _interopRequireDefault(__webpack_require__("uc5p"));
+
+var _Icon = _interopRequireDefault(__webpack_require__("MeGi"));
+
+var __rest = void 0 && (void 0).__rest || function (s, e) {
+  var t = {};
+
+  for (var p in s) {
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  }
+
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+var HelperText =
+/*#__PURE__*/
+function (_MaterialComponent) {
+  (0, _inherits2.default)(HelperText, _MaterialComponent);
+
+  function HelperText() {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, HelperText);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(HelperText).apply(this, arguments));
+    _this.componentName = 'text-field-helper-text';
+    _this.mdcProps = ['persistent', 'validation-msg'];
+    return _this;
+  }
+
+  (0, _createClass2.default)(HelperText, [{
+    key: "materialDom",
+    value: function materialDom(props) {
+      return (0, _preact.h)("p", _extends({}, props, {
+        "aria-hidden": "true"
+      }), props.children);
+    }
+  }]);
+  return HelperText;
+}(_MaterialComponent4.default);
+
+exports.HelperText = HelperText;
+
+var Label =
+/*#__PURE__*/
+function (_MaterialComponent2) {
+  (0, _inherits2.default)(Label, _MaterialComponent2);
+
+  function Label() {
+    var _this2;
+
+    (0, _classCallCheck2.default)(this, Label);
+    _this2 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Label).apply(this, arguments));
+    _this2.componentName = 'floating-label';
+    _this2.mdcProps = [];
+    return _this2;
+  }
+
+  (0, _createClass2.default)(Label, [{
+    key: "materialDom",
+    value: function materialDom(props) {
+      return (0, _preact.h)("label", _extends({}, props), props.children);
+    }
+  }]);
+  return Label;
+}(_MaterialComponent4.default);
+
+exports.Label = Label;
+
+var TextFieldInput =
+/*#__PURE__*/
+function (_MaterialComponent3) {
+  (0, _inherits2.default)(TextFieldInput, _MaterialComponent3);
+
+  function TextFieldInput() {
+    var _this3;
+
+    (0, _classCallCheck2.default)(this, TextFieldInput);
+    _this3 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(TextFieldInput).apply(this, arguments));
+    _this3.state = {
+      jsComponentAttached: false
+    };
+    _this3.componentName = 'text-field';
+    _this3.mdcProps = ['fullwidth', 'textarea', 'dense', 'disabled', 'box', 'outlined'];
+    _this3.mdcNotifyProps = ['valid', 'disabled'];
+    return _this3;
+  }
+
+  (0, _createClass2.default)(TextFieldInput, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this4 = this;
+
+      (0, _get2.default)((0, _getPrototypeOf2.default)(TextFieldInput.prototype), "componentDidMount", this).call(this);
+      this.setState({
+        jsComponentAttached: true
+      }, function () {
+        if (_this4.control) {
+          _this4.MDComponent = new _textfield.MDCTextField(_this4.control);
+
+          if (_this4.props.onInit) {
+            _this4.props.onInit(_this4.MDComponent);
+          }
+
+          if (_this4.props.value) {
+            _this4.MDComponent.value = _this4.props.value;
+          }
+        }
+
+        _this4.afterComponentDidMount();
+      });
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      (0, _get2.default)((0, _getPrototypeOf2.default)(TextFieldInput.prototype), "componentWillReceiveProps", this).call(this, nextProps);
+
+      if (this.MDComponent && nextProps.value && this.props.value !== nextProps.value && this.MDComponent.value !== nextProps.value) {
+        this.MDComponent.value = nextProps.value;
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      (0, _get2.default)((0, _getPrototypeOf2.default)(TextFieldInput.prototype), "componentWillUnmount", this).call(this);
+
+      if (this.MDComponent) {
+        this.MDComponent.destroy();
+      }
+    }
+  }, {
+    key: "getValue",
+    value: function getValue() {
+      return this.MDComponent ? this.MDComponent.value : null;
+    }
+  }, {
+    key: "materialDom",
+    value: function materialDom(allprops) {
+      var className = allprops.className,
+          outerStyle = allprops.outerStyle,
+          outlined = allprops.outlined,
+          props = __rest(allprops, ["className", "outerStyle", "outlined"]);
+
+      className = className || '';
+
+      if ('leadingIcon' in props) {
+        className += ' mdc-text-field--box mdc-text-field--with-leading-icon';
+      }
+
+      if ('trailingIcon' in props) {
+        className += ' mdc-text-field--box mdc-text-field--with-trailing-icon';
+      }
+
+      if ('value' in props && this.state.jsComponentAttached) {
+        className = [className, 'mdc-text-field--upgraded'].join(' ');
+      }
+
+      if (props.label && props.fullwidth) {
+        console.log('Passing a "label" prop is not supported when using a "fullwidth" text field.');
+      } // noinspection RequiredAttributes
+
+
+      return (0, _preact.h)("div", {
+        className: className,
+        ref: this.setControlRef,
+        style: outerStyle
+      }, props.leadingIcon ? (0, _preact.h)(_Icon.default, {
+        className: "mdc-text-field__icon"
+      }, props.leadingIcon) : null, props.textarea ? (0, _preact.h)("textarea", _extends({
+        className: "mdc-text-field__input"
+      }, props)) : (0, _preact.h)("input", _extends({
+        type: props.type || 'text',
+        className: "mdc-text-field__input",
+        placeholder: this.state.jsComponentAttached ? undefined : props.label + this.props.required ? '*' : ''
+      }, props)), props.label && this.state.jsComponentAttached && (0, _preact.h)(Label, {
+        for: props.id
+      }, props.label), props.trailingIcon ? (0, _preact.h)(_Icon.default, {
+        className: "mdc-text-field__icon"
+      }, props.trailingIcon) : null, props.textarea || outlined ? null : (0, _preact.h)("div", {
+        class: "mdc-line-ripple"
+      }), outlined ? (0, _preact.h)("div", {
+        class: "mdc-notched-outline"
+      }, (0, _preact.h)("svg", null, (0, _preact.h)("path", {
+        className: "mdc-notched-outline__path"
+      }))) : null, outlined ? (0, _preact.h)("div", {
+        className: "mdc-notched-outline__idle"
+      }) : null);
+    }
+  }, {
+    key: "buildClassName",
+    value: function buildClassName(props) {
+      var cn = (0, _get2.default)((0, _getPrototypeOf2.default)(TextFieldInput.prototype), "buildClassName", this).call(this, props);
+
+      if (this.MDComponent) {
+        cn += ' mdc-text-field--upgraded';
+      }
+
+      return cn;
+    }
+  }]);
+  return TextFieldInput;
+}(_MaterialComponent4.default);
+
+exports.TextFieldInput = TextFieldInput;
+TextFieldInput.defaultProps = {
+  valid: true
+};
+
+var TextField =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(TextField, _Component);
+
+  function TextField() {
+    var _this5;
+
+    (0, _classCallCheck2.default)(this, TextField);
+    _this5 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(TextField).apply(this, arguments));
+    _this5.id = TextField.uid();
+    return _this5;
+  }
+
+  (0, _createClass2.default)(TextField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        jsComponentAttached: true
+      });
+    }
+  }, {
+    key: "render",
+    value: function render(allprops) {
+      var _this6 = this;
+
+      var className = allprops.className,
+          outerStyle = allprops.outerStyle,
+          helperTextPersistent = allprops.helperTextPersistent,
+          helperTextValidationMsg = allprops.helperTextValidationMsg,
+          props = __rest(allprops, ["className", "outerStyle", "helperTextPersistent", "helperTextValidationMsg"]);
+
+      var showDiv = props.helperText;
+
+      if ((props.helperText || props.label) && !props.id) {
+        props.id = "tf-".concat(this.id);
+      } // Helper text
+
+
+      var helperTextProps = {
+        persistent: helperTextPersistent,
+        'validation-msg': helperTextValidationMsg
+      };
+      return showDiv ? (0, _preact.h)("div", {
+        className: className,
+        style: outerStyle
+      }, (0, _preact.h)(TextFieldInput, _extends({}, props, {
+        onInit: function onInit(MDComponent) {
+          _this6.MDComponent = MDComponent;
+        },
+        "aria-controls": props.helperText && "".concat(props.id, "-helper-text")
+      })), props.helperText && (0, _preact.h)(HelperText, _extends({
+        id: "".concat(props.id, "-helper-text")
+      }, helperTextProps), props.helperText)) : (0, _preact.h)(TextFieldInput, _extends({}, props, {
+        className: className,
+        outerStyle: outerStyle,
+        onInit: function onInit(MDComponent) {
+          _this6.MDComponent = MDComponent;
+        }
+      }));
+    }
+  }], [{
+    key: "uid",
+    value: function uid() {
+      return ++this.uidCounter;
+    }
+  }]);
+  return TextField;
+}(_preact.Component);
+
+exports.TextField = TextField;
+TextField.uidCounter = 0;
+
+var default_1 =
+/*#__PURE__*/
+function (_TextField) {
+  (0, _inherits2.default)(default_1, _TextField);
+
+  function default_1() {
+    (0, _classCallCheck2.default)(this, default_1);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(default_1).apply(this, arguments));
+  }
+
+  return default_1;
+}(TextField);
+
+exports.default = default_1;
+default_1.HelperText = HelperText;
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -3743,6 +6279,71 @@ module.exports = function () {
 
 /***/ }),
 
+/***/ "E1jM":
+/***/ (function(module, exports, __webpack_require__) {
+
+var castPath = __webpack_require__("Tnr5"),
+    isArguments = __webpack_require__("3til"),
+    isArray = __webpack_require__("p/0c"),
+    isIndex = __webpack_require__("A+gr"),
+    isLength = __webpack_require__("GmNU"),
+    toKey = __webpack_require__("RQ0L");
+
+/**
+ * Checks if `path` exists on `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @param {Function} hasFunc The function to check properties.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ */
+function hasPath(object, path, hasFunc) {
+  path = castPath(path, object);
+
+  var index = -1,
+      length = path.length,
+      result = false;
+
+  while (++index < length) {
+    var key = toKey(path[index]);
+    if (!(result = object != null && hasFunc(object, key))) {
+      break;
+    }
+    object = object[key];
+  }
+  if (result || ++index != length) {
+    return result;
+  }
+  length = object == null ? 0 : object.length;
+  return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
+}
+
+module.exports = hasPath;
+
+/***/ }),
+
+/***/ "E5qx":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("u9vI");
+
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+
+module.exports = isStrictComparable;
+
+/***/ }),
+
 /***/ "E7HD":
 /***/ (function(module, exports) {
 
@@ -3773,6 +6374,188 @@ module.exports = function bind(fn, thisArg) {
     return fn.apply(thisArg, args);
   };
 };
+
+/***/ }),
+
+/***/ "EG2U":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Saturation = undefined;
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _throttle = __webpack_require__("Ywd4");
+
+var _throttle2 = _interopRequireDefault(_throttle);
+
+var _saturation = __webpack_require__("FLIK");
+
+var saturation = _interopRequireWildcard(_saturation);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var Saturation = exports.Saturation = function (_ref) {
+  _inherits(Saturation, _ref);
+
+  function Saturation(props) {
+    _classCallCheck(this, Saturation);
+
+    var _this = _possibleConstructorReturn(this, (Saturation.__proto__ || Object.getPrototypeOf(Saturation)).call(this, props));
+
+    _this.handleChange = function (e) {
+      typeof _this.props.onChange === 'function' && _this.throttle(_this.props.onChange, saturation.calculateChange(e, _this.props.hsl, _this.container), e);
+    };
+
+    _this.handleMouseDown = function (e) {
+      _this.handleChange(e);
+      window.addEventListener('mousemove', _this.handleChange);
+      window.addEventListener('mouseup', _this.handleMouseUp);
+    };
+
+    _this.handleMouseUp = function () {
+      _this.unbindEventListeners();
+    };
+
+    _this.throttle = (0, _throttle2.default)(function (fn, data, e) {
+      fn(data, e);
+    }, 50);
+    return _this;
+  }
+
+  _createClass(Saturation, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.throttle.cancel();
+      this.unbindEventListeners();
+    }
+  }, {
+    key: 'unbindEventListeners',
+    value: function unbindEventListeners() {
+      window.removeEventListener('mousemove', this.handleChange);
+      window.removeEventListener('mouseup', this.handleMouseUp);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _ref2 = this.props.style || {},
+          color = _ref2.color,
+          white = _ref2.white,
+          black = _ref2.black,
+          pointer = _ref2.pointer,
+          circle = _ref2.circle;
+
+      var styles = (0, _reactcss2.default)({
+        'default': {
+          color: {
+            absolute: '0px 0px 0px 0px',
+            background: 'hsl(' + this.props.hsl.h + ',100%, 50%)',
+            borderRadius: this.props.radius
+          },
+          white: {
+            absolute: '0px 0px 0px 0px',
+            borderRadius: this.props.radius
+          },
+          black: {
+            absolute: '0px 0px 0px 0px',
+            boxShadow: this.props.shadow,
+            borderRadius: this.props.radius
+          },
+          pointer: {
+            position: 'absolute',
+            top: -(this.props.hsv.v * 100) + 100 + '%',
+            left: this.props.hsv.s * 100 + '%',
+            cursor: 'default'
+          },
+          circle: {
+            width: '4px',
+            height: '4px',
+            boxShadow: '0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),\n            0 0 1px 2px rgba(0,0,0,.4)',
+            borderRadius: '50%',
+            cursor: 'hand',
+            transform: 'translate(-2px, -2px)'
+          }
+        },
+        'custom': {
+          color: color,
+          white: white,
+          black: black,
+          pointer: pointer,
+          circle: circle
+        }
+      }, { 'custom': !!this.props.style });
+
+      return _react2.default.createElement('div', {
+        style: styles.color,
+        ref: function ref(container) {
+          return _this2.container = container;
+        },
+        onMouseDown: this.handleMouseDown,
+        onTouchMove: this.handleChange,
+        onTouchStart: this.handleChange
+      }, _react2.default.createElement('style', null, '\n          .saturation-white {\n            background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));\n            background: linear-gradient(to right, #fff, rgba(255,255,255,0));\n          }\n          .saturation-black {\n            background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));\n            background: linear-gradient(to top, #000, rgba(0,0,0,0));\n          }\n        '), _react2.default.createElement('div', { style: styles.white, className: 'saturation-white' }, _react2.default.createElement('div', { style: styles.black, className: 'saturation-black' }), _react2.default.createElement('div', { style: styles.pointer }, this.props.pointer ? _react2.default.createElement(this.props.pointer, this.props) : _react2.default.createElement('div', { style: styles.circle }))));
+    }
+  }]);
+
+  return Saturation;
+}(_react.PureComponent || _react.Component);
+
+exports.default = Saturation;
 
 /***/ }),
 
@@ -3937,6 +6720,213 @@ var MDCComponent = function () {
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (MDCComponent);
+
+/***/ }),
+
+/***/ "ES04":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    getPrototype = __webpack_require__("CXf5"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+    return false;
+  }
+  var proto = getPrototype(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+}
+
+module.exports = isPlainObject;
+
+/***/ }),
+
+/***/ "EiMJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var MapCache = __webpack_require__("wtMJ");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || resolver != null && typeof resolver != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function memoized() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || MapCache)();
+  return memoized;
+}
+
+// Expose `MapCache`.
+memoize.Cache = MapCache;
+
+module.exports = memoize;
+
+/***/ }),
+
+/***/ "EvLK":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayFilter = __webpack_require__("uvMU"),
+    stubArray = __webpack_require__("7Mmb");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+
+/**
+ * Creates an array of the own enumerable symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbols = !nativeGetSymbols ? stubArray : function (object) {
+  if (object == null) {
+    return [];
+  }
+  object = Object(object);
+  return arrayFilter(nativeGetSymbols(object), function (symbol) {
+    return propertyIsEnumerable.call(object, symbol);
+  });
+};
+
+module.exports = getSymbols;
+
+/***/ }),
+
+/***/ "Ewuv":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("yEjJ");
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+module.exports = listCacheGet;
 
 /***/ }),
 
@@ -4500,6 +7490,181 @@ module.exports = exports["default"];
 
 /***/ }),
 
+/***/ "FLIK":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var calculateChange = exports.calculateChange = function calculateChange(e, hsl, container) {
+  var _container$getBoundin = container.getBoundingClientRect(),
+      containerWidth = _container$getBoundin.width,
+      containerHeight = _container$getBoundin.height;
+
+  var x = typeof e.pageX === 'number' ? e.pageX : e.touches[0].pageX;
+  var y = typeof e.pageY === 'number' ? e.pageY : e.touches[0].pageY;
+  var left = x - (container.getBoundingClientRect().left + window.pageXOffset);
+  var top = y - (container.getBoundingClientRect().top + window.pageYOffset);
+
+  if (left < 0) {
+    left = 0;
+  } else if (left > containerWidth) {
+    left = containerWidth;
+  } else if (top < 0) {
+    top = 0;
+  } else if (top > containerHeight) {
+    top = containerHeight;
+  }
+
+  var saturation = left * 100 / containerWidth;
+  var bright = -(top * 100 / containerHeight) + 100;
+
+  return {
+    h: hsl.h,
+    s: saturation,
+    v: bright,
+    a: hsl.a,
+    source: 'rgb'
+  };
+};
+
+/***/ }),
+
+/***/ "FTXF":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC");
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+module.exports = nativeCreate;
+
+/***/ }),
+
+/***/ "FwQQ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArrayLike = __webpack_require__("LN6c"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+module.exports = isArrayLikeObject;
+
+/***/ }),
+
+/***/ "G3gK":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("ZC1a");
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+module.exports = mapCacheGet;
+
+/***/ }),
+
+/***/ "GmNU":
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+/***/ }),
+
+/***/ "Gsi0":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.hasIn` without support for deep paths.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {Array|string} key The key to check.
+ * @returns {boolean} Returns `true` if `key` exists, else `false`.
+ */
+function baseHasIn(object, key) {
+  return object != null && key in Object(object);
+}
+
+module.exports = baseHasIn;
+
+/***/ }),
+
 /***/ "H6Qo":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4563,6 +7728,463 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
   return url;
 };
+
+/***/ }),
+
+/***/ "HI10":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__("VcL+"),
+    baseKeys = __webpack_require__("B/Nj"),
+    isArrayLike = __webpack_require__("LN6c");
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+module.exports = keys;
+
+/***/ }),
+
+/***/ "Htnj":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ReactCSS = exports.loop = exports.handleActive = exports.handleHover = exports.hover = undefined;
+
+var _flattenNames = __webpack_require__("HuPU");
+
+var _flattenNames2 = _interopRequireDefault(_flattenNames);
+
+var _mergeClasses = __webpack_require__("N9nb");
+
+var _mergeClasses2 = _interopRequireDefault(_mergeClasses);
+
+var _autoprefix = __webpack_require__("CXDc");
+
+var _autoprefix2 = _interopRequireDefault(_autoprefix);
+
+var _hover2 = __webpack_require__("Ia0J");
+
+var _hover3 = _interopRequireDefault(_hover2);
+
+var _active = __webpack_require__("m6f6");
+
+var _active2 = _interopRequireDefault(_active);
+
+var _loop2 = __webpack_require__("J5ZF");
+
+var _loop3 = _interopRequireDefault(_loop2);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.hover = _hover3.default;
+exports.handleHover = _hover3.default;
+exports.handleActive = _active2.default;
+exports.loop = _loop3.default;
+var ReactCSS = exports.ReactCSS = function ReactCSS(classes) {
+  for (var _len = arguments.length, activations = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    activations[_key - 1] = arguments[_key];
+  }
+
+  var activeNames = (0, _flattenNames2.default)(activations);
+  var merged = (0, _mergeClasses2.default)(classes, activeNames);
+  return (0, _autoprefix2.default)(merged);
+};
+
+exports.default = ReactCSS;
+
+/***/ }),
+
+/***/ "HuPU":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.flattenNames = undefined;
+
+var _isString2 = __webpack_require__("5CkJ");
+
+var _isString3 = _interopRequireDefault(_isString2);
+
+var _forOwn2 = __webpack_require__("SC1V");
+
+var _forOwn3 = _interopRequireDefault(_forOwn2);
+
+var _isPlainObject2 = __webpack_require__("ES04");
+
+var _isPlainObject3 = _interopRequireDefault(_isPlainObject2);
+
+var _map2 = __webpack_require__("vGW8");
+
+var _map3 = _interopRequireDefault(_map2);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var flattenNames = exports.flattenNames = function flattenNames() {
+  var things = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+  var names = [];
+
+  (0, _map3.default)(things, function (thing) {
+    if (Array.isArray(thing)) {
+      flattenNames(thing).map(function (name) {
+        return names.push(name);
+      });
+    } else if ((0, _isPlainObject3.default)(thing)) {
+      (0, _forOwn3.default)(thing, function (value, key) {
+        value === true && names.push(key);
+        names.push(key + '-' + value);
+      });
+    } else if ((0, _isString3.default)(thing)) {
+      names.push(thing);
+    }
+  });
+
+  return names;
+};
+
+exports.default = flattenNames;
+
+/***/ }),
+
+/***/ "ICKo":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var checkboardCache = {};
+
+var render = exports.render = function render(c1, c2, size, serverCanvas) {
+  if (typeof document === 'undefined' && !serverCanvas) {
+    return null;
+  }
+  var canvas = serverCanvas ? new serverCanvas() : document.createElement('canvas');
+  canvas.width = size * 2;
+  canvas.height = size * 2;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) {
+    return null;
+  } // If no context can be found, return early.
+  ctx.fillStyle = c1;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = c2;
+  ctx.fillRect(0, 0, size, size);
+  ctx.translate(size, size);
+  ctx.fillRect(0, 0, size, size);
+  return canvas.toDataURL();
+};
+
+var get = exports.get = function get(c1, c2, size, serverCanvas) {
+  var key = c1 + '-' + c2 + '-' + size + (serverCanvas ? '-server' : '');
+
+  if (checkboardCache[key]) {
+    return checkboardCache[key];
+  }
+
+  var checkboard = render(c1, c2, size, serverCanvas);
+  checkboardCache[key] = checkboard;
+  return checkboard;
+};
+
+/***/ }),
+
+/***/ "IVes":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC"),
+    root = __webpack_require__("MIhM");
+
+/* Built-in method references that are verified to be native. */
+var Set = getNative(root, 'Set');
+
+module.exports = Set;
+
+/***/ }),
+
+/***/ "IWvg":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Alpha = __webpack_require__("+8Yq");
+
+Object.defineProperty(exports, 'Alpha', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Alpha).default;
+  }
+});
+
+var _Checkboard = __webpack_require__("Ihfq");
+
+Object.defineProperty(exports, 'Checkboard', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Checkboard).default;
+  }
+});
+
+var _EditableInput = __webpack_require__("kPsw");
+
+Object.defineProperty(exports, 'EditableInput', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_EditableInput).default;
+  }
+});
+
+var _Hue = __webpack_require__("JklQ");
+
+Object.defineProperty(exports, 'Hue', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Hue).default;
+  }
+});
+
+var _Raised = __webpack_require__("e2CO");
+
+Object.defineProperty(exports, 'Raised', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Raised).default;
+  }
+});
+
+var _Saturation = __webpack_require__("EG2U");
+
+Object.defineProperty(exports, 'Saturation', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Saturation).default;
+  }
+});
+
+var _ColorWrap = __webpack_require__("uMes");
+
+Object.defineProperty(exports, 'ColorWrap', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_ColorWrap).default;
+  }
+});
+
+var _Swatch = __webpack_require__("1ryL");
+
+Object.defineProperty(exports, 'Swatch', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Swatch).default;
+  }
+});
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/***/ }),
+
+/***/ "Ia0J":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hover = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var hover = exports.hover = function hover(Component) {
+  var Span = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'span';
+
+  return function (_React$Component) {
+    _inherits(Hover, _React$Component);
+
+    function Hover() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Hover);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Hover.__proto__ || Object.getPrototypeOf(Hover)).call.apply(_ref, [this].concat(args))), _this), _this.state = { hover: false }, _this.handleMouseOver = function () {
+        return _this.setState({ hover: true });
+      }, _this.handleMouseOut = function () {
+        return _this.setState({ hover: false });
+      }, _this.render = function () {
+        return _react2.default.createElement(Span, { onMouseOver: _this.handleMouseOver, onMouseOut: _this.handleMouseOut }, _react2.default.createElement(Component, _extends({}, _this.props, _this.state)));
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    return Hover;
+  }(_react2.default.Component);
+};
+
+exports.default = hover;
+
+/***/ }),
+
+/***/ "Ihfq":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Checkboard = undefined;
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _checkboard = __webpack_require__("ICKo");
+
+var checkboard = _interopRequireWildcard(_checkboard);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Checkboard = exports.Checkboard = function Checkboard(_ref) {
+  var white = _ref.white,
+      grey = _ref.grey,
+      size = _ref.size,
+      renderers = _ref.renderers,
+      borderRadius = _ref.borderRadius,
+      boxShadow = _ref.boxShadow;
+
+  var styles = (0, _reactcss2.default)({
+    'default': {
+      grid: {
+        borderRadius: borderRadius,
+        boxShadow: boxShadow,
+        absolute: '0px 0px 0px 0px',
+        background: 'url(' + checkboard.get(white, grey, size, renderers.canvas) + ') center left'
+      }
+    }
+  });
+
+  return _react2.default.createElement('div', { style: styles.grid });
+};
+
+Checkboard.defaultProps = {
+  size: 8,
+  white: 'transparent',
+  grey: 'rgba(0,0,0,.08)',
+  renderers: {}
+};
+
+exports.default = Checkboard;
 
 /***/ }),
 
@@ -4696,19 +8318,138 @@ module.exports = _get;
 
 /***/ }),
 
+/***/ "J5ZF":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var loopable = function loopable(i, length) {
+  var props = {};
+  var setProp = function setProp(name) {
+    var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+    props[name] = value;
+  };
+
+  i === 0 && setProp('first-child');
+  i === length - 1 && setProp('last-child');
+  (i === 0 || i % 2 === 0) && setProp('even');
+  Math.abs(i % 2) === 1 && setProp('odd');
+  setProp('nth-child', i);
+
+  return props;
+};
+
+exports.default = loopable;
+
+/***/ }),
+
+/***/ "JcW8":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.handleFocus = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+} /* eslint-disable no-invalid-this */
+
+var handleFocus = exports.handleFocus = function handleFocus(Component) {
+  var Span = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'span';
+  return function (_React$Component) {
+    _inherits(Focus, _React$Component);
+
+    function Focus() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Focus);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Focus.__proto__ || Object.getPrototypeOf(Focus)).call.apply(_ref, [this].concat(args))), _this), _this.state = { focus: false }, _this.handleFocus = function () {
+        return _this.setState({ focus: true });
+      }, _this.handleBlur = function () {
+        return _this.setState({ focus: false });
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Focus, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(Span, { onFocus: this.handleFocus, onBlur: this.handleBlur }, _react2.default.createElement(Component, _extends({}, this.props, this.state)));
+      }
+    }]);
+
+    return Focus;
+  }(_react2.default.Component);
+};
+
+/***/ }),
+
 /***/ "JkW7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Theme/style.css
-var style = __webpack_require__("a81U");
+// EXTERNAL MODULE: ./style/index.scss
+var style = __webpack_require__("yY49");
 var style_default = /*#__PURE__*/__webpack_require__.n(style);
-
-// EXTERNAL MODULE: ./style/index.css
-var style_0 = __webpack_require__("rq4c");
-var style_default_0 = /*#__PURE__*/__webpack_require__.n(style_0);
 
 // EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
 var preact_min = __webpack_require__("KM04");
@@ -5084,51 +8825,108 @@ preact_router_es_Router.Link = preact_router_es_Link;
 
 /* harmony default export */ var preact_router_es = (preact_router_es_Router);
 //# sourceMappingURL=preact-router.es.js.map
-// EXTERNAL MODULE: ../node_modules/preact-material-components/TopAppBar/index.js
-var TopAppBar = __webpack_require__("fHKL");
-var TopAppBar_default = /*#__PURE__*/__webpack_require__.n(TopAppBar);
+// EXTERNAL MODULE: ../node_modules/axios/index.js
+var axios = __webpack_require__("dZBD");
+var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Dialog/index.js
-var Dialog = __webpack_require__("JtzT");
-var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
+// CONCATENATED MODULE: ./utils/auth-service.js
+// const ID_TOKEN_KEY = 'id_token';
 
+
+
+var ACCESS_TOKEN_KEY = 'va',
+    ID_TOKEN_KEY = 'la',
+
+// BASE_URL = 'http://localhost:3000';
+// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// production
+BASE_URL = 'https://api.vote4art.eu/api/v1';
+
+function getAccessToken() {
+	return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
+
+function setAccessToken(accessToken) {
+	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+}
+function login(pramas) {
+	var url = BASE_URL + '/login';
+
+	axios_default.a.post(url, {
+		username: pramas.username,
+		password: pramas.password
+	}).then(function (response) {
+		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+		console.log(response);
+	}).catch(function (error) {
+		console.log(error);
+	});
+}
+function signup(pramas) {
+	var url = BASE_URL + '/signup';
+	axios_default.a.post(url, {
+		username: pramas.username,
+		password: pramas.password,
+		password_confirmation: pramas.password
+
+	}).then(function (response) {
+
+		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+		localStorage.setItem(ID_TOKEN_KEY, response.data.jti);
+
+		console.log(response);
+	}).catch(function (error) {
+		console.log(error);
+	});
+}
+function auth_service_logout() {
+	sendLogout();
+	clearIdToken();
+	clearAccessToken();
+	window.location.href = '/';
+}
+
+function facebookLogin(data) {
+	// signedRequest
+	var url = BASE_URL + '/auth/facebook/?facebook_access_token=' + data;
+	return axios_default.a.post(url).then(function (response) {
+		return console.log(response.data);
+	}).catch(function (e) {
+		return console.log(e);
+	});
+}
+
+function clearIdToken() {
+	localStorage.removeItem(ID_TOKEN_KEY);
+}
+
+function sendLogout() {
+	var url = BASE_URL + '/logout';
+	return axios_default.a.delete(url, { headers: { Authorization: getAccessToken() } }).then(function (response) {
+		return console.log(response.data);
+	});
+}
+
+function clearAccessToken() {
+	localStorage.removeItem(ACCESS_TOKEN_KEY);
+}
 // EXTERNAL MODULE: ../node_modules/preact-material-components/Button/index.js
 var Button = __webpack_require__("7/cg");
 var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Dialog/style.css
-var Dialog_style = __webpack_require__("sEh6");
-var Dialog_style_default = /*#__PURE__*/__webpack_require__.n(Dialog_style);
+// EXTERNAL MODULE: ../node_modules/preact-material-components/TextField/index.js
+var TextField = __webpack_require__("Cv2I");
+var TextField_default = /*#__PURE__*/__webpack_require__.n(TextField);
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Drawer/style.css
-var Drawer_style = __webpack_require__("RYBc");
-var Drawer_style_default = /*#__PURE__*/__webpack_require__.n(Drawer_style);
+// EXTERNAL MODULE: ../node_modules/react-facebook-login/dist/facebook-login-with-button.js
+var facebook_login_with_button = __webpack_require__("OgQw");
+var facebook_login_with_button_default = /*#__PURE__*/__webpack_require__.n(facebook_login_with_button);
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/List/style.css
-var List_style = __webpack_require__("u+vq");
-var List_style_default = /*#__PURE__*/__webpack_require__.n(List_style);
+// EXTERNAL MODULE: ../node_modules/preact-material-components/TextField/style.css
+var TextField_style = __webpack_require__("qKn3");
+var TextField_style_default = /*#__PURE__*/__webpack_require__.n(TextField_style);
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/TopAppBar/style.scss
-var TopAppBar_style = __webpack_require__("CtuI");
-var TopAppBar_style_default = /*#__PURE__*/__webpack_require__.n(TopAppBar_style);
-
-// EXTERNAL MODULE: ./components/header/style.css
-var header_style = __webpack_require__("u3et");
-var header_style_default = /*#__PURE__*/__webpack_require__.n(header_style);
-
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Menu/style.css
-var Menu_style = __webpack_require__("0PQN");
-var Menu_style_default = /*#__PURE__*/__webpack_require__.n(Menu_style);
-
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Button/style.css
-var Button_style = __webpack_require__("aqQ4");
-var Button_style_default = /*#__PURE__*/__webpack_require__.n(Button_style);
-
-// EXTERNAL MODULE: ../node_modules/preact-material-components/TabBar/style.css
-var TabBar_style = __webpack_require__("PIA1");
-var TabBar_style_default = /*#__PURE__*/__webpack_require__.n(TabBar_style);
-
-// CONCATENATED MODULE: ./components/header/index.js
+// CONCATENATED MODULE: ./components/auth/login/index.js
 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5138,80 +8936,263 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
+// import { route } from 'preact-router';
 
+
+
+
+
+
+
+// import style from './style/style';
+
+
+var _ref2 = Object(preact_min["h"])(
+	'h1',
+	null,
+	'Arba prisijunkite per'
+);
+
+var _ref3 = Object(preact_min["h"])('hr', null);
+
+var login_Login = function (_Component) {
+	_inherits(Login, _Component);
+
+	function Login() {
+		_classCallCheck(this, Login);
+
+		var _this = _possibleConstructorReturn(this, _Component.call(this));
+
+		_this.swith = function (e) {
+			if (_this.tab === 'register') {
+				_this.tab = 'login';
+				_this.base.getElementsByClassName('tab')[1].classList.remove('disabled');
+				_this.base.getElementsByClassName('tab')[0].classList.add('disabled');
+			} else {
+				_this.tab = 'register';
+				_this.base.getElementsByClassName('tab')[0].classList.remove('disabled');
+				_this.base.getElementsByClassName('tab')[1].classList.add('disabled');
+			}
+		};
+
+		_this.responseFacebook = function (_ref) {
+			var accessToken = _ref.accessToken;
+
+			console.log(accessToken);
+			// facebookLogin(response);
+		};
+
+		_this.state = {
+			username: '',
+			password: ''
+		};
+		_this.handleInputChange = _this.handleInputChange.bind(_this);
+		_this.loginSimple = _this.loginSimple.bind(_this);
+		_this.registerSimple = _this.registerSimple.bind(_this);
+		_this.swith = _this.swith.bind(_this);
+
+		return _this;
+	}
+
+	Login.prototype.loginSimple = function loginSimple() {
+		login(this.state);
+	};
+
+	Login.prototype.registerSimple = function registerSimple() {
+		signup(this.state);
+	};
+
+	Login.prototype.logout = function logout() {
+		auth_service_logout();
+	};
+
+	Login.prototype.isLogedIn = function isLogedIn() {
+		// isLogedIn();
+	};
+
+	Login.prototype.handleInputChange = function handleInputChange(event) {
+		var _setState;
+
+		var target = event.target;
+		var value = target.type === 'checkbox' ? target.checked : target.value;
+		var name = target.name;
+		this.setState((_setState = {}, _setState[name] = value, _setState));
+	};
+
+	Login.prototype.render = function render(props) {
+		return Object(preact_min["h"])(
+			'div',
+			null,
+			Object(preact_min["h"])(TextField_default.a, {
+				type: 'text',
+				name: 'username',
+				onInput: this.handleInputChange,
+				label: 'Slapyvardis'
+			}),
+			Object(preact_min["h"])(TextField_default.a, {
+				type: 'password',
+				name: 'password',
+				onInput: this.handleInputChange,
+				label: 'Slapta\u017Eodis'
+			}),
+			Object(preact_min["h"])(
+				Button_default.a,
+				{ unelevated: true, onClick: this.loginSimple },
+				'Prisijungti'
+			),
+			Object(preact_min["h"])(
+				Button_default.a,
+				{ unelevated: true, onClick: this.navigateToRegister },
+				'Naujas '
+			),
+			_ref2,
+			_ref3,
+			Object(preact_min["h"])(facebook_login_with_button_default.a, {
+				appId: '284507289101227'
+				// autoLoad
+				, fields: '',
+				textButton: 'Facebook',
+				icon: 'fa-facebook',
+				redirectUri: 'http://localhost:9292/auth/facebook/callback'
+				// onClick={componentClicked}
+				, callback: this.responseFacebook
+			})
+		);
+	};
+
+	return Login;
+}(preact_min["Component"]);
+
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/TopAppBar/index.js
+var TopAppBar = __webpack_require__("fHKL");
+var TopAppBar_default = /*#__PURE__*/__webpack_require__.n(TopAppBar);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Dialog/index.js
+var Dialog = __webpack_require__("JtzT");
+var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
+
+// EXTERNAL MODULE: ./components/header/style.scss
+var header_style = __webpack_require__("/Umn");
+var header_style_default = /*#__PURE__*/__webpack_require__.n(header_style);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Menu/style.css
+var Menu_style = __webpack_require__("0PQN");
+var Menu_style_default = /*#__PURE__*/__webpack_require__.n(Menu_style);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/TabBar/style.css
+var TabBar_style = __webpack_require__("PIA1");
+var TabBar_style_default = /*#__PURE__*/__webpack_require__.n(TabBar_style);
+
+// CONCATENATED MODULE: ./components/header/index.js
+
+
+function header__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function header__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function header__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+// material
 
 
 
 // import Switch from 'preact-material-components/Switch';
 // import TabBar from 'preact-material-components/TabBar';
 
+// import 'preact-material-components/Dialog/style.css';
+// import 'preact-material-components/Drawer/style.css';
+// import 'preact-material-components/List/style.css';
 
 
 
 
-
-
-
-
+// import 'preact-material-components/Button/style.css';
 
 
 var header__ref = Object(preact_min["h"])(TopAppBar_default.a.Title, null);
 
-var _ref2 = Object(preact_min["h"])(
+var header__ref2 = Object(preact_min["h"])(
 	'h1',
-	null,
-	'D.U.K'
+	{ style: 'display: inline' },
+	'TAISYKL\u0116S'
 );
 
-var _ref3 = Object(preact_min["h"])(
+var header__ref3 = Object(preact_min["h"])(
 	'h1',
-	null,
-	'TAISYKL\u0116S'
+	{ style: 'display: inline' },
+	'\u017DAIDIMAS'
 );
 
 var _ref4 = Object(preact_min["h"])(
 	'h1',
-	null,
-	'APIE'
+	{ style: 'display: inline' },
+	'PRISIJUNGIMAS'
 );
 
 var _ref5 = Object(preact_min["h"])(
-	'h1',
+	'article',
 	null,
-	'D.U.K'
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Kasdien nuo gegu\u017E\u0117s 20 d. iki Europos Parlamento rinkim\u0173 gauk pikseli\u0173 ir platformoje Vote4Art kurk virtual\u0173 pie\u0161in\u012F. Rinkim\u0173 dien\u0105 at\u0117j\u0119s balsuoti gausi dar daugiau pikseli\u0173 ir gal\u0117si palikti savo \u017Eym\u0119 bendrame virtualiame pie\u0161inyje, kuris taps m\u016Bs\u0173 istorijos dalimi.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Nuo registracijos prad\u017Eios kas 1 valand\u0105 gausi po 1 piksel\u012F. Dienos pikselius gal\u0117si kaupti (iki 24 per dien\u0105), bet jei j\u0173 nei\u0161naudosi iki dienos pabaigos, vidurnakt\u012F jie anuliuosis.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Burk koalicijas ir koordinuok veiksmus su kitais. Nesnausk, nes kiti \u017Eaid\u0117jai gali perimti tavo iniciatyv\u0105 ir pie\u0161ti kitaip, nei nori tu.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Kulminacija laukia rinkim\u0173 dien\u0105. At\u0117j\u0119s \u012F rinkim\u0173 apylink\u0119, nuskanav\u0119s plakat\u0105 su QR kodu ir patvirtin\u0119s savo buvimo viet\u0105 b\u016Bsi apdovanotas papildomais 84 pikseliais. Ateidamas balsuoti tu \u012Fgysi \u017Eymiai didesn\u0119 \u012Ftak\u0105 galutiniam pie\u0161iniui.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Paskutinius pikselius gal\u0117si pad\u0117ti iki gegu\u017E\u0117s 26 d. 20.00 val. Bendrai sukurtas pie\u0161inys taps m\u016Bs\u0173 vis\u0173 istorijos dalimi.'
+	)
 );
 
 var _ref6 = Object(preact_min["h"])(
 	'h1',
 	null,
-	'TAISYKL\u0116S'
-);
-
-var _ref7 = Object(preact_min["h"])(
-	'h1',
-	null,
 	'APIE'
 );
+
+var _ref7 = Object(preact_min["h"])(login_Login, null);
 
 var _ref8 = Object(preact_min["h"])(Dialog_default.a.Footer, null);
 
 var header_Header = function (_Component) {
-	_inherits(Header, _Component);
+	header__inherits(Header, _Component);
 
 	function Header() {
 		var _temp, _this, _ret;
 
-		_classCallCheck(this, Header);
+		header__classCallCheck(this, Header);
 
 		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.toggleMenu = function () {
-			_this.menu.MDComponent.open = !_this.menu.MDComponent.open;
+		return _ret = (_temp = (_this = header__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
+			scrollModal: false
 		}, _this.openContent = function (e) {
 			_this.setState({ dialogContent: e.target.id });
 			_this.dialog.MDComponent.show();
+		}, _this.closeContent = function (e) {
+			_this.dialog.MDComponent.close();
 		}, _this.dialogRef = function (dialog) {
 			return _this.dialog = dialog;
 		}, _this.menuRef = function (menu) {
@@ -5221,7 +9202,7 @@ var header_Header = function (_Component) {
 				route(path);
 				_this.closeDrawer();
 			};
-		}, _this.goHome = _this.linkTo('/'), _this.goToMyProfile = _this.linkTo('/profile'), _temp), _possibleConstructorReturn(_this, _ret);
+		}, _this.goHome = _this.linkTo('/'), _this.goToMyProfile = _this.linkTo('/profile'), _temp), header__possibleConstructorReturn(_this, _ret);
 	}
 
 	Header.prototype.closeDrawer = function closeDrawer() {
@@ -5230,13 +9211,27 @@ var header_Header = function (_Component) {
 		};
 	};
 
+	Header.prototype.testScreen = function testScreen() {
+		if (typeof window !== "undefined") {
+			var viewportheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+			var viewportw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+			if (viewportheight < 630) this.setState({ scrollModal: true });
+			if (viewportw < 540) this.setState({ scrollModal: true });
+		}
+	};
+
+	Header.prototype.componentWillMount = function componentWillMount() {
+		this.testScreen();
+	};
+
 	Header.prototype.render = function render(props) {
 		return Object(preact_min["h"])(
 			'div',
 			null,
 			Object(preact_min["h"])(
 				TopAppBar_default.a,
-				{ className: 'topappbar mdc-elevation--z3' },
+				{ className: header_style_default.a.topappbar + ' mdc-elevation--z3' },
 				Object(preact_min["h"])(
 					TopAppBar_default.a.Row,
 					null,
@@ -5248,15 +9243,22 @@ var header_Header = function (_Component) {
 					),
 					Object(preact_min["h"])(
 						TopAppBar_default.a.Section,
-						{ 'align-center': true, 'shrink-to-fit': true },
+						{ 'align-center': true },
 						Object(preact_min["h"])(
 							'div',
-							null,
+							{ 'class': header_style_default.a.c_btn },
+							Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: 'assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' }),
 							Object(preact_min["h"])(
 								Button_default.a,
-								{ id: 'about', onClick: this.openContent, raised: true, className: 'mdc-theme--secondary-bg' },
-								'Prisijungti'
-							)
+								{ id: 'game', onClick: this.openContent, unelevated: true },
+								'\u017DAIDIMAS'
+							),
+							Object(preact_min["h"])(
+								Button_default.a,
+								{ id: 'rules', onClick: this.openContent, unelevated: true },
+								'TAISYKL\u0116S'
+							),
+							Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: 'assets/images/VRK log 300x300.png', alt: 'VRK logo' })
 						)
 					),
 					Object(preact_min["h"])(
@@ -5267,18 +9269,8 @@ var header_Header = function (_Component) {
 							null,
 							Object(preact_min["h"])(
 								Button_default.a,
-								{ id: 'about', onClick: this.openContent, unelevated: true },
-								'APIE'
-							),
-							Object(preact_min["h"])(
-								Button_default.a,
-								{ id: 'rules', onClick: this.openContent, unelevated: true },
-								'TAISYKL\u0116S'
-							),
-							Object(preact_min["h"])(
-								Button_default.a,
-								{ id: 'duk', onClick: this.openContent, unelevated: true },
-								'D.U.K'
+								{ id: 'login', onClick: this.openContent, secondary: true },
+								'Prisijungti'
 							)
 						)
 					)
@@ -5290,12 +9282,25 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Header,
 					null,
-					this.state.dialogContent === 'duk' ? _ref2 : this.state.dialogContent === 'rules' ? _ref3 : this.state.dialogContent === 'about' ? _ref4 : ''
+					this.state.dialogContent === 'rules' ? header__ref2 : this.state.dialogContent === 'game' ? header__ref3 : this.state.dialogContent === 'login' ? _ref4 : '',
+					Object(preact_min["h"])(
+						'span',
+						{ style: 'float: right;' },
+						Object(preact_min["h"])(
+							Dialog_default.a.FooterButton,
+							{ cancel: true },
+							Object(preact_min["h"])(
+								Button_default.a,
+								{ id: 'rules', onClick: this.closeContent, unelevated: true },
+								'U\u017Edaryti'
+							)
+						)
+					)
 				),
 				Object(preact_min["h"])(
 					Dialog_default.a.Body,
-					null,
-					this.state.dialogContent === 'duk' ? _ref5 : this.state.dialogContent === 'rules' ? _ref6 : this.state.dialogContent === 'about' ? _ref7 : ''
+					{ scrollable: this.state.scrollModal },
+					this.state.dialogContent === 'game' ? _ref5 : this.state.dialogContent === 'rules' ? _ref6 : this.state.dialogContent === 'login' ? _ref7 : ''
 				),
 				_ref8
 			)
@@ -5330,7 +9335,7 @@ function home__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
-
+// import 'preact-material-components/Button/style.css';
 
 
 var home__ref = Object(preact_min["h"])(
@@ -5403,7 +9408,7 @@ var home_Home = function (_Component) {
 			Object(preact_min["h"])(
 				'div',
 				null,
-				Object(preact_min["h"])('img', { 'class': home_style_default.a.logo, src: '/assets/images/vote4art_logo.png' }),
+				Object(preact_min["h"])('img', { 'class': home_style_default.a.logo, src: '/assets/images/logo.png' }),
 				home__ref,
 				Object(preact_min["h"])(
 					Card_default.a,
@@ -5494,87 +9499,6 @@ var panzoom_default = /*#__PURE__*/__webpack_require__.n(panzoom);
 var preact_tap_event_plugin = __webpack_require__("Mgcd");
 var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_tap_event_plugin);
 
-// EXTERNAL MODULE: ../node_modules/axios/index.js
-var axios = __webpack_require__("dZBD");
-var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
-
-// CONCATENATED MODULE: ./utils/auth-service.js
-// const ID_TOKEN_KEY = 'id_token';
-
-
-
-var ACCESS_TOKEN_KEY = 'va',
-    ID_TOKEN_KEY = 'la',
-
-// BASE_URL = 'http://localhost:3000';
-// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
-// production
-BASE_URL = 'https://api.vote4art.eu';
-
-function getAccessToken() {
-	return localStorage.getItem(ACCESS_TOKEN_KEY);
-}
-
-function setAccessToken(accessToken) {
-	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-}
-function login(pramas) {
-	var url = BASE_URL + '/login';
-
-	axios_default.a.post(url, {
-		username: pramas.username,
-		password: pramas.password
-	}).then(function (response) {
-		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		console.log(response);
-	}).catch(function (error) {
-		console.log(error);
-	});
-}
-function signup(pramas) {
-	var url = BASE_URL + '/signup';
-	axios_default.a.post(url, {
-		username: pramas.username,
-		password: pramas.password,
-		password_confirmation: pramas.password
-
-	}).then(function (response) {
-
-		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		localStorage.setItem(ID_TOKEN_KEY, response.data.jti);
-
-		console.log(response);
-	}).catch(function (error) {
-		console.log(error);
-	});
-}
-function logout() {
-	sendLogout();
-	clearIdToken();
-	clearAccessToken();
-	window.location.href = '/';
-}
-
-function facebookLogin(data) {
-	// // signedRequest
-	// const url = `${BASE_URL}/auth/facebook/callback?code=${data.accessToken}`;
-	// return axios.get(url, data).then(response => console.log(response.data)).catch( e => console.log(e));
-}
-
-function clearIdToken() {
-	localStorage.removeItem(ID_TOKEN_KEY);
-}
-
-function sendLogout() {
-	var url = BASE_URL + '/logout';
-	return axios_default.a.delete(url, { headers: { Authorization: getAccessToken() } }).then(function (response) {
-		return console.log(response.data);
-	});
-}
-
-function clearAccessToken() {
-	localStorage.removeItem(ACCESS_TOKEN_KEY);
-}
 // CONCATENATED MODULE: ./utils/vote4art-api.js
 
 
@@ -24945,7 +28869,21 @@ var Fab_default = /*#__PURE__*/__webpack_require__.n(Fab);
 var Fab_style = __webpack_require__("MRE3");
 var Fab_style_default = /*#__PURE__*/__webpack_require__.n(Fab_style);
 
+// EXTERNAL MODULE: ../node_modules/react-color/lib/Circle.js
+var lib_Circle = __webpack_require__("6QoD");
+var Circle_default = /*#__PURE__*/__webpack_require__.n(lib_Circle);
+
+// EXTERNAL MODULE: ../node_modules/react-color/lib/Hue.js
+var Hue = __webpack_require__("Tu38");
+var Hue_default = /*#__PURE__*/__webpack_require__.n(Hue);
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Icon/index.js
+var Icon = __webpack_require__("MeGi");
+var Icon_default = /*#__PURE__*/__webpack_require__.n(Icon);
+
 // CONCATENATED MODULE: ./components/board/colors/index.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 function colors__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24962,14 +28900,13 @@ function colors__inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
+
+
+
 var colors__ref = Object(preact_min["h"])(
-	Fab_default.a,
+	Icon_default.a,
 	null,
-	Object(preact_min["h"])(
-		Fab_default.a.Icon,
-		null,
-		'add_box'
-	)
+	'add_box'
 );
 
 var colors_Colors = function (_Component) {
@@ -24980,54 +28917,108 @@ var colors_Colors = function (_Component) {
 
 		var _this = colors__possibleConstructorReturn(this, _Component.call(this));
 
-		_this.colors = [];
-		_this.setColor = _this.setColor.bind(_this);
+		_this.state = {
+			mToggler: false
+		};
+
+		_this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
+		_this.openColorPicker = _this.openColorPicker.bind(_this);
+		_this.setColorEvent = _this.setColorEvent.bind(_this);
+		_this.handleChange = _this.handleChange.bind(_this);
+		_this.handleSetColor = _this.handleSetColor.bind(_this);
+
 		return _this;
 	}
 
-	Colors.prototype.getRandomRgb = function getRandomRgb() {
-		var num = Math.round(0xffffff * Math.random());
-		var r = num >> 16;
-		var g = num >> 8 & 255;
-		var b = num & 255;
-		return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+	Colors.prototype.handleSetColor = function handleSetColor(color, event) {
+		var c = this.colors.indexOf(this.state.currentCollor);
+		this.colors[c] = color.hex;
+		this.setState({ currentCollor: color.hex, openColors: true });
+		localStorage.setItem('userColors', JSON.stringify(this.colors));
+		var params = { color: 'rgb(' + color.rgb.r + ', ' + color.rgb.g + ', ' + color.rgb.b + ')' };
+		this.props.callbackFromBoard(params);
 	};
 
-	Colors.prototype.generateColors = function generateColors() {
-		for (var i = 0; i < 24; i++) {
-			this.colors.push(this.getRandomRgb());
-		}
+	Colors.prototype.handleChange = function handleChange(color, event) {
+		var params = { color: 'rgb(' + color.rgb.r + ', ' + color.rgb.g + ', ' + color.rgb.b + ')' };
+		this.setState({ openColors: false, currentCollor: color.hex });
+		this.props.callbackFromBoard(params);
 	};
 
-	Colors.prototype.setColor = function setColor(e) {
-		var color = this.state.color === e.target.dataset.color ? null : e.target.dataset.color;
-		this.setState({ color: color });
-		this.props.callbackFromBoard(this.state);
+	Colors.prototype.openColorPicker = function openColorPicker(e) {
+		var currentCollor = e.target.title;
+		this.setState(_extends({ openColors: true }, { currentCollor: currentCollor }));
 	};
 
-	Colors.prototype.componentWillMount = function componentWillMount() {
-		this.generateColors();
+	Colors.prototype.setColorEvent = function setColorEvent() {
+		var _this2 = this;
+
+		var colors = this.base.querySelectorAll('div[title^="#"]');
+		colors.forEach(function (e, i) {
+			if (i < 14) e.addEventListener('dblclick', _this2.openColorPicker);
+		});
+	};
+
+	Colors.prototype.removeColorEvent = function removeColorEvent() {
+		var _this3 = this;
+
+		var colors = this.base.querySelectorAll('div[title^="#"]');
+		colors.forEach(function (e, i) {
+			if (i < 14) e.removeEventListener('dblclick', _this3.openColorPicker);
+		});
+	};
+
+	Colors.prototype.componentWillUnmount = function componentWillUnmount() {
+		this.removeColorEvent();
+	};
+
+	Colors.prototype.componentDidMount = function componentDidMount() {
+		this.setColorEvent();
 	};
 
 	Colors.prototype.render = function render(props) {
-		var _this2 = this;
-
 		return Object(preact_min["h"])(
-			Elevation_default.a,
-			{ z: 2 },
+			'div',
+			null,
+			Object(preact_min["h"])(
+				Elevation_default.a,
+				{ z: 2 },
+				Object(preact_min["h"])(
+					'div',
+					{ 'class': colors_style_default.a.color_picker },
+					Object(preact_min["h"])(
+						'div',
+						{ 'class': this.state.openColors ? 'animated fadeInRight' : 'none', style: 'padding-right:1em;' },
+						Object(preact_min["h"])(Hue_default.a, {
+							color: this.state.currentCollor,
+							direction: 'vertical',
+							height: '38vh',
+							width: '16px',
+							onChangeComplete: this.handleSetColor
+						})
+					),
+					Object(preact_min["h"])(
+						'div',
+						null,
+						Object(preact_min["h"])(Circle_default.a, {
+							color: this.state.currentCollor,
+							onChange: this.handleChange,
+							colors: this.colors,
+							height: '40vh',
+							width: '90px'
+						})
+					)
+				)
+			),
 			Object(preact_min["h"])(
 				'div',
-				{ 'class': colors_style_default.a.palete },
-				this.colors.map(function (e) {
-					return Object(preact_min["h"])('div', {
-						'class': colors_style_default.a.color + ' ' + (_this2.state.color === e ? colors_style_default.a.active : '') + ' ',
-						onClick: _this2.setColor,
-						'data-color': e,
-						style: 'background: ' + e
-					});
-				})
-			),
-			colors__ref
+				{ 'class': colors_style_default.a.mobile_toggle },
+				Object(preact_min["h"])(
+					Fab_default.a,
+					{ exited: this.state.mToggler },
+					colors__ref
+				)
+			)
 		);
 	};
 
@@ -25055,7 +29046,7 @@ function controls__inherits(subClass, superClass) { if (typeof superClass !== "f
 
 // import { route } from 'preact-router';
 
-
+// import 'preact-material-components/Button/style.css';
 
 
 
@@ -25089,7 +29080,7 @@ var controls_Controls = function (_Component) {
 
 	Controls.prototype.zoom = function zoom(e) {
 		e.preventDefault();
-		var container = document.body.querySelector('#bgImage');
+		var container = document.body.querySelector('#zoomArea');
 		var rect = container.getBBox();
 		var cx = rect.x + rect.width / 2;
 		var cy = rect.y + rect.height / 2;
@@ -25182,6 +29173,67 @@ var board__ref2 = Object(preact_min["h"])(
 	})
 );
 
+var board__ref3 = Object(preact_min["h"])('path', {
+	d: 'm 374.49599,466.26382 1.19,-0.22 1.48,1.85 2.46,-0.34 1.31,-2.94 1.12,1.1 8.2,0.28 -0.02,1.7 -1.55,-0.03 -0.06,1.06 6.05,-2.2 -0.68,-4.43 0.69,-1.29 8.79,0.83 0.49,-1.47 1.63,0.39 2.79,-1.65 0.52,-2.94 -2.43,-1.26 2.51,-6.16 5.41,-2.44 4.73,0.9 2.63,4.53 2.66,-2.32 9.14,0.04 1.06,-4.09 4.57,0.05 2.44,-2.21 0.43,0.94 1.51,-0.41 -1.23,0.87 -0.1,3.54 1.46,1.52 1.1,3.61 5.23,1.21 3.22,-1.05 2.71,1.01 3.7,-1.4 1.75,0.59 0.11,-1.86 1.21,-0.41 0,0 -0.68,1.58 1.1,1.73 -0.87,0.13 0.15,3.45 1.27,0.14 0.6,3.92 -3.59,1.7 1.14,2.2 2.79,-0.62 1.73,2.41 -0.75,1.26 0.73,1.24 -2.55,2.73 -0.04,1.83 0.94,0.69 1.25,-1.4 2.15,2.89 5.9,0.23 1.32,-1.08 4.57,-0.34 -0.04,2.15 2.34,1.45 -0.04,-1.26 1.27,-0.19 0.65,1.26 0.82,-0.34 0.29,-5.11 0.98,0.73 1.55,-1.28 1.07,0.34 1.21,-2.56 3.01,1.05 0.95,-1.35 1.93,-0.21 3.8,3.76 2.81,0.78 -0.07,3.25 -1.18,1.42 1.54,4.65 0.75,-1.6 1.44,-0.05 0.27,-2.17 1,1.33 7.99,-1.1 0.04,1.07 5.64,0.09 -0.37,-1.99 1.01,-0.23 -0.08,-1.07 2.03,0.45 5.39,-1.44 0.57,1.9 1.58,-3.55 4.25,-1.67 2.99,0.48 1.8,-1.51 4.12,-0.78 0.82,3.3 -2.05,0.75 1.03,5.16 -3.02,0.73 0.35,2.77 -9.46,1.83 0.33,2.59 -2.36,0.69 0.77,3.79 -0.61,0.69 2,0.89 -1.13,2.68 1.79,6.17 -6.63,0.45 -1.46,2.08 1.97,2.22 -3.13,0.32 -1.92,4.22 -3.6,-0.18 -0.35,1.69 -1.79,-0.62 0.31,3.58 -2.77,-0.27 -1.25,1.53 -1.37,-0.62 -1.81,1.19 0.8,2.91 -1.1,1.92 8.39,3.69 0.1,2.71 1.04,0.03 -1.22,1.32 1.84,2.23 1.02,3.62 0,0 -2.03,0.73 1.75,3.02 -4.99,3.89 -2.53,-0.59 -0.33,1.25 1.05,2.69 2.88,2.02 2.48,4.59 0.31,5.88 2.74,2.59 2.88,-1.04 1.1,1.49 -0.87,1.07 -3.83,-0.23 0.46,4.79 -1.84,-0.36 -0.13,2.25 -1.49,0.9 -2.78,-0.81 -3.32,1.2 -4.6,4.31 0.36,1.74 -6.63,0.73 2.22,-10.25 -0.93,-2.23 -2.7,-0.29 -2.73,2.9 -4.77,-0.77 -2.75,4.04 -4.11,1.5 -6.8,5.89 -2.08,3.53 -3.97,3.26 -2.42,4.76 -2.95,1.47 -0.08,-1.41 -1.16,-0.04 0.1,1.99 -1.15,-0.74 0.46,-1.07 -4.97,1.61 -3.44,-0.32 -1.43,-2.53 -0.68,1.78 -1.39,0.68 -2.27,-0.59 -7.25,-8.05 0.06,-1.7 -0.97,-0.95 -2.72,1.78 -2.87,-1.13 0.47,-1.83 -1.7,-2.74 -1.15,0.95 -4.91,0.61 -1.9,2.06 -3.76,-0.7 -1.76,4.05 -14.74,2.9 -2.65,-0.32 0.18,-2.76 -1.04,-2.72 -6.43,-3.76 -0.87,0.84 -0.07,2.83 -2.48,2.2 -1.93,-0.09 -2.95,-2.54 -2.66,0.59 -4.68,4.19 0.21,1.54 2.25,2.02 -0.04,1.99 -2.36,1.99 -2.93,0.14 0.64,-2.65 -1.8,-1.29 -0.24,-1.54 -4.56,-1.5 -1.41,-1.47 -1.83,-0.61 -0.77,1.18 -3.84,-0.11 -1.02,0.79 -2.57,-0.84 -5.27,1.95 -1.39,-2.31 -1.59,-0.23 -0.74,-1.2 -1.56,-0.5 -1.16,1 -1.9,-1.11 -1.36,0.38 -1.06,-2.65 -1.71,0 -2.49,-2.81 -1.95,-6.84 1.97,-2.04 0.8,0.27 1.83,-4.74 1.13,-0.71 0.46,-7.81 -1.43,-5.59 -2.08,-5.09 -1.21,-0.93 0.32,-3.44 -1.17,-4.73 -1.57,-1.03 0.12,-1.36 -1.88,-1.03 -0.29,-1.73 -4.56,-0.5 -5.88,-11.65 -2.58,-0.45 -2.06,-3.67 -3.1,-1.46 0,0 1.59,-5.19 -2.87,-5.09 4.42,-2.33 -0.85,-3.91 1.52,-4.41 2.46,-0.76 -0.23,-2.15 4.84,-2.19 4.61,0.62 0.41,-0.8 2.45,-0.19 -0.88,-1.78 -1.63,-0.32 0.36,-4.19 -1.11,-0.9 2.99,0.44 4.21,-3.78 3.32,0.39 -0.03,-12.13 7.8,-2.18 5.65,-3.53 1.45,-4.29 2.58,-1.45 3.36,3.08 0.26,2.75 1.61,2.78 4,-2.07 1.75,2.34 z',
+	title: 'Alytus',
+	id: 'LT-AL'
+});
+
+var board__ref4 = Object(preact_min["h"])('path', {
+	style: 'cursor: pointer;',
+	d: 'm 230.97599,231.88382 3.06,-2.61 1.64,1.2 5.76,-7.06 2.08,2.43 3.59,0.11 2.24,-1.27 2.22,0.99 1.63,-0.63 -0.43,2.04 1.15,1.49 -1.22,1.76 0.9,0.52 -3.41,1.34 2.53,3.53 0.77,0.23 0.78,-2.28 2.08,0 0.56,0.8 -0.66,1.04 1.92,-0.97 0.65,0.85 5.38,-5.15 5.13,-0.52 2.28,-1.25 1.57,-0.04 -0.02,1.22 1.24,-0.8 -0.26,-1.08 0.91,-0.43 0.38,0.71 3.73,-3.86 1.98,2.19 0.36,-2.8 0.84,1.41 2.57,0.89 0.75,-1.17 -2.22,-6.39 0.18,-0.8 2.94,-0.28 -0.29,-3.35 1,-0.28 -0.77,-2.43 3.63,-0.75 0.54,3.35 2.27,0.35 9.63,-3.02 0.71,-2.1 0.98,-0.16 -0.58,2.64 1.07,1.04 1.14,6.01 1.97,0.21 0.24,1.46 2.58,-2.07 -0.29,-1.54 1.04,-0.42 0.54,2 5.98,-3.53 1.19,0.23 0.39,1.02 2.36,0.35 2.66,2.17 2.84,3.81 0.01,2.5 2.12,-0.14 5.2,2.4 -0.95,1.6 2.35,0.71 1.33,-0.76 0.33,-1.64 0.68,0.18 -1.12,-4.54 3.9,-0.26 0.14,-0.92 3.99,-0.82 0.75,1.46 3.69,2.14 -1.14,3.3 0.91,4.63 6.74,-0.44 2.41,1.08 3.21,-0.19 0.7,-2.21 -1.1,-0.8 3.73,-2.28 1.67,-3.3 5.61,-1.63 -0.16,-1.64 11.21,-4.65 -0.17,-0.84 3.97,-1.56 1.37,0.61 4.53,-3.49 0,0 3.2,4.34 -2.28,0.9 0.86,2.68 3.51,4.08 3.16,2.09 0.13,-1.48 3.17,-0.4 7.79,8.05 2.83,-0.52 -1.94,6.54 1.02,1.01 6.01,1.34 1.55,-2.47 2.5,0.19 1.74,3.15 1.84,-0.84 1.89,-2.52 5.13,0.26 0.73,-5.41 5.37,2.23 0.24,3.39 6.44,2.37 1.81,-3.73 0.84,1.97 3.64,2.4 1.48,-0.73 0.89,1.08 0.97,-0.8 3.31,2.07 -0.29,4.09 4.02,3.43 2.52,0.16 0,0 -0.26,5.42 -2.89,1.18 -0.31,3.23 -1.96,1.2 0.28,4.1 -1.11,0.4 -1.12,9.19 4.34,0.4 0.08,2.62 1,-0.1 -2.08,10.91 2.06,0.21 -0.04,1.26 1.77,0.19 0.36,-1.1 8.07,2.59 -3.16,4.16 1.44,2.29 -0.25,2.69 1.28,1.8 0.05,2.24 0.5,1 5.17,1.07 -0.7,1.73 -1.92,1.1 2.54,2.91 -0.83,0.66 1.14,0.32 -0.31,1.26 2.32,2.77 1.3,-1.07 1.56,0.47 0.02,3.73 1.24,1.16 -0.62,1.91 1.09,0.24 -0.47,1.51 1.52,-0.65 0.1,0.74 1.43,0.07 2.03,2.31 0.1,2.95 1.82,0.47 -1.12,1.44 -1.38,-0.02 -0.61,1.16 1.19,0.7 -0.38,0.98 -5.49,0.93 0.67,3.63 -3.57,1.3 -0.16,2.23 -1.58,1.58 3.67,3.95 5.3,-0.07 2.49,4.11 5.31,2.32 1.54,4.39 5.35,-1 0,0 2.57,0 0,0 2.24,3.13 4.18,1.72 1.82,1.86 -0.15,3.29 -1.28,0.97 -1.39,0.6 -1.27,-1.62 -0.67,1 -2.67,0.11 0.4,0.86 -1.01,0.33 1.74,12.66 -1.17,0.35 0.21,-1.11 -1.22,0.21 -1.04,1.76 -1.51,-1.37 -0.21,1.58 -5.56,0.71 -5.64,3.7 -0.32,4.95 -1.35,2.01 0.76,1.9 0.75,-0.09 0.35,2.33 -1.86,0.34 0.25,3.52 -1.15,0.67 0.53,1.63 -1.29,1.18 1.27,1.8 -0.47,1.57 -1.8,0.81 -2.53,-0.35 -1.44,-2.65 -2.79,-0.28 -0.2,-0.9 -1.19,0.14 0.64,3.35 -1.08,2.79 -5.37,-2.56 -3.92,0.81 -0.01,1.24 -0.59,-0.25 -2.19,3.3 0.19,4.26 2.03,5.92 -2.93,1.87 2.57,-0.02 1.53,5.2 -1.13,0.62 -0.91,-1.06 -1.42,2.79 -1.31,-0.35 -1.32,1.61 -1.71,-1.31 0.41,7.66 -1.83,7.15 0,0 -1.21,0.41 -0.11,1.86 -1.75,-0.59 -3.7,1.4 -2.71,-1.01 -3.22,1.05 -5.23,-1.21 -1.1,-3.61 -1.46,-1.52 0.1,-3.54 1.23,-0.87 -1.51,0.41 -0.43,-0.94 -2.44,2.21 -4.57,-0.05 -1.06,4.09 -9.14,-0.04 -2.66,2.32 -2.63,-4.53 -4.73,-0.9 -5.41,2.44 -2.51,6.16 2.43,1.26 -0.52,2.94 -2.79,1.65 -1.63,-0.39 -0.49,1.47 -8.79,-0.83 -0.69,1.29 0.68,4.43 -6.05,2.2 0.06,-1.06 1.55,0.03 0.02,-1.7 -8.2,-0.28 -1.12,-1.1 -1.31,2.94 -2.46,0.34 -1.48,-1.85 -1.19,0.22 0,0 4.09,-5.43 0.57,-3.01 -4.32,-4.53 -1.43,-6.22 -5.83,1.97 -5.01,-9.79 4.49,-2.25 -3.4,-5.67 -3.86,0.35 0.52,-1.8 -2.23,0.25 -0.37,-1.47 5.94,-2.23 -2.25,-1.36 -0.07,-1.75 2.66,-1.85 -0.62,-3.8 -4.27,-6.67 3.79,-3.16 -3.63,-6.4 1.37,-3.46 -2.24,-1.18 -6.59,1.8 0.26,-0.94 3.9,-1.74 4.55,-6.45 -5.63,-5.81 1.49,-1.82 -1.64,-1.83 2.91,-4.36 -11.69,-8.8 -3.81,1.67 -0.4,1.71 -1.26,0.05 0.16,-1.39 -2.48,-0.35 -0.58,-0.9 0.51,-1.97 -0.67,-0.1 -0.4,-5.98 -10.87,-5.48 1.08,-1.49 1.52,0.28 4.47,-4.87 8.93,-1.63 2.01,-1.14 0.21,-1.07 6.24,-2.21 1.43,-1.21 -0.05,-5.58 -4.22,-2.39 -9.4,-1.03 -7.31,-5.45 -2.24,-0.44 0,0 3.82,-2.61 1.31,-3.98 3.92,-5.46 0.05,-8.58 3.73,-10.14 -6.72,-2 -0.31,-1.45 -4.44,1.98 -1.17,-1.56 -2.25,0.93 -2.62,-1.52 0.24,-4.63 -1.23,-1.12 -6.52,0.96 -0.67,-0.75 -1.13,1.9 -2.81,0.16 -1.85,-1.33 -6.87,0.63 -0.19,-0.94 -1.47,1.05 -2.4,-0.07 -0.45,-1.87 1.37,-0.77 -0.04,-2.2 -1.06,-3.48 -1.04,1.33 -2.67,-0.87 -1.59,1.99 -3.04,0.63 -6.04,-1.4 -1.56,3.09 -8.32,-0.49 -0.54,-1.27 3.09,-4.18 -2.61,-2.18 -3.9,-1.2 1.32,-6.23 -5.21,1.53 -1.16,-2.32 -1.15,0.54 0.79,2.13 -4.81,0.65 -0.15,2.53 -2.27,-0.21 -0.83,2.25 -1.05,0.47 0,-4.52 -2.68,-1.69 -0.06,-2.67 -4.57,1.1 -2.69,-1.24 0.19,-3.7 2.47,-1.76 -0.2,-4.39 -1.67,-3.28 -1.83,-0.64 -3.65,1.18 -0.92,-2.54 -2.43,0.12 -0.66,-2.58 1.7,-1.79 -0.22,-3.99 -1.77,-0.14 -0.78,1.43 -3.16,0.63 -2,-7.59 -1.48,-1.12 2.86,-1.86 0.24,-1.55 z',
+	title: 'Kaunas',
+	id: 'LT-KU'
+});
+
+var board__ref5 = Object(preact_min["h"])('path', {
+	d: 'm 43.515985,281.25382 -0.71,0.3 -0.36,-1.1 1.07,0.8 z m 0.53,-1.12 -1.51,0.02 -0.32,-1.87 2.38,1.03 -0.55,0.82 z m -0.33,-1.62 -1.27,-0.89 0.8,-0.4 0.47,1.29 z m 1.11,-0.37 0.57,0.3 -0.95,0.51 -0.96,-1.8 1.34,0.99 z m 0.53,-0.19 -1.04,-1.05 0.67,-1.03 0.37,2.08 z m -25.23,-103.41 4.45,9.61 -0.8,4.92 1.03,11.46 -0.84,12.48 -2.04,12.06 0.6,3.41 -1.35,2.09 -2.46,9.19 2.35,2.54 0.43,2.28 -3.18,2.4 0.85,1.53 -2.5,2.84 0.29,2.28 -2.7,3.52 0.69,3.8 -1.26,3.17 0.87,2.09 -5.5699999,3.54 -0.98,1.71 0.43,1.19 -2.45,1.1 1.02,1.99 -2.32,1.19 -0.45,1.31 -3.24999997,-0.47 -0.62,-0.17 4.68999997,-8.92 7.6599999,-19.94 3.25,-10.67 2.75,-13.88 1.42,-10.04 0.84,-19.18 -2.02,-21.66 1.17,1.23 z M 134.97599,16.943824 l 1.52,0.43 0,0 -0.61,2.31 0.61,2.74 -1.38,0.99 -3.81,-0.19 -0.57,8.03 6.12,0.6 -1.04,11.44 1.02,0.22 0.77,3.77 1.27,0.67 0.8,4.08 -1.19,1.42 3.42,3.5 -0.17,3.55 -6.39,-1.15 -0.84,5.61 -1.75,0.1 -1.18,10.61 -1.94,2.15 0.51,1.08 -0.96,1.48 -2.14,-0.81 0,-1.17 -7.22,-1.1 0.11,-1.44 -2.13,-0.29 -0.87,1.82 1.6,1.75 0.82,5.05 -8.83,-3.4 -0.27,0.72 -3.21,-0.36 -2.82,7.39 -3.07,-0.67 -2.790005,8.17 -0.92,0.14 0.45,1.1 -1.08,0.19 -3.51,8.379996 -2.06,-0.48 -1.24,1 -2.73,-2.17 -4.08,0.1 -1.59,3.82 4.72,2.05 -3.37,7.55 1.03,2.17 0.15,5.64 -2.38,0.07 0.67,2.38 1.11,-0.38 2.15,1.14 3.19,3.38 -1.48,1.45 -2.15,-0.43 -1.76,2.28 0.81,1.5 -0.49,1.71 -1.86,-0.31 -2.3,1.21 -0.08,2.33 -2.27,-0.26 -0.59,0.76 0.81,3.82 -1.67,-1.04 -2.41,6.27 6.29,3.96 1.51,-1.8 1.15,0.05 -0.29,-3.16 1.59,-0.09 1.04,3.56 2.54,1.11 0.27,1.52 1.56,0.83 -0.63,2.49 0.8,0.88 1.26,-0.36 -0.21,1 -1.06,-0.12 -0.25,4.2 2.75,0.73 2.19,-2.84 6.510005,3.29 1.11,-1.56 0.76,1.71 1.64,-0.64 1.04,-2.51 2.49,1.54 0.12,6.35 -1.31,0.99 -0.71,3.13 1.8,1.92 2.17,0 1.26,1.94 2.86,-0.62 0.35,0.69 -2.45,2.25 -0.21,2.93 -1.59,1.92 0.59,3.95 -1.67,-0.4 0.08,1.87 1.75,2.2 1.54,0.24 0.35,5.69 5.13,-1.68 6.43,5.33 0,0 -1.72,2.43 1.12,1.32 -2.95,1.91 -0.92,-0.42 -0.95,1.7 -1.04,-0.17 -2.94,4.13 0.6,0.57 2.37,-1.2 0.64,0.78 -2.26,2.31 0.19,5.09 1.86,5.04 1.75,-0.78 2.08,7.76 0.64,9.85 1.32,0.09 5.33,-3.01 6.05,3.59 4.45,-0.82 1.19,3.1 1.03,-0.16 0.85,3.24 -0.48,3.03 -3.47,5.3 -0.59,2.49 -4.08,3.7 -0.15,1.66 -1.82,1.01 -6.19,8.78 -1.06,3.21 6.84,2.41 4.1,0.12 2.69,2.81 6,2.9 -1.22,3.16 2.7,6.01 1.91,7.85 6.11,-1.03 5.72,0.7 1.38,-1.26 3.77,4.27 4.02,-0.79 5.53,1.87 3.69,-0.23 2.9,2.61 -1.23,0.84 -2.02,-1.19 -1.99,0.42 0.79,1.31 -1.34,2.24 0.56,1.68 -0.77,2.19 2.23,9.69 0,0 -7.08,0.58 -4.3,1.56 -4.54,-0.26 -2.75,1.98 -2.31,4.86 -5.53,0.33 -2.9,-1.3 -2.38,-2.42 -0.77,-3.89 1.2,-4.28 -0.94,-1.79 -5.56,-0.4 -3.69,2.66 -5.99,-1.28 -5.36,-3.05 -4.08,-0.96 -4.33,-5.06 -4.65,0.02 -7.7,-3.29 -1.26,-3.69 -8.480005,-7.4 -7.26,-1.66 -3.83,-2.45 -3.21,0.3 -3.73,2.69 -2.07,-0.58 -1.66,-3.25 -4.88,-4.63 -2.53,-6.8 -6.6,-10.27 -1.36,1.66 -4.66,2.36 -5.24,5.64 -3.41,1.52 -0.19,-0.87 1.08,-0.12 -0.96,-2.5 2.53,-3.56 -0.35,-3.54 0.75,0.3 0.53,-2.88 -0.75,0.23 -1.79,-5.13 -3.73,-2.23 -1.24,-2.16 1.02,-0.33 0.63,-1.95 -0.32,-2.23 2.04,-0.07 -2.54,-1.24 -2,3.4 -2.26,-0.28 -0.52,1.29 -3.77,1.67 5.51,-10.46 2.81,-7.7 0.16,-9.24 0.79,-1.32 -0.81,-0.31 -0.04,-5.2 -1.84,-6.78 -1.48,-2.26 0.63,-1.13 2.2,-0.71 -1.95,0.24 -1.9,1.63 -1.92,-10.65 0.99,-0.47 -1.84,-0.71 -2.66,-4.93 -1.84,-8.17 -1.79,-2.1 0.57,-1.56 -0.87,-0.47 -0.12,-3.24 0.87,2.58 1.15,1.58 0.4,-0.57 -0.94,-2.43 -0.9,-0.21 -1.66,-7.28 -2.62,-5.8 -4.98,-3.95 -4.22,-45.05 2.1,-7.21 1.26,-12.01 -0.24,-9.349996 -1.36,-7.04 9.75,-2.34 2.89,-1.6 2.91,2.58 2.82,-0.43 2.89,-6.41 -0.28,-1.17 1.87,-1.63 0.37,-3.64 -1.11,-1.75 -0.48,-4.26 0.71,-1.53 5.83,-2.3 1.26,-3.14 6.01,-7.91 6.94,-2.41 4.78,-3.07 2.04,0.22 2.85,-1.9 1.67,-5.09 3.73,-5.43 1.63,-0.26 1.56,0.96 2.3,-0.79 2.82,-2.33 1.04,-3.17 2.1,0.38 0.15,-1.25 2.04,-0.87 5.29,-0.05 5.17,2.91 6.530005,-0.5 2.73,-4.09 5.36,-3.51 3.11,-4.02 2.08,-0.39 1.72,-1.93 2.93,0.65 1.75,2.05 6.6,-1.93 0.23,-0.92 3.29,-0.77 1.38,-1.52 0.73,0.52 z',
+	title: 'Klaip\u0117da',
+	id: 'LT-KL'
+});
+
+var board__ref6 = Object(preact_min["h"])('path', {
+	d: 'm 219.15599,326.77382 6.53,4.26 3.19,0.58 10.88,-2.47 4.71,-3.84 4.43,-0.09 4.98,-2.66 11.06,1.19 10.57,-4.22 5.66,-1 10.18,3.22 6.61,0.48 19.26,5.06 3.71,-0.02 4.59,-1.68 3.31,0.3 0,0 2.24,0.44 7.31,5.45 9.4,1.03 4.22,2.39 0.05,5.58 -1.43,1.21 -6.24,2.21 -0.21,1.07 -2.01,1.14 -8.93,1.63 -4.47,4.87 -1.52,-0.28 -1.08,1.49 10.87,5.48 0.4,5.98 0.67,0.1 -0.51,1.97 0.58,0.9 2.48,0.35 -0.16,1.39 1.26,-0.05 0.4,-1.71 3.81,-1.67 11.69,8.8 -2.91,4.36 1.64,1.83 -1.49,1.82 5.63,5.81 -4.55,6.45 -3.9,1.74 -0.26,0.94 6.59,-1.8 2.24,1.18 -1.37,3.46 3.63,6.4 -3.79,3.16 4.27,6.67 0.62,3.8 -2.66,1.85 0.07,1.75 2.25,1.36 -5.94,2.23 0.37,1.47 2.23,-0.25 -0.52,1.8 3.86,-0.35 3.4,5.67 -4.49,2.25 5.01,9.79 5.83,-1.97 1.43,6.22 4.32,4.53 -0.57,3.01 -4.09,5.43 0,0 -3.5,-2.27 -1.75,-2.34 -4,2.07 -1.61,-2.78 -0.26,-2.75 -3.36,-3.08 -2.58,1.45 -1.45,4.29 -5.65,3.53 -7.8,2.18 0.03,12.13 -3.32,-0.39 -4.21,3.78 -2.99,-0.44 1.11,0.9 -0.36,4.19 1.63,0.32 0.88,1.78 -2.45,0.19 -0.41,0.8 -4.61,-0.62 -4.84,2.19 0.23,2.15 -2.46,0.76 -1.52,4.41 0.85,3.91 -4.42,2.33 2.87,5.09 -1.59,5.19 0,0 -5.6,-1.74 -4.43,0.82 -1.89,-0.96 -4.22,-6.39 -6.48,-1.94 0.71,-2.92 -2.03,-1.28 -6.58,3.81 -5.96,-3.29 -1.15,-0.8 0.51,-2.31 2.34,-3.4 -1.86,-1.72 -7.33,-2.9 2.11,-4.86 -3.34,-0.43 -0.23,-1.21 -12.68,-2.25 -0.21,-2.2 -4.17,-0.18 -2.69,0.98 -3.28,8.06 -2.13,1.24 -9.31,-14.24 -2.8,-6.4 -0.36,-11.82 -2.23,-3.63 -0.33,-2.48 3.66,-6.85 -1.22,-2.76 -1.97,-1.36 0.02,-1.4 4.71,-4.6 0.96,-3.73 2.3,-0.85 0.9,-2.31 -1.08,-1.7 1.79,-1.36 -3.06,-3.64 -0.32,-0.95 1.27,-0.41 0.01,-0.9 -2.12,-2.75 0.7,-2.33 2.59,-2.35 -1.33,-4.2 0.61,-1.46 1.01,0.24 2.13,-1.76 0.92,-3.03 0.99,0.47 1.15,-1.11 2.03,-0.16 1.11,-2.61 1.77,0.3 0.94,-1.14 1.37,0.6 0.69,-1.82 1.31,-0.58 -1.3,-1.76 0.4,-0.71 3.49,-0.58 -0.9,-1.09 0.3,-2.27 1.63,-1.96 -2.01,-1.55 1.18,-0.97 -0.51,-2.25 -2.23,-0.9 1.46,-3.17 -3.92,-2.6 0.33,-2.85 1.49,-2.34 -0.95,-2.46 -1.47,-0.44 -2.19,-3.15 -3.44,2.13 -0.74,-3.66 -1.3,-1.58 -1.47,0.46 -0.83,1.56 -0.95,-0.37 -0.6,-1.6 2.06,-2.42 -3.1,-0.83 -2.15,-5.48 -2.5,-2.44 -2.35,0.33 -1.47,-3.58 -2.68,1.51 1.02,2.9 -0.6,1.09 -2.51,-1.85 0.08,-2.72 -1.06,-0.42 -1.42,-4.49 -3.58,-4.09 z',
+	title: 'Marijampol\u0117',
+	id: 'LT-MR'
+});
+
+var board__ref7 = Object(preact_min["h"])('path', {
+	d: 'm 526.90599,0.8638239 1.75,-0.12 1.69,1.62 -1.62,4.07 0.63,2.36 4.26,9.1300001 1.03,-0.16 2.67,2.91 -0.47,8.71 1.18,3.82 5.04,4.81 0.92,3.72 1.68,1.06 1.12,-0.41 0.21,1.47 1.59,0.43 0.2,3.12 0.77,0.55 -0.76,1.46 1.47,1.11 -0.74,2.93 1.51,2.03 0.37,5.78 1.73,-0.48 0.78,2.01 3.99,0.89 3.68,2.37 6.4,0 4.42,-4.14 5.07,5.25 1.21,2.82 4.81,3.3 2.82,-2.2 9.02,-0.96 -0.04,2.28 2.16,0.67 1.92,-2.18 2.64,0.22 0.14,1.31 2.93,1.08 3.61,-0.12 1.13,-3.83 2.92,-1.39 2.75,1.17 1.55,4.96 4.09,1.36 7.18,-0.07 3.22,-3.54 1.43,1.2 -0.71,3.39 2.71,2.54 -0.87,3.68 0.95,0.89 -1.81,1.79 0.33,1.65 6.29,2.46 3.42,3.03 7.78,1.94 1.69,5.25 2.97,2.029996 0.39,2.31 -0.83,1.63 0.94,1.74 4.94,-0.27 0.95,1.2 5.13,1.9 0.31,1.41 1.35,-0.48 2.75,1.1 3.06,3.76 1.89,-0.52 4.17,2.55 0,0 -6.73,1.21 -4.18,4.5 -0.28,2.93 2.69,3.74 -1.87,3.16 0.21,2.8 -9.41,1.88 1.05,7.15 -0.5,1.83 -1.16,0.88 -4.18,0.16 -2.94,-1.47 0.1,5.22 -1.91,-0.52 1.49,4.15 -1.25,2.02 -0.61,4.41 -4.4,-0.71 -2.86,-1.9 -4.31,1.47 -0.75,-0.52 -0.03,3.32 -1.28,1.09 1.03,0.07 0.02,3.86 -2.17,0.5 -3.26,3.79 -0.99,0.16 -0.76,-4.87 -1.18,-0.38 -2.87,2.65 -3.04,-1.07 -1.44,0.76 -1.99,-2.39 -2.19,5.21 -5.25,-1.82 -1.11,2.81 -1.81,0.07 -3.55,-1.77 0.84,-2.37 -3.58,-1.25 -1.36,2.7 -10.45,-7.99 -3.13,0.76 -1.72,3.58 -2.62,2.49 -1.16,-0.74 -3.71,1.26 0.34,4.19 1.82,0.73 -1.13,2.93 -2.08,-1.15 -2.29,-3.18 -3.15,0.38 -0.01,0.67 -19.23,7.4 -1.89,-4.85 1.98,-2.91 -4.77,0.5 -1.99,-2.09 -6.88,-1.23 -0.43,-1.16 -2.2,-0.8 -6.32,4.38 -3.36,-1.35 -4.66,0.76 -0.44,3.64 -2.74,-0.47 -0.24,-1.9 -2.13,-2.05 -5.53,3.05 -2.75,-1.28 -2.39,1.11 -2.94,-2.81 -1.39,0.8 0.37,4.24 -1.27,4.11 1.51,0.07 0.26,1 2.19,-0.12 1.63,2.29 -1.26,0.31 -0.76,2.32 -1.74,1.01 -3.6,-1.89 0.94,-1.68 -6.96,1.59 0.06,4.39 1.29,0.74 2.39,-0.57 1.58,-1.68 2.63,1.92 1.5,3.23 0.25,4.61 -1.23,-0.26 -5.35,2.47 -1.47,4.16 1.57,4.08 -2.1,1.55 1.09,2.17 -2.57,4.5 0.22,2.5 0,0 -1.54,0.59 0,1.15 -2.22,0.52 1.71,3.06 0.05,3.13 1.71,2.57 -1.32,3.36 -6.13,2.7 -4.22,-0.68 -1.51,-1.46 -0.91,0.54 -1.04,-0.84 -0.98,0.56 0.57,4.21 -2.61,1.27 1.04,3.17 -4.39,2.49 0.45,2.37 -5.86,-0.47 0,0 -2.52,-0.16 -4.02,-3.43 0.29,-4.09 -3.31,-2.07 -0.97,0.8 -0.89,-1.08 -1.48,0.73 -3.64,-2.4 -0.84,-1.97 -1.81,3.73 -6.44,-2.37 -0.24,-3.39 -5.37,-2.23 -0.73,5.41 -5.13,-0.26 -1.89,2.52 -1.84,0.84 -1.74,-3.15 -2.5,-0.19 -1.55,2.47 -6.01,-1.34 -1.02,-1.01 1.94,-6.54 -2.83,0.52 -7.79,-8.05 -3.17,0.4 -0.13,1.48 -3.16,-2.09 -3.51,-4.08 -0.86,-2.68 2.28,-0.9 -3.2,-4.34 0,0 1.79,-5.3 0.95,-0.31 1.07,-5.12 0.72,-0.02 -0.36,-5.41 6.86,2.38 1.4,-2.57 5.61,0.61 0.55,-1.18 1.54,-0.14 -1.18,-3.61 -1.06,-0.24 0.11,-3.81 -0.97,-1.82 0.57,-2.53 1.59,1.07 0.94,-0.48 0.42,-1.75 2.96,-0.64 0.57,-1.49 -4.8,-3.62 0.42,-2.86 1.16,0.33 -0.57,-1.52 0.85,-3.36 -1.23,0.29 -0.73,-2.35 -2.23,-0.5 1.8,-2.68 -2.04,-4.41 -4.24,0.86 -0.74,-3.63 -1.28,-1.12 -0.97,-7.45 -1.14,-1.26 8,1.07 -1.83,-4.13 3.79,0.93 0.5,-2.93 3.17,-0.92 0.11,-1.26 3.59,-0.6 -1.11,-4.68 2.55,-4.85 -0.24,-6.52 -3.78,0.35 -1.71,-2.9 -2.78,1.07 -0.36,-1.69 -1.71,0.36 -0.68,-1.89 1.98,-5.31 -0.75,-3.55 2.73,-3.25 -0.74,-1.74 0.52,-3.529996 1.81,0.76 1,1.939996 1.01,-1.41 1.06,-7.399996 -0.51,-2.06 4.18,-1.14 -0.16,-2.2 1.77,-2.27 -0.07,-3.56 1.19,-0.39 0.77,-3.06 1.62,0.86 4.5,-1.22 0.62,-1.38 -1.03,-0.6 0.85,-2.18 -0.58,-0.81 0.75,-6.11 -3.37,0.67 0.49,-3.93 1.41,-1.72 -4.52,-2.06 -0.87,-2.93 0.71,-0.43 -0.24,-2.01 -0.91,-0.12 -0.88,-1.97 0.76,-2.62 3.46,-0.98 0.23,-1.92 0,0 2.98,0.31 3.74,-3.81 11.3,-4.38 -0.34,-3.1 6.82,0.56 2.57,5.76 4.74,-1.25 4,3.99 4.23,0.82 1.49,-2.38 7.68,-3.56 7.62,-1.2 0.64,-4.23 -0.9,-3.79 1.43,-2.39 2.81,-1.15 2.61,-2.86 0.38,-6.57 8.17,0.21 2.39,-2.98 -0.42,-3.16 7.46,-0.55 2.06,0.98 3.37,-3.1800001 0.24,-2.12 2.44,0.89 0.48,1.76 4.43,-0.99 0.82,-1.03 -0.93,-4 2.43,-3.19 z',
+	title: 'Panev\u0117\u017Eys',
+	id: 'LT-PN'
+});
+
+var board__ref8 = Object(preact_min["h"])('path', {
+	d: 'm 266.94599,8.1938239 2.38,0.19 1.47,2.0300001 3.03,0.09 2.14,7.83 -1.81,0.89 2.92,9.44 2.52,2.26 3.7,-0.77 2.81,4.42 2.62,-0.77 0.6,-1.75 8.71,-5.41 -1.33,-3.9 0.94,-1.18 -1.08,-1.95 14.65,-0.87 4.17,-2.86 9.94,1.08 4.18,2.1 2.82,4.4 6.12,1.04 3.53,2.71 4.59,0.89 11.74,-6.95 17.61,-2.98 1.79,1.37 0.08,1.61 -2.39,6.38 0.46,2.81 2.06,0.63 2.25,-4.6 2.6,-0.55 1.51,0.72 11.36,-0.19 2.06,2.28 11.57,-0.04 0.98,4.71 3.46,3 0.01,4.23 6.56,0.65 0.07,1.66 2.52,2.11 -0.25,2.88 5.32,-0.96 0,0 -0.23,1.92 -3.46,0.98 -0.76,2.62 0.88,1.97 0.91,0.12 0.24,2.01 -0.71,0.43 0.87,2.93 4.52,2.06 -1.41,1.72 -0.49,3.93 3.37,-0.67 -0.75,6.11 0.58,0.81 -0.85,2.18 1.03,0.6 -0.62,1.38 -4.5,1.22 -1.62,-0.86 -0.77,3.06 -1.19,0.39 0.07,3.56 -1.77,2.27 0.16,2.2 -4.18,1.14 0.51,2.06 -1.06,7.399996 -1.01,1.41 -1,-1.939996 -1.81,-0.76 -0.52,3.529996 0.74,1.74 -2.73,3.25 0.75,3.55 -1.98,5.31 0.68,1.89 1.71,-0.36 0.36,1.69 2.78,-1.07 1.71,2.9 3.78,-0.35 0.24,6.52 -2.55,4.85 1.11,4.68 -3.59,0.6 -0.11,1.26 -3.17,0.92 -0.5,2.93 -3.79,-0.93 1.83,4.13 -8,-1.07 1.14,1.26 0.97,7.45 1.28,1.12 0.74,3.63 4.24,-0.86 2.04,4.41 -1.8,2.68 2.23,0.5 0.73,2.35 1.23,-0.29 -0.85,3.36 0.57,1.52 -1.16,-0.33 -0.42,2.86 4.8,3.62 -0.57,1.49 -2.96,0.64 -0.42,1.75 -0.94,0.48 -1.59,-1.07 -0.57,2.53 0.97,1.82 -0.11,3.81 1.06,0.24 1.18,3.61 -1.54,0.14 -0.55,1.18 -5.61,-0.61 -1.4,2.57 -6.86,-2.38 0.36,5.41 -0.72,0.02 -1.07,5.12 -0.95,0.31 -1.79,5.3 0,0 -4.53,3.49 -1.37,-0.61 -3.97,1.56 0.17,0.84 -11.21,4.65 0.16,1.64 -5.61,1.63 -1.67,3.3 -3.73,2.28 1.1,0.8 -0.7,2.21 -3.21,0.19 -2.41,-1.08 -6.74,0.44 -0.91,-4.63 1.14,-3.3 -3.69,-2.14 -0.75,-1.46 -3.99,0.82 -0.14,0.92 -3.9,0.26 1.12,4.54 -0.68,-0.18 -0.33,1.64 -1.33,0.76 -2.35,-0.71 0.95,-1.6 -5.2,-2.4 -2.12,0.14 -0.01,-2.5 -2.84,-3.81 -2.66,-2.17 -2.36,-0.35 -0.39,-1.02 -1.19,-0.23 -5.98,3.53 -0.54,-2 -1.04,0.42 0.29,1.54 -2.58,2.07 -0.24,-1.46 -1.97,-0.21 -1.14,-6.01 -1.07,-1.04 0.58,-2.64 -0.98,0.16 -0.71,2.1 -9.63,3.02 -2.27,-0.35 -0.54,-3.35 -3.63,0.75 0.77,2.43 -1,0.28 0.29,3.35 -2.94,0.28 -0.18,0.8 2.22,6.39 -0.75,1.17 -2.57,-0.89 -0.84,-1.41 -0.36,2.8 -1.98,-2.19 -3.73,3.86 -0.38,-0.71 -0.91,0.43 0.26,1.08 -1.24,0.8 0.02,-1.22 -1.57,0.04 -2.28,1.25 -5.13,0.52 -5.38,5.15 -0.65,-0.85 -1.92,0.97 0.66,-1.04 -0.56,-0.8 -2.08,0 -0.78,2.28 -0.77,-0.23 -2.53,-3.53 3.41,-1.34 -0.9,-0.52 1.22,-1.76 -1.15,-1.49 0.43,-2.04 -1.63,0.63 -2.22,-0.99 -2.24,1.27 -3.59,-0.11 -2.08,-2.43 -5.76,7.06 -1.64,-1.2 -3.06,2.61 0,0 -7.3,-1.24 0.13,-1.06 3.25,-1.88 -1.05,-1.49 0.34,-0.96 -2.51,-3.25 -2.56,-1.39 -3.37,-5.21 0.65,-3.6 -3.95,0.33 -2.83,-6.35 -3.97,-1.01 0.2,-2.67 0,0 0.18,-0.83 0,0 -0.13,-1.62 1.46,-2.51 -2.39,-2.31 -1.22,0.21 -1.47,-1.18 0.8,-5.51 -1.64,-3.59 0,0 1.56,-2.91 4.17,-0.35 1.78,-1.49 0.37,-3.13 -0.51,-6.53 -1.53,-0.69 0.76,-1.99 -5.69,-11.16 12.86,-3.13 0.34,-9.4 -1.87,-2.38 1.15,-1.45 7.76,0.67 1.87,-1.48 -0.04,-1.3 1.99,-0.76 3.06,2.06 0.47,-1.59 -1.31,-2.42 3.66,-0.05 0.3,-5.26 -1.06,0.24 -0.83,-3.21 3.05,-0.81 -0.6,-2.33 -3.02,-0.1 0.2,-1.9 -1.05,-0.12 -1.93,-7.5 -2.9,-1 1.4,6.05 -1.3,0.5 -1.24,-1.36 -2.47,0.71 -2.21,-0.73 0.41,-3.24 -1.18,-0.46 -1.51,-3.05 1.86,-2.21 1.64,-0.22 0.8,-4.72 1.34,-1.86 -0.67,-0.98 1.64,-1.31 -1.4,-1.619996 -0.39,-2.87 2.5,2.22 0.31,-1.57 3.41,-2.41 3.73,1.17 6.54,-2.75 1.18,0.43 -0.98,-3.75 -4.19,-3.04 0.01,-4.87 1.15,-1.08 -0.48,-1.48 -0.5,0.48 -1.47,-1.42 -6.89,2.99 -2.45,-0.35 -0.22,3.44 -1.61,-0.43 -0.81,2.01 -3.85,-0.7 -3.61,-3.15 -2.62,-0.84 -3.44,-0.07 0.16,1.41 -2.16,0.96 -3.51,-0.53 -0.2,-1.05 -5.85,-0.27 1.47,-2.27 1.03,-0.09 0.2,-2.52 -0.94,-0.14 -1.28,1.72 -1.39,-0.43 2.1,-5.4 -1.75,-1.85 -0.69,1.13 -2.77,-1.3 0.1,-1.55 1.55,-9.18 1.02,-0.02 -0.34,-1.44 0.93,-0.41 1.13,-9.26 5.2,-0.02 2.53,-1.61 1.53,-7.85 -2.66,0.36 -0.22,-2.28 -1.76,-1.57 3.03,-0.5 5.89,1.15 0.68,-2.71 8.38,1.61 3.16,-7.34 -1.83,-0.6 0.14,-1.15 -1.9,-1.88 -1,-2.72 6.92,0.24 0.23,-0.94 0,0 2,0.32 2.87,2.72 2.28,-0.49 4.04,-4.3 17.25,1.13 1.93,-1.81 3.75,-0.17 3.54,-1.9 -0.36,-0.82 1.46,-0.7 -0.07,-1.11 -1.36,-0.19 -0.47,-1.08 2.11,-1.06 0.04,-1.8600001 z',
+	title: '\u0160iauliai',
+	id: 'LT-SA'
+});
+
+var _ref9 = Object(preact_min["h"])('path', {
+	d: 'm 123.97599,203.87382 13.34,-3.23 1.51,-1.21 1.04,1.99 3.85,0 -0.17,-1.49 3.14,-1.8 -0.18,-2.76 2.4,-1.44 0.1,-2.65 2.07,-0.99 0.3,-1.18 4.34,1.96 0.01,-1.84 4.21,-3.07 5.11,-0.88 8.52,-4.3 7.3,5.48 1.07,-2.2 1.13,0.76 1.94,-0.64 5.68,3.97 5.29,-3.09 4.18,1.82 3.44,-2.32 0,0 1.64,3.59 -0.8,5.51 1.47,1.18 1.22,-0.21 2.39,2.31 -1.46,2.51 0.13,1.62 0,0 -0.18,0.83 0,0 -0.2,2.67 3.97,1.01 2.83,6.35 3.95,-0.33 -0.65,3.6 3.37,5.21 2.56,1.39 2.51,3.25 -0.34,0.96 1.05,1.49 -3.25,1.88 -0.13,1.06 7.3,1.24 0,0 2.04,1.35 -0.24,1.55 -2.86,1.86 1.48,1.12 2,7.59 3.16,-0.63 0.78,-1.43 1.77,0.14 0.22,3.99 -1.7,1.79 0.66,2.58 2.43,-0.12 0.92,2.54 3.65,-1.18 1.83,0.64 1.67,3.28 0.2,4.39 -2.47,1.76 -0.19,3.7 2.69,1.24 4.57,-1.1 0.06,2.67 2.68,1.69 0,4.52 1.05,-0.47 0.83,-2.25 2.27,0.21 0.15,-2.53 4.81,-0.65 -0.79,-2.13 1.15,-0.54 1.16,2.32 5.21,-1.53 -1.32,6.23 3.9,1.2 2.61,2.18 -3.09,4.18 0.54,1.27 8.32,0.49 1.56,-3.09 6.04,1.4 3.04,-0.63 1.59,-1.99 2.67,0.87 1.04,-1.33 1.06,3.48 0.04,2.2 -1.37,0.77 0.45,1.87 2.4,0.07 1.47,-1.05 0.19,0.94 6.87,-0.63 1.85,1.33 2.81,-0.16 1.13,-1.9 0.67,0.75 6.52,-0.96 1.23,1.12 -0.24,4.63 2.62,1.52 2.25,-0.93 1.17,1.56 4.44,-1.98 0.31,1.45 6.72,2 -3.73,10.14 -0.05,8.58 -3.92,5.46 -1.31,3.98 -3.82,2.61 0,0 -3.31,-0.3 -4.59,1.68 -3.71,0.02 -19.26,-5.06 -6.61,-0.48 -10.18,-3.22 -5.66,1 -10.57,4.22 -11.06,-1.19 -4.98,2.66 -4.43,0.09 -4.71,3.84 -10.88,2.47 -3.19,-0.58 -6.53,-4.26 0,0 -5.3,0.72 -7.64,4.17 -3.44,0.88 -4.98,-1.96 -5.36,-0.23 -5.61,-1.86 -9.61,-0.54 0,0 -2.23,-9.69 0.77,-2.19 -0.56,-1.68 1.34,-2.23 -0.79,-1.31 1.99,-0.42 2.02,1.19 1.23,-0.84 -2.9,-2.61 -3.69,0.23 -5.53,-1.87 -4.02,0.8 -3.77,-4.27 -1.38,1.26 -5.72,-0.7 -6.1,1.02 -1.91,-7.84 -2.7,-6.01 1.21,-3.15 -6,-2.91 -2.68,-2.8 -4.11,-0.12 -6.84,-2.41 1.06,-3.21 6.19,-8.78 1.81,-1.01 0.15,-1.66 4.08,-3.71 0.58,-2.48 3.48,-5.31 0.48,-3.02 -0.86,-3.24 -1.03,0.16 -1.18,-3.1 -4.45,0.82 -6.06,-3.59 -5.33,3 -1.32,-0.09 -0.64,-9.85 -2.09,-7.76 -1.75,0.77 -1.86,-5.04 -0.18,-5.08 2.26,-2.31 -0.65,-0.78 -2.36,1.2 -0.6,-0.56 2.94,-4.13 1.04,0.17 0.95,-1.7 0.92,0.42 2.95,-1.91 -1.12,-1.32 z',
+	title: 'Taurag\u0117',
+	id: 'LT-TA'
+});
+
+var _ref10 = Object(preact_min["h"])('path', {
+	d: 'm 157.29599,4.3338239 4.87,2.66 5.56,-1.04 1.1,2.94 2.4,0.65 1.35,1.6900001 9.37,-1.5000001 0.98,1.7400001 1.77,-0.03 2.18,1.69 2.15,-1.85 3.29,0.26 2.94,-2.0500001 8.71,1.1400001 4.41,2.91 2.35,-0.19 3.7,1.47 3.34,-0.68 0.98,1.5 3.51,0.33 3.91,4.48 0,0 -0.23,0.94 -6.92,-0.24 1,2.72 1.9,1.88 -0.14,1.15 1.83,0.6 -3.16,7.34 -8.38,-1.61 -0.68,2.71 -5.89,-1.15 -3.03,0.5 1.76,1.57 0.22,2.28 2.66,-0.36 -1.53,7.85 -2.53,1.61 -5.2,0.02 -1.13,9.26 -0.93,0.41 0.34,1.44 -1.02,0.02 -1.55,9.18 -0.1,1.55 2.77,1.3 0.69,-1.13 1.75,1.85 -2.1,5.4 1.39,0.43 1.28,-1.72 0.94,0.14 -0.2,2.52 -1.03,0.09 -1.47,2.27 5.85,0.27 0.2,1.05 3.51,0.53 2.16,-0.96 -0.16,-1.41 3.44,0.07 2.62,0.84 3.61,3.15 3.85,0.7 0.81,-2.01 1.61,0.43 0.22,-3.44 2.45,0.35 6.89,-2.99 1.47,1.42 0.5,-0.48 0.48,1.48 -1.15,1.08 -0.01,4.87 4.19,3.04 0.98,3.75 -1.18,-0.43 -6.54,2.75 -3.73,-1.17 -3.41,2.41 -0.31,1.57 -2.5,-2.22 0.39,2.87 1.4,1.619996 -1.64,1.31 0.67,0.98 -1.34,1.86 -0.8,4.72 -1.64,0.22 -1.86,2.21 1.51,3.05 1.18,0.46 -0.41,3.24 2.21,0.73 2.47,-0.71 1.24,1.36 1.3,-0.5 -1.4,-6.05 2.9,1 1.93,7.5 1.05,0.12 -0.2,1.9 3.02,0.1 0.6,2.33 -3.05,0.81 0.83,3.21 1.06,-0.24 -0.3,5.26 -3.66,0.05 1.31,2.42 -0.47,1.59 -3.06,-2.06 -1.99,0.76 0.04,1.3 -1.87,1.48 -7.76,-0.67 -1.15,1.45 1.87,2.38 -0.34,9.4 -12.86,3.13 5.69,11.16 -0.76,1.99 1.53,0.69 0.51,6.53 -0.37,3.13 -1.78,1.49 -4.17,0.35 -1.56,2.91 0,0 -3.44,2.32 -4.18,-1.82 -5.29,3.09 -5.68,-3.97 -1.94,0.64 -1.13,-0.76 -1.07,2.2 -7.3,-5.48 -8.52,4.3 -5.11,0.88 -4.21,3.07 -0.01,1.84 -4.34,-1.96 -0.3,1.18 -2.07,0.99 -0.1,2.65 -2.4,1.44 0.18,2.76 -3.14,1.8 0.17,1.49 -3.85,0 -1.04,-1.99 -1.51,1.21 -13.34,3.23 0,0 -6.42,-5.33 -5.13,1.67 -0.35,-5.69 -1.54,-0.23 -1.75,-2.2 -0.08,-1.87 1.67,0.4 -0.59,-3.94 1.59,-1.92 0.22,-2.93 2.44,-2.25 -0.34,-0.69 -2.86,0.62 -1.26,-1.94 -2.16,0 -1.81,-1.92 0.71,-3.12 1.31,-1 -0.12,-6.34 -2.49,-1.55 -1.04,2.52 -1.64,0.64 -0.76,-1.71 -1.11,1.56 -6.510005,-3.29 -2.19,2.84 -2.75,-0.73 0.25,-4.2 1.06,0.12 0.21,-0.99 -1.26,0.35 -0.8,-0.87 0.63,-2.49 -1.56,-0.83 -0.27,-1.52 -2.54,-1.12 -1.04,-3.56 -1.59,0.1 0.29,3.15 -1.15,-0.04 -1.51,1.8 -6.29,-3.96 2.4,-6.27 1.67,1.05 -0.81,-3.83 0.59,-0.76 2.27,0.26 0.08,-2.33 2.3,-1.21 1.85,0.31 0.5,-1.71 -0.82,-1.5 1.77,-2.28 2.15,0.43 1.48,-1.45 -3.19,-3.38 -2.15,-1.14 -1.11,0.38 -0.67,-2.38 2.38,-0.07 -0.15,-5.64 -1.03,-2.17 3.37,-7.56 -4.72,-2.05 1.59,-3.81 4.08,-0.1 2.72,2.17 1.25,-1 2.06,0.48 3.51,-8.379996 1.08,-0.19 -0.45,-1.1 0.92,-0.14 2.810005,-8.19 3.07,0.67 2.82,-7.39 3.21,0.36 0.26,-0.72 8.83,3.4 -0.81,-5.05 -1.6,-1.74 0.86,-1.82 2.13,0.28 -0.11,1.44 7.22,1.1 0,1.17 2.14,0.82 0.96,-1.49 -0.51,-1.07 1.94,-2.16 1.17,-10.6 1.75,-0.1 0.85,-5.61 6.38,1.15 0.18,-3.54 -3.42,-3.5 1.19,-1.42 -0.81,-4.08 -1.27,-0.67 -0.77,-3.77 -1.02,-0.22 1.05,-11.43 -6.12,-0.61 0.57,-8.03 3.81,0.19 1.38,-0.98 -0.62,-2.75 0.62,-2.31 0,0 2.87,-8.9100001 2.5,-0.29 0.3,-2.12 2.61,-0.08 1.59,1.69 0.66,-0.94 1.99,0.12 0.6,-1.11 1.15,0.58 1.25,-1.3 1.54,0.48 z',
+	title: 'Tel\u0161iai',
+	id: 'LT-TE'
+});
+
+var _ref11 = Object(preact_min["h"])('path', {
+	d: 'm 695.17599,137.16382 2.88,2.56 2.19,-0.21 5.29,6.63 0.88,4.22 -0.52,1.97 5.08,10.77 5.72,5.45 4.97,0.5 2.08,2.58 2.41,6.2 5.18,-1.21 5.6,1.09 3.18,2.39 0.63,1.94 2.89,0.12 0.85,1.56 1.71,0.66 5.23,-0.47 0.65,0.99 3.03,0.22 4.07,-1.4 0.02,5.82 1.89,0.26 0.91,6.37 -2.33,3.95 1.19,1.82 0.12,6.77 -3.05,2.52 -1.25,-0.52 -3.98,6.55 -5.12,2.36 -2.29,4.38 2.1,5.79 1.78,0.38 1.4,2.49 -3.11,4.56 1.91,2.71 -2.21,-0.26 2.35,6.91 -1.41,1.19 0.75,4.3 -3.06,0.07 -3.89,4.32 -1.95,-0.56 -1.53,0.63 -0.73,3.19 -3.64,1.83 1.37,1.5 3.11,-0.14 5.35,2.81 3.71,0.14 2.49,2.44 2.78,-1.59 0.28,1.47 1.09,-0.65 1.71,0.82 1.47,-1.6 -0.49,-1.36 1.92,-0.7 -0.35,2.23 0.89,0.82 1.79,-3.03 1.87,1.13 0.84,-2.25 1.99,1.8 3.57,0.66 1.56,1.59 5.91,-0.18 6.65,1.71 0.04,1.54 2.02,0.42 0.91,2.23 -0.62,4.45 -4.19,1.1 -2.94,3.35 -4.66,1.75 0,0 -0.41,-0.75 2.62,-1.68 -12.24,0.46 0.08,3.05 -1.87,0.32 0.88,-0.79 -0.68,-1.87 -3.67,-0.21 0.35,1.47 -2.2,0.21 1.72,0.98 0.02,0.94 -1.4,-0.17 0.25,1.83 -2.68,1.85 0.16,0.91 -4.31,0 0.15,0.77 -2.16,1.03 -2.78,-1.38 -2.07,2.52 -3.22,-0.61 -1.18,0.75 -3.59,-1.68 -1.37,2.52 -1.19,-1.35 -5.57,-0.54 -2.9,-2.06 -1.45,0.99 -7.78,-1.92 -2.22,0.91 -1.82,-1.17 -0.84,1.01 0.63,0.7 -1.87,0.58 -3.96,-5.91 -1.31,2.08 -2.75,-0.31 -0.29,-0.81 -1.25,4.13 -1.37,0.17 -3.45,-0.73 -0.15,-1.14 3.17,-4.8 1.14,-0.25 -4.41,-2.27 0.06,-2.39 -1.44,-0.82 1.31,-1.1 -0.24,-1.12 -4.36,-1.97 -1.93,1.9 -0.75,-1.01 -4.51,-1.36 -0.26,-3.02 -0.32,3.77 0.77,0.21 -1.5,-0.42 -0.37,-2.9 -0.63,2.78 -2.83,1.99 3.02,-0.3 -1.76,2.46 -0.89,-0.78 -3.54,0.64 -0.72,1.61 -3.62,-1.96 -2.11,1.35 -1.4,-1.4 -0.42,-2.32 -1.25,0.07 0.2,2.41 -1.94,-0.98 -0.82,1.92 -2.12,-1.59 0.36,-2.34 -3.62,-2.51 -4.75,1.05 1.91,1.95 -3.67,3.21 -1.62,-2.46 0.53,-1.24 -5.1,-6.23 -4.71,4.26 0.09,-1.85 -1.59,2.32 1.3,0.44 -2.41,1.81 -1.27,4.7 0.43,1.29 -3.78,-2.32 0.3,2.57 1.19,0.33 0.49,1.52 -0.79,0.52 0.55,0.96 1.32,-0.14 0.36,1.73 -1.18,0.25 -1,-1.05 -2.85,0.56 -1.49,5.87 1.83,0.07 -1.55,2.2 -1.11,-0.19 -0.43,2.55 1.02,2.89 2.75,0.68 1.04,1.78 3.24,0.6 0.08,5.63 1.44,0.28 2.82,3.64 1.96,-0.59 0.36,1.4 4.37,1.52 1.03,1.77 -2.6,0.16 -0.66,2.24 -0.88,0.12 -0.67,-1.75 -2.2,2.54 2.31,1.12 -0.5,2.3 -1.51,0 0.5,-1.23 -3.14,1.58 0.89,2.54 1.15,-2.09 1.31,0.37 -0.83,2.75 -1.39,1.16 1.15,0.98 -1.69,1.32 1.49,2.54 1.82,-0.7 0.25,1.1 -6.53,0.9 -1.23,-2.77 -1.39,1.05 -3.57,0.16 -0.77,-2.25 0.69,-1 -5.11,-2.52 -3.25,1.75 -2.47,-0.23 -1.07,-1.4 -0.36,3.7 -1.98,-0.42 -0.54,-1.49 -2.84,0.82 -1.19,4.02 -4.14,-0.72 -8.07,1.93 -5.27,-0.72 -1.79,1.56 -5.85,-0.77 -2.96,-2.88 -6.42,-0.21 -6.44,1.04 -0.62,-1.28 2.85,-2.67 -2.11,-3.98 0.12,-2.89 -1.18,0.16 -1.75,-1.44 -3.66,0.28 -0.73,-1.05 -1.29,1.37 -1.27,-1.61 0.87,-2 -0.8,-1.23 1.68,-2.17 -0.26,-2.19 1.89,-1.52 -0.97,-3.43 2.67,-0.26 5.73,-2.63 0.88,-1.57 -1.29,-2.19 1.17,-2.13 4.41,-0.18 -1.65,-1.59 -0.87,0.75 -0.55,-0.99 -2.27,0.54 -0.36,-3.22 -1.75,-1.48 -4.83,1.76 -2.66,-2.92 3.4,-4.66 1.17,-6.29 -4.5,0.96 -1.58,2.55 -0.48,-1.1 -5.26,-2.32 0.52,-3.2 -1.2,-2.46 -2.15,-0.49 0.41,-2.48 -1.18,-1.67 -2.45,0.99 -0.38,-1.5 -2.27,0.7 -1.7,-0.54 -3.35,1.15 -2.11,-1.1 -0.5,-7.31 -1.35,-3.59 -8.72,3.82 -1.66,-0.54 1.06,-3.26 -7.43,0.87 -6.98,-4.6 -0.57,0.42 0.49,-7.37 -1.55,-1.03 1.73,-3.83 2.76,1.9 1.51,-5.59 -5.73,-2.54 -2.19,-7.69 -0.92,0.21 0.24,0.85 -2.42,0.16 -2.9,-6.26 -3.23,-0.54 -1.84,1.93 -1.16,-0.61 -1.75,1.23 -1.32,-0.97 0.11,-4.52 0,0 -0.22,-2.5 2.57,-4.5 -1.09,-2.17 2.1,-1.55 -1.57,-4.08 1.47,-4.16 5.35,-2.47 1.23,0.26 -0.25,-4.61 -1.5,-3.23 -2.63,-1.92 -1.58,1.68 -2.39,0.57 -1.29,-0.74 -0.06,-4.39 6.96,-1.59 -0.94,1.68 3.6,1.89 1.74,-1.01 0.76,-2.32 1.26,-0.31 -1.63,-2.29 -2.19,0.12 -0.26,-1 -1.51,-0.07 1.27,-4.11 -0.37,-4.24 1.39,-0.8 2.94,2.81 2.39,-1.11 2.75,1.28 5.53,-3.05 2.13,2.05 0.24,1.9 2.74,0.47 0.44,-3.64 4.66,-0.76 3.36,1.35 6.32,-4.38 2.2,0.8 0.43,1.16 6.88,1.23 1.99,2.09 4.77,-0.5 -1.98,2.91 1.89,4.85 19.23,-7.4 0.01,-0.67 3.15,-0.38 2.29,3.18 2.08,1.15 1.13,-2.93 -1.82,-0.73 -0.34,-4.19 3.71,-1.26 1.16,0.74 2.62,-2.49 1.72,-3.58 3.13,-0.76 10.45,7.99 1.36,-2.7 3.58,1.25 -0.84,2.37 3.55,1.77 1.81,-0.07 1.11,-2.81 5.25,1.82 2.19,-5.21 1.99,2.39 1.44,-0.76 3.04,1.07 2.87,-2.65 1.18,0.38 0.76,4.87 0.99,-0.16 3.26,-3.79 2.17,-0.5 -0.02,-3.86 -1.03,-0.07 1.28,-1.09 0.03,-3.32 0.75,0.52 4.31,-1.47 2.86,1.9 4.4,0.71 0.61,-4.41 1.25,-2.02 -1.49,-4.15 1.91,0.52 -0.1,-5.22 2.94,1.47 4.18,-0.16 1.16,-0.88 0.5,-1.83 -1.05,-7.15 9.41,-1.88 -0.21,-2.8 1.87,-3.16 -2.69,-3.74 0.28,-2.93 4.18,-4.5 6.73,-1.21 0,0 0.98,3.78 5.63,9.69 3.75,4.66 z',
+	title: 'Utena',
+	id: 'LT-UT'
+});
+
+var _ref12 = Object(preact_min["h"])('path', {
+	d: 'm 605.94599,509.50382 -1.9,-0.48 0.27,-1.23 3.66,-0.53 -2.03,2.24 z m -111.37,-288.09 -0.11,4.52 1.32,0.96 1.75,-1.22 1.16,0.61 1.83,-1.93 3.23,0.54 2.9,6.26 2.42,-0.16 -0.24,-0.85 0.92,-0.21 2.19,7.69 5.73,2.54 -1.51,5.59 -2.77,-1.9 -1.72,3.83 1.55,1.03 -0.49,7.37 0.58,-0.42 6.97,4.6 7.43,-0.87 -1.06,3.26 1.66,0.54 8.72,-3.82 1.35,3.59 0.5,7.31 2.11,1.1 3.35,-1.15 1.7,0.54 2.27,-0.7 0.37,1.5 2.46,-0.98 1.18,1.66 -0.41,2.48 2.15,0.49 1.2,2.46 -0.52,3.21 5.27,2.32 0.48,1.1 1.58,-2.55 4.5,-0.96 -1.18,6.29 -3.39,4.65 2.66,2.92 4.82,-1.75 1.75,1.47 0.36,3.22 2.27,-0.54 0.55,0.98 0.87,-0.75 1.66,1.59 -4.41,0.19 -1.18,2.13 1.3,2.19 -0.88,1.56 -5.73,2.64 -2.67,0.26 0.98,3.43 -1.9,1.52 0.27,2.19 -1.68,2.17 0.8,1.23 -0.87,2 1.27,1.61 1.28,-1.38 0.73,1.05 3.66,-0.28 1.75,1.44 1.18,-0.16 -0.12,2.89 2.11,3.98 -2.85,2.68 0.62,1.28 6.44,-1.05 6.43,0.21 2.95,2.88 5.85,0.77 1.79,-1.56 5.26,0.72 8.07,-1.93 4.14,0.72 1.19,-4.03 2.85,-0.81 0.53,1.49 1.98,0.42 0.36,-3.7 1.07,1.4 2.47,0.23 3.25,-1.75 5.12,2.51 -0.69,1 0.77,2.26 3.57,-0.16 1.39,-1.05 1.23,2.77 6.53,-0.91 -0.25,-1.09 -1.82,0.7 -1.5,-2.54 1.7,-1.33 -1.15,-0.98 1.39,-1.16 0.83,-2.75 -1.31,-0.37 -1.15,2.1 -0.9,-2.54 3.14,-1.58 -0.49,1.24 1.51,0 0.5,-2.31 -2.31,-1.12 2.21,-2.54 0.67,1.75 0.88,-0.12 0.66,-2.24 2.61,-0.16 -1.03,-1.77 -4.37,-1.52 -0.36,-1.4 -1.96,0.58 -2.82,-3.64 -1.44,-0.28 -0.08,-5.62 -3.23,-0.61 -1.04,-1.78 -2.75,-0.68 -1.02,-2.9 0.43,-2.55 1.11,0.19 1.55,-2.2 -1.83,-0.07 1.5,-5.87 2.85,-0.56 1,1.05 1.18,-0.26 -0.36,-1.73 -1.32,0.14 -0.55,-0.96 0.79,-0.51 -0.48,-1.52 -1.19,-0.33 -0.31,-2.57 3.78,2.32 -0.43,-1.29 1.27,-4.7 2.41,-1.8 -1.3,-0.44 1.59,-2.32 -0.09,1.85 4.72,-4.26 5.09,6.23 -0.52,1.24 1.62,2.46 3.67,-3.21 -1.91,-1.94 4.74,-1.05 3.62,2.51 -0.36,2.34 2.13,1.59 0.81,-1.92 1.94,0.98 -0.2,-2.41 1.26,-0.07 0.41,2.32 1.4,1.4 2.11,-1.36 3.62,1.97 0.72,-1.61 3.54,-0.63 0.88,0.77 1.76,-2.46 -3.02,0.3 2.83,-1.99 0.63,-2.79 0.37,2.9 1.5,0.42 -0.77,-0.21 0.32,-3.77 0.27,3.02 4.5,1.36 0.75,1.01 1.94,-1.9 4.36,1.97 0.24,1.12 -1.31,1.1 1.44,0.82 -0.07,2.39 4.41,2.27 -1.14,0.26 -3.17,4.79 0.15,1.15 3.45,0.72 1.38,-0.16 1.24,-4.14 0.29,0.82 2.75,0.3 1.31,-2.08 3.96,5.92 1.87,-0.58 -0.63,-0.7 0.84,-1.01 1.82,1.17 2.22,-0.91 7.78,1.92 1.46,-0.98 2.9,2.06 5.57,0.54 1.19,1.36 1.36,-2.52 3.59,1.68 1.18,-0.75 3.22,0.61 2.07,-2.52 2.78,1.38 2.17,-1.03 -0.15,-0.77 4.3,0 -0.16,-0.91 2.69,-1.85 -0.25,-1.82 1.4,0.16 -0.03,-0.94 -1.71,-0.98 2.19,-0.21 -0.35,-1.47 3.67,0.21 0.68,1.87 -0.88,0.79 1.87,-0.33 -0.08,-3.04 12.24,-0.47 -2.62,1.68 0.4,0.75 0,0 -2.07,3.02 0.32,5.45 -3.34,3.58 -1.4,-1.19 -2.35,1.64 1.47,4.88 2.18,1.17 -1.2,1.66 -2.14,-0.82 -0.75,2.78 -2.65,-0.98 -4.32,3.24 -4.98,-1.49 -5.67,2.38 -3.5,-3.85 -4.78,2.78 -0.28,2.57 -2.11,1.8 -4.48,-2.29 -1.55,0.68 -0.36,-1.03 -2.06,1.7 -0.84,-2.12 -4.72,-1.73 -1.74,1.19 -2.62,-0.05 0.36,2.17 -3.39,0.47 1.24,1.05 -1.28,1.03 -5.06,0.91 -4.48,2.98 -0.28,1.05 5.53,6.34 -1.22,0.54 0.35,1.28 -2.04,-0.4 -0.72,0.88 -0.66,6.12 -1.78,4.65 -1.92,1.6 -0.43,3.65 -3.03,2.07 -3.13,-0.7 -3.21,2.02 -2.07,-0.81 -1.52,3.81 -4.12,0.53 -0.6,1.42 0.97,1.95 -3.59,1.28 1.24,1.49 -8.74,-1.53 -2.1,-2.18 -0.63,1.02 -4.17,1.18 -2.33,2.72 -0.94,-0.32 -2.11,1.46 -2.66,-1.07 -1.12,1.65 -2.53,0.14 -1.07,7.4 -4.7,3.99 0.23,1.32 -1.91,2.34 -3.13,1.95 0.58,3.36 -1.35,3.87 -2.99,-0.02 -1.01,1.8 -1.18,3.72 1.74,7.91 -0.21,9.93 -1.48,4.75 0.76,4.08 -0.98,-0.14 -0.23,0.92 1.7,9.45 -0.78,1.66 1.94,3.06 1,9.87 -1.36,2.92 -9.27,6.6 -3.23,6.39 -2.63,8.61 -2.18,0.39 -2.22,2.04 0.24,0.71 2.75,-0.07 -1.1,1.86 1.4,5.98 -3.31,5.7 -1.46,-0.12 -0.28,-1.05 -0.95,2.27 0.79,3.85 -3.71,2.54 -1.06,4.9 -2.55,0.3 -0.21,2.08 1.99,0.34 0.35,3.91 4.85,-1.78 0.19,1.46 1.24,0.55 2.65,0.8 1.76,-1.69 1.39,1.44 2.69,-2.42 2.86,-0.05 3.41,5.44 -0.9,1.19 0.64,1.76 -0.76,1.55 1.36,1.42 1.26,-0.91 3.83,1.21 2.04,6.5 2.62,1.71 1.23,-0.87 -6.47,4.49 0.98,-0.25 2.78,3.97 0.83,2.17 -1.24,2.1 1,3.62 1.2,0.87 1.03,-0.43 0.05,1.75 -1.35,0.52 -0.45,-1.32 -2.15,0.02 -1.36,-2.19 -0.09,2.46 -1.55,0.02 -0.79,1.14 -0.19,-1.3 -4.12,-1.66 -0.23,2.64 -1.64,0.68 -0.68,-0.66 -0.2,3.73 -2.79,0 -1.94,2.62 -1.1,0.07 -2.3,-2.28 0.41,-1.18 -3.19,0.57 -0.6,-1.12 -4.32,-1.21 -1.72,0.87 -2.57,-1.91 -0.42,-1.87 -2.78,-2.48 0.59,-2.37 6.25,-2.6 0.05,-3.92 -2.25,-1.32 -0.24,-2.3 0.49,-0.43 0.94,1.23 1.32,-1.14 1.67,1.28 1.74,-0.39 -2.74,-4.45 0.44,-2.01 -2.17,-2.42 0.91,-1.62 -5.92,-2.35 -0.35,-5.23 -2.19,-0.94 -0.42,1.96 -2.12,0.07 0.21,1.51 -1.95,1.1 -1.99,-0.02 0.29,-1.55 -3.41,0.48 -0.92,-0.64 -1.76,3.61 -2.18,1.71 -1.36,-0.46 -2.65,1.12 -1.28,1.8 -2.39,-0.66 -1.8,1.21 -1.87,-1.37 -0.63,1.37 -4.69,-2.65 -2.21,4.86 -2.46,-2.6 -1.54,0.94 -2.66,5.04 0.17,3.83 -11.42,11.67 -5.83,7.88 -3.18,-1.11 -4.49,0.77 -3.03,-1.55 -2.42,-3.67 0.52,-1.34 -2.85,-1.59 -11.81,5.67 -5.06,-0.32 0,0 -1.03,-3.62 -1.83,-2.23 1.22,-1.32 -1.04,-0.02 -0.09,-2.71 -8.39,-3.69 1.1,-1.92 -0.8,-2.92 1.82,-1.19 1.36,0.62 1.26,-1.53 2.77,0.27 -0.31,-3.58 1.79,0.62 0.35,-1.69 3.59,0.18 1.92,-4.22 3.13,-0.32 -1.96,-2.21 1.46,-2.08 6.63,-0.46 -1.79,-6.17 1.14,-2.68 -2,-0.89 0.61,-0.69 -0.77,-3.8 2.36,-0.69 -0.33,-2.59 9.46,-1.83 -0.35,-2.77 3.02,-0.73 -1.03,-5.15 2.04,-0.76 -0.81,-3.3 -4.12,0.78 -1.8,1.51 -2.99,-0.48 -4.25,1.67 -1.58,3.55 -0.57,-1.9 -5.38,1.44 -2.03,-0.46 0.08,1.08 -1.02,0.23 0.37,1.99 -5.64,-0.09 -0.04,-1.08 -7.99,1.1 -1,-1.33 -0.27,2.18 -1.44,0.05 -0.75,1.6 -1.54,-4.65 1.18,-1.42 0.07,-3.25 -2.81,-0.78 -3.79,-3.76 -1.94,0.21 -0.95,1.35 -3.01,-1.05 -1.22,2.57 -1.07,-0.34 -1.55,1.28 -0.98,-0.73 -0.29,5.11 -0.82,0.34 -0.65,-1.26 -1.27,0.18 0.04,1.26 -2.34,-1.44 0.04,-2.15 -4.57,0.34 -1.32,1.08 -5.89,-0.23 -2.15,-2.89 -1.26,1.4 -0.94,-0.69 0.04,-1.83 2.55,-2.73 -0.74,-1.24 0.75,-1.26 -1.72,-2.41 -2.79,0.62 -1.14,-2.2 3.58,-1.7 -0.6,-3.92 -1.27,-0.14 -0.15,-3.44 0.87,-0.14 -1.1,-1.72 0.68,-1.59 0,0 1.83,-7.15 -0.41,-7.66 1.71,1.31 1.32,-1.61 1.31,0.35 1.42,-2.79 0.91,1.06 1.14,-0.62 -1.54,-5.2 -2.57,0.02 2.93,-1.87 -2.03,-5.92 -0.19,-4.26 2.19,-3.3 0.59,0.25 0.01,-1.25 3.92,-0.81 5.37,2.56 1.08,-2.79 -0.64,-3.35 1.19,-0.14 0.2,0.9 2.79,0.28 1.44,2.65 2.53,0.35 1.8,-0.81 0.47,-1.57 -1.27,-1.8 1.28,-1.18 -0.52,-1.64 1.15,-0.67 -0.25,-3.51 1.86,-0.35 -0.35,-2.33 -0.75,0.09 -0.76,-1.9 1.35,-2.01 0.32,-4.95 5.64,-3.7 5.56,-0.72 0.21,-1.57 1.51,1.37 1.04,-1.76 1.22,-0.21 -0.21,1.11 1.18,-0.35 -1.74,-12.67 1,-0.32 -0.4,-0.86 2.67,-0.12 0.67,-1 1.27,1.62 1.39,-0.6 1.28,-0.97 0.15,-3.29 -1.82,-1.86 -4.18,-1.72 -2.23,-3.13 0,0 -2.58,0 0,0 -5.35,1 -1.54,-4.39 -5.32,-2.32 -2.49,-4.11 -5.3,0.07 -3.66,-3.95 1.58,-1.58 0.16,-2.23 3.57,-1.3 -0.67,-3.63 5.49,-0.93 0.37,-0.98 -1.19,-0.7 0.61,-1.16 1.38,0.02 1.12,-1.44 -1.82,-0.47 -0.11,-2.96 -2.03,-2.3 -1.43,-0.07 -0.09,-0.75 -1.52,0.65 0.47,-1.51 -1.08,-0.23 0.61,-1.91 -1.24,-1.17 -0.01,-3.73 -1.56,-0.47 -1.3,1.07 -2.33,-2.77 0.31,-1.26 -1.14,-0.33 0.83,-0.65 -2.54,-2.92 1.92,-1.1 0.7,-1.73 -5.17,-1.07 -0.49,-1 -0.05,-2.24 -1.28,-1.8 0.25,-2.69 -1.44,-2.29 3.17,-4.16 -8.07,-2.6 -0.36,1.1 -1.78,-0.19 0.04,-1.26 -2.06,-0.21 2.08,-10.9 -1,0.09 -0.08,-2.62 -4.34,-0.4 1.12,-9.18 1.11,-0.4 -0.28,-4.1 1.96,-1.2 0.31,-3.24 2.89,-1.17 0.27,-5.42 0,0 5.85,0.47 -0.44,-2.37 4.38,-2.49 -1.04,-3.17 2.62,-1.27 -0.58,-4.21 0.98,-0.56 1.04,0.85 0.91,-0.54 1.51,1.46 4.22,0.68 6.13,-2.7 1.32,-3.36 -1.71,-2.56 -0.05,-3.13 -1.71,-3.06 2.22,-0.52 0,-1.15 1.55,-0.6 z',
+	title: 'Vilnius',
+	id: 'LT-VL'
+});
+
 var board_Board = function (_Component) {
 	board__inherits(Board, _Component);
 
@@ -25212,9 +29264,10 @@ var board_Board = function (_Component) {
 		_this.mouseMove = _this.mouseMove.bind(_this);
 		_this.transform = _this.transform.bind(_this);
 		_this.loadPixels = _this.loadPixels.bind(_this);
+		_this.initZoom = _this.initZoom.bind(_this);
 		_this.setZoom = _this.setZoom.bind(_this);
 		_this.setGrid = _this.setGrid.bind(_this);
-
+		_this.initZo = 1;
 		_this.scaledPixel = 1000;
 		_this.scaledX = 499;
 		_this.scaledY = 499;
@@ -25226,12 +29279,15 @@ var board_Board = function (_Component) {
 	Board.prototype.initZoom = function initZoom(elm) {
 		var pan = panzoom_default()(elm, {
 			maxZoom: 100,
-			minZoom: 0.1
+			minZoom: 0.1,
+			autocenter: true,
+			bounds: true
 		});
-		pan.zoomAbs(this.currentZoom.x, // initial x position
-		this.currentZoom.y, // initial y position
-		0.3 // initial zoom
-		);
+		// pan.zoomAbs(
+		// 	this.currentZoom.x, // initial x position
+		// 	this.currentZoom.y, // initial y position
+		// 	this.initZo// initial zoom
+		// );
 		pan.on('transform', this.transform);
 		this.setState({ zoom: 'ok' });
 		this.zoomController = pan;
@@ -25240,6 +29296,7 @@ var board_Board = function (_Component) {
 
 
 	Board.prototype.transform = function transform(e) {
+		console.log(e);
 		var position = e.getTransform();
 		this.scaledPixel = Math.floor(1000 * position.scale);
 		this.scale = position.scale;
@@ -25250,9 +29307,7 @@ var board_Board = function (_Component) {
 
 	Board.prototype.mouseMove = function mouseMove(e) {
 		if (!this.state.color) return;
-		console.log(e);
 		this.mousePosition = [e.clientX, e.clientY];
-		console.log(this.mousePosition);
 		this.setState({ nouseMove: true });
 	};
 
@@ -25325,15 +29380,13 @@ var board_Board = function (_Component) {
 	Board.prototype.componentDidMount = function componentDidMount() {
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
-		var m = this.base.querySelector('#gridArea');
 		this.currentZoom = {
-			x: this.base.clientWidth / 2,
-			y: this.base.clientHeight / 2
+			x: this.base.clientWidth - a.width,
+			y: this.base.clientWidth / 2
 		};
 		this.loadPixels();
 		this.initZoom(b, this.currentZoom);
 		a.addEventListener('mousemove', this.mouseMove);
-		m.addEventListener('mousemove', this.mouseMove);
 	};
 
 	Board.prototype.render = function render(props) {
@@ -25343,7 +29396,7 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': board_style_default.a.board__controlls },
-				Object(preact_min["h"])(controls_Controls, { callbackFromBoard: this.setZoom, callbackFromBoardSecond: this.setGrid })
+				Object(preact_min["h"])(controls_Controls, { scale: this.scale, callbackFromBoard: this.setZoom, callbackFromBoardSecond: this.setGrid })
 			),
 			Object(preact_min["h"])(
 				'div',
@@ -25354,7 +29407,7 @@ var board_Board = function (_Component) {
 				'div',
 				{
 					'class': board_style_default.a.pixel__center,
-					style: '\n\t\t\t\t\t\tdisplay: ' + (this.state.color ? '' : 'none') + ';\n\t\t\t\t\t\ttop:' + this.WY + ';\n\t\t\t\t\t\tleft:' + this.WX + ';\n\t\t\t\t\t\ttransform:scale(' + this.scale + ');\n\t\t\t\t\t'
+					style: '\n\t\t\t\t\t\tdisplay: ' + (this.state.color ? '' : 'none') + ';\n\t\t\t\t\t\ttop:' + this.WY + ';\n\t\t\t\t\t\tleft:' + this.WX + ';\n/\t\t\t\t\t'
 				},
 				Object(preact_min["h"])('span', { 'class': board_style_default.a.pixel, style: '\t\n\t\t\t\t\t\t background: ' + this.state.color + ';\n\t\t\t\t\t\t '
 				})
@@ -25362,51 +29415,85 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'div',
 				{
+					'class': 'shadow',
 					style: '\n\t\t\t\t\t\twidth:' + this.scaledPixel + 'px;\n\t\t\t\t\t\theight:' + this.scaledPixel + 'px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttop: ' + this.scaledY + 'px;\n\t\t\t\t\t\tleft: ' + this.scaledX + 'px;\n\t\t\t\t\t\tbackground-color: white;\n\t\t\t\t\t'
 				},
 				this.currentPhoto ? Object(preact_min["h"])('img', {
 					width: this.scaledPixel,
 					height: this.scaledPixel,
-					'class': 'pixelated',
-					src: this.currentPhoto
+					'class': 'pixelated'
+					// src="assets/images/test_image.png"
+					, src: this.currentPhoto
 				}) : ''
 			),
 			Object(preact_min["h"])(
 				'svg',
-				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '1000%', id: 'board', height: '100%' },
+				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '100%', id: 'board', height: '100%' },
 				Object(preact_min["h"])(
 					'defs',
 					null,
 					Object(preact_min["h"])(
 						'pattern',
 						{ id: 'smallGrid', width: '1', height: '1', patternUnits: 'userSpaceOnUse' },
-						this.state.grid ? board__ref : ""
+						this.state.grid ? board__ref : ''
 					)
 				),
-				board__ref2,
 				Object(preact_min["h"])(
 					'g',
-					{ fill: 'none' },
-					Object(preact_min["h"])('rect', {
-						fill: 'url(#smallGrid)',
-						id: 'gridArea',
-						width: this.scaledPixel,
-						height: this.scaledPixel,
-						onTouchTap: this.getCord,
-						x: this.scaledX,
-						y: this.scaledY,
-						style: 'cursor: pointer;'
-					}),
-					Object(preact_min["h"])('rect', {
-						fill: this.state.color,
-						id: 'ghost',
-						width: this.scale,
-						height: this.scale,
-						onTouchTap: this.getCord,
-						x: Math.floor(this.mousePosition[0] - this.scale / 2),
-						y: this.mousePosition[1] - this.scale / 2,
-						style: 'position: absolute;pointer-events: none;'
-					})
+					null,
+					board__ref2,
+					Object(preact_min["h"])(
+						'g',
+						{ fill: 'none' },
+						Object(preact_min["h"])('rect', {
+							// fill="url(#smallGrid)"
+							// id="gridArea"								fill="url(#smallGrid)"
+							id: 'zoomArea',
+							width: this.scaledPixel,
+							height: this.scaledPixel,
+							x: this.scaledX,
+							y: this.scaledY,
+							style: 'cursor: move;'
+						}),
+						Object(preact_min["h"])('rect', {
+							fill: this.state.color,
+							id: 'ghost',
+							width: this.scale,
+							height: this.scale,
+							x: Math.floor(this.mousePosition[0] - this.scale / 2),
+							y: this.mousePosition[1] - this.scale / 2,
+							style: 'position: absolute;pointer-events: none;'
+						})
+					),
+					Object(preact_min["h"])(
+						'g',
+						{ fill: 'transparent',
+							id: 'gridArea',
+							stroke: 'black',
+							'stroke-width': '1',
+							style: 'width: 0.1',
+							transform: 'translate(' + (this.scaledX + 3 * this.scale) + ', ' + (this.scaledY + 130 * this.scale) + ') scale(' + this.scale + ', ' + this.scale + ')'
+						},
+						Object(preact_min["h"])(
+							'g',
+							{
+								transform: 'scale(1.26 1.26)',
+								onTouchTap: this.getCord,
+								style: 'cursor: pointer'
+
+							},
+							board__ref3,
+							board__ref4,
+							board__ref5,
+							board__ref6,
+							board__ref7,
+							board__ref8,
+							_ref9,
+							_ref10,
+							_ref11,
+							_ref12
+						)
+					)
 				)
 			)
 		);
@@ -25445,7 +29532,7 @@ var game_Game = function (_Component) {
 
 		return Object(preact_min["h"])(
 			'div',
-			null,
+			{ 'class': 'container_main' },
 			Object(preact_min["h"])(board_Board, { x: x, y: y, zoom: zoom })
 		);
 	};
@@ -25453,6 +29540,10 @@ var game_Game = function (_Component) {
 	return Game;
 }(preact_min["Component"]);
 
+
+// EXTERNAL MODULE: ../node_modules/preact-material-components/Card/mdc-card.scss
+var mdc_card = __webpack_require__("uTCq");
+var mdc_card_default = /*#__PURE__*/__webpack_require__.n(mdc_card);
 
 // EXTERNAL MODULE: ./routes/registration/style.css
 var registration_style = __webpack_require__("2n+x");
@@ -25471,10 +29562,42 @@ function registration__inherits(subClass, superClass) { if (typeof superClass !=
 
 
 
+
 var registration__ref = Object(preact_min["h"])(
-	'h1',
+	'div',
 	null,
-	' regitration '
+	Object(preact_min["h"])(
+		Card_default.a,
+		null,
+		Object(preact_min["h"])(
+			'div',
+			{ 'class': 'card-header' },
+			Object(preact_min["h"])(
+				'h2',
+				{ 'class': ' mdc-typography--title' },
+				'Title'
+			),
+			Object(preact_min["h"])(
+				'div',
+				{ 'class': ' mdc-typography--caption' },
+				'Caption'
+			)
+		),
+		Object(preact_min["h"])(Card_default.a.Media, { className: 'card-media' }),
+		Object(preact_min["h"])(
+			Card_default.a.Actions,
+			{ className: 'mdc-card__actions--full-bleed' },
+			Object(preact_min["h"])(
+				Card_default.a.ActionButtons,
+				null,
+				Object(preact_min["h"])(
+					Card_default.a.ActionButton,
+					null,
+					'OK'
+				)
+			)
+		)
+	)
 );
 
 var registration_Registration = function (_Component) {
@@ -25514,7 +29637,7 @@ function start__inherits(subClass, superClass) { if (typeof superClass !== "func
 
 
 
-
+// import 'preact-material-components/Button/style.css';
 
 
 var start__ref = Object(preact_min["h"])(
@@ -25531,7 +29654,7 @@ var start_Start = function (_Component) {
 
 		var _this = start__possibleConstructorReturn(this, _Component.call(this));
 
-		_this.countDownDate = new Date("May 19, 2019 15:37:25").getTime();
+		_this.countDownDate = new Date('May 19, 2019 15:37:25').getTime();
 		_this.textTimer = [['sekundės', 'sekundė', 'sekundžių'], ['minutės', 'minutė', 'minučių'], ['valandos', 'valanda', 'valandų'], ['dienos', 'diena', 'dienų']];
 		_this.countDowown();
 		return _this;
@@ -25555,7 +29678,7 @@ var start_Start = function (_Component) {
 
 			document.getElementById('countText').innerHTML = _this2.textTimer[3][_this2.resT(days)] + ' ' + _this2.textTimer[2][_this2.resT(hours)] + ' ' + _this2.textTimer[1][_this2.resT(minutes)] + ' ' + _this2.textTimer[0][_this2.resT(seconds)];
 
-			// If the count down is finished, write some text 
+			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
 				document.getElementById('countDown').innerHTML = '';
@@ -25616,6 +29739,96 @@ var start_Start = function (_Component) {
 var Helmet = __webpack_require__("FJnM");
 var Helmet_default = /*#__PURE__*/__webpack_require__.n(Helmet);
 
+// EXTERNAL MODULE: ./components/footer/style.scss
+var footer_style = __webpack_require__("R99g");
+var footer_style_default = /*#__PURE__*/__webpack_require__.n(footer_style);
+
+// CONCATENATED MODULE: ./components/footer/index.js
+
+
+function footer__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function footer__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function footer__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+// material
+
+
+
+// import Switch from 'preact-material-components/Switch';
+// import TabBar from 'preact-material-components/TabBar';
+
+// import 'preact-material-components/Dialog/style.css';
+// import 'preact-material-components/Drawer/style.css';
+// import 'preact-material-components/List/style.css';
+
+
+
+
+// import 'preact-material-components/Button/style.css';
+
+
+var footer__ref = Object(preact_min["h"])(
+	'div',
+	null,
+	Object(preact_min["h"])(
+		'div',
+		null,
+		'\xA92019 \u201EEuropos Komisijos atstovyb\u0117 Lietuvoje\u201C'
+	),
+	Object(preact_min["h"])(
+		'div',
+		null,
+		'S\u0105lygos'
+	)
+);
+
+var footer__ref2 = Object(preact_min["h"])(
+	'div',
+	null,
+	Object(preact_min["h"])(
+		'div',
+		null,
+		'Susisiekite'
+	),
+	Object(preact_min["h"])(
+		'div',
+		null,
+		'info@vote4art.eu'
+	)
+);
+
+var footer_Footer = function (_Component) {
+	footer__inherits(Footer, _Component);
+
+	function Footer() {
+		footer__classCallCheck(this, Footer);
+
+		return footer__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	Footer.prototype.render = function render(props) {
+		return Object(preact_min["h"])(
+			'div',
+			{ 'class': footer_style_default.a.footer + ' mdc-top-app-bar' },
+			Object(preact_min["h"])(
+				'div',
+				{ 'class': footer_style_default.a.footer_row },
+				footer__ref,
+				footer__ref2
+			)
+		);
+	};
+
+	return Footer;
+}(preact_min["Component"]);
+
+
 // CONCATENATED MODULE: ./components/app.js
 
 
@@ -25628,6 +29841,7 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 // import { login } from '../utils/auth-service';
+
 
 
 
@@ -25657,7 +29871,7 @@ var app__ref7 = Object(preact_min["h"])(registration_Registration, { path: '/reg
 
 var app__ref8 = Object(preact_min["h"])(start_Start, { path: '/start' });
 
-var _ref9 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref9 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -25701,8 +29915,9 @@ var app_App = function (_Component) {
 				app__ref6,
 				app__ref7,
 				app__ref8,
-				_ref9
-			)
+				app__ref9
+			),
+			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
 		);
 	};
 
@@ -25716,8 +29931,174 @@ var app_App = function (_Component) {
 
 
 
-
 /* harmony default export */ var index_0 = __webpack_exports__["default"] = (app_App);
+
+/***/ }),
+
+/***/ "JklQ":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Hue = undefined;
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _hue = __webpack_require__("iF63");
+
+var hue = _interopRequireWildcard(_hue);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var Hue = exports.Hue = function (_ref) {
+  _inherits(Hue, _ref);
+
+  function Hue() {
+    var _ref2;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Hue);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Hue.__proto__ || Object.getPrototypeOf(Hue)).call.apply(_ref2, [this].concat(args))), _this), _this.handleChange = function (e) {
+      var change = hue.calculateChange(e, _this.props.direction, _this.props.hsl, _this.container);
+      change && typeof _this.props.onChange === 'function' && _this.props.onChange(change, e);
+    }, _this.handleMouseDown = function (e) {
+      _this.handleChange(e);
+      window.addEventListener('mousemove', _this.handleChange);
+      window.addEventListener('mouseup', _this.handleMouseUp);
+    }, _this.handleMouseUp = function () {
+      _this.unbindEventListeners();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Hue, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unbindEventListeners();
+    }
+  }, {
+    key: 'unbindEventListeners',
+    value: function unbindEventListeners() {
+      window.removeEventListener('mousemove', this.handleChange);
+      window.removeEventListener('mouseup', this.handleMouseUp);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props$direction = this.props.direction,
+          direction = _props$direction === undefined ? 'horizontal' : _props$direction;
+
+      var styles = (0, _reactcss2.default)({
+        'default': {
+          hue: {
+            absolute: '0px 0px 0px 0px',
+            borderRadius: this.props.radius,
+            boxShadow: this.props.shadow
+          },
+          container: {
+            padding: '0 2px',
+            position: 'relative',
+            height: '100%',
+            borderRadius: this.props.radius
+          },
+          pointer: {
+            position: 'absolute',
+            left: this.props.hsl.h * 100 / 360 + '%'
+          },
+          slider: {
+            marginTop: '1px',
+            width: '4px',
+            borderRadius: '1px',
+            height: '8px',
+            boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
+            background: '#fff',
+            transform: 'translateX(-2px)'
+          }
+        },
+        'vertical': {
+          pointer: {
+            left: '0px',
+            top: -(this.props.hsl.h * 100 / 360) + 100 + '%'
+          }
+        }
+      }, { vertical: direction === 'vertical' });
+
+      return _react2.default.createElement('div', { style: styles.hue }, _react2.default.createElement('div', {
+        className: 'hue-' + direction,
+        style: styles.container,
+        ref: function ref(container) {
+          return _this2.container = container;
+        },
+        onMouseDown: this.handleMouseDown,
+        onTouchMove: this.handleChange,
+        onTouchStart: this.handleChange
+      }, _react2.default.createElement('style', null, '\n            .hue-horizontal {\n              background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0\n                33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n              background: -webkit-linear-gradient(to right, #f00 0%, #ff0\n                17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n            }\n\n            .hue-vertical {\n              background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,\n                #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n              background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,\n                #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n            }\n          '), _react2.default.createElement('div', { style: styles.pointer }, this.props.pointer ? _react2.default.createElement(this.props.pointer, this.props) : _react2.default.createElement('div', { style: styles.slider }))));
+    }
+  }]);
+
+  return Hue;
+}(_react.PureComponent || _react.Component);
+
+exports.default = Hue;
 
 /***/ }),
 
@@ -25794,6 +30175,33 @@ exports.Elevation = Elevation;
 var _default = Elevation;
 exports.default = _default;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "Jpv1":
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
 
 /***/ }),
 
@@ -26055,6 +30463,141 @@ default_1.Body = DialogBody;
 default_1.Footer = DialogFooter;
 default_1.FooterButton = DialogFooterButton;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "K47Y":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HuePicker = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__("5D9O");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _merge = __webpack_require__("yubd");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _common = __webpack_require__("IWvg");
+
+var _HuePointer = __webpack_require__("o0LC");
+
+var _HuePointer2 = _interopRequireDefault(_HuePointer);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var HuePicker = exports.HuePicker = function HuePicker(_ref) {
+  var width = _ref.width,
+      height = _ref.height,
+      onChange = _ref.onChange,
+      hsl = _ref.hsl,
+      direction = _ref.direction,
+      pointer = _ref.pointer,
+      _ref$styles = _ref.styles,
+      passedStyles = _ref$styles === undefined ? {} : _ref$styles,
+      _ref$className = _ref.className,
+      className = _ref$className === undefined ? '' : _ref$className;
+
+  var styles = (0, _reactcss2.default)((0, _merge2.default)({
+    'default': {
+      picker: {
+        position: 'relative',
+        width: width,
+        height: height
+      },
+      hue: {
+        radius: '2px'
+      }
+    }
+  }, passedStyles));
+
+  // Overwrite to provide pure hue color
+  var handleChange = function handleChange(data) {
+    return onChange({ a: 1, h: data.h, l: 0.5, s: 1 });
+  };
+
+  return _react2.default.createElement('div', { style: styles.picker, className: 'hue-picker ' + className }, _react2.default.createElement(_common.Hue, _extends({}, styles.hue, {
+    hsl: hsl,
+    pointer: pointer,
+    onChange: handleChange,
+    direction: direction
+  })));
+};
+
+HuePicker.propTypes = {
+  styles: _propTypes2.default.object
+};
+HuePicker.defaultProps = {
+  width: '316px',
+  height: '16px',
+  direction: 'horizontal',
+  pointer: _HuePointer2.default,
+  styles: {}
+};
+
+exports.default = (0, _common.ColorWrap)(HuePicker);
+
+/***/ }),
+
+/***/ "K7uZ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var copyObject = __webpack_require__("dtkN"),
+    getSymbolsIn = __webpack_require__("6q/8");
+
+/**
+ * Copies own and inherited symbols of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy symbols from.
+ * @param {Object} [object={}] The object to copy symbols to.
+ * @returns {Object} Returns `object`.
+ */
+function copySymbolsIn(source, object) {
+  return copyObject(source, getSymbolsIn(source), object);
+}
+
+module.exports = copySymbolsIn;
+
+/***/ }),
+
+/***/ "K9uV":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC"),
+    root = __webpack_require__("MIhM");
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map');
+
+module.exports = Map;
 
 /***/ }),
 
@@ -26443,6 +30986,26 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
+/***/ "KRxT":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseSetToString = __webpack_require__("UJWv"),
+    shortOut = __webpack_require__("2NNl");
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+module.exports = setToString;
+
+/***/ }),
+
 /***/ "Kest":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26695,6 +31258,88 @@ module.exports = setup;
 
 /***/ }),
 
+/***/ "LIpy":
+/***/ (function(module, exports) {
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || value !== value && other !== other;
+}
+
+module.exports = eq;
+
+/***/ }),
+
+/***/ "LN6c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__("dRuq"),
+    isLength = __webpack_require__("GmNU");
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+/***/ }),
+
 /***/ "M8l6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26711,6 +31356,21 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     }
   });
 };
+
+/***/ }),
+
+/***/ "MIhM":
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__("j3D9");
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
 
 /***/ }),
 
@@ -26847,6 +31507,144 @@ exports.default = _default;
     return index;
 });
 //# sourceMappingURL=preact-tap-event-plugin.js.map
+
+/***/ }),
+
+/***/ "Mkgn":
+/***/ (function(module, exports) {
+
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+module.exports = copyArray;
+
+/***/ }),
+
+/***/ "N/m6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getTag = __webpack_require__("tQCT"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var setTag = '[object Set]';
+
+/**
+ * The base implementation of `_.isSet` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+ */
+function baseIsSet(value) {
+  return isObjectLike(value) && getTag(value) == setTag;
+}
+
+module.exports = baseIsSet;
+
+/***/ }),
+
+/***/ "N0V4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isStrictComparable = __webpack_require__("E5qx"),
+    keys = __webpack_require__("HI10");
+
+/**
+ * Gets the property names, values, and compare flags of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the match data of `object`.
+ */
+function getMatchData(object) {
+    var result = keys(object),
+        length = result.length;
+
+    while (length--) {
+        var key = result[length],
+            value = object[key];
+
+        result[length] = [key, value, isStrictComparable(value)];
+    }
+    return result;
+}
+
+module.exports = getMatchData;
+
+/***/ }),
+
+/***/ "N9nb":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mergeClasses = undefined;
+
+var _forOwn2 = __webpack_require__("SC1V");
+
+var _forOwn3 = _interopRequireDefault(_forOwn2);
+
+var _cloneDeep2 = __webpack_require__("Y0zI");
+
+var _cloneDeep3 = _interopRequireDefault(_cloneDeep2);
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var mergeClasses = exports.mergeClasses = function mergeClasses(classes) {
+  var activeNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  var styles = classes.default && (0, _cloneDeep3.default)(classes.default) || {};
+  activeNames.map(function (name) {
+    var toMerge = classes[name];
+    if (toMerge) {
+      (0, _forOwn3.default)(toMerge, function (value, key) {
+        if (!styles[key]) {
+          styles[key] = {};
+        }
+
+        styles[key] = _extends({}, styles[key], toMerge[key]);
+      });
+    }
+
+    return name;
+  });
+  return styles;
+};
+
+exports.default = mergeClasses;
 
 /***/ }),
 
@@ -27001,7 +31799,7 @@ var MDCTopAppBarAdapter = function () {
 // EXTERNAL MODULE: ../node_modules/@material/base/component.js
 var component = __webpack_require__("EQDb");
 
-// EXTERNAL MODULE: ../node_modules/@material/ripple/index.js + 4 modules
+// EXTERNAL MODULE: ../node_modules/@material/ripple/index.js + 3 modules
 var ripple = __webpack_require__("vkNc");
 
 // CONCATENATED MODULE: ../node_modules/@material/top-app-bar/constants.js
@@ -27848,6 +32646,25 @@ var top_app_bar_MDCTopAppBar = function (_MDCComponent) {
 
 /***/ }),
 
+/***/ "Nk5W":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
+
+/***/ }),
+
 /***/ "OWwF":
 /***/ (function(module, exports) {
 
@@ -27866,6 +32683,272 @@ exports.unsupported = unsupported;
 function unsupported(object) {
   return object && typeof object == 'object' && typeof object.length == 'number' && Object.prototype.hasOwnProperty.call(object, 'callee') && !Object.prototype.propertyIsEnumerable.call(object, 'callee') || false;
 };
+
+/***/ }),
+
+/***/ "OgQw":
+/***/ (function(module, exports, __webpack_require__) {
+
+!function (e, t) {
+   true ? module.exports = t(__webpack_require__("eW0v")) : "function" == typeof define && define.amd ? define(["react"], t) : "object" == typeof exports ? exports.FacebookLogin = t(require("react")) : e.FacebookLogin = t(e.react);
+}(this, function (e) {
+  return function (e) {
+    function t(n) {
+      if (o[n]) return o[n].exports;var r = o[n] = { exports: {}, id: n, loaded: !1 };return e[n].call(r.exports, r, r.exports, t), r.loaded = !0, r.exports;
+    }var o = {};return t.m = e, t.c = o, t.p = "", t(0);
+  }([function (e, t, o) {
+    e.exports = o(8);
+  }, function (e, t, o) {
+    e.exports = o(6)();
+  }, function (t, o) {
+    t.exports = e;
+  }, function (e, t) {
+    "use strict";
+    Object.defineProperty(t, "__esModule", { value: !0 }), t["default"] = function (e, t) {
+      return decodeURIComponent(e.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(t).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    };
+  }, function (e, t, o) {
+    "use strict";
+    function n(e) {
+      return e && e.__esModule ? e : { "default": e };
+    }function r(e, t) {
+      if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+    }function i(e, t) {
+      if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !t || "object" != typeof t && "function" != typeof t ? e : t;
+    }function a(e, t) {
+      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);e.prototype = Object.create(t && t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t);
+    }Object.defineProperty(t, "__esModule", { value: !0 });var s = Object.assign || function (e) {
+      for (var t = 1; t < arguments.length; t++) {
+        var o = arguments[t];for (var n in o) {
+          Object.prototype.hasOwnProperty.call(o, n) && (e[n] = o[n]);
+        }
+      }return e;
+    },
+        c = function () {
+      function e(e, t) {
+        for (var o = 0; o < t.length; o++) {
+          var n = t[o];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);
+        }
+      }return function (t, o, n) {
+        return o && e(t.prototype, o), n && e(t, n), t;
+      };
+    }(),
+        u = o(2),
+        l = n(u),
+        f = o(1),
+        p = n(f),
+        d = o(5),
+        b = n(d),
+        y = o(3),
+        h = n(y),
+        g = function g() {
+      var e = !1;try {
+        e = !!(window.navigator && window.navigator.standalone || navigator.userAgent.match("CriOS") || navigator.userAgent.match(/mobile/i));
+      } catch (t) {}return e;
+    },
+        m = function (e) {
+      function t() {
+        var e, o, n, a;r(this, t);for (var c = arguments.length, u = Array(c), l = 0; l < c; l++) {
+          u[l] = arguments[l];
+        }return o = n = i(this, (e = t.__proto__ || Object.getPrototypeOf(t)).call.apply(e, [this].concat(u))), n.state = { isSdkLoaded: !1, isProcessing: !1 }, n.responseApi = function (e) {
+          window.FB.api("/me", { locale: n.props.language, fields: n.props.fields }, function (t) {
+            s(t, e), n.props.callback(t);
+          });
+        }, n.checkLoginState = function (e) {
+          n.setStateIfMounted({ isProcessing: !1 }), e.authResponse ? n.responseApi(e.authResponse) : n.props.onFailure ? n.props.onFailure({ status: e.status }) : n.props.callback({ status: e.status });
+        }, n.checkLoginAfterRefresh = function (e) {
+          "connected" === e.status ? n.checkLoginState(e) : window.FB.login(function (e) {
+            return n.checkLoginState(e);
+          }, !0);
+        }, n.click = function (e) {
+          if (n.state.isSdkLoaded && !n.state.isProcessing && !n.props.isDisabled) {
+            n.setState({ isProcessing: !0 });var t = n.props,
+                o = t.scope,
+                r = t.appId,
+                i = t.onClick,
+                a = t.returnScopes,
+                s = t.responseType,
+                c = t.redirectUri,
+                u = t.disableMobileRedirect,
+                l = t.authType,
+                f = t.state;if ("function" != typeof i || (i(e), !e.defaultPrevented)) {
+              var p = { client_id: r, redirect_uri: c, state: f, return_scopes: a, scope: o, response_type: s, auth_type: l };if (n.props.isMobile && !u) window.location.href = "https://www.facebook.com/dialog/oauth" + (0, b["default"])(p);else {
+                if (!window.FB) return void (n.props.onFailure && n.props.onFailure({ status: "facebookNotLoaded" }));window.FB.login(n.checkLoginState, { scope: o, return_scopes: a, auth_type: p.auth_type });
+              }
+            }
+          }
+        }, a = o, i(n, a);
+      }return a(t, e), c(t, [{ key: "componentDidMount", value: function value() {
+          if (this._isMounted = !0, document.getElementById("facebook-jssdk")) return void this.sdkLoaded();this.setFbAsyncInit(), this.loadSdkAsynchronously();var e = document.getElementById("fb-root");e || (e = document.createElement("div"), e.id = "fb-root", document.body.appendChild(e));
+        } }, { key: "componentWillReceiveProps", value: function value(e) {
+          this.state.isSdkLoaded && e.autoLoad && !this.props.autoLoad && window.FB.getLoginStatus(this.checkLoginAfterRefresh);
+        } }, { key: "componentWillUnmount", value: function value() {
+          this._isMounted = !1;
+        } }, { key: "setStateIfMounted", value: function value(e) {
+          this._isMounted && this.setState(e);
+        } }, { key: "setFbAsyncInit", value: function value() {
+          var e = this,
+              t = this.props,
+              o = t.appId,
+              n = t.xfbml,
+              r = t.cookie,
+              i = t.version,
+              a = t.autoLoad;window.fbAsyncInit = function () {
+            window.FB.init({ version: "v" + i, appId: o, xfbml: n, cookie: r }), e.setStateIfMounted({ isSdkLoaded: !0 }), (a || e.isRedirectedFromFb()) && window.FB.getLoginStatus(e.checkLoginAfterRefresh);
+          };
+        } }, { key: "isRedirectedFromFb", value: function value() {
+          var e = window.location.search;return (0, h["default"])(e, "code") || (0, h["default"])(e, "granted_scopes");
+        } }, { key: "sdkLoaded", value: function value() {
+          this.setState({ isSdkLoaded: !0 });
+        } }, { key: "loadSdkAsynchronously", value: function value() {
+          var e = this.props.language;!function (t, o, n) {
+            var r = t.getElementsByTagName(o)[0],
+                i = r,
+                a = r;t.getElementById(n) || (a = t.createElement(o), a.id = n, a.src = "https://connect.facebook.net/" + e + "/sdk.js", i.parentNode.insertBefore(a, i));
+          }(document, "script", "facebook-jssdk");
+        } }, { key: "render", value: function o() {
+          var o = this.props.render;if (!o) throw new Error("ReactFacebookLogin requires a render prop to render");var e = { onClick: this.click, isDisabled: !!this.props.isDisabled, isProcessing: this.state.isProcessing, isSdkLoaded: this.state.isSdkLoaded };return this.props.render(e);
+        } }]), t;
+    }(l["default"].Component);m.propTypes = { isDisabled: p["default"].bool, callback: p["default"].func.isRequired, appId: p["default"].string.isRequired, xfbml: p["default"].bool, cookie: p["default"].bool, authType: p["default"].string, scope: p["default"].string, state: p["default"].string, responseType: p["default"].string, returnScopes: p["default"].bool, redirectUri: p["default"].string, autoLoad: p["default"].bool, disableMobileRedirect: p["default"].bool, isMobile: p["default"].bool, fields: p["default"].string, version: p["default"].string, language: p["default"].string, onClick: p["default"].func, onFailure: p["default"].func, render: p["default"].func.isRequired }, m.defaultProps = { redirectUri: "undefined" != typeof window ? window.location.href : "/", scope: "public_profile,email", returnScopes: !1, xfbml: !1, cookie: !1, authType: "", fields: "name", version: "2.3", language: "en_US", disableMobileRedirect: !1, isMobile: g(), onFailure: null, state: "facebookdirect", responseType: "code" }, t["default"] = m;
+  }, function (e, t) {
+    "use strict";
+    Object.defineProperty(t, "__esModule", { value: !0 }), t["default"] = function (e) {
+      return "?" + Object.keys(e).map(function (t) {
+        return t + "=" + encodeURIComponent(e[t]);
+      }).join("&");
+    };
+  }, function (e, t, o) {
+    "use strict";
+    function n() {}var r = o(7);e.exports = function () {
+      function e(e, t, o, n, i, a) {
+        if (a !== r) {
+          var s = new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw s.name = "Invariant Violation", s;
+        }
+      }function t() {
+        return e;
+      }e.isRequired = e;var o = { array: e, bool: e, func: e, number: e, object: e, string: e, symbol: e, any: e, arrayOf: t, element: e, instanceOf: t, node: e, objectOf: t, oneOf: t, oneOfType: t, shape: t, exact: t };return o.checkPropTypes = n, o.PropTypes = o, o;
+    };
+  }, function (e, t) {
+    "use strict";
+    var o = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";e.exports = o;
+  }, function (e, t, o) {
+    "use strict";
+    function n(e) {
+      return e && e.__esModule ? e : { "default": e };
+    }function r(e, t) {
+      if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+    }function i(e, t) {
+      if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !t || "object" != typeof t && "function" != typeof t ? e : t;
+    }function a(e, t) {
+      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);e.prototype = Object.create(t && t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t);
+    }Object.defineProperty(t, "__esModule", { value: !0 });var s = Object.assign || function (e) {
+      for (var t = 1; t < arguments.length; t++) {
+        var o = arguments[t];for (var n in o) {
+          Object.prototype.hasOwnProperty.call(o, n) && (e[n] = o[n]);
+        }
+      }return e;
+    },
+        c = function () {
+      function e(e, t) {
+        for (var o = 0; o < t.length; o++) {
+          var n = t[o];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);
+        }
+      }return function (t, o, n) {
+        return o && e(t.prototype, o), n && e(t, n), t;
+      };
+    }(),
+        u = o(2),
+        l = n(u),
+        f = o(1),
+        p = n(f),
+        d = o(9),
+        b = n(d),
+        y = o(4),
+        h = n(y),
+        g = function g(e) {
+      return ["button", "input", "select", "textarea", "optgroup", "option", "fieldset"].indexOf((e + "").toLowerCase()) >= 0;
+    },
+        m = function (e) {
+      function t() {
+        return r(this, t), i(this, (t.__proto__ || Object.getPrototypeOf(t)).apply(this, arguments));
+      }return a(t, e), c(t, [{ key: "style", value: function value() {
+          var e = this.constructor.defaultProps.cssClass;return this.props.cssClass === e && l["default"].createElement("style", { dangerouslySetInnerHTML: { __html: b["default"] } });
+        } }, { key: "containerStyle", value: function value(e) {
+          var t = e.isProcessing,
+              o = e.isSdkLoaded,
+              n = e.isDisabled,
+              r = { transition: "opacity 0.5s" };return (t || !o || n) && (r.opacity = .6), s(r, this.props.containerStyle);
+        } }, { key: "renderOwnButton", value: function value(e) {
+          var t = this.props,
+              o = t.cssClass,
+              n = t.size,
+              r = t.icon,
+              i = t.textButton,
+              a = t.typeButton,
+              c = t.buttonStyle,
+              u = e.onClick,
+              f = e.isDisabled,
+              p = "string" == typeof r,
+              d = {};return f && g(this.props.tag) && (d.disabled = !0), l["default"].createElement("span", { style: this.containerStyle(e) }, p && l["default"].createElement("link", { rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" }), l["default"].createElement(this.props.tag, s({ type: a, className: o + " " + n, style: c, onClick: u }, d), r && p && l["default"].createElement("i", { className: "fa " + r }), r && !p && r, i), this.style());
+        } }, { key: "render", value: function value() {
+          var e = this;return l["default"].createElement(h["default"], s({}, this.props, { render: function render(t) {
+              return e.renderOwnButton(t);
+            } }));
+        } }]), t;
+    }(l["default"].Component);m.propTypes = { textButton: p["default"].string, typeButton: p["default"].string, size: p["default"].string, cssClass: p["default"].string, icon: p["default"].any, containerStyle: p["default"].object, buttonStyle: p["default"].object, tag: p["default"].oneOfType([p["default"].node, p["default"].func]) }, m.defaultProps = { textButton: "Login with Facebook", typeButton: "button", size: "metro", fields: "name", cssClass: "kep-login-facebook", tag: "button" }, t["default"] = m;
+  }, function (e, t, o) {
+    t = e.exports = o(10)(), t.push([e.id, ".kep-login-facebook{font-family:Helvetica,sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;color:#fff;cursor:pointer;display:inline-block;font-size:calc(.27548vw + 12.71074px);text-decoration:none;text-transform:uppercase;transition:background-color .3s,border-color .3s;background-color:#4c69ba;border:calc(.06887vw + .67769px) solid #4c69ba;padding:calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px)}.kep-login-facebook.small{padding:calc(.34435vw + 3.38843px) calc(.34435vw + 8.38843px)}.kep-login-facebook.medium{padding:calc(.34435vw + 8.38843px) calc(.34435vw + 13.38843px)}.kep-login-facebook.metro{border-radius:0}.kep-login-facebook .fa{margin-right:calc(.34435vw + 3.38843px)}", ""]), t.locals = { "kep-login-facebook": "kep-login-facebook", small: "small", medium: "medium", metro: "metro", fa: "fa" };
+  }, function (e, t) {
+    e.exports = function () {
+      var e = [];return e.toString = function () {
+        for (var e = [], t = 0; t < this.length; t++) {
+          var o = this[t];o[2] ? e.push("@media " + o[2] + "{" + o[1] + "}") : e.push(o[1]);
+        }return e.join("");
+      }, e.i = function (t, o) {
+        "string" == typeof t && (t = [[null, t, ""]]);for (var n = {}, r = 0; r < this.length; r++) {
+          var i = this[r][0];"number" == typeof i && (n[i] = !0);
+        }for (r = 0; r < t.length; r++) {
+          var a = t[r];"number" == typeof a[0] && n[a[0]] || (o && !a[2] ? a[2] = o : o && (a[2] = "(" + a[2] + ") and (" + o + ")"), e.push(a));
+        }
+      }, e;
+    };
+  }]);
+});
+
+/***/ }),
+
+/***/ "OuyB":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
 
 /***/ }),
 
@@ -27978,10 +33061,91 @@ module.exports = _createClass;
 
 /***/ }),
 
+/***/ "PBPf":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__("j3D9");
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = function () {
+  try {
+    // Use `util.types` for Node.js 10+.
+    var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+    if (types) {
+      return types;
+    }
+
+    // Legacy `process.binding('util')` for Node.js < 10.
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}();
+
+module.exports = nodeUtil;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+
+/***/ }),
+
 /***/ "PIA1":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "PYZb":
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+/***/ }),
+
+/***/ "PnXa":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function (value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
 
 /***/ }),
 
@@ -28927,10 +34091,71 @@ autoRun();
 
 /***/ }),
 
-/***/ "RYBc":
+/***/ "R62e":
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__("LIpy"),
+    isArrayLike = __webpack_require__("LN6c"),
+    isIndex = __webpack_require__("A+gr"),
+    isObject = __webpack_require__("u9vI");
+
+/**
+ * Checks if the given arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+ *  else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number' ? isArrayLike(object) && isIndex(index, object.length) : type == 'string' && index in object) {
+    return eq(object[index], value);
+  }
+  return false;
+}
+
+module.exports = isIterateeCall;
+
+/***/ }),
+
+/***/ "R99g":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hXqL","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__2n0gV","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__35lIu","mdc-ripple-upgraded":"mdc-ripple-upgraded__9EL6t","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__RrBSg","mdc-top-app-bar__row":"mdc-top-app-bar__row__3_1pV","mdc-top-app-bar__section":"mdc-top-app-bar__section__1T77V","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__3gN3n","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__2ys-q","mdc-top-app-bar__title":"mdc-top-app-bar__title__2kTtf","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__GaF0B","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__1hyX2","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__2ESUS","mdc-top-app-bar--short":"mdc-top-app-bar--short__e5Xrl","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__uOikP","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3-_8d","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__3DPij","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__2smUC","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1QYhd","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1khmo","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3iLPQ","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__2mwSI","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__31ySe","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__2rVhl","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__3m6sI","logo":"logo__1TZyF","topappbar":"topappbar__3IqGU","c_btn":"c_btn__3cgip","footer":"footer__3_VRr","footer_row":"footer_row__25IPl"};
+
+/***/ }),
+
+/***/ "RQ0L":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isSymbol = __webpack_require__("bgO7");
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+
+module.exports = toKey;
 
 /***/ }),
 
@@ -29241,6 +34466,48 @@ module.exports = {
 
 /***/ }),
 
+/***/ "SC1V":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseForOwn = __webpack_require__("xqjy"),
+    castFunction = __webpack_require__("tAcL");
+
+/**
+ * Iterates over own enumerable string keyed properties of an object and
+ * invokes `iteratee` for each property. The iteratee is invoked with three
+ * arguments: (value, key, object). Iteratee functions may exit iteration
+ * early by explicitly returning `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.3.0
+ * @category Object
+ * @param {Object} object The object to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ * @see _.forOwnRight
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.forOwn(new Foo, function(value, key) {
+ *   console.log(key);
+ * });
+ * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+ */
+function forOwn(object, iteratee) {
+  return object && baseForOwn(object, castFunction(iteratee));
+}
+
+module.exports = forOwn;
+
+/***/ }),
+
 /***/ "SGkT":
 /***/ (function(module, exports) {
 
@@ -29291,6 +34558,35 @@ function makeDomController(domElement, options) {
     domElement.style.transform = 'matrix(' + transform.scale + ', 0, 0, ' + transform.scale + ', ' + transform.x + ', ' + transform.y + ')';
   }
 }
+
+/***/ }),
+
+/***/ "SfCF":
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.some` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+module.exports = arraySome;
 
 /***/ }),
 
@@ -29427,6 +34723,80 @@ function createIsUnavailable(elementDocument) {
 
 /***/ }),
 
+/***/ "Tnr5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__("p/0c"),
+    isKey = __webpack_require__("2ibm"),
+    stringToPath = __webpack_require__("jXGU"),
+    toString = __webpack_require__("A8RV");
+
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {Array} Returns the cast property path array.
+ */
+function castPath(value, object) {
+  if (isArray(value)) {
+    return value;
+  }
+  return isKey(value, object) ? [value] : stringToPath(toString(value));
+}
+
+module.exports = castPath;
+
+/***/ }),
+
+/***/ "TpjK":
+/***/ (function(module, exports) {
+
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+
+  this.size = data.size;
+  return result;
+}
+
+module.exports = stackDelete;
+
+/***/ }),
+
+/***/ "Tu38":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Hue = __webpack_require__("K47Y");
+
+var _Hue2 = _interopRequireDefault(_Hue);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = _Hue2.default;
+
+/***/ }),
+
 /***/ "UJE0":
 /***/ (function(module, exports) {
 
@@ -29438,6 +34808,62 @@ function _getPrototypeOf(o) {
 }
 
 module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "UJWv":
+/***/ (function(module, exports, __webpack_require__) {
+
+var constant = __webpack_require__("WMV8"),
+    defineProperty = __webpack_require__("kAdy"),
+    identity = __webpack_require__("Jpv1");
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function (func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+module.exports = baseSetToString;
+
+/***/ }),
+
+/***/ "UY82":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("ZC1a");
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+module.exports = mapCacheSet;
 
 /***/ }),
 
@@ -29460,10 +34886,3783 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
+/***/ "VcCu":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: ../node_modules/@material/base/component.js
+var component = __webpack_require__("EQDb");
+
+// EXTERNAL MODULE: ../node_modules/@material/ripple/index.js + 3 modules
+var ripple = __webpack_require__("vkNc");
+
+// EXTERNAL MODULE: ../node_modules/@material/ripple/util.js
+var util = __webpack_require__("joOv");
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/constants.js
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var strings = {
+  ARIA_CONTROLS: 'aria-controls',
+  INPUT_SELECTOR: '.mdc-text-field__input',
+  LABEL_SELECTOR: '.mdc-floating-label',
+  ICON_SELECTOR: '.mdc-text-field__icon',
+  OUTLINE_SELECTOR: '.mdc-notched-outline',
+  LINE_RIPPLE_SELECTOR: '.mdc-line-ripple'
+};
+
+/** @enum {string} */
+var cssClasses = {
+  ROOT: 'mdc-text-field',
+  DISABLED: 'mdc-text-field--disabled',
+  DENSE: 'mdc-text-field--dense',
+  FOCUSED: 'mdc-text-field--focused',
+  INVALID: 'mdc-text-field--invalid',
+  TEXTAREA: 'mdc-text-field--textarea',
+  OUTLINED: 'mdc-text-field--outlined'
+};
+
+/** @enum {number} */
+var numbers = {
+  LABEL_SCALE: 0.75,
+  DENSE_LABEL_SCALE: 0.923
+};
+
+// whitelist based off of https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+// under section: `Validation-related attributes`
+var VALIDATION_ATTR_WHITELIST = ['pattern', 'min', 'max', 'required', 'step', 'minlength', 'maxlength'];
+
+// Label should always float for these types as they show some UI even if value is empty.
+var ALWAYS_FLOAT_TYPES = ['color', 'date', 'datetime-local', 'month', 'range', 'time', 'week'];
+
+
+// EXTERNAL MODULE: ../node_modules/@material/base/foundation.js
+var base_foundation = __webpack_require__("uJAj");
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/helper-text/adapter.js
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Text Field Helper Text.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the TextField helper text into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCTextFieldHelperTextAdapter = function () {
+  function MDCTextFieldHelperTextAdapter() {
+    _classCallCheck(this, MDCTextFieldHelperTextAdapter);
+  }
+
+  /**
+   * Adds a class to the helper text element.
+   * @param {string} className
+   */
+  MDCTextFieldHelperTextAdapter.prototype.addClass = function addClass(className) {};
+
+  /**
+   * Removes a class from the helper text element.
+   * @param {string} className
+   */
+
+
+  MDCTextFieldHelperTextAdapter.prototype.removeClass = function removeClass(className) {};
+
+  /**
+   * Returns whether or not the helper text element contains the given class.
+   * @param {string} className
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldHelperTextAdapter.prototype.hasClass = function hasClass(className) {};
+
+  /**
+   * Sets an attribute with a given value on the helper text element.
+   * @param {string} attr
+   * @param {string} value
+   */
+
+
+  MDCTextFieldHelperTextAdapter.prototype.setAttr = function setAttr(attr, value) {};
+
+  /**
+   * Removes an attribute from the helper text element.
+   * @param {string} attr
+   */
+
+
+  MDCTextFieldHelperTextAdapter.prototype.removeAttr = function removeAttr(attr) {};
+
+  /**
+   * Sets the text content for the helper text element.
+   * @param {string} content
+   */
+
+
+  MDCTextFieldHelperTextAdapter.prototype.setContent = function setContent(content) {};
+
+  return MDCTextFieldHelperTextAdapter;
+}();
+
+/* harmony default export */ var helper_text_adapter = (MDCTextFieldHelperTextAdapter);
+// CONCATENATED MODULE: ../node_modules/@material/textfield/helper-text/constants.js
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var constants_strings = {
+  ARIA_HIDDEN: 'aria-hidden',
+  ROLE: 'role'
+};
+
+/** @enum {string} */
+var constants_cssClasses = {
+  HELPER_TEXT_PERSISTENT: 'mdc-text-field-helper-text--persistent',
+  HELPER_TEXT_VALIDATION_MSG: 'mdc-text-field-helper-text--validation-msg'
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/helper-text/foundation.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCTextFieldHelperTextAdapter>}
+ * @final
+ */
+
+var foundation_MDCTextFieldHelperTextFoundation = function (_MDCFoundation) {
+  _inherits(MDCTextFieldHelperTextFoundation, _MDCFoundation);
+
+  _createClass(MDCTextFieldHelperTextFoundation, null, [{
+    key: 'cssClasses',
+
+    /** @return enum {string} */
+    get: function get() {
+      return constants_cssClasses;
+    }
+
+    /** @return enum {string} */
+
+  }, {
+    key: 'strings',
+    get: function get() {
+      return constants_strings;
+    }
+
+    /**
+     * {@see MDCTextFieldHelperTextAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCTextFieldHelperTextAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCTextFieldHelperTextAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          hasClass: function hasClass() {},
+          setAttr: function setAttr() {},
+          removeAttr: function removeAttr() {},
+          setContent: function setContent() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCTextFieldHelperTextAdapter} adapter
+     */
+
+  }]);
+
+  function MDCTextFieldHelperTextFoundation(adapter) {
+    foundation__classCallCheck(this, MDCTextFieldHelperTextFoundation);
+
+    return _possibleConstructorReturn(this, _MDCFoundation.call(this, _extends(MDCTextFieldHelperTextFoundation.defaultAdapter, adapter)));
+  }
+
+  /**
+   * Sets the content of the helper text field.
+   * @param {string} content
+   */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.setContent = function setContent(content) {
+    this.adapter_.setContent(content);
+  };
+
+  /** @param {boolean} isPersistent Sets the persistency of the helper text. */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.setPersistent = function setPersistent(isPersistent) {
+    if (isPersistent) {
+      this.adapter_.addClass(constants_cssClasses.HELPER_TEXT_PERSISTENT);
+    } else {
+      this.adapter_.removeClass(constants_cssClasses.HELPER_TEXT_PERSISTENT);
+    }
+  };
+
+  /**
+   * @param {boolean} isValidation True to make the helper text act as an
+   *   error validation message.
+   */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.setValidation = function setValidation(isValidation) {
+    if (isValidation) {
+      this.adapter_.addClass(constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
+    } else {
+      this.adapter_.removeClass(constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
+    }
+  };
+
+  /** Makes the helper text visible to the screen reader. */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.showToScreenReader = function showToScreenReader() {
+    this.adapter_.removeAttr(constants_strings.ARIA_HIDDEN);
+  };
+
+  /**
+   * Sets the validity of the helper text based on the input validity.
+   * @param {boolean} inputIsValid
+   */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.setValidity = function setValidity(inputIsValid) {
+    var helperTextIsPersistent = this.adapter_.hasClass(constants_cssClasses.HELPER_TEXT_PERSISTENT);
+    var helperTextIsValidationMsg = this.adapter_.hasClass(constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
+    var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
+
+    if (validationMsgNeedsDisplay) {
+      this.adapter_.setAttr(constants_strings.ROLE, 'alert');
+    } else {
+      this.adapter_.removeAttr(constants_strings.ROLE);
+    }
+
+    if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
+      this.hide_();
+    }
+  };
+
+  /**
+   * Hides the help text from screen readers.
+   * @private
+   */
+
+
+  MDCTextFieldHelperTextFoundation.prototype.hide_ = function hide_() {
+    this.adapter_.setAttr(constants_strings.ARIA_HIDDEN, 'true');
+  };
+
+  return MDCTextFieldHelperTextFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var helper_text_foundation = (foundation_MDCTextFieldHelperTextFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/textfield/icon/adapter.js
+function adapter__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Text Field Icon.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the text field icon into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCTextFieldIconAdapter = function () {
+  function MDCTextFieldIconAdapter() {
+    adapter__classCallCheck(this, MDCTextFieldIconAdapter);
+  }
+
+  /**
+   * Gets the value of an attribute on the icon element.
+   * @param {string} attr
+   * @return {string}
+   */
+  MDCTextFieldIconAdapter.prototype.getAttr = function getAttr(attr) {};
+
+  /**
+   * Sets an attribute on the icon element.
+   * @param {string} attr
+   * @param {string} value
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.setAttr = function setAttr(attr, value) {};
+
+  /**
+   * Removes an attribute from the icon element.
+   * @param {string} attr
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.removeAttr = function removeAttr(attr) {};
+
+  /**
+   * Sets the text content of the icon element.
+   * @param {string} content
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.setContent = function setContent(content) {};
+
+  /**
+   * Registers an event listener on the icon element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.registerInteractionHandler = function registerInteractionHandler(evtType, handler) {};
+
+  /**
+   * Deregisters an event listener on the icon element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.deregisterInteractionHandler = function deregisterInteractionHandler(evtType, handler) {};
+
+  /**
+   * Emits a custom event "MDCTextField:icon" denoting a user has clicked the icon.
+   */
+
+
+  MDCTextFieldIconAdapter.prototype.notifyIconAction = function notifyIconAction() {};
+
+  return MDCTextFieldIconAdapter;
+}();
+
+/* harmony default export */ var icon_adapter = (MDCTextFieldIconAdapter);
+// CONCATENATED MODULE: ../node_modules/@material/textfield/icon/constants.js
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var icon_constants_strings = {
+  ICON_EVENT: 'MDCTextField:icon',
+  ICON_ROLE: 'button'
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/icon/foundation.js
+var foundation__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var foundation__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function icon_foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function foundation__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function foundation__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCTextFieldIconAdapter>}
+ * @final
+ */
+
+var foundation_MDCTextFieldIconFoundation = function (_MDCFoundation) {
+  foundation__inherits(MDCTextFieldIconFoundation, _MDCFoundation);
+
+  foundation__createClass(MDCTextFieldIconFoundation, null, [{
+    key: 'strings',
+
+    /** @return enum {string} */
+    get: function get() {
+      return icon_constants_strings;
+    }
+
+    /**
+     * {@see MDCTextFieldIconAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCTextFieldIconAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCTextFieldIconAdapter} */{
+          getAttr: function getAttr() {},
+          setAttr: function setAttr() {},
+          removeAttr: function removeAttr() {},
+          setContent: function setContent() {},
+          registerInteractionHandler: function registerInteractionHandler() {},
+          deregisterInteractionHandler: function deregisterInteractionHandler() {},
+          notifyIconAction: function notifyIconAction() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCTextFieldIconAdapter} adapter
+     */
+
+  }]);
+
+  function MDCTextFieldIconFoundation(adapter) {
+    icon_foundation__classCallCheck(this, MDCTextFieldIconFoundation);
+
+    /** @private {string?} */
+    var _this = foundation__possibleConstructorReturn(this, _MDCFoundation.call(this, foundation__extends(MDCTextFieldIconFoundation.defaultAdapter, adapter)));
+
+    _this.savedTabIndex_ = null;
+
+    /** @private {function(!Event): undefined} */
+    _this.interactionHandler_ = function (evt) {
+      return _this.handleInteraction(evt);
+    };
+    return _this;
+  }
+
+  MDCTextFieldIconFoundation.prototype.init = function init() {
+    var _this2 = this;
+
+    this.savedTabIndex_ = this.adapter_.getAttr('tabindex');
+
+    ['click', 'keydown'].forEach(function (evtType) {
+      _this2.adapter_.registerInteractionHandler(evtType, _this2.interactionHandler_);
+    });
+  };
+
+  MDCTextFieldIconFoundation.prototype.destroy = function destroy() {
+    var _this3 = this;
+
+    ['click', 'keydown'].forEach(function (evtType) {
+      _this3.adapter_.deregisterInteractionHandler(evtType, _this3.interactionHandler_);
+    });
+  };
+
+  /** @param {boolean} disabled */
+
+
+  MDCTextFieldIconFoundation.prototype.setDisabled = function setDisabled(disabled) {
+    if (!this.savedTabIndex_) {
+      return;
+    }
+
+    if (disabled) {
+      this.adapter_.setAttr('tabindex', '-1');
+      this.adapter_.removeAttr('role');
+    } else {
+      this.adapter_.setAttr('tabindex', this.savedTabIndex_);
+      this.adapter_.setAttr('role', icon_constants_strings.ICON_ROLE);
+    }
+  };
+
+  /** @param {string} label */
+
+
+  MDCTextFieldIconFoundation.prototype.setAriaLabel = function setAriaLabel(label) {
+    this.adapter_.setAttr('aria-label', label);
+  };
+
+  /** @param {string} content */
+
+
+  MDCTextFieldIconFoundation.prototype.setContent = function setContent(content) {
+    this.adapter_.setContent(content);
+  };
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+
+
+  MDCTextFieldIconFoundation.prototype.handleInteraction = function handleInteraction(evt) {
+    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
+      this.adapter_.notifyIconAction();
+    }
+  };
+
+  return MDCTextFieldIconFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var icon_foundation = (foundation_MDCTextFieldIconFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/textfield/adapter.js
+function textfield_adapter__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint-disable no-unused-vars */
+
+
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * @typedef {{
+ *   value: string,
+ *   disabled: boolean,
+ *   badInput: boolean,
+ *   validity: {
+ *     badInput: boolean,
+ *     valid: boolean,
+ *   },
+ * }}
+ */
+var NativeInputType = void 0;
+
+/**
+ * @typedef {{
+ *   helperText: (!MDCTextFieldHelperTextFoundation|undefined),
+ *   icon: (!MDCTextFieldIconFoundation|undefined),
+ * }}
+ */
+var FoundationMapType = void 0;
+
+/**
+ * Adapter for MDC Text Field.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the Text Field into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+
+var MDCTextFieldAdapter = function () {
+  function MDCTextFieldAdapter() {
+    textfield_adapter__classCallCheck(this, MDCTextFieldAdapter);
+  }
+
+  /**
+   * Adds a class to the root Element.
+   * @param {string} className
+   */
+  MDCTextFieldAdapter.prototype.addClass = function addClass(className) {};
+
+  /**
+   * Removes a class from the root Element.
+   * @param {string} className
+   */
+
+
+  MDCTextFieldAdapter.prototype.removeClass = function removeClass(className) {};
+
+  /**
+   * Returns true if the root element contains the given class name.
+   * @param {string} className
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldAdapter.prototype.hasClass = function hasClass(className) {};
+
+  /**
+   * Registers an event handler on the root element for a given event.
+   * @param {string} type
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldAdapter.prototype.registerTextFieldInteractionHandler = function registerTextFieldInteractionHandler(type, handler) {};
+
+  /**
+   * Deregisters an event handler on the root element for a given event.
+   * @param {string} type
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldAdapter.prototype.deregisterTextFieldInteractionHandler = function deregisterTextFieldInteractionHandler(type, handler) {};
+
+  /**
+   * Registers an event listener on the native input element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldAdapter.prototype.registerInputInteractionHandler = function registerInputInteractionHandler(evtType, handler) {};
+
+  /**
+   * Deregisters an event listener on the native input element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCTextFieldAdapter.prototype.deregisterInputInteractionHandler = function deregisterInputInteractionHandler(evtType, handler) {};
+
+  /**
+   * Registers a validation attribute change listener on the input element.
+   * Handler accepts list of attribute names.
+   * @param {function(!Array<string>): undefined} handler
+   * @return {!MutationObserver}
+   */
+
+
+  MDCTextFieldAdapter.prototype.registerValidationAttributeChangeHandler = function registerValidationAttributeChangeHandler(handler) {};
+
+  /**
+   * Disconnects a validation attribute observer on the input element.
+   * @param {!MutationObserver} observer
+   */
+
+
+  MDCTextFieldAdapter.prototype.deregisterValidationAttributeChangeHandler = function deregisterValidationAttributeChangeHandler(observer) {};
+
+  /**
+   * Returns an object representing the native text input element, with a
+   * similar API shape. The object returned should include the value, disabled
+   * and badInput properties, as well as the checkValidity() function. We never
+   * alter the value within our code, however we do update the disabled
+   * property, so if you choose to duck-type the return value for this method
+   * in your implementation it's important to keep this in mind. Also note that
+   * this method can return null, which the foundation will handle gracefully.
+   * @return {?Element|?NativeInputType}
+   */
+
+
+  MDCTextFieldAdapter.prototype.getNativeInput = function getNativeInput() {};
+
+  /**
+   * Returns true if the textfield is focused.
+   * We achieve this via `document.activeElement === this.root_`.
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldAdapter.prototype.isFocused = function isFocused() {};
+
+  /**
+   * Returns true if the direction of the root element is set to RTL.
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldAdapter.prototype.isRtl = function isRtl() {};
+
+  /**
+   * Activates the line ripple.
+   */
+
+
+  MDCTextFieldAdapter.prototype.activateLineRipple = function activateLineRipple() {};
+
+  /**
+   * Deactivates the line ripple.
+   */
+
+
+  MDCTextFieldAdapter.prototype.deactivateLineRipple = function deactivateLineRipple() {};
+
+  /**
+   * Sets the transform origin of the line ripple.
+   * @param {number} normalizedX
+   */
+
+
+  MDCTextFieldAdapter.prototype.setLineRippleTransformOrigin = function setLineRippleTransformOrigin(normalizedX) {};
+
+  /**
+   * Only implement if label exists.
+   * Shakes label if shouldShake is true.
+   * @param {boolean} shouldShake
+   */
+
+
+  MDCTextFieldAdapter.prototype.shakeLabel = function shakeLabel(shouldShake) {};
+
+  /**
+   * Only implement if label exists.
+   * Floats the label above the input element if shouldFloat is true.
+   * @param {boolean} shouldFloat
+   */
+
+
+  MDCTextFieldAdapter.prototype.floatLabel = function floatLabel(shouldFloat) {};
+
+  /**
+   * Returns true if label element exists, false if it doesn't.
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldAdapter.prototype.hasLabel = function hasLabel() {};
+
+  /**
+   * Only implement if label exists.
+   * Returns width of label in pixels.
+   * @return {number}
+   */
+
+
+  MDCTextFieldAdapter.prototype.getLabelWidth = function getLabelWidth() {};
+
+  /**
+   * Returns true if outline element exists, false if it doesn't.
+   * @return {boolean}
+   */
+
+
+  MDCTextFieldAdapter.prototype.hasOutline = function hasOutline() {};
+
+  /**
+   * Only implement if outline element exists.
+   * Updates SVG Path and outline element based on the
+   * label element width and RTL context.
+   * @param {number} labelWidth
+   * @param {boolean=} isRtl
+   */
+
+
+  MDCTextFieldAdapter.prototype.notchOutline = function notchOutline(labelWidth, isRtl) {};
+
+  /**
+   * Only implement if outline element exists.
+   * Closes notch in outline element.
+   */
+
+
+  MDCTextFieldAdapter.prototype.closeOutline = function closeOutline() {};
+
+  return MDCTextFieldAdapter;
+}();
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/foundation.js
+var textfield_foundation__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var textfield_foundation__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function textfield_foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function textfield_foundation__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function textfield_foundation__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* eslint-disable no-unused-vars */
+
+
+/* eslint-enable no-unused-vars */
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCTextFieldAdapter>}
+ * @final
+ */
+
+var foundation_MDCTextFieldFoundation = function (_MDCFoundation) {
+  textfield_foundation__inherits(MDCTextFieldFoundation, _MDCFoundation);
+
+  textfield_foundation__createClass(MDCTextFieldFoundation, [{
+    key: 'shouldShake',
+
+
+    /** @return {boolean} */
+    get: function get() {
+      return !this.isValid() && !this.isFocused_ && !!this.getValue();
+    }
+
+    /**
+     * @return {boolean}
+     * @private
+     */
+
+  }, {
+    key: 'shouldAlwaysFloat_',
+    get: function get() {
+      var type = this.getNativeInput_().type;
+      return ALWAYS_FLOAT_TYPES.indexOf(type) >= 0;
+    }
+
+    /** @return {boolean} */
+
+  }, {
+    key: 'shouldFloat',
+    get: function get() {
+      return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() || this.isBadInput_();
+    }
+
+    /**
+     * {@see MDCTextFieldAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCTextFieldAdapter}
+     */
+
+  }], [{
+    key: 'cssClasses',
+
+    /** @return enum {string} */
+    get: function get() {
+      return cssClasses;
+    }
+
+    /** @return enum {string} */
+
+  }, {
+    key: 'strings',
+    get: function get() {
+      return strings;
+    }
+
+    /** @return enum {string} */
+
+  }, {
+    key: 'numbers',
+    get: function get() {
+      return numbers;
+    }
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCTextFieldAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          hasClass: function hasClass() {},
+          registerTextFieldInteractionHandler: function registerTextFieldInteractionHandler() {},
+          deregisterTextFieldInteractionHandler: function deregisterTextFieldInteractionHandler() {},
+          registerInputInteractionHandler: function registerInputInteractionHandler() {},
+          deregisterInputInteractionHandler: function deregisterInputInteractionHandler() {},
+          registerValidationAttributeChangeHandler: function registerValidationAttributeChangeHandler() {},
+          deregisterValidationAttributeChangeHandler: function deregisterValidationAttributeChangeHandler() {},
+          getNativeInput: function getNativeInput() {},
+          isFocused: function isFocused() {},
+          isRtl: function isRtl() {},
+          activateLineRipple: function activateLineRipple() {},
+          deactivateLineRipple: function deactivateLineRipple() {},
+          setLineRippleTransformOrigin: function setLineRippleTransformOrigin() {},
+          shakeLabel: function shakeLabel() {},
+          floatLabel: function floatLabel() {},
+          hasLabel: function hasLabel() {},
+          getLabelWidth: function getLabelWidth() {},
+          hasOutline: function hasOutline() {},
+          notchOutline: function notchOutline() {},
+          closeOutline: function closeOutline() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCTextFieldAdapter} adapter
+     * @param {!FoundationMapType=} foundationMap Map from subcomponent names to their subfoundations.
+     */
+
+  }]);
+
+  function MDCTextFieldFoundation(adapter) {
+    var foundationMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : /** @type {!FoundationMapType} */{};
+
+    textfield_foundation__classCallCheck(this, MDCTextFieldFoundation);
+
+    /** @type {!MDCTextFieldHelperTextFoundation|undefined} */
+    var _this = textfield_foundation__possibleConstructorReturn(this, _MDCFoundation.call(this, textfield_foundation__extends(MDCTextFieldFoundation.defaultAdapter, adapter)));
+
+    _this.helperText_ = foundationMap.helperText;
+    /** @type {!MDCTextFieldIconFoundation|undefined} */
+    _this.icon_ = foundationMap.icon;
+
+    /** @private {boolean} */
+    _this.isFocused_ = false;
+    /** @private {boolean} */
+    _this.receivedUserInput_ = false;
+    /** @private {boolean} */
+    _this.useCustomValidityChecking_ = false;
+    /** @private {boolean} */
+    _this.isValid_ = true;
+
+    /** @private {boolean} */
+    _this.useNativeValidation_ = true;
+
+    /** @private {function(): undefined} */
+    _this.inputFocusHandler_ = function () {
+      return _this.activateFocus();
+    };
+    /** @private {function(): undefined} */
+    _this.inputBlurHandler_ = function () {
+      return _this.deactivateFocus();
+    };
+    /** @private {function(): undefined} */
+    _this.inputInputHandler_ = function () {
+      return _this.autoCompleteFocus();
+    };
+    /** @private {function(!Event): undefined} */
+    _this.setPointerXOffset_ = function (evt) {
+      return _this.setTransformOrigin(evt);
+    };
+    /** @private {function(!Event): undefined} */
+    _this.textFieldInteractionHandler_ = function () {
+      return _this.handleTextFieldInteraction();
+    };
+    /** @private {function(!Array): undefined} */
+    _this.validationAttributeChangeHandler_ = function (attributesList) {
+      return _this.handleValidationAttributeChange(attributesList);
+    };
+
+    /** @private {!MutationObserver} */
+    _this.validationObserver_;
+    return _this;
+  }
+
+  MDCTextFieldFoundation.prototype.init = function init() {
+    var _this2 = this;
+
+    if (this.adapter_.isFocused()) {
+      this.inputFocusHandler_();
+    } else if (this.adapter_.hasLabel() && this.shouldFloat) {
+      this.notchOutline(true);
+      this.adapter_.floatLabel(true);
+    }
+
+    this.adapter_.registerInputInteractionHandler('focus', this.inputFocusHandler_);
+    this.adapter_.registerInputInteractionHandler('blur', this.inputBlurHandler_);
+    this.adapter_.registerInputInteractionHandler('input', this.inputInputHandler_);
+    ['mousedown', 'touchstart'].forEach(function (evtType) {
+      _this2.adapter_.registerInputInteractionHandler(evtType, _this2.setPointerXOffset_);
+    });
+    ['click', 'keydown'].forEach(function (evtType) {
+      _this2.adapter_.registerTextFieldInteractionHandler(evtType, _this2.textFieldInteractionHandler_);
+    });
+    this.validationObserver_ = this.adapter_.registerValidationAttributeChangeHandler(this.validationAttributeChangeHandler_);
+  };
+
+  MDCTextFieldFoundation.prototype.destroy = function destroy() {
+    var _this3 = this;
+
+    this.adapter_.deregisterInputInteractionHandler('focus', this.inputFocusHandler_);
+    this.adapter_.deregisterInputInteractionHandler('blur', this.inputBlurHandler_);
+    this.adapter_.deregisterInputInteractionHandler('input', this.inputInputHandler_);
+    ['mousedown', 'touchstart'].forEach(function (evtType) {
+      _this3.adapter_.deregisterInputInteractionHandler(evtType, _this3.setPointerXOffset_);
+    });
+    ['click', 'keydown'].forEach(function (evtType) {
+      _this3.adapter_.deregisterTextFieldInteractionHandler(evtType, _this3.textFieldInteractionHandler_);
+    });
+    this.adapter_.deregisterValidationAttributeChangeHandler(this.validationObserver_);
+  };
+
+  /**
+   * Handles user interactions with the Text Field.
+   */
+
+
+  MDCTextFieldFoundation.prototype.handleTextFieldInteraction = function handleTextFieldInteraction() {
+    if (this.adapter_.getNativeInput().disabled) {
+      return;
+    }
+    this.receivedUserInput_ = true;
+  };
+
+  /**
+   * Handles validation attribute changes
+   * @param {!Array<string>} attributesList
+   */
+
+
+  MDCTextFieldFoundation.prototype.handleValidationAttributeChange = function handleValidationAttributeChange(attributesList) {
+    var _this4 = this;
+
+    attributesList.some(function (attributeName) {
+      if (VALIDATION_ATTR_WHITELIST.indexOf(attributeName) > -1) {
+        _this4.styleValidity_(true);
+        return true;
+      }
+    });
+  };
+
+  /**
+   * Opens/closes the notched outline.
+   * @param {boolean} openNotch
+   */
+
+
+  MDCTextFieldFoundation.prototype.notchOutline = function notchOutline(openNotch) {
+    if (!this.adapter_.hasOutline()) {
+      return;
+    }
+
+    if (openNotch) {
+      var isDense = this.adapter_.hasClass(cssClasses.DENSE);
+      var labelScale = isDense ? numbers.DENSE_LABEL_SCALE : numbers.LABEL_SCALE;
+      var labelWidth = this.adapter_.getLabelWidth() * labelScale;
+      var isRtl = this.adapter_.isRtl();
+      this.adapter_.notchOutline(labelWidth, isRtl);
+    } else {
+      this.adapter_.closeOutline();
+    }
+  };
+
+  /**
+   * Activates the text field focus state.
+   */
+
+
+  MDCTextFieldFoundation.prototype.activateFocus = function activateFocus() {
+    this.isFocused_ = true;
+    this.styleFocused_(this.isFocused_);
+    this.adapter_.activateLineRipple();
+    if (this.adapter_.hasLabel()) {
+      this.notchOutline(this.shouldFloat);
+      this.adapter_.floatLabel(this.shouldFloat);
+      this.adapter_.shakeLabel(this.shouldShake);
+    }
+    if (this.helperText_) {
+      this.helperText_.showToScreenReader();
+    }
+  };
+
+  /**
+   * Sets the line ripple's transform origin, so that the line ripple activate
+   * animation will animate out from the user's click location.
+   * @param {!Event} evt
+   */
+
+
+  MDCTextFieldFoundation.prototype.setTransformOrigin = function setTransformOrigin(evt) {
+    var targetClientRect = evt.target.getBoundingClientRect();
+    var evtCoords = { x: evt.clientX, y: evt.clientY };
+    var normalizedX = evtCoords.x - targetClientRect.left;
+    this.adapter_.setLineRippleTransformOrigin(normalizedX);
+  };
+
+  /**
+   * Activates the Text Field's focus state in cases when the input value
+   * changes without user input (e.g. programatically).
+   */
+
+
+  MDCTextFieldFoundation.prototype.autoCompleteFocus = function autoCompleteFocus() {
+    if (!this.receivedUserInput_) {
+      this.activateFocus();
+    }
+  };
+
+  /**
+   * Deactivates the Text Field's focus state.
+   */
+
+
+  MDCTextFieldFoundation.prototype.deactivateFocus = function deactivateFocus() {
+    this.isFocused_ = false;
+    this.adapter_.deactivateLineRipple();
+    var isValid = this.isValid();
+    this.styleValidity_(isValid);
+    this.styleFocused_(this.isFocused_);
+    if (this.adapter_.hasLabel()) {
+      this.notchOutline(this.shouldFloat);
+      this.adapter_.floatLabel(this.shouldFloat);
+      this.adapter_.shakeLabel(this.shouldShake);
+    }
+    if (!this.shouldFloat) {
+      this.receivedUserInput_ = false;
+    }
+  };
+
+  /**
+   * @return {string} The value of the input Element.
+   */
+
+
+  MDCTextFieldFoundation.prototype.getValue = function getValue() {
+    return this.getNativeInput_().value;
+  };
+
+  /**
+   * @param {string} value The value to set on the input Element.
+   */
+
+
+  MDCTextFieldFoundation.prototype.setValue = function setValue(value) {
+    this.getNativeInput_().value = value;
+    var isValid = this.isValid();
+    this.styleValidity_(isValid);
+    if (this.adapter_.hasLabel()) {
+      this.notchOutline(this.shouldFloat);
+      this.adapter_.floatLabel(this.shouldFloat);
+      this.adapter_.shakeLabel(this.shouldShake);
+    }
+  };
+
+  /**
+   * @return {boolean} If a custom validity is set, returns that value.
+   *     Otherwise, returns the result of native validity checks.
+   */
+
+
+  MDCTextFieldFoundation.prototype.isValid = function isValid() {
+    return this.useNativeValidation_ ? this.isNativeInputValid_() : this.isValid_;
+  };
+
+  /**
+   * @param {boolean} isValid Sets the validity state of the Text Field.
+   */
+
+
+  MDCTextFieldFoundation.prototype.setValid = function setValid(isValid) {
+    this.isValid_ = isValid;
+    this.styleValidity_(isValid);
+
+    var shouldShake = !isValid && !this.isFocused_;
+    if (this.adapter_.hasLabel()) {
+      this.adapter_.shakeLabel(shouldShake);
+    }
+  };
+
+  /**
+   * Enables or disables the use of native validation. Use this for custom validation.
+   * @param {boolean} useNativeValidation Set this to false to ignore native input validation.
+   */
+
+
+  MDCTextFieldFoundation.prototype.setUseNativeValidation = function setUseNativeValidation(useNativeValidation) {
+    this.useNativeValidation_ = useNativeValidation;
+  };
+
+  /**
+   * @return {boolean} True if the Text Field is disabled.
+   */
+
+
+  MDCTextFieldFoundation.prototype.isDisabled = function isDisabled() {
+    return this.getNativeInput_().disabled;
+  };
+
+  /**
+   * @param {boolean} disabled Sets the text-field disabled or enabled.
+   */
+
+
+  MDCTextFieldFoundation.prototype.setDisabled = function setDisabled(disabled) {
+    this.getNativeInput_().disabled = disabled;
+    this.styleDisabled_(disabled);
+  };
+
+  /**
+   * @param {string} content Sets the content of the helper text.
+   */
+
+
+  MDCTextFieldFoundation.prototype.setHelperTextContent = function setHelperTextContent(content) {
+    if (this.helperText_) {
+      this.helperText_.setContent(content);
+    }
+  };
+
+  /**
+   * Sets the aria label of the icon.
+   * @param {string} label
+   */
+
+
+  MDCTextFieldFoundation.prototype.setIconAriaLabel = function setIconAriaLabel(label) {
+    if (this.icon_) {
+      this.icon_.setAriaLabel(label);
+    }
+  };
+
+  /**
+   * Sets the text content of the icon.
+   * @param {string} content
+   */
+
+
+  MDCTextFieldFoundation.prototype.setIconContent = function setIconContent(content) {
+    if (this.icon_) {
+      this.icon_.setContent(content);
+    }
+  };
+
+  /**
+   * @return {boolean} True if the Text Field input fails in converting the
+   *     user-supplied value.
+   * @private
+   */
+
+
+  MDCTextFieldFoundation.prototype.isBadInput_ = function isBadInput_() {
+    return this.getNativeInput_().validity.badInput;
+  };
+
+  /**
+   * @return {boolean} The result of native validity checking
+   *     (ValidityState.valid).
+   */
+
+
+  MDCTextFieldFoundation.prototype.isNativeInputValid_ = function isNativeInputValid_() {
+    return this.getNativeInput_().validity.valid;
+  };
+
+  /**
+   * Styles the component based on the validity state.
+   * @param {boolean} isValid
+   * @private
+   */
+
+
+  MDCTextFieldFoundation.prototype.styleValidity_ = function styleValidity_(isValid) {
+    var INVALID = MDCTextFieldFoundation.cssClasses.INVALID;
+
+    if (isValid) {
+      this.adapter_.removeClass(INVALID);
+    } else {
+      this.adapter_.addClass(INVALID);
+    }
+    if (this.helperText_) {
+      this.helperText_.setValidity(isValid);
+    }
+  };
+
+  /**
+   * Styles the component based on the focused state.
+   * @param {boolean} isFocused
+   * @private
+   */
+
+
+  MDCTextFieldFoundation.prototype.styleFocused_ = function styleFocused_(isFocused) {
+    var FOCUSED = MDCTextFieldFoundation.cssClasses.FOCUSED;
+
+    if (isFocused) {
+      this.adapter_.addClass(FOCUSED);
+    } else {
+      this.adapter_.removeClass(FOCUSED);
+    }
+  };
+
+  /**
+   * Styles the component based on the disabled state.
+   * @param {boolean} isDisabled
+   * @private
+   */
+
+
+  MDCTextFieldFoundation.prototype.styleDisabled_ = function styleDisabled_(isDisabled) {
+    var _MDCTextFieldFoundati = MDCTextFieldFoundation.cssClasses,
+        DISABLED = _MDCTextFieldFoundati.DISABLED,
+        INVALID = _MDCTextFieldFoundati.INVALID;
+
+    if (isDisabled) {
+      this.adapter_.addClass(DISABLED);
+      this.adapter_.removeClass(INVALID);
+    } else {
+      this.adapter_.removeClass(DISABLED);
+    }
+    if (this.icon_) {
+      this.icon_.setDisabled(isDisabled);
+    }
+  };
+
+  /**
+   * @return {!Element|!NativeInputType} The native text input from the
+   * host environment, or a dummy if none exists.
+   * @private
+   */
+
+
+  MDCTextFieldFoundation.prototype.getNativeInput_ = function getNativeInput_() {
+    return this.adapter_.getNativeInput() ||
+    /** @type {!NativeInputType} */{
+      value: '',
+      disabled: false,
+      validity: {
+        badInput: false,
+        valid: true
+      }
+    };
+  };
+
+  return MDCTextFieldFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var textfield_foundation = (foundation_MDCTextFieldFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/line-ripple/adapter.js
+function line_ripple_adapter__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC TextField Line Ripple.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the line ripple into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCLineRippleAdapter = function () {
+  function MDCLineRippleAdapter() {
+    line_ripple_adapter__classCallCheck(this, MDCLineRippleAdapter);
+  }
+
+  /**
+   * Adds a class to the line ripple element.
+   * @param {string} className
+   */
+  MDCLineRippleAdapter.prototype.addClass = function addClass(className) {};
+
+  /**
+   * Removes a class from the line ripple element.
+   * @param {string} className
+   */
+
+
+  MDCLineRippleAdapter.prototype.removeClass = function removeClass(className) {};
+
+  /**
+   * @param {string} className
+   * @return {boolean}
+   */
+
+
+  MDCLineRippleAdapter.prototype.hasClass = function hasClass(className) {};
+
+  /**
+   * Sets the style property with propertyName to value on the root element.
+   * @param {string} propertyName
+   * @param {string} value
+   */
+
+
+  MDCLineRippleAdapter.prototype.setStyle = function setStyle(propertyName, value) {};
+
+  /**
+   * Registers an event listener on the line ripple element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCLineRippleAdapter.prototype.registerEventHandler = function registerEventHandler(evtType, handler) {};
+
+  /**
+   * Deregisters an event listener on the line ripple element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCLineRippleAdapter.prototype.deregisterEventHandler = function deregisterEventHandler(evtType, handler) {};
+
+  return MDCLineRippleAdapter;
+}();
+
+/* harmony default export */ var line_ripple_adapter = (MDCLineRippleAdapter);
+// CONCATENATED MODULE: ../node_modules/@material/line-ripple/constants.js
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var line_ripple_constants_cssClasses = {
+  LINE_RIPPLE_ACTIVE: 'mdc-line-ripple--active',
+  LINE_RIPPLE_DEACTIVATING: 'mdc-line-ripple--deactivating'
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@material/line-ripple/foundation.js
+var line_ripple_foundation__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var line_ripple_foundation__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function line_ripple_foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function line_ripple_foundation__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function line_ripple_foundation__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCLineRippleAdapter>}
+ * @final
+ */
+
+var foundation_MDCLineRippleFoundation = function (_MDCFoundation) {
+  line_ripple_foundation__inherits(MDCLineRippleFoundation, _MDCFoundation);
+
+  line_ripple_foundation__createClass(MDCLineRippleFoundation, null, [{
+    key: 'cssClasses',
+
+    /** @return enum {string} */
+    get: function get() {
+      return line_ripple_constants_cssClasses;
+    }
+
+    /**
+     * {@see MDCLineRippleAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCLineRippleAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCLineRippleAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          hasClass: function hasClass() {},
+          setStyle: function setStyle() {},
+          registerEventHandler: function registerEventHandler() {},
+          deregisterEventHandler: function deregisterEventHandler() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCLineRippleAdapter=} adapter
+     */
+
+  }]);
+
+  function MDCLineRippleFoundation(adapter) {
+    line_ripple_foundation__classCallCheck(this, MDCLineRippleFoundation);
+
+    /** @private {function(!Event): undefined} */
+    var _this = line_ripple_foundation__possibleConstructorReturn(this, _MDCFoundation.call(this, line_ripple_foundation__extends(MDCLineRippleFoundation.defaultAdapter, adapter)));
+
+    _this.transitionEndHandler_ = function (evt) {
+      return _this.handleTransitionEnd(evt);
+    };
+    return _this;
+  }
+
+  MDCLineRippleFoundation.prototype.init = function init() {
+    this.adapter_.registerEventHandler('transitionend', this.transitionEndHandler_);
+  };
+
+  MDCLineRippleFoundation.prototype.destroy = function destroy() {
+    this.adapter_.deregisterEventHandler('transitionend', this.transitionEndHandler_);
+  };
+
+  /**
+   * Activates the line ripple
+   */
+
+
+  MDCLineRippleFoundation.prototype.activate = function activate() {
+    this.adapter_.removeClass(line_ripple_constants_cssClasses.LINE_RIPPLE_DEACTIVATING);
+    this.adapter_.addClass(line_ripple_constants_cssClasses.LINE_RIPPLE_ACTIVE);
+  };
+
+  /**
+   * Sets the center of the ripple animation to the given X coordinate.
+   * @param {number} xCoordinate
+   */
+
+
+  MDCLineRippleFoundation.prototype.setRippleCenter = function setRippleCenter(xCoordinate) {
+    this.adapter_.setStyle('transform-origin', xCoordinate + 'px center');
+  };
+
+  /**
+   * Deactivates the line ripple
+   */
+
+
+  MDCLineRippleFoundation.prototype.deactivate = function deactivate() {
+    this.adapter_.addClass(line_ripple_constants_cssClasses.LINE_RIPPLE_DEACTIVATING);
+  };
+
+  /**
+   * Handles a transition end event
+   * @param {!Event} evt
+   */
+
+
+  MDCLineRippleFoundation.prototype.handleTransitionEnd = function handleTransitionEnd(evt) {
+    // Wait for the line ripple to be either transparent or opaque
+    // before emitting the animation end event
+    var isDeactivating = this.adapter_.hasClass(line_ripple_constants_cssClasses.LINE_RIPPLE_DEACTIVATING);
+
+    if (evt.propertyName === 'opacity') {
+      if (isDeactivating) {
+        this.adapter_.removeClass(line_ripple_constants_cssClasses.LINE_RIPPLE_ACTIVE);
+        this.adapter_.removeClass(line_ripple_constants_cssClasses.LINE_RIPPLE_DEACTIVATING);
+      }
+    }
+  };
+
+  return MDCLineRippleFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var line_ripple_foundation = (foundation_MDCLineRippleFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/line-ripple/index.js
+var line_ripple__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function line_ripple__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function line_ripple__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function line_ripple__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+/**
+ * @extends {MDCComponent<!MDCLineRippleFoundation>}
+ * @final
+ */
+
+var line_ripple_MDCLineRipple = function (_MDCComponent) {
+  line_ripple__inherits(MDCLineRipple, _MDCComponent);
+
+  function MDCLineRipple() {
+    line_ripple__classCallCheck(this, MDCLineRipple);
+
+    return line_ripple__possibleConstructorReturn(this, _MDCComponent.apply(this, arguments));
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCLineRipple}
+   */
+  MDCLineRipple.attachTo = function attachTo(root) {
+    return new MDCLineRipple(root);
+  };
+
+  /**
+   * Activates the line ripple
+   */
+
+
+  MDCLineRipple.prototype.activate = function activate() {
+    this.foundation_.activate();
+  };
+
+  /**
+   * Deactivates the line ripple
+   */
+
+
+  MDCLineRipple.prototype.deactivate = function deactivate() {
+    this.foundation_.deactivate();
+  };
+
+  /**
+   * Sets the transform origin given a user's click location. The `rippleCenter` is the
+   * x-coordinate of the middle of the ripple.
+   * @param {number} xCoordinate
+   */
+
+
+  MDCLineRipple.prototype.setRippleCenter = function setRippleCenter(xCoordinate) {
+    this.foundation_.setRippleCenter(xCoordinate);
+  };
+
+  /**
+   * @return {!MDCLineRippleFoundation}
+   */
+
+
+  MDCLineRipple.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this2 = this;
+
+    return new line_ripple_foundation( /** @type {!MDCLineRippleAdapter} */line_ripple__extends({
+      addClass: function addClass(className) {
+        return _this2.root_.classList.add(className);
+      },
+      removeClass: function removeClass(className) {
+        return _this2.root_.classList.remove(className);
+      },
+      hasClass: function hasClass(className) {
+        return _this2.root_.classList.contains(className);
+      },
+      setStyle: function setStyle(propertyName, value) {
+        return _this2.root_.style[propertyName] = value;
+      },
+      registerEventHandler: function registerEventHandler(evtType, handler) {
+        return _this2.root_.addEventListener(evtType, handler);
+      },
+      deregisterEventHandler: function deregisterEventHandler(evtType, handler) {
+        return _this2.root_.removeEventListener(evtType, handler);
+      }
+    }));
+  };
+
+  return MDCLineRipple;
+}(component["a" /* default */]);
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/helper-text/index.js
+var helper_text__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var helper_text__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function helper_text__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function helper_text__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function helper_text__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+/**
+ * @extends {MDCComponent<!MDCTextFieldHelperTextFoundation>}
+ * @final
+ */
+
+var helper_text_MDCTextFieldHelperText = function (_MDCComponent) {
+  helper_text__inherits(MDCTextFieldHelperText, _MDCComponent);
+
+  function MDCTextFieldHelperText() {
+    helper_text__classCallCheck(this, MDCTextFieldHelperText);
+
+    return helper_text__possibleConstructorReturn(this, _MDCComponent.apply(this, arguments));
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCTextFieldHelperText}
+   */
+  MDCTextFieldHelperText.attachTo = function attachTo(root) {
+    return new MDCTextFieldHelperText(root);
+  };
+
+  /**
+   * @return {!MDCTextFieldHelperTextFoundation}
+   */
+
+
+  /**
+   * @return {!MDCTextFieldHelperTextFoundation}
+   */
+  MDCTextFieldHelperText.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this2 = this;
+
+    return new helper_text_foundation( /** @type {!MDCTextFieldHelperTextAdapter} */helper_text__extends({
+      addClass: function addClass(className) {
+        return _this2.root_.classList.add(className);
+      },
+      removeClass: function removeClass(className) {
+        return _this2.root_.classList.remove(className);
+      },
+      hasClass: function hasClass(className) {
+        return _this2.root_.classList.contains(className);
+      },
+      setAttr: function setAttr(attr, value) {
+        return _this2.root_.setAttribute(attr, value);
+      },
+      removeAttr: function removeAttr(attr) {
+        return _this2.root_.removeAttribute(attr);
+      },
+      setContent: function setContent(content) {
+        _this2.root_.textContent = content;
+      }
+    }));
+  };
+
+  helper_text__createClass(MDCTextFieldHelperText, [{
+    key: 'foundation',
+    get: function get() {
+      return this.foundation_;
+    }
+  }]);
+
+  return MDCTextFieldHelperText;
+}(component["a" /* default */]);
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/icon/index.js
+var icon__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var icon__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function icon__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function icon__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function icon__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+/**
+ * @extends {MDCComponent<!MDCTextFieldIconFoundation>}
+ * @final
+ */
+
+var icon_MDCTextFieldIcon = function (_MDCComponent) {
+  icon__inherits(MDCTextFieldIcon, _MDCComponent);
+
+  function MDCTextFieldIcon() {
+    icon__classCallCheck(this, MDCTextFieldIcon);
+
+    return icon__possibleConstructorReturn(this, _MDCComponent.apply(this, arguments));
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCTextFieldIcon}
+   */
+  MDCTextFieldIcon.attachTo = function attachTo(root) {
+    return new MDCTextFieldIcon(root);
+  };
+
+  /**
+   * @return {!MDCTextFieldIconFoundation}
+   */
+
+
+  /**
+   * @return {!MDCTextFieldIconFoundation}
+   */
+  MDCTextFieldIcon.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this2 = this;
+
+    return new icon_foundation( /** @type {!MDCTextFieldIconAdapter} */icon__extends({
+      getAttr: function getAttr(attr) {
+        return _this2.root_.getAttribute(attr);
+      },
+      setAttr: function setAttr(attr, value) {
+        return _this2.root_.setAttribute(attr, value);
+      },
+      removeAttr: function removeAttr(attr) {
+        return _this2.root_.removeAttribute(attr);
+      },
+      setContent: function setContent(content) {
+        _this2.root_.textContent = content;
+      },
+      registerInteractionHandler: function registerInteractionHandler(evtType, handler) {
+        return _this2.root_.addEventListener(evtType, handler);
+      },
+      deregisterInteractionHandler: function deregisterInteractionHandler(evtType, handler) {
+        return _this2.root_.removeEventListener(evtType, handler);
+      },
+      notifyIconAction: function notifyIconAction() {
+        return _this2.emit(icon_foundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */);
+      }
+    }));
+  };
+
+  icon__createClass(MDCTextFieldIcon, [{
+    key: 'foundation',
+    get: function get() {
+      return this.foundation_;
+    }
+  }]);
+
+  return MDCTextFieldIcon;
+}(component["a" /* default */]);
+
+
+// CONCATENATED MODULE: ../node_modules/@material/floating-label/adapter.js
+function floating_label_adapter__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Floating Label.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the floating label into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCFloatingLabelAdapter = function () {
+  function MDCFloatingLabelAdapter() {
+    floating_label_adapter__classCallCheck(this, MDCFloatingLabelAdapter);
+  }
+
+  /**
+   * Adds a class to the label element.
+   * @param {string} className
+   */
+  MDCFloatingLabelAdapter.prototype.addClass = function addClass(className) {};
+
+  /**
+   * Removes a class from the label element.
+   * @param {string} className
+   */
+
+
+  MDCFloatingLabelAdapter.prototype.removeClass = function removeClass(className) {};
+
+  /**
+   * Returns the width of the label element.
+   * @return {number}
+   */
+
+
+  MDCFloatingLabelAdapter.prototype.getWidth = function getWidth() {};
+
+  /**
+   * Registers an event listener on the root element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCFloatingLabelAdapter.prototype.registerInteractionHandler = function registerInteractionHandler(evtType, handler) {};
+
+  /**
+   * Deregisters an event listener on the root element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+
+
+  MDCFloatingLabelAdapter.prototype.deregisterInteractionHandler = function deregisterInteractionHandler(evtType, handler) {};
+
+  return MDCFloatingLabelAdapter;
+}();
+
+/* harmony default export */ var floating_label_adapter = (MDCFloatingLabelAdapter);
+// CONCATENATED MODULE: ../node_modules/@material/floating-label/constants.js
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var floating_label_constants_cssClasses = {
+  LABEL_FLOAT_ABOVE: 'mdc-floating-label--float-above',
+  LABEL_SHAKE: 'mdc-floating-label--shake'
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@material/floating-label/foundation.js
+var floating_label_foundation__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var floating_label_foundation__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function floating_label_foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function floating_label_foundation__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function floating_label_foundation__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCFloatingLabelAdapter>}
+ * @final
+ */
+
+var foundation_MDCFloatingLabelFoundation = function (_MDCFoundation) {
+  floating_label_foundation__inherits(MDCFloatingLabelFoundation, _MDCFoundation);
+
+  floating_label_foundation__createClass(MDCFloatingLabelFoundation, null, [{
+    key: 'cssClasses',
+
+    /** @return enum {string} */
+    get: function get() {
+      return floating_label_constants_cssClasses;
+    }
+
+    /**
+     * {@see MDCFloatingLabelAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCFloatingLabelAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCFloatingLabelAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          getWidth: function getWidth() {},
+          registerInteractionHandler: function registerInteractionHandler() {},
+          deregisterInteractionHandler: function deregisterInteractionHandler() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCFloatingLabelAdapter} adapter
+     */
+
+  }]);
+
+  function MDCFloatingLabelFoundation(adapter) {
+    floating_label_foundation__classCallCheck(this, MDCFloatingLabelFoundation);
+
+    /** @private {function(!Event): undefined} */
+    var _this = floating_label_foundation__possibleConstructorReturn(this, _MDCFoundation.call(this, floating_label_foundation__extends(MDCFloatingLabelFoundation.defaultAdapter, adapter)));
+
+    _this.shakeAnimationEndHandler_ = function () {
+      return _this.handleShakeAnimationEnd_();
+    };
+    return _this;
+  }
+
+  MDCFloatingLabelFoundation.prototype.init = function init() {
+    this.adapter_.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+  };
+
+  MDCFloatingLabelFoundation.prototype.destroy = function destroy() {
+    this.adapter_.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+  };
+
+  /**
+   * Returns the width of the label element.
+   * @return {number}
+   */
+
+
+  MDCFloatingLabelFoundation.prototype.getWidth = function getWidth() {
+    return this.adapter_.getWidth();
+  };
+
+  /**
+   * Styles the label to produce the label shake for errors.
+   * @param {boolean} shouldShake adds shake class if true,
+   * otherwise removes shake class.
+   */
+
+
+  MDCFloatingLabelFoundation.prototype.shake = function shake(shouldShake) {
+    var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
+
+    if (shouldShake) {
+      this.adapter_.addClass(LABEL_SHAKE);
+    } else {
+      this.adapter_.removeClass(LABEL_SHAKE);
+    }
+  };
+
+  /**
+   * Styles the label to float or dock.
+   * @param {boolean} shouldFloat adds float class if true, otherwise remove
+   * float and shake class to dock label.
+   */
+
+
+  MDCFloatingLabelFoundation.prototype.float = function float(shouldFloat) {
+    var _MDCFloatingLabelFoun = MDCFloatingLabelFoundation.cssClasses,
+        LABEL_FLOAT_ABOVE = _MDCFloatingLabelFoun.LABEL_FLOAT_ABOVE,
+        LABEL_SHAKE = _MDCFloatingLabelFoun.LABEL_SHAKE;
+
+    if (shouldFloat) {
+      this.adapter_.addClass(LABEL_FLOAT_ABOVE);
+    } else {
+      this.adapter_.removeClass(LABEL_FLOAT_ABOVE);
+      this.adapter_.removeClass(LABEL_SHAKE);
+    }
+  };
+
+  /**
+   * Handles an interaction event on the root element.
+   */
+
+
+  MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd_ = function handleShakeAnimationEnd_() {
+    var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
+
+    this.adapter_.removeClass(LABEL_SHAKE);
+  };
+
+  return MDCFloatingLabelFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var floating_label_foundation = (foundation_MDCFloatingLabelFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/floating-label/index.js
+function floating_label__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function floating_label__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function floating_label__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCComponent<!MDCFloatingLabelFoundation>}
+ * @final
+ */
+
+var floating_label_MDCFloatingLabel = function (_MDCComponent) {
+  floating_label__inherits(MDCFloatingLabel, _MDCComponent);
+
+  function MDCFloatingLabel() {
+    floating_label__classCallCheck(this, MDCFloatingLabel);
+
+    return floating_label__possibleConstructorReturn(this, _MDCComponent.apply(this, arguments));
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCFloatingLabel}
+   */
+  MDCFloatingLabel.attachTo = function attachTo(root) {
+    return new MDCFloatingLabel(root);
+  };
+
+  /**
+   * Styles the label to produce the label shake for errors.
+   * @param {boolean} shouldShake styles the label to shake by adding shake class
+   * if true, otherwise will stop shaking by removing shake class.
+   */
+
+
+  MDCFloatingLabel.prototype.shake = function shake(shouldShake) {
+    this.foundation_.shake(shouldShake);
+  };
+
+  /**
+   * Styles label to float/dock.
+   * @param {boolean} shouldFloat styles the label to float by adding float class
+   * if true, otherwise docks the label by removing the float class.
+   */
+
+
+  MDCFloatingLabel.prototype.float = function float(shouldFloat) {
+    this.foundation_.float(shouldFloat);
+  };
+
+  /**
+   * @return {number}
+   */
+
+
+  MDCFloatingLabel.prototype.getWidth = function getWidth() {
+    return this.foundation_.getWidth();
+  };
+
+  /**
+   * @return {!MDCFloatingLabelFoundation}
+   */
+
+
+  MDCFloatingLabel.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this2 = this;
+
+    return new floating_label_foundation({
+      addClass: function addClass(className) {
+        return _this2.root_.classList.add(className);
+      },
+      removeClass: function removeClass(className) {
+        return _this2.root_.classList.remove(className);
+      },
+      getWidth: function getWidth() {
+        return _this2.root_.offsetWidth;
+      },
+      registerInteractionHandler: function registerInteractionHandler(evtType, handler) {
+        return _this2.root_.addEventListener(evtType, handler);
+      },
+      deregisterInteractionHandler: function deregisterInteractionHandler(evtType, handler) {
+        return _this2.root_.removeEventListener(evtType, handler);
+      }
+    });
+  };
+
+  return MDCFloatingLabel;
+}(component["a" /* default */]);
+
+
+// CONCATENATED MODULE: ../node_modules/@material/notched-outline/adapter.js
+function notched_outline_adapter__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Notched Outline.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the Notched Outline into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCNotchedOutlineAdapter = function () {
+  function MDCNotchedOutlineAdapter() {
+    notched_outline_adapter__classCallCheck(this, MDCNotchedOutlineAdapter);
+  }
+
+  /**
+   * Returns the width of the root element.
+   * @return {number}
+   */
+  MDCNotchedOutlineAdapter.prototype.getWidth = function getWidth() {};
+
+  /**
+   * Returns the height of the root element.
+   * @return {number}
+   */
+
+
+  MDCNotchedOutlineAdapter.prototype.getHeight = function getHeight() {};
+
+  /**
+   * Adds a class to the root element.
+   * @param {string} className
+   */
+
+
+  MDCNotchedOutlineAdapter.prototype.addClass = function addClass(className) {};
+
+  /**
+   * Removes a class from the root element.
+   * @param {string} className
+   */
+
+
+  MDCNotchedOutlineAdapter.prototype.removeClass = function removeClass(className) {};
+
+  /**
+   * Sets the "d" attribute of the outline element's SVG path.
+   * @param {string} value
+   */
+
+
+  MDCNotchedOutlineAdapter.prototype.setOutlinePathAttr = function setOutlinePathAttr(value) {};
+
+  /**
+   * Returns the idle outline element's computed style value of the given css property `propertyName`.
+   * We achieve this via `getComputedStyle(...).getPropertyValue(propertyName)`.
+   * @param {string} propertyName
+   * @return {string}
+   */
+
+
+  MDCNotchedOutlineAdapter.prototype.getIdleOutlineStyleValue = function getIdleOutlineStyleValue(propertyName) {};
+
+  return MDCNotchedOutlineAdapter;
+}();
+
+/* harmony default export */ var notched_outline_adapter = (MDCNotchedOutlineAdapter);
+// CONCATENATED MODULE: ../node_modules/@material/notched-outline/constants.js
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/** @enum {string} */
+var notched_outline_constants_strings = {
+  PATH_SELECTOR: '.mdc-notched-outline__path',
+  IDLE_OUTLINE_SELECTOR: '.mdc-notched-outline__idle'
+};
+
+/** @enum {string} */
+var notched_outline_constants_cssClasses = {
+  OUTLINE_NOTCHED: 'mdc-notched-outline--notched'
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@material/notched-outline/foundation.js
+var notched_outline_foundation__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var notched_outline_foundation__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function notched_outline_foundation__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function notched_outline_foundation__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function notched_outline_foundation__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+/**
+ * @extends {MDCFoundation<!MDCNotchedOutlineAdapter>}
+ * @final
+ */
+
+var foundation_MDCNotchedOutlineFoundation = function (_MDCFoundation) {
+  notched_outline_foundation__inherits(MDCNotchedOutlineFoundation, _MDCFoundation);
+
+  notched_outline_foundation__createClass(MDCNotchedOutlineFoundation, null, [{
+    key: 'strings',
+
+    /** @return enum {string} */
+    get: function get() {
+      return notched_outline_constants_strings;
+    }
+
+    /** @return enum {string} */
+
+  }, {
+    key: 'cssClasses',
+    get: function get() {
+      return notched_outline_constants_cssClasses;
+    }
+
+    /**
+     * {@see MDCNotchedOutlineAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCNotchedOutlineAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCNotchedOutlineAdapter} */{
+          getWidth: function getWidth() {},
+          getHeight: function getHeight() {},
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          setOutlinePathAttr: function setOutlinePathAttr() {},
+          getIdleOutlineStyleValue: function getIdleOutlineStyleValue() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCNotchedOutlineAdapter} adapter
+     */
+
+  }]);
+
+  function MDCNotchedOutlineFoundation(adapter) {
+    notched_outline_foundation__classCallCheck(this, MDCNotchedOutlineFoundation);
+
+    return notched_outline_foundation__possibleConstructorReturn(this, _MDCFoundation.call(this, notched_outline_foundation__extends(MDCNotchedOutlineFoundation.defaultAdapter, adapter)));
+  }
+
+  /**
+   * Adds the outline notched selector and updates the notch width
+   * calculated based off of notchWidth and isRtl.
+   * @param {number} notchWidth
+   * @param {boolean=} isRtl
+   */
+
+
+  MDCNotchedOutlineFoundation.prototype.notch = function notch(notchWidth) {
+    var isRtl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var OUTLINE_NOTCHED = MDCNotchedOutlineFoundation.cssClasses.OUTLINE_NOTCHED;
+
+    this.adapter_.addClass(OUTLINE_NOTCHED);
+    this.updateSvgPath_(notchWidth, isRtl);
+  };
+
+  /**
+   * Removes notched outline selector to close the notch in the outline.
+   */
+
+
+  MDCNotchedOutlineFoundation.prototype.closeNotch = function closeNotch() {
+    var OUTLINE_NOTCHED = MDCNotchedOutlineFoundation.cssClasses.OUTLINE_NOTCHED;
+
+    this.adapter_.removeClass(OUTLINE_NOTCHED);
+  };
+
+  /**
+   * Updates the SVG path of the focus outline element based on the notchWidth
+   * and the RTL context.
+   * @param {number} notchWidth
+   * @param {boolean=} isRtl
+   * @private
+   */
+
+
+  MDCNotchedOutlineFoundation.prototype.updateSvgPath_ = function updateSvgPath_(notchWidth, isRtl) {
+    // Fall back to reading a specific corner's style because Firefox doesn't report the style on border-radius.
+    var radiusStyleValue = this.adapter_.getIdleOutlineStyleValue('border-radius') || this.adapter_.getIdleOutlineStyleValue('border-top-left-radius');
+    var radius = parseFloat(radiusStyleValue);
+    var width = this.adapter_.getWidth();
+    var height = this.adapter_.getHeight();
+    var cornerWidth = radius + 1.2;
+    var leadingStrokeLength = Math.abs(12 - cornerWidth);
+
+    // If the notchWidth is 0, the the notched outline doesn't need to add padding.
+    var paddedNotchWidth = 0;
+    if (notchWidth > 0) {
+      paddedNotchWidth = notchWidth + 8;
+    }
+
+    // The right, bottom, and left sides of the outline follow the same SVG path.
+    var pathMiddle = 'a' + radius + ',' + radius + ' 0 0 1 ' + radius + ',' + radius + 'v' + (height - 2 * cornerWidth) + 'a' + radius + ',' + radius + ' 0 0 1 ' + -radius + ',' + radius + 'h' + (-width + 2 * cornerWidth) + 'a' + radius + ',' + radius + ' 0 0 1 ' + -radius + ',' + -radius + 'v' + (-height + 2 * cornerWidth) + 'a' + radius + ',' + radius + ' 0 0 1 ' + radius + ',' + -radius;
+
+    var path = void 0;
+    if (!isRtl) {
+      path = 'M' + (cornerWidth + leadingStrokeLength + paddedNotchWidth) + ',' + 1 + 'h' + (width - 2 * cornerWidth - paddedNotchWidth - leadingStrokeLength) + pathMiddle + 'h' + leadingStrokeLength;
+    } else {
+      path = 'M' + (width - cornerWidth - leadingStrokeLength) + ',' + 1 + 'h' + leadingStrokeLength + pathMiddle + 'h' + (width - 2 * cornerWidth - paddedNotchWidth - leadingStrokeLength);
+    }
+
+    this.adapter_.setOutlinePathAttr(path);
+  };
+
+  return MDCNotchedOutlineFoundation;
+}(base_foundation["a" /* default */]);
+
+/* harmony default export */ var notched_outline_foundation = (foundation_MDCNotchedOutlineFoundation);
+// CONCATENATED MODULE: ../node_modules/@material/notched-outline/index.js
+function notched_outline__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function notched_outline__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function notched_outline__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+/**
+ * @extends {MDCComponent<!MDCNotchedOutlineFoundation>}
+ * @final
+ */
+
+var notched_outline_MDCNotchedOutline = function (_MDCComponent) {
+  notched_outline__inherits(MDCNotchedOutline, _MDCComponent);
+
+  function MDCNotchedOutline() {
+    notched_outline__classCallCheck(this, MDCNotchedOutline);
+
+    return notched_outline__possibleConstructorReturn(this, _MDCComponent.apply(this, arguments));
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCNotchedOutline}
+   */
+  MDCNotchedOutline.attachTo = function attachTo(root) {
+    return new MDCNotchedOutline(root);
+  };
+
+  /**
+    * Updates outline selectors and SVG path to open notch.
+    * @param {number} notchWidth The notch width in the outline.
+    * @param {boolean=} isRtl Determines if outline is rtl. If rtl is true, notch
+    * will be right justified in outline path, otherwise left justified.
+    */
+
+
+  MDCNotchedOutline.prototype.notch = function notch(notchWidth, isRtl) {
+    this.foundation_.notch(notchWidth, isRtl);
+  };
+
+  /**
+   * Updates the outline selectors to close notch and return it to idle state.
+   */
+
+
+  MDCNotchedOutline.prototype.closeNotch = function closeNotch() {
+    this.foundation_.closeNotch();
+  };
+
+  /**
+   * @return {!MDCNotchedOutlineFoundation}
+   */
+
+
+  MDCNotchedOutline.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this2 = this;
+
+    return new notched_outline_foundation({
+      getWidth: function getWidth() {
+        return _this2.root_.offsetWidth;
+      },
+      getHeight: function getHeight() {
+        return _this2.root_.offsetHeight;
+      },
+      addClass: function addClass(className) {
+        return _this2.root_.classList.add(className);
+      },
+      removeClass: function removeClass(className) {
+        return _this2.root_.classList.remove(className);
+      },
+      setOutlinePathAttr: function setOutlinePathAttr(value) {
+        var path = _this2.root_.querySelector(notched_outline_constants_strings.PATH_SELECTOR);
+        path.setAttribute('d', value);
+      },
+      getIdleOutlineStyleValue: function getIdleOutlineStyleValue(propertyName) {
+        var idleOutlineElement = _this2.root_.parentNode.querySelector(notched_outline_constants_strings.IDLE_OUTLINE_SELECTOR);
+        return window.getComputedStyle(idleOutlineElement).getPropertyValue(propertyName);
+      }
+    });
+  };
+
+  return MDCNotchedOutline;
+}(component["a" /* default */]);
+
+
+// CONCATENATED MODULE: ../node_modules/@material/textfield/index.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTextField", function() { return textfield_MDCTextField; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCTextFieldFoundation", function() { return textfield_foundation; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCTextFieldHelperText", function() { return helper_text_MDCTextFieldHelperText; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCTextFieldHelperTextFoundation", function() { return helper_text_foundation; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCTextFieldIcon", function() { return icon_MDCTextFieldIcon; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCTextFieldIconFoundation", function() { return icon_foundation; });
+var textfield__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var textfield__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function textfield__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function textfield__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function textfield__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-enable no-unused-vars */
+
+
+
+
+
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+/* eslint-enable no-unused-vars */
+
+/**
+ * @extends {MDCComponent<!MDCTextFieldFoundation>}
+ * @final
+ */
+
+var textfield_MDCTextField = function (_MDCComponent) {
+  textfield__inherits(MDCTextField, _MDCComponent);
+
+  /**
+   * @param {...?} args
+   */
+  function MDCTextField() {
+    textfield__classCallCheck(this, MDCTextField);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    /** @private {?Element} */
+    var _this = textfield__possibleConstructorReturn(this, _MDCComponent.call.apply(_MDCComponent, [this].concat(args)));
+
+    _this.input_;
+    /** @type {?MDCRipple} */
+    _this.ripple;
+    /** @private {?MDCLineRipple} */
+    _this.lineRipple_;
+    /** @private {?MDCTextFieldHelperText} */
+    _this.helperText_;
+    /** @private {?MDCTextFieldIcon} */
+    _this.icon_;
+    /** @private {?MDCFloatingLabel} */
+    _this.label_;
+    /** @private {?MDCNotchedOutline} */
+    _this.outline_;
+    return _this;
+  }
+
+  /**
+   * @param {!Element} root
+   * @return {!MDCTextField}
+   */
+
+
+  MDCTextField.attachTo = function attachTo(root) {
+    return new MDCTextField(root);
+  };
+
+  /**
+   * @param {(function(!Element): !MDCRipple)=} rippleFactory A function which
+   * creates a new MDCRipple.
+   * @param {(function(!Element): !MDCLineRipple)=} lineRippleFactory A function which
+   * creates a new MDCLineRipple.
+   * @param {(function(!Element): !MDCTextFieldHelperText)=} helperTextFactory A function which
+   * creates a new MDCTextFieldHelperText.
+   * @param {(function(!Element): !MDCTextFieldIcon)=} iconFactory A function which
+   * creates a new MDCTextFieldIcon.
+   * @param {(function(!Element): !MDCFloatingLabel)=} labelFactory A function which
+   * creates a new MDCFloatingLabel.
+   * @param {(function(!Element): !MDCNotchedOutline)=} outlineFactory A function which
+   * creates a new MDCNotchedOutline.
+   */
+
+
+  MDCTextField.prototype.initialize = function initialize() {
+    var rippleFactory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (el, foundation) {
+      return new ripple["MDCRipple"](el, foundation);
+    };
+    var lineRippleFactory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (el) {
+      return new line_ripple_MDCLineRipple(el);
+    };
+    var helperTextFactory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function (el) {
+      return new helper_text_MDCTextFieldHelperText(el);
+    };
+    var iconFactory = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (el) {
+      return new icon_MDCTextFieldIcon(el);
+    };
+
+    var _this2 = this;
+
+    var labelFactory = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function (el) {
+      return new floating_label_MDCFloatingLabel(el);
+    };
+    var outlineFactory = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : function (el) {
+      return new notched_outline_MDCNotchedOutline(el);
+    };
+
+    this.input_ = this.root_.querySelector(strings.INPUT_SELECTOR);
+    var labelElement = this.root_.querySelector(strings.LABEL_SELECTOR);
+    if (labelElement) {
+      this.label_ = labelFactory(labelElement);
+    }
+    var lineRippleElement = this.root_.querySelector(strings.LINE_RIPPLE_SELECTOR);
+    if (lineRippleElement) {
+      this.lineRipple_ = lineRippleFactory(lineRippleElement);
+    }
+    var outlineElement = this.root_.querySelector(strings.OUTLINE_SELECTOR);
+    if (outlineElement) {
+      this.outline_ = outlineFactory(outlineElement);
+    }
+    if (this.input_.hasAttribute(strings.ARIA_CONTROLS)) {
+      var helperTextElement = document.getElementById(this.input_.getAttribute(strings.ARIA_CONTROLS));
+      if (helperTextElement) {
+        this.helperText_ = helperTextFactory(helperTextElement);
+      }
+    }
+    var iconElement = this.root_.querySelector(strings.ICON_SELECTOR);
+    if (iconElement) {
+      this.icon_ = iconFactory(iconElement);
+    }
+
+    this.ripple = null;
+    if (!this.root_.classList.contains(cssClasses.TEXTAREA) && !this.root_.classList.contains(cssClasses.OUTLINED)) {
+      var MATCHES = Object(util["getMatchesProperty"])(HTMLElement.prototype);
+      var adapter = textfield__extends(ripple["MDCRipple"].createAdapter( /** @type {!RippleCapableSurface} */this), {
+        isSurfaceActive: function isSurfaceActive() {
+          return _this2.input_[MATCHES](':active');
+        },
+        registerInteractionHandler: function registerInteractionHandler(type, handler) {
+          return _this2.input_.addEventListener(type, handler);
+        },
+        deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
+          return _this2.input_.removeEventListener(type, handler);
+        }
+      });
+      var foundation = new ripple["MDCRippleFoundation"](adapter);
+      this.ripple = rippleFactory(this.root_, foundation);
+    }
+  };
+
+  MDCTextField.prototype.destroy = function destroy() {
+    if (this.ripple) {
+      this.ripple.destroy();
+    }
+    if (this.lineRipple_) {
+      this.lineRipple_.destroy();
+    }
+    if (this.helperText_) {
+      this.helperText_.destroy();
+    }
+    if (this.icon_) {
+      this.icon_.destroy();
+    }
+    if (this.label_) {
+      this.label_.destroy();
+    }
+    if (this.outline_) {
+      this.outline_.destroy();
+    }
+    _MDCComponent.prototype.destroy.call(this);
+  };
+
+  /**
+   * Initiliazes the Text Field's internal state based on the environment's
+   * state.
+   */
+
+
+  MDCTextField.prototype.initialSyncWithDom = function initialSyncWithDom() {
+    this.disabled = this.input_.disabled;
+  };
+
+  /**
+   * @return {string} The value of the input.
+   */
+
+
+  /**
+   * Recomputes the outline SVG path for the outline element.
+   */
+  MDCTextField.prototype.layout = function layout() {
+    var openNotch = this.foundation_.shouldFloat;
+    this.foundation_.notchOutline(openNotch);
+  };
+
+  /**
+   * @return {!MDCTextFieldFoundation}
+   */
+
+
+  MDCTextField.prototype.getDefaultFoundation = function getDefaultFoundation() {
+    var _this3 = this;
+
+    return new textfield_foundation(
+    /** @type {!MDCTextFieldAdapter} */textfield__extends({
+      addClass: function addClass(className) {
+        return _this3.root_.classList.add(className);
+      },
+      removeClass: function removeClass(className) {
+        return _this3.root_.classList.remove(className);
+      },
+      hasClass: function hasClass(className) {
+        return _this3.root_.classList.contains(className);
+      },
+      registerTextFieldInteractionHandler: function registerTextFieldInteractionHandler(evtType, handler) {
+        return _this3.root_.addEventListener(evtType, handler);
+      },
+      deregisterTextFieldInteractionHandler: function deregisterTextFieldInteractionHandler(evtType, handler) {
+        return _this3.root_.removeEventListener(evtType, handler);
+      },
+      registerValidationAttributeChangeHandler: function registerValidationAttributeChangeHandler(handler) {
+        var getAttributesList = function getAttributesList(mutationsList) {
+          return mutationsList.map(function (mutation) {
+            return mutation.attributeName;
+          });
+        };
+        var observer = new MutationObserver(function (mutationsList) {
+          return handler(getAttributesList(mutationsList));
+        });
+        var targetNode = _this3.root_.querySelector(strings.INPUT_SELECTOR);
+        var config = { attributes: true };
+        observer.observe(targetNode, config);
+        return observer;
+      },
+      deregisterValidationAttributeChangeHandler: function deregisterValidationAttributeChangeHandler(observer) {
+        return observer.disconnect();
+      },
+      isFocused: function isFocused() {
+        return document.activeElement === _this3.root_.querySelector(strings.INPUT_SELECTOR);
+      },
+      isRtl: function isRtl() {
+        return window.getComputedStyle(_this3.root_).getPropertyValue('direction') === 'rtl';
+      }
+    }, this.getInputAdapterMethods_(), this.getLabelAdapterMethods_(), this.getLineRippleAdapterMethods_(), this.getOutlineAdapterMethods_()), this.getFoundationMap_());
+  };
+
+  /**
+   * @return {!{
+   *   shakeLabel: function(boolean): undefined,
+   *   floatLabel: function(boolean): undefined,
+   *   hasLabel: function(): boolean,
+   *   getLabelWidth: function(): number,
+   * }}
+   */
+
+
+  MDCTextField.prototype.getLabelAdapterMethods_ = function getLabelAdapterMethods_() {
+    var _this4 = this;
+
+    return {
+      shakeLabel: function shakeLabel(shouldShake) {
+        return _this4.label_.shake(shouldShake);
+      },
+      floatLabel: function floatLabel(shouldFloat) {
+        return _this4.label_.float(shouldFloat);
+      },
+      hasLabel: function hasLabel() {
+        return !!_this4.label_;
+      },
+      getLabelWidth: function getLabelWidth() {
+        return _this4.label_.getWidth();
+      }
+    };
+  };
+
+  /**
+   * @return {!{
+   *   activateLineRipple: function(): undefined,
+   *   deactivateLineRipple: function(): undefined,
+   *   setLineRippleTransformOrigin: function(number): undefined,
+   * }}
+   */
+
+
+  MDCTextField.prototype.getLineRippleAdapterMethods_ = function getLineRippleAdapterMethods_() {
+    var _this5 = this;
+
+    return {
+      activateLineRipple: function activateLineRipple() {
+        if (_this5.lineRipple_) {
+          _this5.lineRipple_.activate();
+        }
+      },
+      deactivateLineRipple: function deactivateLineRipple() {
+        if (_this5.lineRipple_) {
+          _this5.lineRipple_.deactivate();
+        }
+      },
+      setLineRippleTransformOrigin: function setLineRippleTransformOrigin(normalizedX) {
+        if (_this5.lineRipple_) {
+          _this5.lineRipple_.setRippleCenter(normalizedX);
+        }
+      }
+    };
+  };
+
+  /**
+   * @return {!{
+   *   notchOutline: function(number, boolean): undefined,
+   *   hasOutline: function(): boolean,
+   * }}
+   */
+
+
+  MDCTextField.prototype.getOutlineAdapterMethods_ = function getOutlineAdapterMethods_() {
+    var _this6 = this;
+
+    return {
+      notchOutline: function notchOutline(labelWidth, isRtl) {
+        return _this6.outline_.notch(labelWidth, isRtl);
+      },
+      closeOutline: function closeOutline() {
+        return _this6.outline_.closeNotch();
+      },
+      hasOutline: function hasOutline() {
+        return !!_this6.outline_;
+      }
+    };
+  };
+
+  /**
+   * @return {!{
+   *   registerInputInteractionHandler: function(string, function()): undefined,
+   *   deregisterInputInteractionHandler: function(string, function()): undefined,
+   *   getNativeInput: function(): ?Element,
+   * }}
+   */
+
+
+  MDCTextField.prototype.getInputAdapterMethods_ = function getInputAdapterMethods_() {
+    var _this7 = this;
+
+    return {
+      registerInputInteractionHandler: function registerInputInteractionHandler(evtType, handler) {
+        return _this7.input_.addEventListener(evtType, handler);
+      },
+      deregisterInputInteractionHandler: function deregisterInputInteractionHandler(evtType, handler) {
+        return _this7.input_.removeEventListener(evtType, handler);
+      },
+      getNativeInput: function getNativeInput() {
+        return _this7.input_;
+      }
+    };
+  };
+
+  /**
+   * Returns a map of all subcomponents to subfoundations.
+   * @return {!FoundationMapType}
+   */
+
+
+  MDCTextField.prototype.getFoundationMap_ = function getFoundationMap_() {
+    return {
+      helperText: this.helperText_ ? this.helperText_.foundation : undefined,
+      icon: this.icon_ ? this.icon_.foundation : undefined
+    };
+  };
+
+  textfield__createClass(MDCTextField, [{
+    key: 'value',
+    get: function get() {
+      return this.foundation_.getValue();
+    }
+
+    /**
+     * @param {string} value The value to set on the input.
+     */
+    ,
+    set: function set(value) {
+      this.foundation_.setValue(value);
+    }
+
+    /**
+     * @return {boolean} True if the Text Field is disabled.
+     */
+
+  }, {
+    key: 'disabled',
+    get: function get() {
+      return this.foundation_.isDisabled();
+    }
+
+    /**
+     * @param {boolean} disabled Sets the Text Field disabled or enabled.
+     */
+    ,
+    set: function set(disabled) {
+      this.foundation_.setDisabled(disabled);
+    }
+
+    /**
+     * @return {boolean} valid True if the Text Field is valid.
+     */
+
+  }, {
+    key: 'valid',
+    get: function get() {
+      return this.foundation_.isValid();
+    }
+
+    /**
+     * @param {boolean} valid Sets the Text Field valid or invalid.
+     */
+    ,
+    set: function set(valid) {
+      this.foundation_.setValid(valid);
+    }
+
+    /**
+     * @return {boolean} True if the Text Field is required.
+     */
+
+  }, {
+    key: 'required',
+    get: function get() {
+      return this.input_.required;
+    }
+
+    /**
+     * @param {boolean} required Sets the Text Field to required.
+     */
+    ,
+    set: function set(required) {
+      this.input_.required = required;
+    }
+
+    /**
+     * @return {string} The input element's validation pattern.
+     */
+
+  }, {
+    key: 'pattern',
+    get: function get() {
+      return this.input_.pattern;
+    }
+
+    /**
+     * @param {string} pattern Sets the input element's validation pattern.
+     */
+    ,
+    set: function set(pattern) {
+      this.input_.pattern = pattern;
+    }
+
+    /**
+     * @return {number} The input element's minLength.
+     */
+
+  }, {
+    key: 'minLength',
+    get: function get() {
+      return this.input_.minLength;
+    }
+
+    /**
+     * @param {number} minLength Sets the input element's minLength.
+     */
+    ,
+    set: function set(minLength) {
+      this.input_.minLength = minLength;
+    }
+
+    /**
+     * @return {number} The input element's maxLength.
+     */
+
+  }, {
+    key: 'maxLength',
+    get: function get() {
+      return this.input_.maxLength;
+    }
+
+    /**
+     * @param {number} maxLength Sets the input element's maxLength.
+     */
+    ,
+    set: function set(maxLength) {
+      // Chrome throws exception if maxLength is set < 0
+      if (maxLength < 0) {
+        this.input_.removeAttribute('maxLength');
+      } else {
+        this.input_.maxLength = maxLength;
+      }
+    }
+
+    /**
+     * @return {string} The input element's min.
+     */
+
+  }, {
+    key: 'min',
+    get: function get() {
+      return this.input_.min;
+    }
+
+    /**
+     * @param {string} min Sets the input element's min.
+     */
+    ,
+    set: function set(min) {
+      this.input_.min = min;
+    }
+
+    /**
+     * @return {string} The input element's max.
+     */
+
+  }, {
+    key: 'max',
+    get: function get() {
+      return this.input_.max;
+    }
+
+    /**
+     * @param {string} max Sets the input element's max.
+     */
+    ,
+    set: function set(max) {
+      this.input_.max = max;
+    }
+
+    /**
+     * @return {string} The input element's step.
+     */
+
+  }, {
+    key: 'step',
+    get: function get() {
+      return this.input_.step;
+    }
+
+    /**
+     * @param {string} step Sets the input element's step.
+     */
+    ,
+    set: function set(step) {
+      this.input_.step = step;
+    }
+
+    /**
+     * Sets the helper text element content.
+     * @param {string} content
+     */
+
+  }, {
+    key: 'helperTextContent',
+    set: function set(content) {
+      this.foundation_.setHelperTextContent(content);
+    }
+
+    /**
+     * Sets the aria label of the icon.
+     * @param {string} label
+     */
+
+  }, {
+    key: 'iconAriaLabel',
+    set: function set(label) {
+      this.foundation_.setIconAriaLabel(label);
+    }
+
+    /**
+     * Sets the text content of the icon.
+     * @param {string} content
+     */
+
+  }, {
+    key: 'iconContent',
+    set: function set(content) {
+      this.foundation_.setIconContent(content);
+    }
+
+    /**
+     * Enables or disables the use of native validation. Use this for custom validation.
+     * @param {boolean} useNativeValidation Set this to false to ignore native input validation.
+     */
+
+  }, {
+    key: 'useNativeValidation',
+    set: function set(useNativeValidation) {
+      this.foundation_.setUseNativeValidation(useNativeValidation);
+    }
+  }]);
+
+  return MDCTextField;
+}(component["a" /* default */]);
+
+
+
+/***/ }),
+
+/***/ "VcL+":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseTimes = __webpack_require__("r8MY"),
+    isArguments = __webpack_require__("3til"),
+    isArray = __webpack_require__("p/0c"),
+    isBuffer = __webpack_require__("iyC2"),
+    isIndex = __webpack_require__("A+gr"),
+    isTypedArray = __webpack_require__("kwIb");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (
+    // Safari 9 has enumerable `arguments.length` in strict mode.
+    key == 'length' ||
+    // Node.js 0.10 has enumerable non-index properties on buffers.
+    isBuff && (key == 'offset' || key == 'parent') ||
+    // PhantomJS 2 has enumerable non-index properties on typed arrays.
+    isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset') ||
+    // Skip index properties.
+    isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+/***/ }),
+
+/***/ "Vhgk":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__("srRO"),
+    isArray = __webpack_require__("p/0c");
+
+/**
+ * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+ * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @param {Function} symbolsFunc The function to get the symbols of `object`.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+
+module.exports = baseGetAllKeys;
+
+/***/ }),
+
 /***/ "Vy1O":
 /***/ (function(module, exports) {
 
 module.exports = require("url");
+
+/***/ }),
+
+/***/ "WLsS":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("wppe");
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+
+/**
+ * Creates a clone of the `symbol` object.
+ *
+ * @private
+ * @param {Object} symbol The symbol object to clone.
+ * @returns {Object} Returns the cloned symbol object.
+ */
+function cloneSymbol(symbol) {
+  return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+}
+
+module.exports = cloneSymbol;
+
+/***/ }),
+
+/***/ "WMV8":
+/***/ (function(module, exports) {
+
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function () {
+    return value;
+  };
+}
+
+module.exports = constant;
+
+/***/ }),
+
+/***/ "WYUj":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getTag = __webpack_require__("tQCT"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]';
+
+/**
+ * The base implementation of `_.isMap` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+ */
+function baseIsMap(value) {
+  return isObjectLike(value) && getTag(value) == mapTag;
+}
+
+module.exports = baseIsMap;
+
+/***/ }),
+
+/***/ "WqwZ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__("49I8"),
+    assignMergeValue = __webpack_require__("2Tdb"),
+    baseFor = __webpack_require__("mduf"),
+    baseMergeDeep = __webpack_require__("XsjK"),
+    isObject = __webpack_require__("u9vI"),
+    keysIn = __webpack_require__("+UAC"),
+    safeGet = __webpack_require__("vW3g");
+
+/**
+ * The base implementation of `_.merge` without support for multiple sources.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} [customizer] The function to customize merged values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMerge(object, source, srcIndex, customizer, stack) {
+  if (object === source) {
+    return;
+  }
+  baseFor(source, function (srcValue, key) {
+    if (isObject(srcValue)) {
+      stack || (stack = new Stack());
+      baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+    } else {
+      var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + '', object, source, stack) : undefined;
+
+      if (newValue === undefined) {
+        newValue = srcValue;
+      }
+      assignMergeValue(object, key, newValue);
+    }
+  }, keysIn);
+}
+
+module.exports = baseMerge;
 
 /***/ }),
 
@@ -29502,10 +38701,67 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
+/***/ "XJYD":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean' ? value !== '__proto__' : value === null;
+}
+
+module.exports = isKeyable;
+
+/***/ }),
+
 /***/ "XgVs":
 /***/ (function(module, exports) {
 
 module.exports = require("https");
+
+/***/ }),
+
+/***/ "Xk23":
+/***/ (function(module, exports, __webpack_require__) {
+
+var listCacheClear = __webpack_require__("s9iF"),
+    listCacheDelete = __webpack_require__("+bWy"),
+    listCacheGet = __webpack_require__("Ewuv"),
+    listCacheHas = __webpack_require__("xDQX"),
+    listCacheSet = __webpack_require__("h0zV");
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+    var index = -1,
+        length = entries == null ? 0 : entries.length;
+
+    this.clear();
+    while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+    }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+module.exports = ListCache;
 
 /***/ }),
 
@@ -29603,6 +38859,161 @@ function validateSubject(subject) {
 
 /***/ }),
 
+/***/ "XsjK":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assignMergeValue = __webpack_require__("2Tdb"),
+    cloneBuffer = __webpack_require__("s4SJ"),
+    cloneTypedArray = __webpack_require__("jXAN"),
+    copyArray = __webpack_require__("Mkgn"),
+    initCloneObject = __webpack_require__("qE2F"),
+    isArguments = __webpack_require__("3til"),
+    isArray = __webpack_require__("p/0c"),
+    isArrayLikeObject = __webpack_require__("FwQQ"),
+    isBuffer = __webpack_require__("iyC2"),
+    isFunction = __webpack_require__("dRuq"),
+    isObject = __webpack_require__("u9vI"),
+    isPlainObject = __webpack_require__("ES04"),
+    isTypedArray = __webpack_require__("kwIb"),
+    safeGet = __webpack_require__("vW3g"),
+    toPlainObject = __webpack_require__("92s5");
+
+/**
+ * A specialized version of `baseMerge` for arrays and objects which performs
+ * deep merges and tracks traversed objects enabling objects with circular
+ * references to be merged.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {string} key The key of the value to merge.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} mergeFunc The function to merge values.
+ * @param {Function} [customizer] The function to customize assigned values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+  var objValue = safeGet(object, key),
+      srcValue = safeGet(source, key),
+      stacked = stack.get(srcValue);
+
+  if (stacked) {
+    assignMergeValue(object, key, stacked);
+    return;
+  }
+  var newValue = customizer ? customizer(objValue, srcValue, key + '', object, source, stack) : undefined;
+
+  var isCommon = newValue === undefined;
+
+  if (isCommon) {
+    var isArr = isArray(srcValue),
+        isBuff = !isArr && isBuffer(srcValue),
+        isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+
+    newValue = srcValue;
+    if (isArr || isBuff || isTyped) {
+      if (isArray(objValue)) {
+        newValue = objValue;
+      } else if (isArrayLikeObject(objValue)) {
+        newValue = copyArray(objValue);
+      } else if (isBuff) {
+        isCommon = false;
+        newValue = cloneBuffer(srcValue, true);
+      } else if (isTyped) {
+        isCommon = false;
+        newValue = cloneTypedArray(srcValue, true);
+      } else {
+        newValue = [];
+      }
+    } else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+      newValue = objValue;
+      if (isArguments(objValue)) {
+        newValue = toPlainObject(objValue);
+      } else if (!isObject(objValue) || isFunction(objValue)) {
+        newValue = initCloneObject(srcValue);
+      }
+    } else {
+      isCommon = false;
+    }
+  }
+  if (isCommon) {
+    // Recursively merge objects and arrays (susceptible to call stack limits).
+    stack.set(srcValue, newValue);
+    mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+    stack['delete'](srcValue);
+  }
+  assignMergeValue(object, key, newValue);
+}
+
+module.exports = baseMergeDeep;
+
+/***/ }),
+
+/***/ "Y0zI":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseClone = __webpack_require__("/s7W");
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_DEEP_FLAG = 1,
+    CLONE_SYMBOLS_FLAG = 4;
+
+/**
+ * This method is like `_.clone` except that it recursively clones `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 1.0.0
+ * @category Lang
+ * @param {*} value The value to recursively clone.
+ * @returns {*} Returns the deep cloned value.
+ * @see _.clone
+ * @example
+ *
+ * var objects = [{ 'a': 1 }, { 'b': 2 }];
+ *
+ * var deep = _.cloneDeep(objects);
+ * console.log(deep[0] === objects[0]);
+ * // => false
+ */
+function cloneDeep(value) {
+  return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+}
+
+module.exports = cloneDeep;
+
+/***/ }),
+
+/***/ "YIaf":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("FTXF");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+
+module.exports = hashHas;
+
+/***/ }),
+
 /***/ "YdsM":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29632,11 +39043,132 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
+/***/ "Ywd4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var debounce = __webpack_require__("CXfR"),
+    isObject = __webpack_require__("u9vI");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+module.exports = throttle;
+
+/***/ }),
+
 /***/ "ZAL5":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"home":"home__MseGd","logo":"logo__1yT4h","timmer__block":"timmer__block__3Lkyx","timmer":"timmer__19wV6","timmer__text":"timmer__text__APxVL","timmer__text__mobile":"timmer__text__mobile__17drt","cardHeader":"cardHeader__2Vd1U","cardBody":"cardBody__fYYFu"};
+
+/***/ }),
+
+/***/ "ZC1a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isKeyable = __webpack_require__("XJYD");
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key) ? data[typeof key == 'string' ? 'string' : 'hash'] : data.map;
+}
+
+module.exports = getMapData;
+
+/***/ }),
+
+/***/ "ZEJm":
+/***/ (function(module, exports) {
+
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+
+  set.forEach(function (value) {
+    result[++index] = value;
+  });
+  return result;
+}
+
+module.exports = setToArray;
 
 /***/ }),
 
@@ -29705,6 +39237,37 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
+/***/ "a+zQ":
+/***/ (function(module, exports) {
+
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0:
+      return func.call(thisArg);
+    case 1:
+      return func.call(thisArg, args[0]);
+    case 2:
+      return func.call(thisArg, args[0], args[1]);
+    case 3:
+      return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+module.exports = apply;
+
+/***/ }),
+
 /***/ "a2Uu":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29722,13 +39285,6 @@ module.exports = function parseHeaders(headers) {
 module.exports = function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
 };
-
-/***/ }),
-
-/***/ "a81U":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -29759,10 +39315,47 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ "aqQ4":
-/***/ (function(module, exports) {
+/***/ "aWGB":
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var cloneArrayBuffer = __webpack_require__("zb3a");
+
+/**
+ * Creates a clone of `dataView`.
+ *
+ * @private
+ * @param {Object} dataView The data view to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned data view.
+ */
+function cloneDataView(dataView, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+  return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+}
+
+module.exports = cloneDataView;
+
+/***/ }),
+
+/***/ "az4F":
+/***/ (function(module, exports, __webpack_require__) {
+
+var copyObject = __webpack_require__("dtkN"),
+    getSymbols = __webpack_require__("EvLK");
+
+/**
+ * Copies own symbols of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy symbols from.
+ * @param {Object} [object={}] The object to copy symbols to.
+ * @returns {Object} Returns `object`.
+ */
+function copySymbols(source, object) {
+  return copyObject(source, getSymbols(source), object);
+}
+
+module.exports = copySymbols;
 
 /***/ }),
 
@@ -30039,6 +39632,165 @@ module.exports = function httpAdapter(config) {
 
 /***/ }),
 
+/***/ "bViC":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsNative = __webpack_require__("iEGD"),
+    getValue = __webpack_require__("Nk5W");
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+/***/ }),
+
+/***/ "bgO7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+    return typeof value == 'symbol' || isObjectLike(value) && baseGetTag(value) == symbolTag;
+}
+
+module.exports = isSymbol;
+
+/***/ }),
+
+/***/ "cDyG":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("ZC1a");
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = mapCacheDelete;
+
+/***/ }),
+
+/***/ "cTKO":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayEach = __webpack_require__("7D78"),
+    baseEach = __webpack_require__("z7ms"),
+    castFunction = __webpack_require__("tAcL"),
+    isArray = __webpack_require__("p/0c");
+
+/**
+ * Iterates over elements of `collection` and invokes `iteratee` for each element.
+ * The iteratee is invoked with three arguments: (value, index|key, collection).
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * **Note:** As with other "Collections" methods, objects with a "length"
+ * property are iterated like arrays. To avoid this behavior use `_.forIn`
+ * or `_.forOwn` for object iteration.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @alias each
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array|Object} Returns `collection`.
+ * @see _.forEachRight
+ * @example
+ *
+ * _.forEach([1, 2], function(value) {
+ *   console.log(value);
+ * });
+ * // => Logs `1` then `2`.
+ *
+ * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ *   console.log(key);
+ * });
+ * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+ */
+function forEach(collection, iteratee) {
+  var func = isArray(collection) ? arrayEach : baseEach;
+  return func(collection, castFunction(iteratee));
+}
+
+module.exports = forEach;
+
+/***/ }),
+
+/***/ "d05+":
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__("kAdy");
+
+/**
+ * The base implementation of `assignValue` and `assignMergeValue` without
+ * value checks.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function baseAssignValue(object, key, value) {
+  if (key == '__proto__' && defineProperty) {
+    defineProperty(object, key, {
+      'configurable': true,
+      'enumerable': true,
+      'value': value,
+      'writable': true
+    });
+  } else {
+    object[key] = value;
+  }
+}
+
+module.exports = baseAssignValue;
+
+/***/ }),
+
 /***/ "d4H2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30060,6 +39812,49 @@ function _inherits(subClass, superClass) {
 }
 
 module.exports = _inherits;
+
+/***/ }),
+
+/***/ "dRuq":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    isObject = __webpack_require__("u9vI");
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+    if (!isObject(value)) {
+        return false;
+    }
+    // The use of `Object#toString` avoids issues with the `typeof` operator
+    // in Safari 9 which returns 'object' for typed arrays and other constructors.
+    var tag = baseGetTag(value);
+    return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
 
 /***/ }),
 
@@ -30130,10 +39925,997 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
+/***/ "dtkN":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assignValue = __webpack_require__("p/s9"),
+    baseAssignValue = __webpack_require__("d05+");
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property identifiers to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @param {Function} [customizer] The function to customize copied values.
+ * @returns {Object} Returns `object`.
+ */
+function copyObject(source, props, object, customizer) {
+  var isNew = !object;
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+
+    var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined;
+
+    if (newValue === undefined) {
+      newValue = source[key];
+    }
+    if (isNew) {
+      baseAssignValue(object, key, newValue);
+    } else {
+      assignValue(object, key, newValue);
+    }
+  }
+  return object;
+}
+
+module.exports = copyObject;
+
+/***/ }),
+
+/***/ "e2CO":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Raised = undefined;
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__("5D9O");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _merge = __webpack_require__("yubd");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Raised = exports.Raised = function Raised(_ref) {
+  var zDepth = _ref.zDepth,
+      radius = _ref.radius,
+      background = _ref.background,
+      children = _ref.children,
+      _ref$styles = _ref.styles,
+      passedStyles = _ref$styles === undefined ? {} : _ref$styles;
+
+  var styles = (0, _reactcss2.default)((0, _merge2.default)({
+    'default': {
+      wrap: {
+        position: 'relative',
+        display: 'inline-block'
+      },
+      content: {
+        position: 'relative'
+      },
+      bg: {
+        absolute: '0px 0px 0px 0px',
+        boxShadow: '0 ' + zDepth + 'px ' + zDepth * 4 + 'px rgba(0,0,0,.24)',
+        borderRadius: radius,
+        background: background
+      }
+    },
+    'zDepth-0': {
+      bg: {
+        boxShadow: 'none'
+      }
+    },
+
+    'zDepth-1': {
+      bg: {
+        boxShadow: '0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)'
+      }
+    },
+    'zDepth-2': {
+      bg: {
+        boxShadow: '0 6px 20px rgba(0,0,0,.19), 0 8px 17px rgba(0,0,0,.2)'
+      }
+    },
+    'zDepth-3': {
+      bg: {
+        boxShadow: '0 17px 50px rgba(0,0,0,.19), 0 12px 15px rgba(0,0,0,.24)'
+      }
+    },
+    'zDepth-4': {
+      bg: {
+        boxShadow: '0 25px 55px rgba(0,0,0,.21), 0 16px 28px rgba(0,0,0,.22)'
+      }
+    },
+    'zDepth-5': {
+      bg: {
+        boxShadow: '0 40px 77px rgba(0,0,0,.22), 0 27px 24px rgba(0,0,0,.2)'
+      }
+    },
+    'square': {
+      bg: {
+        borderRadius: '0'
+      }
+    },
+    'circle': {
+      bg: {
+        borderRadius: '50%'
+      }
+    }
+  }, passedStyles), { 'zDepth-1': zDepth === 1 });
+
+  return _react2.default.createElement('div', { style: styles.wrap }, _react2.default.createElement('div', { style: styles.bg }), _react2.default.createElement('div', { style: styles.content }, children));
+};
+
+Raised.propTypes = {
+  background: _propTypes2.default.string,
+  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5]),
+  radius: _propTypes2.default.number,
+  styles: _propTypes2.default.object
+};
+
+Raised.defaultProps = {
+  background: '#fff',
+  zDepth: 1,
+  radius: 2,
+  styles: {}
+};
+
+exports.default = Raised;
+
+/***/ }),
+
+/***/ "e5TX":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("wppe"),
+    getRawTag = __webpack_require__("uiOY"),
+    objectToString = __webpack_require__("lPmd");
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+    if (value == null) {
+        return value === undefined ? undefinedTag : nullTag;
+    }
+    return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+/***/ }),
+
+/***/ "eFjB":
+/***/ (function(module, exports, __webpack_require__) {
+
+var copyObject = __webpack_require__("dtkN"),
+    keys = __webpack_require__("HI10");
+
+/**
+ * The base implementation of `_.assign` without support for multiple sources
+ * or `customizer` functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @returns {Object} Returns `object`.
+ */
+function baseAssign(object, source) {
+  return object && copyObject(source, keys(source), object);
+}
+
+module.exports = baseAssign;
+
+/***/ }),
+
+/***/ "eW0v":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "version", function() { return version; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOM", function() { return DOM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Children", function() { return Children; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hydrate", function() { return render$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createClass", function() { return createClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPortal", function() { return createPortal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFactory", function() { return createFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cloneElement", function() { return cloneElement$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isValidElement", function() { return isValidElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findDOMNode", function() { return findDOMNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unmountComponentAtNode", function() { return unmountComponentAtNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PureComponent", function() { return PureComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unstable_renderSubtreeIntoContainer", function() { return renderSubtreeIntoContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unstable_batchedUpdates", function() { return unstable_batchedUpdates; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return extend; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__("5D9O");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "PropTypes", function() { return __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_preact__ = __webpack_require__("KM04");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_preact___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_preact__);
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1_preact__, "createRef")) __webpack_require__.d(__webpack_exports__, "createRef", function() { return __WEBPACK_IMPORTED_MODULE_1_preact__["createRef"]; });
+
+
+
+
+
+var version = '15.1.0'; // trick libraries to think we are react
+
+var ELEMENTS = 'a abbr address area article aside audio b base bdi bdo big blockquote body br button canvas caption cite code col colgroup data datalist dd del details dfn dialog div dl dt em embed fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins kbd keygen label legend li link main map mark menu menuitem meta meter nav noscript object ol optgroup option output p param picture pre progress q rp rt ruby s samp script section select small source span strong style sub summary sup table tbody td textarea tfoot th thead time title tr track u ul var video wbr circle clipPath defs ellipse g image line linearGradient mask path pattern polygon polyline radialGradient rect stop svg text tspan'.split(' ');
+
+var REACT_ELEMENT_TYPE = typeof Symbol !== 'undefined' && Symbol.for && Symbol.for('react.element') || 0xeac7;
+
+var COMPONENT_WRAPPER_KEY = typeof Symbol !== 'undefined' && Symbol.for ? Symbol.for('__preactCompatWrapper') : '__preactCompatWrapper';
+
+// don't autobind these methods since they already have guaranteed context.
+var AUTOBIND_BLACKLIST = {
+	constructor: 1,
+	render: 1,
+	shouldComponentUpdate: 1,
+	componentWillReceiveProps: 1,
+	componentWillUpdate: 1,
+	componentDidUpdate: 1,
+	componentWillMount: 1,
+	componentDidMount: 1,
+	componentWillUnmount: 1,
+	componentDidUnmount: 1
+};
+
+var CAMEL_PROPS = /^(?:accent|alignment|arabic|baseline|cap|clip|color|fill|flood|font|glyph|horiz|marker|overline|paint|stop|strikethrough|stroke|text|underline|unicode|units|v|vector|vert|word|writing|x)[A-Z]/;
+
+var BYPASS_HOOK = {};
+
+/*global process*/
+var DEV = false;
+try {
+	DEV = "production" !== 'production';
+} catch (e) {}
+
+// a component that renders nothing. Used to replace components for unmountComponentAtNode.
+function EmptyComponent() {
+	return null;
+}
+
+// make react think we're react.
+var VNode = Object(__WEBPACK_IMPORTED_MODULE_1_preact__["h"])('a', null).constructor;
+VNode.prototype.$$typeof = REACT_ELEMENT_TYPE;
+VNode.prototype.preactCompatUpgraded = false;
+VNode.prototype.preactCompatNormalized = false;
+
+Object.defineProperty(VNode.prototype, 'type', {
+	get: function get() {
+		return this.nodeName;
+	},
+	set: function set(v) {
+		this.nodeName = v;
+	},
+	configurable: true
+});
+
+Object.defineProperty(VNode.prototype, 'props', {
+	get: function get() {
+		return this.attributes;
+	},
+	set: function set(v) {
+		this.attributes = v;
+	},
+	configurable: true
+});
+
+var oldEventHook = __WEBPACK_IMPORTED_MODULE_1_preact__["options"].event;
+__WEBPACK_IMPORTED_MODULE_1_preact__["options"].event = function (e) {
+	if (oldEventHook) {
+		e = oldEventHook(e);
+	}
+	e.persist = Object;
+	e.nativeEvent = e;
+	return e;
+};
+
+var oldVnodeHook = __WEBPACK_IMPORTED_MODULE_1_preact__["options"].vnode;
+__WEBPACK_IMPORTED_MODULE_1_preact__["options"].vnode = function (vnode) {
+	if (!vnode.preactCompatUpgraded) {
+		vnode.preactCompatUpgraded = true;
+
+		var tag = vnode.nodeName,
+		    attrs = vnode.attributes = vnode.attributes == null ? {} : extend({}, vnode.attributes);
+
+		if (typeof tag === 'function') {
+			if (tag[COMPONENT_WRAPPER_KEY] === true || tag.prototype && 'isReactComponent' in tag.prototype) {
+				if (vnode.children && String(vnode.children) === '') {
+					vnode.children = undefined;
+				}
+				if (vnode.children) {
+					attrs.children = vnode.children;
+				}
+
+				if (!vnode.preactCompatNormalized) {
+					normalizeVNode(vnode);
+				}
+				handleComponentVNode(vnode);
+			}
+		} else {
+			if (vnode.children && String(vnode.children) === '') {
+				vnode.children = undefined;
+			}
+			if (vnode.children) {
+				attrs.children = vnode.children;
+			}
+
+			if (attrs.defaultValue) {
+				if (!attrs.value && attrs.value !== 0) {
+					attrs.value = attrs.defaultValue;
+				}
+				delete attrs.defaultValue;
+			}
+
+			handleElementVNode(vnode, attrs);
+		}
+	}
+
+	if (oldVnodeHook) {
+		oldVnodeHook(vnode);
+	}
+};
+
+function handleComponentVNode(vnode) {
+	var tag = vnode.nodeName,
+	    a = vnode.attributes;
+
+	vnode.attributes = {};
+	if (tag.defaultProps) {
+		extend(vnode.attributes, tag.defaultProps);
+	}
+	if (a) {
+		extend(vnode.attributes, a);
+	}
+}
+
+function handleElementVNode(vnode, a) {
+	var shouldSanitize, attrs, i;
+	if (a) {
+		for (i in a) {
+			if (shouldSanitize = CAMEL_PROPS.test(i)) {
+				break;
+			}
+		}
+		if (shouldSanitize) {
+			attrs = vnode.attributes = {};
+			for (i in a) {
+				if (a.hasOwnProperty(i)) {
+					attrs[CAMEL_PROPS.test(i) ? i.replace(/([A-Z0-9])/, '-$1').toLowerCase() : i] = a[i];
+				}
+			}
+		}
+	}
+}
+
+// proxy render() since React returns a Component reference.
+function render$1(vnode, parent, callback) {
+	var prev = parent && parent._preactCompatRendered && parent._preactCompatRendered.base;
+
+	// ignore impossible previous renders
+	if (prev && prev.parentNode !== parent) {
+		prev = null;
+	}
+
+	// default to first Element child
+	if (!prev && parent) {
+		prev = parent.firstElementChild;
+	}
+
+	// remove unaffected siblings
+	for (var i = parent.childNodes.length; i--;) {
+		if (parent.childNodes[i] !== prev) {
+			parent.removeChild(parent.childNodes[i]);
+		}
+	}
+
+	var out = Object(__WEBPACK_IMPORTED_MODULE_1_preact__["render"])(vnode, parent, prev);
+	if (parent) {
+		parent._preactCompatRendered = out && (out._component || { base: out });
+	}
+	if (typeof callback === 'function') {
+		callback();
+	}
+	return out && out._component || out;
+}
+
+var ContextProvider = function ContextProvider() {};
+
+ContextProvider.prototype.getChildContext = function () {
+	return this.props.context;
+};
+ContextProvider.prototype.render = function (props) {
+	return props.children[0];
+};
+
+function renderSubtreeIntoContainer(parentComponent, vnode, container, callback) {
+	var wrap = Object(__WEBPACK_IMPORTED_MODULE_1_preact__["h"])(ContextProvider, { context: parentComponent.context }, vnode);
+	var renderContainer = render$1(wrap, container);
+	var component = renderContainer._component || renderContainer.base;
+	if (callback) {
+		callback.call(component, renderContainer);
+	}
+	return component;
+}
+
+function Portal(props) {
+	renderSubtreeIntoContainer(this, props.vnode, props.container);
+}
+
+function createPortal(vnode, container) {
+	return Object(__WEBPACK_IMPORTED_MODULE_1_preact__["h"])(Portal, { vnode: vnode, container: container });
+}
+
+function unmountComponentAtNode(container) {
+	var existing = container._preactCompatRendered && container._preactCompatRendered.base;
+	if (existing && existing.parentNode === container) {
+		Object(__WEBPACK_IMPORTED_MODULE_1_preact__["render"])(Object(__WEBPACK_IMPORTED_MODULE_1_preact__["h"])(EmptyComponent), container, existing);
+		return true;
+	}
+	return false;
+}
+
+var ARR = [];
+
+// This API is completely unnecessary for Preact, so it's basically passthrough.
+var Children = {
+	map: function map(children, fn, ctx) {
+		if (children == null) {
+			return null;
+		}
+		children = Children.toArray(children);
+		if (ctx && ctx !== children) {
+			fn = fn.bind(ctx);
+		}
+		return children.map(fn);
+	},
+	forEach: function forEach(children, fn, ctx) {
+		if (children == null) {
+			return null;
+		}
+		children = Children.toArray(children);
+		if (ctx && ctx !== children) {
+			fn = fn.bind(ctx);
+		}
+		children.forEach(fn);
+	},
+	count: function count(children) {
+		return children && children.length || 0;
+	},
+	only: function only(children) {
+		children = Children.toArray(children);
+		if (children.length !== 1) {
+			throw new Error('Children.only() expects only one child.');
+		}
+		return children[0];
+	},
+	toArray: function toArray(children) {
+		if (children == null) {
+			return [];
+		}
+		return ARR.concat(children);
+	}
+};
+
+/** Track current render() component for ref assignment */
+var currentComponent;
+
+function createFactory(type) {
+	return createElement.bind(null, type);
+}
+
+var DOM = {};
+for (var i = ELEMENTS.length; i--;) {
+	DOM[ELEMENTS[i]] = createFactory(ELEMENTS[i]);
+}
+
+function upgradeToVNodes(arr, offset) {
+	for (var i = offset || 0; i < arr.length; i++) {
+		var obj = arr[i];
+		if (Array.isArray(obj)) {
+			upgradeToVNodes(obj);
+		} else if (obj && typeof obj === 'object' && !isValidElement(obj) && (obj.props && obj.type || obj.attributes && obj.nodeName || obj.children)) {
+			arr[i] = createElement(obj.type || obj.nodeName, obj.props || obj.attributes, obj.children);
+		}
+	}
+}
+
+function isStatelessComponent(c) {
+	return typeof c === 'function' && !(c.prototype && c.prototype.render);
+}
+
+// wraps stateless functional components in a PropTypes validator
+function wrapStatelessComponent(WrappedComponent) {
+	return createClass({
+		displayName: WrappedComponent.displayName || WrappedComponent.name,
+		render: function render() {
+			return WrappedComponent(this.props, this.context);
+		}
+	});
+}
+
+function statelessComponentHook(Ctor) {
+	var Wrapped = Ctor[COMPONENT_WRAPPER_KEY];
+	if (Wrapped) {
+		return Wrapped === true ? Ctor : Wrapped;
+	}
+
+	Wrapped = wrapStatelessComponent(Ctor);
+
+	Object.defineProperty(Wrapped, COMPONENT_WRAPPER_KEY, { configurable: true, value: true });
+	Wrapped.displayName = Ctor.displayName;
+	Wrapped.propTypes = Ctor.propTypes;
+	Wrapped.defaultProps = Ctor.defaultProps;
+
+	Object.defineProperty(Ctor, COMPONENT_WRAPPER_KEY, { configurable: true, value: Wrapped });
+
+	return Wrapped;
+}
+
+function createElement() {
+	var args = [],
+	    len = arguments.length;
+	while (len--) {
+		args[len] = arguments[len];
+	}upgradeToVNodes(args, 2);
+	return normalizeVNode(__WEBPACK_IMPORTED_MODULE_1_preact__["h"].apply(void 0, args));
+}
+
+function normalizeVNode(vnode) {
+	vnode.preactCompatNormalized = true;
+
+	applyClassName(vnode);
+
+	if (isStatelessComponent(vnode.nodeName)) {
+		vnode.nodeName = statelessComponentHook(vnode.nodeName);
+	}
+
+	var ref = vnode.attributes.ref,
+	    type = ref && typeof ref;
+	if (currentComponent && (type === 'string' || type === 'number')) {
+		vnode.attributes.ref = createStringRefProxy(ref, currentComponent);
+	}
+
+	applyEventNormalization(vnode);
+
+	return vnode;
+}
+
+function cloneElement$1(element, props) {
+	var children = [],
+	    len = arguments.length - 2;
+	while (len-- > 0) {
+		children[len] = arguments[len + 2];
+	}if (!isValidElement(element)) {
+		return element;
+	}
+	var elementProps = element.attributes || element.props;
+	var node = Object(__WEBPACK_IMPORTED_MODULE_1_preact__["h"])(element.nodeName || element.type, extend({}, elementProps), element.children || elementProps && elementProps.children);
+	// Only provide the 3rd argument if needed.
+	// Arguments 3+ overwrite element.children in preactCloneElement
+	var cloneArgs = [node, props];
+	if (children && children.length) {
+		cloneArgs.push(children);
+	} else if (props && props.children) {
+		cloneArgs.push(props.children);
+	}
+	return normalizeVNode(__WEBPACK_IMPORTED_MODULE_1_preact__["cloneElement"].apply(void 0, cloneArgs));
+}
+
+function isValidElement(element) {
+	return element && (element instanceof VNode || element.$$typeof === REACT_ELEMENT_TYPE);
+}
+
+function createStringRefProxy(name, component) {
+	return component._refProxies[name] || (component._refProxies[name] = function (resolved) {
+		if (component && component.refs) {
+			component.refs[name] = resolved;
+			if (resolved === null) {
+				delete component._refProxies[name];
+				component = null;
+			}
+		}
+	});
+}
+
+function applyEventNormalization(ref) {
+	var nodeName = ref.nodeName;
+	var attributes = ref.attributes;
+
+	if (!attributes || typeof nodeName !== 'string') {
+		return;
+	}
+	var props = {};
+	for (var i in attributes) {
+		props[i.toLowerCase()] = i;
+	}
+	if (props.ondoubleclick) {
+		attributes.ondblclick = attributes[props.ondoubleclick];
+		delete attributes[props.ondoubleclick];
+	}
+	// for *textual inputs* (incl textarea), normalize `onChange` -> `onInput`:
+	if (props.onchange && (nodeName === 'textarea' || nodeName.toLowerCase() === 'input' && !/^fil|che|rad/i.test(attributes.type))) {
+		var normalized = props.oninput || 'oninput';
+		if (!attributes[normalized]) {
+			attributes[normalized] = multihook([attributes[normalized], attributes[props.onchange]]);
+			delete attributes[props.onchange];
+		}
+	}
+}
+
+function applyClassName(vnode) {
+	var a = vnode.attributes || (vnode.attributes = {});
+	classNameDescriptor.enumerable = 'className' in a;
+	if (a.className) {
+		a.class = a.className;
+	}
+	Object.defineProperty(a, 'className', classNameDescriptor);
+}
+
+var classNameDescriptor = {
+	configurable: true,
+	get: function get() {
+		return this.class;
+	},
+	set: function set(v) {
+		this.class = v;
+	}
+};
+
+function extend(base, props) {
+	var arguments$1 = arguments;
+
+	for (var i = 1, obj = void 0; i < arguments.length; i++) {
+		if (obj = arguments$1[i]) {
+			for (var key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					base[key] = obj[key];
+				}
+			}
+		}
+	}
+	return base;
+}
+
+function shallowDiffers(a, b) {
+	for (var i in a) {
+		if (!(i in b)) {
+			return true;
+		}
+	}
+	for (var i$1 in b) {
+		if (a[i$1] !== b[i$1]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function findDOMNode(component) {
+	return component && (component.base || component.nodeType === 1 && component) || null;
+}
+
+function F() {}
+
+function createClass(obj) {
+	function cl(props, context) {
+		bindAll(this);
+		Component$1.call(this, props, context, BYPASS_HOOK);
+		newComponentHook.call(this, props, context);
+	}
+
+	obj = extend({ constructor: cl }, obj);
+
+	// We need to apply mixins here so that getDefaultProps is correctly mixed
+	if (obj.mixins) {
+		applyMixins(obj, collateMixins(obj.mixins));
+	}
+	if (obj.statics) {
+		extend(cl, obj.statics);
+	}
+	if (obj.propTypes) {
+		cl.propTypes = obj.propTypes;
+	}
+	if (obj.defaultProps) {
+		cl.defaultProps = obj.defaultProps;
+	}
+	if (obj.getDefaultProps) {
+		cl.defaultProps = obj.getDefaultProps.call(cl);
+	}
+
+	F.prototype = Component$1.prototype;
+	cl.prototype = extend(new F(), obj);
+
+	cl.displayName = obj.displayName || 'Component';
+
+	return cl;
+}
+
+// Flatten an Array of mixins to a map of method name to mixin implementations
+function collateMixins(mixins) {
+	var keyed = {};
+	for (var i = 0; i < mixins.length; i++) {
+		var mixin = mixins[i];
+		for (var key in mixin) {
+			if (mixin.hasOwnProperty(key) && typeof mixin[key] === 'function') {
+				(keyed[key] || (keyed[key] = [])).push(mixin[key]);
+			}
+		}
+	}
+	return keyed;
+}
+
+// apply a mapping of Arrays of mixin methods to a component prototype
+function applyMixins(proto, mixins) {
+	for (var key in mixins) {
+		if (mixins.hasOwnProperty(key)) {
+			proto[key] = multihook(mixins[key].concat(proto[key] || ARR), key === 'getDefaultProps' || key === 'getInitialState' || key === 'getChildContext');
+		}
+	}
+}
+
+function bindAll(ctx) {
+	for (var i in ctx) {
+		var v = ctx[i];
+		if (typeof v === 'function' && !v.__bound && !AUTOBIND_BLACKLIST.hasOwnProperty(i)) {
+			(ctx[i] = v.bind(ctx)).__bound = true;
+		}
+	}
+}
+
+function callMethod(ctx, m, args) {
+	if (typeof m === 'string') {
+		m = ctx.constructor.prototype[m];
+	}
+	if (typeof m === 'function') {
+		return m.apply(ctx, args);
+	}
+}
+
+function multihook(hooks, skipDuplicates) {
+	return function () {
+		var arguments$1 = arguments;
+
+		var ret;
+		for (var i = 0; i < hooks.length; i++) {
+			var r = callMethod(this, hooks[i], arguments$1);
+
+			if (skipDuplicates && r != null) {
+				if (!ret) {
+					ret = {};
+				}
+				for (var key in r) {
+					if (r.hasOwnProperty(key)) {
+						ret[key] = r[key];
+					}
+				}
+			} else if (typeof r !== 'undefined') {
+				ret = r;
+			}
+		}
+		return ret;
+	};
+}
+
+function newComponentHook(props, context) {
+	propsHook.call(this, props, context);
+	this.componentWillReceiveProps = multihook([propsHook, this.componentWillReceiveProps || 'componentWillReceiveProps']);
+	this.render = multihook([propsHook, beforeRender, this.render || 'render', afterRender]);
+}
+
+function propsHook(props, context) {
+	if (!props) {
+		return;
+	}
+
+	// React annoyingly special-cases single children, and some react components are ridiculously strict about this.
+	var c = props.children;
+	if (c && Array.isArray(c) && c.length === 1 && (typeof c[0] === 'string' || typeof c[0] === 'function' || c[0] instanceof VNode)) {
+		props.children = c[0];
+
+		// but its totally still going to be an Array.
+		if (props.children && typeof props.children === 'object') {
+			props.children.length = 1;
+			props.children[0] = props.children;
+		}
+	}
+
+	// add proptype checking
+	if (DEV) {
+		var ctor = typeof this === 'function' ? this : this.constructor,
+		    propTypes = this.propTypes || ctor.propTypes;
+		var displayName = this.displayName || ctor.name;
+
+		if (propTypes) {
+			__WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.checkPropTypes(propTypes, props, 'prop', displayName);
+		}
+	}
+}
+
+function beforeRender(props) {
+	currentComponent = this;
+}
+
+function afterRender() {
+	if (currentComponent === this) {
+		currentComponent = null;
+	}
+}
+
+function Component$1(props, context, opts) {
+	__WEBPACK_IMPORTED_MODULE_1_preact__["Component"].call(this, props, context);
+	this.state = this.getInitialState ? this.getInitialState() : {};
+	this.refs = {};
+	this._refProxies = {};
+	if (opts !== BYPASS_HOOK) {
+		newComponentHook.call(this, props, context);
+	}
+}
+extend(Component$1.prototype = new __WEBPACK_IMPORTED_MODULE_1_preact__["Component"](), {
+	constructor: Component$1,
+
+	isReactComponent: {},
+
+	replaceState: function replaceState(state, callback) {
+		this.setState(state, callback);
+		for (var i in this.state) {
+			if (!(i in state)) {
+				delete this.state[i];
+			}
+		}
+	},
+
+	getDOMNode: function getDOMNode() {
+		return this.base;
+	},
+
+	isMounted: function isMounted() {
+		return !!this.base;
+	}
+});
+
+function PureComponent(props, context) {
+	Component$1.call(this, props, context);
+}
+F.prototype = Component$1.prototype;
+PureComponent.prototype = new F();
+PureComponent.prototype.isPureReactComponent = true;
+PureComponent.prototype.shouldComponentUpdate = function (props, state) {
+	return shallowDiffers(this.props, props) || shallowDiffers(this.state, state);
+};
+
+function unstable_batchedUpdates(callback) {
+	callback();
+}
+
+var index = {
+	version: version,
+	DOM: DOM,
+	PropTypes: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a,
+	Children: Children,
+	render: render$1,
+	hydrate: render$1,
+	createClass: createClass,
+	createPortal: createPortal,
+	createFactory: createFactory,
+	createElement: createElement,
+	cloneElement: cloneElement$1,
+	createRef: __WEBPACK_IMPORTED_MODULE_1_preact__["createRef"],
+	isValidElement: isValidElement,
+	findDOMNode: findDOMNode,
+	unmountComponentAtNode: unmountComponentAtNode,
+	Component: Component$1,
+	PureComponent: PureComponent,
+	unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer,
+	unstable_batchedUpdates: unstable_batchedUpdates,
+	__spread: extend
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+//# sourceMappingURL=preact-compat.es.js.map
+
+/***/ }),
+
 /***/ "epkN":
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
+
+/***/ }),
+
+/***/ "f4Fl":
+/***/ (function(module, exports, __webpack_require__) {
+
+var identity = __webpack_require__("Jpv1"),
+    overRest = __webpack_require__("qXFa"),
+    setToString = __webpack_require__("KRxT");
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
+}
+
+module.exports = baseRest;
+
+/***/ }),
+
+/***/ "f7dW":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Initializes an array clone.
+ *
+ * @private
+ * @param {Array} array The array to clone.
+ * @returns {Array} Returns the initialized clone.
+ */
+function initCloneArray(array) {
+  var length = array.length,
+      result = new array.constructor(length);
+
+  // Add properties assigned by `RegExp#exec`.
+  if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
+    result.index = array.index;
+    result.input = array.input;
+  }
+  return result;
+}
+
+module.exports = initCloneArray;
 
 /***/ }),
 
@@ -30371,6 +41153,91 @@ default_1.Row = TopAppBarRow;
 
 /***/ }),
 
+/***/ "fLfT":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC"),
+    root = __webpack_require__("MIhM");
+
+/* Built-in method references that are verified to be native. */
+var DataView = getNative(root, 'DataView');
+
+module.exports = DataView;
+
+/***/ }),
+
+/***/ "fwYF":
+/***/ (function(module, exports, __webpack_require__) {
+
+var ListCache = __webpack_require__("Xk23"),
+    Map = __webpack_require__("K9uV"),
+    MapCache = __webpack_require__("wtMJ");
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof ListCache) {
+    var pairs = data.__data__;
+    if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new MapCache(pairs);
+  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
+}
+
+module.exports = stackSet;
+
+/***/ }),
+
+/***/ "g55O":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return func + '';
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+/***/ }),
+
 /***/ "gHkb":
 /***/ (function(module, exports) {
 
@@ -30410,6 +41277,1631 @@ function bind(target, propertyKey, descriptor) {
 }
 exports.bind = bind;
 exports.default = bind;
+
+/***/ }),
+
+/***/ "gTE+":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC"),
+    root = __webpack_require__("MIhM");
+
+/* Built-in method references that are verified to be native. */
+var Promise = getNative(root, 'Promise');
+
+module.exports = Promise;
+
+/***/ }),
+
+/***/ "ga8q":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("u9vI");
+
+/** Built-in value references. */
+var objectCreate = Object.create;
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} proto The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+var baseCreate = function () {
+  function object() {}
+  return function (proto) {
+    if (!isObject(proto)) {
+      return {};
+    }
+    if (objectCreate) {
+      return objectCreate(proto);
+    }
+    object.prototype = proto;
+    var result = new object();
+    object.prototype = undefined;
+    return result;
+  };
+}();
+
+module.exports = baseCreate;
+
+/***/ }),
+
+/***/ "gmQJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseRest = __webpack_require__("f4Fl"),
+    isIterateeCall = __webpack_require__("R62e");
+
+/**
+ * Creates a function like `_.assign`.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return baseRest(function (object, sources) {
+    var index = -1,
+        length = sources.length,
+        customizer = length > 1 ? sources[length - 1] : undefined,
+        guard = length > 2 ? sources[2] : undefined;
+
+    customizer = assigner.length > 3 && typeof customizer == 'function' ? (length--, customizer) : undefined;
+
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
+    }
+    object = Object(object);
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, index, customizer);
+      }
+    }
+    return object;
+  });
+}
+
+module.exports = createAssigner;
+
+/***/ }),
+
+/***/ "h0zV":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("yEjJ");
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+module.exports = listCacheSet;
+
+/***/ }),
+
+/***/ "hClK":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("FTXF");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+module.exports = hashGet;
+
+/***/ }),
+
+/***/ "hmcW":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__("49I8"),
+    baseIsEqual = __webpack_require__("iKxp");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/**
+ * The base implementation of `_.isMatch` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to inspect.
+ * @param {Object} source The object of property values to match.
+ * @param {Array} matchData The property names, values, and compare flags to match.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ */
+function baseIsMatch(object, source, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+
+  if (object == null) {
+    return !length;
+  }
+  object = Object(object);
+  while (index--) {
+    var data = matchData[index];
+    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+      return false;
+    }
+  }
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var stack = new Stack();
+      if (customizer) {
+        var result = customizer(objValue, srcValue, key, object, source, stack);
+      }
+      if (!(result === undefined ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack) : result)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+module.exports = baseIsMatch;
+
+/***/ }),
+
+/***/ "iEGD":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__("dRuq"),
+    isMasked = __webpack_require__("1qpN"),
+    isObject = __webpack_require__("u9vI"),
+    toSource = __webpack_require__("g55O");
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' + funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
+/***/ }),
+
+/***/ "iF63":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var calculateChange = exports.calculateChange = function calculateChange(e, direction, hsl, container) {
+  var containerWidth = container.clientWidth;
+  var containerHeight = container.clientHeight;
+  var x = typeof e.pageX === 'number' ? e.pageX : e.touches[0].pageX;
+  var y = typeof e.pageY === 'number' ? e.pageY : e.touches[0].pageY;
+  var left = x - (container.getBoundingClientRect().left + window.pageXOffset);
+  var top = y - (container.getBoundingClientRect().top + window.pageYOffset);
+
+  if (direction === 'vertical') {
+    var h = void 0;
+    if (top < 0) {
+      h = 359;
+    } else if (top > containerHeight) {
+      h = 0;
+    } else {
+      var percent = -(top * 100 / containerHeight) + 100;
+      h = 360 * percent / 100;
+    }
+
+    if (hsl.h !== h) {
+      return {
+        h: h,
+        s: hsl.s,
+        l: hsl.l,
+        a: hsl.a,
+        source: 'rgb'
+      };
+    }
+  } else {
+    var _h = void 0;
+    if (left < 0) {
+      _h = 0;
+    } else if (left > containerWidth) {
+      _h = 359;
+    } else {
+      var _percent = left * 100 / containerWidth;
+      _h = 360 * _percent / 100;
+    }
+
+    if (hsl.h !== _h) {
+      return {
+        h: _h,
+        s: hsl.s,
+        l: hsl.l,
+        a: hsl.a,
+        source: 'rgb'
+      };
+    }
+  }
+  return null;
+};
+
+/***/ }),
+
+/***/ "iKxp":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsEqualDeep = __webpack_require__("6ykg"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Unordered comparison
+ *  2 - Partial comparison
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || !isObjectLike(value) && !isObjectLike(other)) {
+    return value !== value && other !== other;
+  }
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+}
+
+module.exports = baseIsEqual;
+
+/***/ }),
+
+/***/ "iS0Z":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("u9vI"),
+    isSymbol = __webpack_require__("bgO7");
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? other + '' : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+}
+
+module.exports = toNumber;
+
+/***/ }),
+
+/***/ "ilXr":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor v1.4.1
+// https://github.com/bgrins/TinyColor
+// Brian Grinstead, MIT License
+
+(function (Math) {
+
+    var trimLeft = /^\s+/,
+        trimRight = /\s+$/,
+        tinyCounter = 0,
+        mathRound = Math.round,
+        mathMin = Math.min,
+        mathMax = Math.max,
+        mathRandom = Math.random;
+
+    function tinycolor(color, opts) {
+
+        color = color ? color : '';
+        opts = opts || {};
+
+        // If input is already a tinycolor, return itself
+        if (color instanceof tinycolor) {
+            return color;
+        }
+        // If we are called as a function, call using new instead
+        if (!(this instanceof tinycolor)) {
+            return new tinycolor(color, opts);
+        }
+
+        var rgb = inputToRGB(color);
+        this._originalInput = color, this._r = rgb.r, this._g = rgb.g, this._b = rgb.b, this._a = rgb.a, this._roundA = mathRound(100 * this._a) / 100, this._format = opts.format || rgb.format;
+        this._gradientType = opts.gradientType;
+
+        // Don't let the range of [0,255] come back in [0,1].
+        // Potentially lose a little bit of precision here, but will fix issues where
+        // .5 gets interpreted as half of the total, instead of half of 1
+        // If it was supposed to be 128, this was already taken care of by `inputToRgb`
+        if (this._r < 1) {
+            this._r = mathRound(this._r);
+        }
+        if (this._g < 1) {
+            this._g = mathRound(this._g);
+        }
+        if (this._b < 1) {
+            this._b = mathRound(this._b);
+        }
+
+        this._ok = rgb.ok;
+        this._tc_id = tinyCounter++;
+    }
+
+    tinycolor.prototype = {
+        isDark: function isDark() {
+            return this.getBrightness() < 128;
+        },
+        isLight: function isLight() {
+            return !this.isDark();
+        },
+        isValid: function isValid() {
+            return this._ok;
+        },
+        getOriginalInput: function getOriginalInput() {
+            return this._originalInput;
+        },
+        getFormat: function getFormat() {
+            return this._format;
+        },
+        getAlpha: function getAlpha() {
+            return this._a;
+        },
+        getBrightness: function getBrightness() {
+            //http://www.w3.org/TR/AERT#color-contrast
+            var rgb = this.toRgb();
+            return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+        },
+        getLuminance: function getLuminance() {
+            //http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+            var rgb = this.toRgb();
+            var RsRGB, GsRGB, BsRGB, R, G, B;
+            RsRGB = rgb.r / 255;
+            GsRGB = rgb.g / 255;
+            BsRGB = rgb.b / 255;
+
+            if (RsRGB <= 0.03928) {
+                R = RsRGB / 12.92;
+            } else {
+                R = Math.pow((RsRGB + 0.055) / 1.055, 2.4);
+            }
+            if (GsRGB <= 0.03928) {
+                G = GsRGB / 12.92;
+            } else {
+                G = Math.pow((GsRGB + 0.055) / 1.055, 2.4);
+            }
+            if (BsRGB <= 0.03928) {
+                B = BsRGB / 12.92;
+            } else {
+                B = Math.pow((BsRGB + 0.055) / 1.055, 2.4);
+            }
+            return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+        },
+        setAlpha: function setAlpha(value) {
+            this._a = boundAlpha(value);
+            this._roundA = mathRound(100 * this._a) / 100;
+            return this;
+        },
+        toHsv: function toHsv() {
+            var hsv = rgbToHsv(this._r, this._g, this._b);
+            return { h: hsv.h * 360, s: hsv.s, v: hsv.v, a: this._a };
+        },
+        toHsvString: function toHsvString() {
+            var hsv = rgbToHsv(this._r, this._g, this._b);
+            var h = mathRound(hsv.h * 360),
+                s = mathRound(hsv.s * 100),
+                v = mathRound(hsv.v * 100);
+            return this._a == 1 ? "hsv(" + h + ", " + s + "%, " + v + "%)" : "hsva(" + h + ", " + s + "%, " + v + "%, " + this._roundA + ")";
+        },
+        toHsl: function toHsl() {
+            var hsl = rgbToHsl(this._r, this._g, this._b);
+            return { h: hsl.h * 360, s: hsl.s, l: hsl.l, a: this._a };
+        },
+        toHslString: function toHslString() {
+            var hsl = rgbToHsl(this._r, this._g, this._b);
+            var h = mathRound(hsl.h * 360),
+                s = mathRound(hsl.s * 100),
+                l = mathRound(hsl.l * 100);
+            return this._a == 1 ? "hsl(" + h + ", " + s + "%, " + l + "%)" : "hsla(" + h + ", " + s + "%, " + l + "%, " + this._roundA + ")";
+        },
+        toHex: function toHex(allow3Char) {
+            return rgbToHex(this._r, this._g, this._b, allow3Char);
+        },
+        toHexString: function toHexString(allow3Char) {
+            return '#' + this.toHex(allow3Char);
+        },
+        toHex8: function toHex8(allow4Char) {
+            return rgbaToHex(this._r, this._g, this._b, this._a, allow4Char);
+        },
+        toHex8String: function toHex8String(allow4Char) {
+            return '#' + this.toHex8(allow4Char);
+        },
+        toRgb: function toRgb() {
+            return { r: mathRound(this._r), g: mathRound(this._g), b: mathRound(this._b), a: this._a };
+        },
+        toRgbString: function toRgbString() {
+            return this._a == 1 ? "rgb(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ")" : "rgba(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ", " + this._roundA + ")";
+        },
+        toPercentageRgb: function toPercentageRgb() {
+            return { r: mathRound(bound01(this._r, 255) * 100) + "%", g: mathRound(bound01(this._g, 255) * 100) + "%", b: mathRound(bound01(this._b, 255) * 100) + "%", a: this._a };
+        },
+        toPercentageRgbString: function toPercentageRgbString() {
+            return this._a == 1 ? "rgb(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%)" : "rgba(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
+        },
+        toName: function toName() {
+            if (this._a === 0) {
+                return "transparent";
+            }
+
+            if (this._a < 1) {
+                return false;
+            }
+
+            return hexNames[rgbToHex(this._r, this._g, this._b, true)] || false;
+        },
+        toFilter: function toFilter(secondColor) {
+            var hex8String = '#' + rgbaToArgbHex(this._r, this._g, this._b, this._a);
+            var secondHex8String = hex8String;
+            var gradientType = this._gradientType ? "GradientType = 1, " : "";
+
+            if (secondColor) {
+                var s = tinycolor(secondColor);
+                secondHex8String = '#' + rgbaToArgbHex(s._r, s._g, s._b, s._a);
+            }
+
+            return "progid:DXImageTransform.Microsoft.gradient(" + gradientType + "startColorstr=" + hex8String + ",endColorstr=" + secondHex8String + ")";
+        },
+        toString: function toString(format) {
+            var formatSet = !!format;
+            format = format || this._format;
+
+            var formattedString = false;
+            var hasAlpha = this._a < 1 && this._a >= 0;
+            var needsAlphaFormat = !formatSet && hasAlpha && (format === "hex" || format === "hex6" || format === "hex3" || format === "hex4" || format === "hex8" || format === "name");
+
+            if (needsAlphaFormat) {
+                // Special case for "transparent", all other non-alpha formats
+                // will return rgba when there is transparency.
+                if (format === "name" && this._a === 0) {
+                    return this.toName();
+                }
+                return this.toRgbString();
+            }
+            if (format === "rgb") {
+                formattedString = this.toRgbString();
+            }
+            if (format === "prgb") {
+                formattedString = this.toPercentageRgbString();
+            }
+            if (format === "hex" || format === "hex6") {
+                formattedString = this.toHexString();
+            }
+            if (format === "hex3") {
+                formattedString = this.toHexString(true);
+            }
+            if (format === "hex4") {
+                formattedString = this.toHex8String(true);
+            }
+            if (format === "hex8") {
+                formattedString = this.toHex8String();
+            }
+            if (format === "name") {
+                formattedString = this.toName();
+            }
+            if (format === "hsl") {
+                formattedString = this.toHslString();
+            }
+            if (format === "hsv") {
+                formattedString = this.toHsvString();
+            }
+
+            return formattedString || this.toHexString();
+        },
+        clone: function clone() {
+            return tinycolor(this.toString());
+        },
+
+        _applyModification: function _applyModification(fn, args) {
+            var color = fn.apply(null, [this].concat([].slice.call(args)));
+            this._r = color._r;
+            this._g = color._g;
+            this._b = color._b;
+            this.setAlpha(color._a);
+            return this;
+        },
+        lighten: function lighten() {
+            return this._applyModification(_lighten, arguments);
+        },
+        brighten: function brighten() {
+            return this._applyModification(_brighten, arguments);
+        },
+        darken: function darken() {
+            return this._applyModification(_darken, arguments);
+        },
+        desaturate: function desaturate() {
+            return this._applyModification(_desaturate, arguments);
+        },
+        saturate: function saturate() {
+            return this._applyModification(_saturate, arguments);
+        },
+        greyscale: function greyscale() {
+            return this._applyModification(_greyscale, arguments);
+        },
+        spin: function spin() {
+            return this._applyModification(_spin, arguments);
+        },
+
+        _applyCombination: function _applyCombination(fn, args) {
+            return fn.apply(null, [this].concat([].slice.call(args)));
+        },
+        analogous: function analogous() {
+            return this._applyCombination(_analogous, arguments);
+        },
+        complement: function complement() {
+            return this._applyCombination(_complement, arguments);
+        },
+        monochromatic: function monochromatic() {
+            return this._applyCombination(_monochromatic, arguments);
+        },
+        splitcomplement: function splitcomplement() {
+            return this._applyCombination(_splitcomplement, arguments);
+        },
+        triad: function triad() {
+            return this._applyCombination(_triad, arguments);
+        },
+        tetrad: function tetrad() {
+            return this._applyCombination(_tetrad, arguments);
+        }
+    };
+
+    // If input is an object, force 1 into "1.0" to handle ratios properly
+    // String input requires "1.0" as input, so 1 will be treated as 1
+    tinycolor.fromRatio = function (color, opts) {
+        if (typeof color == "object") {
+            var newColor = {};
+            for (var i in color) {
+                if (color.hasOwnProperty(i)) {
+                    if (i === "a") {
+                        newColor[i] = color[i];
+                    } else {
+                        newColor[i] = convertToPercentage(color[i]);
+                    }
+                }
+            }
+            color = newColor;
+        }
+
+        return tinycolor(color, opts);
+    };
+
+    // Given a string or object, convert that input to RGB
+    // Possible string inputs:
+    //
+    //     "red"
+    //     "#f00" or "f00"
+    //     "#ff0000" or "ff0000"
+    //     "#ff000000" or "ff000000"
+    //     "rgb 255 0 0" or "rgb (255, 0, 0)"
+    //     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
+    //     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
+    //     "rgba (1.0, 0, 0, 1)" or "rgba 1.0, 0, 0, 1"
+    //     "hsl(0, 100%, 50%)" or "hsl 0 100% 50%"
+    //     "hsla(0, 100%, 50%, 1)" or "hsla 0 100% 50%, 1"
+    //     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
+    //
+    function inputToRGB(color) {
+
+        var rgb = { r: 0, g: 0, b: 0 };
+        var a = 1;
+        var s = null;
+        var v = null;
+        var l = null;
+        var ok = false;
+        var format = false;
+
+        if (typeof color == "string") {
+            color = stringInputToObject(color);
+        }
+
+        if (typeof color == "object") {
+            if (isValidCSSUnit(color.r) && isValidCSSUnit(color.g) && isValidCSSUnit(color.b)) {
+                rgb = rgbToRgb(color.r, color.g, color.b);
+                ok = true;
+                format = String(color.r).substr(-1) === "%" ? "prgb" : "rgb";
+            } else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.v)) {
+                s = convertToPercentage(color.s);
+                v = convertToPercentage(color.v);
+                rgb = hsvToRgb(color.h, s, v);
+                ok = true;
+                format = "hsv";
+            } else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.l)) {
+                s = convertToPercentage(color.s);
+                l = convertToPercentage(color.l);
+                rgb = hslToRgb(color.h, s, l);
+                ok = true;
+                format = "hsl";
+            }
+
+            if (color.hasOwnProperty("a")) {
+                a = color.a;
+            }
+        }
+
+        a = boundAlpha(a);
+
+        return {
+            ok: ok,
+            format: color.format || format,
+            r: mathMin(255, mathMax(rgb.r, 0)),
+            g: mathMin(255, mathMax(rgb.g, 0)),
+            b: mathMin(255, mathMax(rgb.b, 0)),
+            a: a
+        };
+    }
+
+    // Conversion Functions
+    // --------------------
+
+    // `rgbToHsl`, `rgbToHsv`, `hslToRgb`, `hsvToRgb` modified from:
+    // <http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript>
+
+    // `rgbToRgb`
+    // Handle bounds / percentage checking to conform to CSS color spec
+    // <http://www.w3.org/TR/css3-color/>
+    // *Assumes:* r, g, b in [0, 255] or [0, 1]
+    // *Returns:* { r, g, b } in [0, 255]
+    function rgbToRgb(r, g, b) {
+        return {
+            r: bound01(r, 255) * 255,
+            g: bound01(g, 255) * 255,
+            b: bound01(b, 255) * 255
+        };
+    }
+
+    // `rgbToHsl`
+    // Converts an RGB color value to HSL.
+    // *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
+    // *Returns:* { h, s, l } in [0,1]
+    function rgbToHsl(r, g, b) {
+
+        r = bound01(r, 255);
+        g = bound01(g, 255);
+        b = bound01(b, 255);
+
+        var max = mathMax(r, g, b),
+            min = mathMin(r, g, b);
+        var h,
+            s,
+            l = (max + min) / 2;
+
+        if (max == min) {
+            h = s = 0; // achromatic
+        } else {
+            var d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);break;
+                case g:
+                    h = (b - r) / d + 2;break;
+                case b:
+                    h = (r - g) / d + 4;break;
+            }
+
+            h /= 6;
+        }
+
+        return { h: h, s: s, l: l };
+    }
+
+    // `hslToRgb`
+    // Converts an HSL color value to RGB.
+    // *Assumes:* h is contained in [0, 1] or [0, 360] and s and l are contained [0, 1] or [0, 100]
+    // *Returns:* { r, g, b } in the set [0, 255]
+    function hslToRgb(h, s, l) {
+        var r, g, b;
+
+        h = bound01(h, 360);
+        s = bound01(s, 100);
+        l = bound01(l, 100);
+
+        function hue2rgb(p, q, t) {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        }
+
+        if (s === 0) {
+            r = g = b = l; // achromatic
+        } else {
+            var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            var p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1 / 3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1 / 3);
+        }
+
+        return { r: r * 255, g: g * 255, b: b * 255 };
+    }
+
+    // `rgbToHsv`
+    // Converts an RGB color value to HSV
+    // *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
+    // *Returns:* { h, s, v } in [0,1]
+    function rgbToHsv(r, g, b) {
+
+        r = bound01(r, 255);
+        g = bound01(g, 255);
+        b = bound01(b, 255);
+
+        var max = mathMax(r, g, b),
+            min = mathMin(r, g, b);
+        var h,
+            s,
+            v = max;
+
+        var d = max - min;
+        s = max === 0 ? 0 : d / max;
+
+        if (max == min) {
+            h = 0; // achromatic
+        } else {
+            switch (max) {
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);break;
+                case g:
+                    h = (b - r) / d + 2;break;
+                case b:
+                    h = (r - g) / d + 4;break;
+            }
+            h /= 6;
+        }
+        return { h: h, s: s, v: v };
+    }
+
+    // `hsvToRgb`
+    // Converts an HSV color value to RGB.
+    // *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
+    // *Returns:* { r, g, b } in the set [0, 255]
+    function hsvToRgb(h, s, v) {
+
+        h = bound01(h, 360) * 6;
+        s = bound01(s, 100);
+        v = bound01(v, 100);
+
+        var i = Math.floor(h),
+            f = h - i,
+            p = v * (1 - s),
+            q = v * (1 - f * s),
+            t = v * (1 - (1 - f) * s),
+            mod = i % 6,
+            r = [v, q, p, p, t, v][mod],
+            g = [t, v, v, q, p, p][mod],
+            b = [p, p, t, v, v, q][mod];
+
+        return { r: r * 255, g: g * 255, b: b * 255 };
+    }
+
+    // `rgbToHex`
+    // Converts an RGB color to hex
+    // Assumes r, g, and b are contained in the set [0, 255]
+    // Returns a 3 or 6 character hex
+    function rgbToHex(r, g, b, allow3Char) {
+
+        var hex = [pad2(mathRound(r).toString(16)), pad2(mathRound(g).toString(16)), pad2(mathRound(b).toString(16))];
+
+        // Return a 3 character hex if possible
+        if (allow3Char && hex[0].charAt(0) == hex[0].charAt(1) && hex[1].charAt(0) == hex[1].charAt(1) && hex[2].charAt(0) == hex[2].charAt(1)) {
+            return hex[0].charAt(0) + hex[1].charAt(0) + hex[2].charAt(0);
+        }
+
+        return hex.join("");
+    }
+
+    // `rgbaToHex`
+    // Converts an RGBA color plus alpha transparency to hex
+    // Assumes r, g, b are contained in the set [0, 255] and
+    // a in [0, 1]. Returns a 4 or 8 character rgba hex
+    function rgbaToHex(r, g, b, a, allow4Char) {
+
+        var hex = [pad2(mathRound(r).toString(16)), pad2(mathRound(g).toString(16)), pad2(mathRound(b).toString(16)), pad2(convertDecimalToHex(a))];
+
+        // Return a 4 character hex if possible
+        if (allow4Char && hex[0].charAt(0) == hex[0].charAt(1) && hex[1].charAt(0) == hex[1].charAt(1) && hex[2].charAt(0) == hex[2].charAt(1) && hex[3].charAt(0) == hex[3].charAt(1)) {
+            return hex[0].charAt(0) + hex[1].charAt(0) + hex[2].charAt(0) + hex[3].charAt(0);
+        }
+
+        return hex.join("");
+    }
+
+    // `rgbaToArgbHex`
+    // Converts an RGBA color to an ARGB Hex8 string
+    // Rarely used, but required for "toFilter()"
+    function rgbaToArgbHex(r, g, b, a) {
+
+        var hex = [pad2(convertDecimalToHex(a)), pad2(mathRound(r).toString(16)), pad2(mathRound(g).toString(16)), pad2(mathRound(b).toString(16))];
+
+        return hex.join("");
+    }
+
+    // `equals`
+    // Can be called with any tinycolor input
+    tinycolor.equals = function (color1, color2) {
+        if (!color1 || !color2) {
+            return false;
+        }
+        return tinycolor(color1).toRgbString() == tinycolor(color2).toRgbString();
+    };
+
+    tinycolor.random = function () {
+        return tinycolor.fromRatio({
+            r: mathRandom(),
+            g: mathRandom(),
+            b: mathRandom()
+        });
+    };
+
+    // Modification Functions
+    // ----------------------
+    // Thanks to less.js for some of the basics here
+    // <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
+
+    function _desaturate(color, amount) {
+        amount = amount === 0 ? 0 : amount || 10;
+        var hsl = tinycolor(color).toHsl();
+        hsl.s -= amount / 100;
+        hsl.s = clamp01(hsl.s);
+        return tinycolor(hsl);
+    }
+
+    function _saturate(color, amount) {
+        amount = amount === 0 ? 0 : amount || 10;
+        var hsl = tinycolor(color).toHsl();
+        hsl.s += amount / 100;
+        hsl.s = clamp01(hsl.s);
+        return tinycolor(hsl);
+    }
+
+    function _greyscale(color) {
+        return tinycolor(color).desaturate(100);
+    }
+
+    function _lighten(color, amount) {
+        amount = amount === 0 ? 0 : amount || 10;
+        var hsl = tinycolor(color).toHsl();
+        hsl.l += amount / 100;
+        hsl.l = clamp01(hsl.l);
+        return tinycolor(hsl);
+    }
+
+    function _brighten(color, amount) {
+        amount = amount === 0 ? 0 : amount || 10;
+        var rgb = tinycolor(color).toRgb();
+        rgb.r = mathMax(0, mathMin(255, rgb.r - mathRound(255 * -(amount / 100))));
+        rgb.g = mathMax(0, mathMin(255, rgb.g - mathRound(255 * -(amount / 100))));
+        rgb.b = mathMax(0, mathMin(255, rgb.b - mathRound(255 * -(amount / 100))));
+        return tinycolor(rgb);
+    }
+
+    function _darken(color, amount) {
+        amount = amount === 0 ? 0 : amount || 10;
+        var hsl = tinycolor(color).toHsl();
+        hsl.l -= amount / 100;
+        hsl.l = clamp01(hsl.l);
+        return tinycolor(hsl);
+    }
+
+    // Spin takes a positive or negative amount within [-360, 360] indicating the change of hue.
+    // Values outside of this range will be wrapped into this range.
+    function _spin(color, amount) {
+        var hsl = tinycolor(color).toHsl();
+        var hue = (hsl.h + amount) % 360;
+        hsl.h = hue < 0 ? 360 + hue : hue;
+        return tinycolor(hsl);
+    }
+
+    // Combination Functions
+    // ---------------------
+    // Thanks to jQuery xColor for some of the ideas behind these
+    // <https://github.com/infusion/jQuery-xcolor/blob/master/jquery.xcolor.js>
+
+    function _complement(color) {
+        var hsl = tinycolor(color).toHsl();
+        hsl.h = (hsl.h + 180) % 360;
+        return tinycolor(hsl);
+    }
+
+    function _triad(color) {
+        var hsl = tinycolor(color).toHsl();
+        var h = hsl.h;
+        return [tinycolor(color), tinycolor({ h: (h + 120) % 360, s: hsl.s, l: hsl.l }), tinycolor({ h: (h + 240) % 360, s: hsl.s, l: hsl.l })];
+    }
+
+    function _tetrad(color) {
+        var hsl = tinycolor(color).toHsl();
+        var h = hsl.h;
+        return [tinycolor(color), tinycolor({ h: (h + 90) % 360, s: hsl.s, l: hsl.l }), tinycolor({ h: (h + 180) % 360, s: hsl.s, l: hsl.l }), tinycolor({ h: (h + 270) % 360, s: hsl.s, l: hsl.l })];
+    }
+
+    function _splitcomplement(color) {
+        var hsl = tinycolor(color).toHsl();
+        var h = hsl.h;
+        return [tinycolor(color), tinycolor({ h: (h + 72) % 360, s: hsl.s, l: hsl.l }), tinycolor({ h: (h + 216) % 360, s: hsl.s, l: hsl.l })];
+    }
+
+    function _analogous(color, results, slices) {
+        results = results || 6;
+        slices = slices || 30;
+
+        var hsl = tinycolor(color).toHsl();
+        var part = 360 / slices;
+        var ret = [tinycolor(color)];
+
+        for (hsl.h = (hsl.h - (part * results >> 1) + 720) % 360; --results;) {
+            hsl.h = (hsl.h + part) % 360;
+            ret.push(tinycolor(hsl));
+        }
+        return ret;
+    }
+
+    function _monochromatic(color, results) {
+        results = results || 6;
+        var hsv = tinycolor(color).toHsv();
+        var h = hsv.h,
+            s = hsv.s,
+            v = hsv.v;
+        var ret = [];
+        var modification = 1 / results;
+
+        while (results--) {
+            ret.push(tinycolor({ h: h, s: s, v: v }));
+            v = (v + modification) % 1;
+        }
+
+        return ret;
+    }
+
+    // Utility Functions
+    // ---------------------
+
+    tinycolor.mix = function (color1, color2, amount) {
+        amount = amount === 0 ? 0 : amount || 50;
+
+        var rgb1 = tinycolor(color1).toRgb();
+        var rgb2 = tinycolor(color2).toRgb();
+
+        var p = amount / 100;
+
+        var rgba = {
+            r: (rgb2.r - rgb1.r) * p + rgb1.r,
+            g: (rgb2.g - rgb1.g) * p + rgb1.g,
+            b: (rgb2.b - rgb1.b) * p + rgb1.b,
+            a: (rgb2.a - rgb1.a) * p + rgb1.a
+        };
+
+        return tinycolor(rgba);
+    };
+
+    // Readability Functions
+    // ---------------------
+    // <http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef (WCAG Version 2)
+
+    // `contrast`
+    // Analyze the 2 colors and returns the color contrast defined by (WCAG Version 2)
+    tinycolor.readability = function (color1, color2) {
+        var c1 = tinycolor(color1);
+        var c2 = tinycolor(color2);
+        return (Math.max(c1.getLuminance(), c2.getLuminance()) + 0.05) / (Math.min(c1.getLuminance(), c2.getLuminance()) + 0.05);
+    };
+
+    // `isReadable`
+    // Ensure that foreground and background color combinations meet WCAG2 guidelines.
+    // The third argument is an optional Object.
+    //      the 'level' property states 'AA' or 'AAA' - if missing or invalid, it defaults to 'AA';
+    //      the 'size' property states 'large' or 'small' - if missing or invalid, it defaults to 'small'.
+    // If the entire object is absent, isReadable defaults to {level:"AA",size:"small"}.
+
+    // *Example*
+    //    tinycolor.isReadable("#000", "#111") => false
+    //    tinycolor.isReadable("#000", "#111",{level:"AA",size:"large"}) => false
+    tinycolor.isReadable = function (color1, color2, wcag2) {
+        var readability = tinycolor.readability(color1, color2);
+        var wcag2Parms, out;
+
+        out = false;
+
+        wcag2Parms = validateWCAG2Parms(wcag2);
+        switch (wcag2Parms.level + wcag2Parms.size) {
+            case "AAsmall":
+            case "AAAlarge":
+                out = readability >= 4.5;
+                break;
+            case "AAlarge":
+                out = readability >= 3;
+                break;
+            case "AAAsmall":
+                out = readability >= 7;
+                break;
+        }
+        return out;
+    };
+
+    // `mostReadable`
+    // Given a base color and a list of possible foreground or background
+    // colors for that base, returns the most readable color.
+    // Optionally returns Black or White if the most readable color is unreadable.
+    // *Example*
+    //    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:false}).toHexString(); // "#112255"
+    //    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:true}).toHexString();  // "#ffffff"
+    //    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"large"}).toHexString(); // "#faf3f3"
+    //    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"small"}).toHexString(); // "#ffffff"
+    tinycolor.mostReadable = function (baseColor, colorList, args) {
+        var bestColor = null;
+        var bestScore = 0;
+        var readability;
+        var includeFallbackColors, level, size;
+        args = args || {};
+        includeFallbackColors = args.includeFallbackColors;
+        level = args.level;
+        size = args.size;
+
+        for (var i = 0; i < colorList.length; i++) {
+            readability = tinycolor.readability(baseColor, colorList[i]);
+            if (readability > bestScore) {
+                bestScore = readability;
+                bestColor = tinycolor(colorList[i]);
+            }
+        }
+
+        if (tinycolor.isReadable(baseColor, bestColor, { "level": level, "size": size }) || !includeFallbackColors) {
+            return bestColor;
+        } else {
+            args.includeFallbackColors = false;
+            return tinycolor.mostReadable(baseColor, ["#fff", "#000"], args);
+        }
+    };
+
+    // Big List of Colors
+    // ------------------
+    // <http://www.w3.org/TR/css3-color/#svg-color>
+    var names = tinycolor.names = {
+        aliceblue: "f0f8ff",
+        antiquewhite: "faebd7",
+        aqua: "0ff",
+        aquamarine: "7fffd4",
+        azure: "f0ffff",
+        beige: "f5f5dc",
+        bisque: "ffe4c4",
+        black: "000",
+        blanchedalmond: "ffebcd",
+        blue: "00f",
+        blueviolet: "8a2be2",
+        brown: "a52a2a",
+        burlywood: "deb887",
+        burntsienna: "ea7e5d",
+        cadetblue: "5f9ea0",
+        chartreuse: "7fff00",
+        chocolate: "d2691e",
+        coral: "ff7f50",
+        cornflowerblue: "6495ed",
+        cornsilk: "fff8dc",
+        crimson: "dc143c",
+        cyan: "0ff",
+        darkblue: "00008b",
+        darkcyan: "008b8b",
+        darkgoldenrod: "b8860b",
+        darkgray: "a9a9a9",
+        darkgreen: "006400",
+        darkgrey: "a9a9a9",
+        darkkhaki: "bdb76b",
+        darkmagenta: "8b008b",
+        darkolivegreen: "556b2f",
+        darkorange: "ff8c00",
+        darkorchid: "9932cc",
+        darkred: "8b0000",
+        darksalmon: "e9967a",
+        darkseagreen: "8fbc8f",
+        darkslateblue: "483d8b",
+        darkslategray: "2f4f4f",
+        darkslategrey: "2f4f4f",
+        darkturquoise: "00ced1",
+        darkviolet: "9400d3",
+        deeppink: "ff1493",
+        deepskyblue: "00bfff",
+        dimgray: "696969",
+        dimgrey: "696969",
+        dodgerblue: "1e90ff",
+        firebrick: "b22222",
+        floralwhite: "fffaf0",
+        forestgreen: "228b22",
+        fuchsia: "f0f",
+        gainsboro: "dcdcdc",
+        ghostwhite: "f8f8ff",
+        gold: "ffd700",
+        goldenrod: "daa520",
+        gray: "808080",
+        green: "008000",
+        greenyellow: "adff2f",
+        grey: "808080",
+        honeydew: "f0fff0",
+        hotpink: "ff69b4",
+        indianred: "cd5c5c",
+        indigo: "4b0082",
+        ivory: "fffff0",
+        khaki: "f0e68c",
+        lavender: "e6e6fa",
+        lavenderblush: "fff0f5",
+        lawngreen: "7cfc00",
+        lemonchiffon: "fffacd",
+        lightblue: "add8e6",
+        lightcoral: "f08080",
+        lightcyan: "e0ffff",
+        lightgoldenrodyellow: "fafad2",
+        lightgray: "d3d3d3",
+        lightgreen: "90ee90",
+        lightgrey: "d3d3d3",
+        lightpink: "ffb6c1",
+        lightsalmon: "ffa07a",
+        lightseagreen: "20b2aa",
+        lightskyblue: "87cefa",
+        lightslategray: "789",
+        lightslategrey: "789",
+        lightsteelblue: "b0c4de",
+        lightyellow: "ffffe0",
+        lime: "0f0",
+        limegreen: "32cd32",
+        linen: "faf0e6",
+        magenta: "f0f",
+        maroon: "800000",
+        mediumaquamarine: "66cdaa",
+        mediumblue: "0000cd",
+        mediumorchid: "ba55d3",
+        mediumpurple: "9370db",
+        mediumseagreen: "3cb371",
+        mediumslateblue: "7b68ee",
+        mediumspringgreen: "00fa9a",
+        mediumturquoise: "48d1cc",
+        mediumvioletred: "c71585",
+        midnightblue: "191970",
+        mintcream: "f5fffa",
+        mistyrose: "ffe4e1",
+        moccasin: "ffe4b5",
+        navajowhite: "ffdead",
+        navy: "000080",
+        oldlace: "fdf5e6",
+        olive: "808000",
+        olivedrab: "6b8e23",
+        orange: "ffa500",
+        orangered: "ff4500",
+        orchid: "da70d6",
+        palegoldenrod: "eee8aa",
+        palegreen: "98fb98",
+        paleturquoise: "afeeee",
+        palevioletred: "db7093",
+        papayawhip: "ffefd5",
+        peachpuff: "ffdab9",
+        peru: "cd853f",
+        pink: "ffc0cb",
+        plum: "dda0dd",
+        powderblue: "b0e0e6",
+        purple: "800080",
+        rebeccapurple: "663399",
+        red: "f00",
+        rosybrown: "bc8f8f",
+        royalblue: "4169e1",
+        saddlebrown: "8b4513",
+        salmon: "fa8072",
+        sandybrown: "f4a460",
+        seagreen: "2e8b57",
+        seashell: "fff5ee",
+        sienna: "a0522d",
+        silver: "c0c0c0",
+        skyblue: "87ceeb",
+        slateblue: "6a5acd",
+        slategray: "708090",
+        slategrey: "708090",
+        snow: "fffafa",
+        springgreen: "00ff7f",
+        steelblue: "4682b4",
+        tan: "d2b48c",
+        teal: "008080",
+        thistle: "d8bfd8",
+        tomato: "ff6347",
+        turquoise: "40e0d0",
+        violet: "ee82ee",
+        wheat: "f5deb3",
+        white: "fff",
+        whitesmoke: "f5f5f5",
+        yellow: "ff0",
+        yellowgreen: "9acd32"
+    };
+
+    // Make it easy to access colors via `hexNames[hex]`
+    var hexNames = tinycolor.hexNames = flip(names);
+
+    // Utilities
+    // ---------
+
+    // `{ 'name1': 'val1' }` becomes `{ 'val1': 'name1' }`
+    function flip(o) {
+        var flipped = {};
+        for (var i in o) {
+            if (o.hasOwnProperty(i)) {
+                flipped[o[i]] = i;
+            }
+        }
+        return flipped;
+    }
+
+    // Return a valid alpha value [0,1] with all invalid values being set to 1
+    function boundAlpha(a) {
+        a = parseFloat(a);
+
+        if (isNaN(a) || a < 0 || a > 1) {
+            a = 1;
+        }
+
+        return a;
+    }
+
+    // Take input from [0, n] and return it as [0, 1]
+    function bound01(n, max) {
+        if (isOnePointZero(n)) {
+            n = "100%";
+        }
+
+        var processPercent = isPercentage(n);
+        n = mathMin(max, mathMax(0, parseFloat(n)));
+
+        // Automatically convert percentage into number
+        if (processPercent) {
+            n = parseInt(n * max, 10) / 100;
+        }
+
+        // Handle floating point rounding errors
+        if (Math.abs(n - max) < 0.000001) {
+            return 1;
+        }
+
+        // Convert into [0, 1] range if it isn't already
+        return n % max / parseFloat(max);
+    }
+
+    // Force a number between 0 and 1
+    function clamp01(val) {
+        return mathMin(1, mathMax(0, val));
+    }
+
+    // Parse a base-16 hex value into a base-10 integer
+    function parseIntFromHex(val) {
+        return parseInt(val, 16);
+    }
+
+    // Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
+    // <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
+    function isOnePointZero(n) {
+        return typeof n == "string" && n.indexOf('.') != -1 && parseFloat(n) === 1;
+    }
+
+    // Check to see if string passed in is a percentage
+    function isPercentage(n) {
+        return typeof n === "string" && n.indexOf('%') != -1;
+    }
+
+    // Force a hex value to have 2 characters
+    function pad2(c) {
+        return c.length == 1 ? '0' + c : '' + c;
+    }
+
+    // Replace a decimal with it's percentage value
+    function convertToPercentage(n) {
+        if (n <= 1) {
+            n = n * 100 + "%";
+        }
+
+        return n;
+    }
+
+    // Converts a decimal to a hex value
+    function convertDecimalToHex(d) {
+        return Math.round(parseFloat(d) * 255).toString(16);
+    }
+    // Converts a hex value to a decimal
+    function convertHexToDecimal(h) {
+        return parseIntFromHex(h) / 255;
+    }
+
+    var matchers = function () {
+
+        // <http://www.w3.org/TR/css3-values/#integers>
+        var CSS_INTEGER = "[-\\+]?\\d+%?";
+
+        // <http://www.w3.org/TR/css3-values/#number-value>
+        var CSS_NUMBER = "[-\\+]?\\d*\\.\\d+%?";
+
+        // Allow positive/negative integer/number.  Don't capture the either/or, just the entire outcome.
+        var CSS_UNIT = "(?:" + CSS_NUMBER + ")|(?:" + CSS_INTEGER + ")";
+
+        // Actual matching.
+        // Parentheses and commas are optional, but not required.
+        // Whitespace can take the place of commas or opening paren
+        var PERMISSIVE_MATCH3 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
+        var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
+
+        return {
+            CSS_UNIT: new RegExp(CSS_UNIT),
+            rgb: new RegExp("rgb" + PERMISSIVE_MATCH3),
+            rgba: new RegExp("rgba" + PERMISSIVE_MATCH4),
+            hsl: new RegExp("hsl" + PERMISSIVE_MATCH3),
+            hsla: new RegExp("hsla" + PERMISSIVE_MATCH4),
+            hsv: new RegExp("hsv" + PERMISSIVE_MATCH3),
+            hsva: new RegExp("hsva" + PERMISSIVE_MATCH4),
+            hex3: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+            hex6: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+            hex4: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+            hex8: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
+        };
+    }();
+
+    // `isValidCSSUnit`
+    // Take in a single string / number and check to see if it looks like a CSS unit
+    // (see `matchers` above for definition).
+    function isValidCSSUnit(color) {
+        return !!matchers.CSS_UNIT.exec(color);
+    }
+
+    // `stringInputToObject`
+    // Permissive string parsing.  Take in a number of formats, and output an object
+    // based on detected format.  Returns `{ r, g, b }` or `{ h, s, l }` or `{ h, s, v}`
+    function stringInputToObject(color) {
+
+        color = color.replace(trimLeft, '').replace(trimRight, '').toLowerCase();
+        var named = false;
+        if (names[color]) {
+            color = names[color];
+            named = true;
+        } else if (color == 'transparent') {
+            return { r: 0, g: 0, b: 0, a: 0, format: "name" };
+        }
+
+        // Try to match string input using regular expressions.
+        // Keep most of the number bounding out of this function - don't worry about [0,1] or [0,100] or [0,360]
+        // Just return an object and let the conversion functions handle that.
+        // This way the result will be the same whether the tinycolor is initialized with string or object.
+        var match;
+        if (match = matchers.rgb.exec(color)) {
+            return { r: match[1], g: match[2], b: match[3] };
+        }
+        if (match = matchers.rgba.exec(color)) {
+            return { r: match[1], g: match[2], b: match[3], a: match[4] };
+        }
+        if (match = matchers.hsl.exec(color)) {
+            return { h: match[1], s: match[2], l: match[3] };
+        }
+        if (match = matchers.hsla.exec(color)) {
+            return { h: match[1], s: match[2], l: match[3], a: match[4] };
+        }
+        if (match = matchers.hsv.exec(color)) {
+            return { h: match[1], s: match[2], v: match[3] };
+        }
+        if (match = matchers.hsva.exec(color)) {
+            return { h: match[1], s: match[2], v: match[3], a: match[4] };
+        }
+        if (match = matchers.hex8.exec(color)) {
+            return {
+                r: parseIntFromHex(match[1]),
+                g: parseIntFromHex(match[2]),
+                b: parseIntFromHex(match[3]),
+                a: convertHexToDecimal(match[4]),
+                format: named ? "name" : "hex8"
+            };
+        }
+        if (match = matchers.hex6.exec(color)) {
+            return {
+                r: parseIntFromHex(match[1]),
+                g: parseIntFromHex(match[2]),
+                b: parseIntFromHex(match[3]),
+                format: named ? "name" : "hex"
+            };
+        }
+        if (match = matchers.hex4.exec(color)) {
+            return {
+                r: parseIntFromHex(match[1] + '' + match[1]),
+                g: parseIntFromHex(match[2] + '' + match[2]),
+                b: parseIntFromHex(match[3] + '' + match[3]),
+                a: convertHexToDecimal(match[4] + '' + match[4]),
+                format: named ? "name" : "hex8"
+            };
+        }
+        if (match = matchers.hex3.exec(color)) {
+            return {
+                r: parseIntFromHex(match[1] + '' + match[1]),
+                g: parseIntFromHex(match[2] + '' + match[2]),
+                b: parseIntFromHex(match[3] + '' + match[3]),
+                format: named ? "name" : "hex"
+            };
+        }
+
+        return false;
+    }
+
+    function validateWCAG2Parms(parms) {
+        // return valid WCAG2 parms for isReadable.
+        // If input parms are invalid, return {"level":"AA", "size":"small"}
+        var level, size;
+        parms = parms || { "level": "AA", "size": "small" };
+        level = (parms.level || "AA").toUpperCase();
+        size = (parms.size || "small").toLowerCase();
+        if (level !== "AA" && level !== "AAA") {
+            level = "AA";
+        }
+        if (size !== "small" && size !== "large") {
+            size = "small";
+        }
+        return { "level": level, "size": size };
+    }
+
+    // Node: Export function
+    if (typeof module !== "undefined" && module.exports) {
+        module.exports = tinycolor;
+    }
+    // AMD/requirejs: Define the module
+    else if (true) {
+            !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+                return tinycolor;
+            }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+        }
+        // Browser: Expose to window
+        else {
+                window.tinycolor = tinycolor;
+            }
+})(Math);
 
 /***/ }),
 
@@ -30573,6 +43065,83 @@ function makeAggregateRaf() {
 
 /***/ }),
 
+/***/ "iyC2":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__("MIhM"),
+    stubFalse = __webpack_require__("PYZb");
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+module.exports = isBuffer;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+
+/***/ }),
+
+/***/ "j3D9":
+/***/ (function(module, exports) {
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/***/ }),
+
+/***/ "jE9R":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__("yeiR");
+
+/**
+ * A specialized version of `baseProperty` which supports deep paths.
+ *
+ * @private
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+function basePropertyDeep(path) {
+  return function (object) {
+    return baseGet(object, path);
+  };
+}
+
+module.exports = basePropertyDeep;
+
+/***/ }),
+
 /***/ "jGKv":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30678,6 +43247,61 @@ function (_Fab) {
 exports.default = default_1;
 default_1.Icon = FabIcon;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "jXAN":
+/***/ (function(module, exports, __webpack_require__) {
+
+var cloneArrayBuffer = __webpack_require__("zb3a");
+
+/**
+ * Creates a clone of `typedArray`.
+ *
+ * @private
+ * @param {Object} typedArray The typed array to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned typed array.
+ */
+function cloneTypedArray(typedArray, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+}
+
+module.exports = cloneTypedArray;
+
+/***/ }),
+
+/***/ "jXGU":
+/***/ (function(module, exports, __webpack_require__) {
+
+var memoizeCapped = __webpack_require__("2Axb");
+
+/** Used to match property names within property paths. */
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+var stringToPath = memoizeCapped(function (string) {
+  var result = [];
+  if (string.charCodeAt(0) === 46 /* . */) {
+      result.push('');
+    }
+  string.replace(rePropName, function (match, number, quote, subString) {
+    result.push(quote ? subString.replace(reEscapeChar, '$1') : number || match);
+  });
+  return result;
+});
+
+module.exports = stringToPath;
 
 /***/ }),
 
@@ -30879,6 +43503,214 @@ formatters.j = function (v) {
 
 /***/ }),
 
+/***/ "joOv":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "supportsCssVariables", function() { return supportsCssVariables; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyPassive", function() { return applyPassive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMatchesProperty", function() { return getMatchesProperty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNormalizedEventCoords", function() { return getNormalizedEventCoords; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/**
+ * Stores result from supportsCssVariables to avoid redundant processing to detect CSS custom variable support.
+ * @private {boolean|undefined}
+ */
+var supportsCssVariables_ = void 0;
+
+/**
+ * Stores result from applyPassive to avoid redundant processing to detect passive event listener support.
+ * @private {boolean|undefined}
+ */
+var supportsPassive_ = void 0;
+
+/**
+ * @param {!Window} windowObj
+ * @return {boolean}
+ */
+function detectEdgePseudoVarBug(windowObj) {
+  // Detect versions of Edge with buggy var() support
+  // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
+  var document = windowObj.document;
+  var node = document.createElement('div');
+  node.className = 'mdc-ripple-surface--test-edge-var-bug';
+  document.body.appendChild(node);
+
+  // The bug exists if ::before style ends up propagating to the parent element.
+  // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
+  // but Firefox is known to support CSS custom properties correctly.
+  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+  var computedStyle = windowObj.getComputedStyle(node);
+  var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
+  node.remove();
+  return hasPseudoVarBug;
+}
+
+/**
+ * @param {!Window} windowObj
+ * @param {boolean=} forceRefresh
+ * @return {boolean|undefined}
+ */
+
+function supportsCssVariables(windowObj) {
+  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var supportsCssVariables = supportsCssVariables_;
+  if (typeof supportsCssVariables_ === 'boolean' && !forceRefresh) {
+    return supportsCssVariables;
+  }
+
+  var supportsFunctionPresent = windowObj.CSS && typeof windowObj.CSS.supports === 'function';
+  if (!supportsFunctionPresent) {
+    return;
+  }
+
+  var explicitlySupportsCssVars = windowObj.CSS.supports('--css-vars', 'yes');
+  // See: https://bugs.webkit.org/show_bug.cgi?id=154669
+  // See: README section on Safari
+  var weAreFeatureDetectingSafari10plus = windowObj.CSS.supports('(--css-vars: yes)') && windowObj.CSS.supports('color', '#00000000');
+
+  if (explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus) {
+    supportsCssVariables = !detectEdgePseudoVarBug(windowObj);
+  } else {
+    supportsCssVariables = false;
+  }
+
+  if (!forceRefresh) {
+    supportsCssVariables_ = supportsCssVariables;
+  }
+  return supportsCssVariables;
+}
+
+//
+/**
+ * Determine whether the current browser supports passive event listeners, and if so, use them.
+ * @param {!Window=} globalObj
+ * @param {boolean=} forceRefresh
+ * @return {boolean|{passive: boolean}}
+ */
+function applyPassive() {
+  var globalObj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if (supportsPassive_ === undefined || forceRefresh) {
+    var isSupported = false;
+    try {
+      globalObj.document.addEventListener('test', null, { get passive() {
+          isSupported = true;
+        } });
+    } catch (e) {}
+
+    supportsPassive_ = isSupported;
+  }
+
+  return supportsPassive_ ? { passive: true } : false;
+}
+
+/**
+ * @param {!Object} HTMLElementPrototype
+ * @return {!Array<string>}
+ */
+function getMatchesProperty(HTMLElementPrototype) {
+  return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
+    return p in HTMLElementPrototype;
+  }).pop();
+}
+
+/**
+ * @param {!Event} ev
+ * @param {{x: number, y: number}} pageOffset
+ * @param {!ClientRect} clientRect
+ * @return {{x: number, y: number}}
+ */
+function getNormalizedEventCoords(ev, pageOffset, clientRect) {
+  var x = pageOffset.x,
+      y = pageOffset.y;
+
+  var documentX = x + clientRect.left;
+  var documentY = y + clientRect.top;
+
+  var normalizedX = void 0;
+  var normalizedY = void 0;
+  // Determine touch point relative to the ripple container.
+  if (ev.type === 'touchstart') {
+    normalizedX = ev.changedTouches[0].pageX - documentX;
+    normalizedY = ev.changedTouches[0].pageY - documentY;
+  } else {
+    normalizedX = ev.pageX - documentX;
+    normalizedY = ev.pageY - documentY;
+  }
+
+  return { x: normalizedX, y: normalizedY };
+}
+
+
+
+/***/ }),
+
+/***/ "jskC":
+/***/ (function(module, exports) {
+
+/** Used to match `RegExp` flags from their coerced string values. */
+var reFlags = /\w*$/;
+
+/**
+ * Creates a clone of `regexp`.
+ *
+ * @private
+ * @param {Object} regexp The regexp to clone.
+ * @returns {Object} Returns the cloned regexp.
+ */
+function cloneRegExp(regexp) {
+  var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+  result.lastIndex = regexp.lastIndex;
+  return result;
+}
+
+module.exports = cloneRegExp;
+
+/***/ }),
+
+/***/ "kAdy":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("bViC");
+
+var defineProperty = function () {
+  try {
+    var func = getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}();
+
+module.exports = defineProperty;
+
+/***/ }),
+
 /***/ "kHgp":
 /***/ (function(module, exports) {
 
@@ -31008,6 +43840,234 @@ module.exports = function bezier(mX1, mY1, mX2, mY2) {
 /***/ (function(module, exports) {
 
 module.exports = {"_from":"axios","_id":"axios@0.18.0","_inBundle":false,"_integrity":"sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=","_location":"/axios","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"axios","name":"axios","escapedName":"axios","rawSpec":"","saveSpec":null,"fetchSpec":"latest"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.18.0.tgz","_shasum":"32d53e4851efdc0a11993b6cd000789d70c05102","_spec":"axios","_where":"/home/lettell/Code/hjobs/fevote4art","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.3.0","is-buffer":"^1.1.5"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.5.7","coveralls":"^2.11.9","es6-promise":"^4.0.5","grunt":"^1.0.1","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.0.0","grunt-contrib-nodeunit":"^1.0.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^19.0.0","grunt-karma":"^2.0.0","grunt-ts":"^6.0.0-beta.3","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.0.0","karma-coverage":"^1.0.0","karma-firefox-launcher":"^1.0.0","karma-jasmine":"^1.0.2","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.1.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","sinon":"^1.17.4","typescript":"^2.0.3","url-search-params":"^0.6.1","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","version":"0.18.0"}
+
+/***/ }),
+
+/***/ "kPsw":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.EditableInput = undefined;
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+  } else {
+    obj[key] = value;
+  }return obj;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var DEFAULT_ARROW_OFFSET = 1;
+
+var UP_KEY_CODE = 38;
+var DOWN_KEY_CODE = 40;
+var VALID_KEY_CODES = [UP_KEY_CODE, DOWN_KEY_CODE];
+var isValidKeyCode = function isValidKeyCode(keyCode) {
+  return VALID_KEY_CODES.indexOf(keyCode) > -1;
+};
+
+var getFormattedPercentage = function getFormattedPercentage(number) {
+  return number + '%';
+};
+var getNumberValue = function getNumberValue(value) {
+  return Number(String(value).replace(/%/g, ''));
+};
+var getIsPercentage = function getIsPercentage(value) {
+  return String(value).indexOf('%') > -1;
+};
+
+var EditableInput = exports.EditableInput = function (_ref) {
+  _inherits(EditableInput, _ref);
+
+  function EditableInput(props) {
+    _classCallCheck(this, EditableInput);
+
+    var _this = _possibleConstructorReturn(this, (EditableInput.__proto__ || Object.getPrototypeOf(EditableInput)).call(this));
+
+    _this.handleBlur = function () {
+      if (_this.state.blurValue) {
+        _this.setState({ value: _this.state.blurValue, blurValue: null });
+      }
+    };
+
+    _this.handleChange = function (e) {
+      _this.setUpdatedValue(e.target.value, e);
+    };
+
+    _this.handleKeyDown = function (e) {
+      // In case `e.target.value` is a percentage remove the `%` character
+      // and update accordingly with a percentage
+      // https://github.com/casesandberg/react-color/issues/383
+      var value = getNumberValue(e.target.value);
+      if (!isNaN(value) && isValidKeyCode(e.keyCode)) {
+        var offset = _this.getArrowOffset();
+        var updatedValue = e.keyCode === UP_KEY_CODE ? value + offset : value - offset;
+
+        _this.setUpdatedValue(updatedValue, e);
+      }
+    };
+
+    _this.handleDrag = function (e) {
+      if (_this.props.dragLabel) {
+        var newValue = Math.round(_this.props.value + e.movementX);
+        if (newValue >= 0 && newValue <= _this.props.dragMax) {
+          _this.props.onChange && _this.props.onChange(_this.getValueObjectWithLabel(newValue), e);
+        }
+      }
+    };
+
+    _this.handleMouseDown = function (e) {
+      if (_this.props.dragLabel) {
+        e.preventDefault();
+        _this.handleDrag(e);
+        window.addEventListener('mousemove', _this.handleDrag);
+        window.addEventListener('mouseup', _this.handleMouseUp);
+      }
+    };
+
+    _this.handleMouseUp = function () {
+      _this.unbindEventListeners();
+    };
+
+    _this.unbindEventListeners = function () {
+      window.removeEventListener('mousemove', _this.handleDrag);
+      window.removeEventListener('mouseup', _this.handleMouseUp);
+    };
+
+    _this.state = {
+      value: String(props.value).toUpperCase(),
+      blurValue: String(props.value).toUpperCase()
+    };
+    return _this;
+  }
+
+  _createClass(EditableInput, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var input = this.input;
+      if (nextProps.value !== this.state.value) {
+        if (input === document.activeElement) {
+          this.setState({ blurValue: String(nextProps.value).toUpperCase() });
+        } else {
+          this.setState({ value: String(nextProps.value).toUpperCase(), blurValue: !this.state.blurValue && String(nextProps.value).toUpperCase() });
+        }
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unbindEventListeners();
+    }
+  }, {
+    key: 'getValueObjectWithLabel',
+    value: function getValueObjectWithLabel(value) {
+      return _defineProperty({}, this.props.label, value);
+    }
+  }, {
+    key: 'getArrowOffset',
+    value: function getArrowOffset() {
+      return this.props.arrowOffset || DEFAULT_ARROW_OFFSET;
+    }
+  }, {
+    key: 'setUpdatedValue',
+    value: function setUpdatedValue(value, e) {
+      var onChangeValue = this.props.label !== null ? this.getValueObjectWithLabel(value) : value;
+      this.props.onChange && this.props.onChange(onChangeValue, e);
+
+      var isPercentage = getIsPercentage(e.target.value);
+      this.setState({
+        value: isPercentage ? getFormattedPercentage(value) : value
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var styles = (0, _reactcss2.default)({
+        'default': {
+          wrap: {
+            position: 'relative'
+          }
+        },
+        'user-override': {
+          wrap: this.props.style && this.props.style.wrap ? this.props.style.wrap : {},
+          input: this.props.style && this.props.style.input ? this.props.style.input : {},
+          label: this.props.style && this.props.style.label ? this.props.style.label : {}
+        },
+        'dragLabel-true': {
+          label: {
+            cursor: 'ew-resize'
+          }
+        }
+      }, {
+        'user-override': true
+      }, this.props);
+
+      return _react2.default.createElement('div', { style: styles.wrap }, _react2.default.createElement('input', {
+        style: styles.input,
+        ref: function ref(input) {
+          return _this2.input = input;
+        },
+        value: this.state.value,
+        onKeyDown: this.handleKeyDown,
+        onChange: this.handleChange,
+        onBlur: this.handleBlur,
+        placeholder: this.props.placeholder,
+        spellCheck: 'false'
+      }), this.props.label && !this.props.hideLabel ? _react2.default.createElement('span', { style: styles.label, onMouseDown: this.handleMouseDown }, this.props.label) : null);
+    }
+  }]);
+
+  return EditableInput;
+}(_react.PureComponent || _react.Component);
+
+exports.default = EditableInput;
 
 /***/ }),
 
@@ -31228,6 +44288,526 @@ function detectEventModel(window, document) {
 
 /***/ }),
 
+/***/ "kwIb":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsTypedArray = __webpack_require__("2L2L"),
+    baseUnary = __webpack_require__("PnXa"),
+    nodeUtil = __webpack_require__("PBPf");
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+module.exports = isTypedArray;
+
+/***/ }),
+
+/***/ "l/4E":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetAllKeys = __webpack_require__("Vhgk"),
+    getSymbolsIn = __webpack_require__("6q/8"),
+    keysIn = __webpack_require__("+UAC");
+
+/**
+ * Creates an array of own and inherited enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeysIn(object) {
+  return baseGetAllKeys(object, keysIn, getSymbolsIn);
+}
+
+module.exports = getAllKeysIn;
+
+/***/ }),
+
+/***/ "l262":
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
+/***/ "lBq7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Hash = __webpack_require__("C8N4"),
+    ListCache = __webpack_require__("Xk23"),
+    Map = __webpack_require__("K9uV");
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash(),
+    'map': new (Map || ListCache)(),
+    'string': new Hash()
+  };
+}
+
+module.exports = mapCacheClear;
+
+/***/ }),
+
+/***/ "lPmd":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+/***/ }),
+
+/***/ "lW7l":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseMatches = __webpack_require__("s6cN"),
+    baseMatchesProperty = __webpack_require__("zCYT"),
+    identity = __webpack_require__("Jpv1"),
+    isArray = __webpack_require__("p/0c"),
+    property = __webpack_require__("mWmH");
+
+/**
+ * The base implementation of `_.iteratee`.
+ *
+ * @private
+ * @param {*} [value=_.identity] The value to convert to an iteratee.
+ * @returns {Function} Returns the iteratee.
+ */
+function baseIteratee(value) {
+  // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
+  // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
+  if (typeof value == 'function') {
+    return value;
+  }
+  if (value == null) {
+    return identity;
+  }
+  if (typeof value == 'object') {
+    return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+  }
+  return property(value);
+}
+
+module.exports = baseIteratee;
+
+/***/ }),
+
+/***/ "lWGW":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.red = exports.getContrastingColor = exports.isValidHex = exports.toState = exports.simpleCheckForValidColor = undefined;
+
+var _each = __webpack_require__("0nJZ");
+
+var _each2 = _interopRequireDefault(_each);
+
+var _tinycolor = __webpack_require__("ilXr");
+
+var _tinycolor2 = _interopRequireDefault(_tinycolor);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var simpleCheckForValidColor = exports.simpleCheckForValidColor = function simpleCheckForValidColor(data) {
+  var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v'];
+  var checked = 0;
+  var passed = 0;
+  (0, _each2.default)(keysToCheck, function (letter) {
+    if (data[letter]) {
+      checked += 1;
+      if (!isNaN(data[letter])) {
+        passed += 1;
+      }
+      if (letter === 's' || letter === 'l') {
+        var percentPatt = /^\d+%$/;
+        if (percentPatt.test(data[letter])) {
+          passed += 1;
+        }
+      }
+    }
+  });
+  return checked === passed ? data : false;
+};
+
+var toState = exports.toState = function toState(data, oldHue) {
+  var color = data.hex ? (0, _tinycolor2.default)(data.hex) : (0, _tinycolor2.default)(data);
+  var hsl = color.toHsl();
+  var hsv = color.toHsv();
+  var rgb = color.toRgb();
+  var hex = color.toHex();
+  if (hsl.s === 0) {
+    hsl.h = oldHue || 0;
+    hsv.h = oldHue || 0;
+  }
+  var transparent = hex === '000000' && rgb.a === 0;
+
+  return {
+    hsl: hsl,
+    hex: transparent ? 'transparent' : '#' + hex,
+    rgb: rgb,
+    hsv: hsv,
+    oldHue: data.h || oldHue || hsl.h,
+    source: data.source
+  };
+};
+
+var isValidHex = exports.isValidHex = function isValidHex(hex) {
+  // disable hex4 and hex8
+  var lh = String(hex).charAt(0) === '#' ? 1 : 0;
+  return hex.length !== 4 + lh && hex.length < 7 + lh && (0, _tinycolor2.default)(hex).isValid();
+};
+
+var getContrastingColor = exports.getContrastingColor = function getContrastingColor(data) {
+  if (!data) {
+    return '#fff';
+  }
+  var col = toState(data);
+  if (col.hex === 'transparent') {
+    return 'rgba(0,0,0,0.4)';
+  }
+  var yiq = (col.rgb.r * 299 + col.rgb.g * 587 + col.rgb.b * 114) / 1000;
+  return yiq >= 128 ? '#000' : '#fff';
+};
+
+var red = exports.red = {
+  hsl: { a: 1, h: 0, l: 0.5, s: 1 },
+  hex: '#ff0000',
+  rgb: { r: 255, g: 0, b: 0, a: 1 },
+  hsv: { h: 0, s: 1, v: 1, a: 1 }
+};
+
+exports.default = exports;
+
+/***/ }),
+
+/***/ "m6f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.active = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var active = exports.active = function active(Component) {
+  var Span = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'span';
+
+  return function (_React$Component) {
+    _inherits(Active, _React$Component);
+
+    function Active() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Active);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Active.__proto__ || Object.getPrototypeOf(Active)).call.apply(_ref, [this].concat(args))), _this), _this.state = { active: false }, _this.handleMouseDown = function () {
+        return _this.setState({ active: true });
+      }, _this.handleMouseUp = function () {
+        return _this.setState({ active: false });
+      }, _this.render = function () {
+        return _react2.default.createElement(Span, { onMouseDown: _this.handleMouseDown, onMouseUp: _this.handleMouseUp }, _react2.default.createElement(Component, _extends({}, _this.props, _this.state)));
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    return Active;
+  }(_react2.default.Component);
+};
+
+exports.default = active;
+
+/***/ }),
+
+/***/ "mAMs":
+/***/ (function(module, exports, __webpack_require__) {
+
+var cloneArrayBuffer = __webpack_require__("zb3a"),
+    cloneDataView = __webpack_require__("aWGB"),
+    cloneRegExp = __webpack_require__("jskC"),
+    cloneSymbol = __webpack_require__("WLsS"),
+    cloneTypedArray = __webpack_require__("jXAN");
+
+/** `Object#toString` result references. */
+var boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/**
+ * Initializes an object clone based on its `toStringTag`.
+ *
+ * **Note:** This function only supports cloning values with tags of
+ * `Boolean`, `Date`, `Error`, `Map`, `Number`, `RegExp`, `Set`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @param {string} tag The `toStringTag` of the object to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneByTag(object, tag, isDeep) {
+  var Ctor = object.constructor;
+  switch (tag) {
+    case arrayBufferTag:
+      return cloneArrayBuffer(object);
+
+    case boolTag:
+    case dateTag:
+      return new Ctor(+object);
+
+    case dataViewTag:
+      return cloneDataView(object, isDeep);
+
+    case float32Tag:case float64Tag:
+    case int8Tag:case int16Tag:case int32Tag:
+    case uint8Tag:case uint8ClampedTag:case uint16Tag:case uint32Tag:
+      return cloneTypedArray(object, isDeep);
+
+    case mapTag:
+      return new Ctor();
+
+    case numberTag:
+    case stringTag:
+      return new Ctor(object);
+
+    case regexpTag:
+      return cloneRegExp(object);
+
+    case setTag:
+      return new Ctor();
+
+    case symbolTag:
+      return cloneSymbol(object);
+  }
+}
+
+module.exports = initCloneByTag;
+
+/***/ }),
+
+/***/ "mFpP":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getAllKeys = __webpack_require__("uf6I");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1;
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      objProps = getAllKeys(object),
+      objLength = objProps.length,
+      othProps = getAllKeys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+  var index = objLength;
+  while (index--) {
+    var key = objProps[index];
+    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(object);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+
+  var skipCtor = isPartial;
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+    }
+    // Recursively compare objects (susceptible to call stack limits).
+    if (!(compared === undefined ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack) : compared)) {
+      result = false;
+      break;
+    }
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor;
+
+    // Non `Object` object instances with different constructors are not equal.
+    if (objCtor != othCtor && 'constructor' in object && 'constructor' in other && !(typeof objCtor == 'function' && objCtor instanceof objCtor && typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+
+module.exports = equalObjects;
+
+/***/ }),
+
 /***/ "mI+K":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31255,6 +44835,44 @@ module.exports = Cancel;
 
 /***/ }),
 
+/***/ "mWmH":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseProperty = __webpack_require__("wcxQ"),
+    basePropertyDeep = __webpack_require__("jE9R"),
+    isKey = __webpack_require__("2ibm"),
+    toKey = __webpack_require__("RQ0L");
+
+/**
+ * Creates a function that returns the value at `path` of a given object.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ * @example
+ *
+ * var objects = [
+ *   { 'a': { 'b': 2 } },
+ *   { 'a': { 'b': 1 } }
+ * ];
+ *
+ * _.map(objects, _.property('a.b'));
+ * // => [2, 1]
+ *
+ * _.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
+ * // => [1, 2]
+ */
+function property(path) {
+  return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+}
+
+module.exports = property;
+
+/***/ }),
+
 /***/ "mbYX":
 /***/ (function(module, exports) {
 
@@ -31267,6 +44885,28 @@ function shim(obj) {
     keys.push(key);
   }return keys;
 }
+
+/***/ }),
+
+/***/ "mduf":
+/***/ (function(module, exports, __webpack_require__) {
+
+var createBaseFor = __webpack_require__("oVe7");
+
+/**
+ * The base implementation of `baseForOwn` which iterates over `object`
+ * properties returned by `keysFunc` and invokes `iteratee` for each property.
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+module.exports = baseFor;
 
 /***/ }),
 
@@ -31371,6 +45011,400 @@ module.exports.default = axios;
 
 /***/ }),
 
+/***/ "nhsl":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+
+  return value === proto;
+}
+
+module.exports = isPrototype;
+
+/***/ }),
+
+/***/ "o0LC":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SliderPointer = undefined;
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var SliderPointer = exports.SliderPointer = function SliderPointer(_ref) {
+  var direction = _ref.direction;
+
+  var styles = (0, _reactcss2.default)({
+    'default': {
+      picker: {
+        width: '18px',
+        height: '18px',
+        borderRadius: '50%',
+        transform: 'translate(-9px, -1px)',
+        backgroundColor: 'rgb(248, 248, 248)',
+        boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.37)'
+      }
+    },
+    'vertical': {
+      picker: {
+        transform: 'translate(-3px, -9px)'
+      }
+    }
+  }, { vertical: direction === 'vertical' });
+
+  return _react2.default.createElement('div', { style: styles.picker });
+};
+
+exports.default = SliderPointer;
+
+/***/ }),
+
+/***/ "oVe7":
+/***/ (function(module, exports) {
+
+/**
+ * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function (object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+module.exports = createBaseFor;
+
+/***/ }),
+
+/***/ "oaAh":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("wppe"),
+    Uint8Array = __webpack_require__("yfX1"),
+    eq = __webpack_require__("LIpy"),
+    equalArrays = __webpack_require__("pkMv"),
+    mapToArray = __webpack_require__("7BjG"),
+    setToArray = __webpack_require__("ZEJm");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/** `Object#toString` result references. */
+var boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]';
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
+        return false;
+      }
+      object = object.buffer;
+      other = other.buffer;
+
+    case arrayBufferTag:
+      if (object.byteLength != other.byteLength || !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+        return false;
+      }
+      return true;
+
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      // Coerce booleans to `1` or `0` and dates to milliseconds.
+      // Invalid dates are coerced to `NaN`.
+      return eq(+object, +other);
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings, primitives and objects,
+      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // for more details.
+      return object == other + '';
+
+    case mapTag:
+      var convert = mapToArray;
+
+    case setTag:
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+      convert || (convert = setToArray);
+
+      if (object.size != other.size && !isPartial) {
+        return false;
+      }
+      // Assume cyclic values are equal.
+      var stacked = stack.get(object);
+      if (stacked) {
+        return stacked == other;
+      }
+      bitmask |= COMPARE_UNORDERED_FLAG;
+
+      // Recursively compare objects (susceptible to call stack limits).
+      stack.set(object, other);
+      var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+      stack['delete'](object);
+      return result;
+
+    case symbolTag:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+  }
+  return false;
+}
+
+module.exports = equalByTag;
+
+/***/ }),
+
+/***/ "p/0c":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+/***/ }),
+
+/***/ "p/s9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__("d05+"),
+    eq = __webpack_require__("LIpy");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) || value === undefined && !(key in object)) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignValue;
+
+/***/ }),
+
+/***/ "pK4Y":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("e5TX"),
+    isObjectLike = __webpack_require__("OuyB");
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]';
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+module.exports = baseIsArguments;
+
+/***/ }),
+
+/***/ "pkMv":
+/***/ (function(module, exports, __webpack_require__) {
+
+var SetCache = __webpack_require__("thFQ"),
+    arraySome = __webpack_require__("SfCF"),
+    cacheHas = __webpack_require__("qxaq");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(array);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined;
+
+  stack.set(array, other);
+  stack.set(other, array);
+
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (seen) {
+      if (!arraySome(other, function (othValue, othIndex) {
+        if (!cacheHas(seen, othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+          return seen.push(othIndex);
+        }
+      })) {
+        result = false;
+        break;
+      }
+    } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+
+module.exports = equalArrays;
+
+/***/ }),
+
 /***/ "prn+":
 /***/ (function(module, exports) {
 
@@ -31403,6 +45437,205 @@ function isBuffer(obj) {
 function isSlowBuffer(obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
 }
+
+/***/ }),
+
+/***/ "q2Io":
+/***/ (function(module, exports, __webpack_require__) {
+
+var copyObject = __webpack_require__("dtkN"),
+    keysIn = __webpack_require__("+UAC");
+
+/**
+ * The base implementation of `_.assignIn` without support for multiple sources
+ * or `customizer` functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @returns {Object} Returns `object`.
+ */
+function baseAssignIn(object, source) {
+  return object && copyObject(source, keysIn(source), object);
+}
+
+module.exports = baseAssignIn;
+
+/***/ }),
+
+/***/ "q3B8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("MIhM");
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
+/***/ }),
+
+/***/ "qBl2":
+/***/ (function(module, exports) {
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = hashDelete;
+
+/***/ }),
+
+/***/ "qE2F":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseCreate = __webpack_require__("ga8q"),
+    getPrototype = __webpack_require__("CXf5"),
+    isPrototype = __webpack_require__("nhsl");
+
+/**
+ * Initializes an object clone.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneObject(object) {
+    return typeof object.constructor == 'function' && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
+}
+
+module.exports = initCloneObject;
+
+/***/ }),
+
+/***/ "qKn3":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "qXFa":
+/***/ (function(module, exports, __webpack_require__) {
+
+var apply = __webpack_require__("a+zQ");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? func.length - 1 : start, 0);
+  return function () {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+module.exports = overRest;
+
+/***/ }),
+
+/***/ "qxaq":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if a `cache` value for `key` exists.
+ *
+ * @private
+ * @param {Object} cache The cache to query.
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function cacheHas(cache, key) {
+  return cache.has(key);
+}
+
+module.exports = cacheHas;
+
+/***/ }),
+
+/***/ "r0r+":
+/***/ (function(module, exports) {
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Adds `value` to the array cache.
+ *
+ * @private
+ * @name add
+ * @memberOf SetCache
+ * @alias push
+ * @param {*} value The value to cache.
+ * @returns {Object} Returns the cache instance.
+ */
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+  return this;
+}
+
+module.exports = setCacheAdd;
+
+/***/ }),
+
+/***/ "r8MY":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+module.exports = baseTimes;
 
 /***/ }),
 
@@ -31465,17 +45698,125 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ "rq4c":
-/***/ (function(module, exports) {
+/***/ "rjxD":
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var baseIsMap = __webpack_require__("WYUj"),
+    baseUnary = __webpack_require__("PnXa"),
+    nodeUtil = __webpack_require__("PBPf");
+
+/* Node.js helper references. */
+var nodeIsMap = nodeUtil && nodeUtil.isMap;
+
+/**
+ * Checks if `value` is classified as a `Map` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+ * @example
+ *
+ * _.isMap(new Map);
+ * // => true
+ *
+ * _.isMap(new WeakMap);
+ * // => false
+ */
+var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
+
+module.exports = isMap;
 
 /***/ }),
 
-/***/ "sEh6":
+/***/ "s4SJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__("MIhM");
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined,
+    allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined;
+
+/**
+ * Creates a clone of  `buffer`.
+ *
+ * @private
+ * @param {Buffer} buffer The buffer to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Buffer} Returns the cloned buffer.
+ */
+function cloneBuffer(buffer, isDeep) {
+  if (isDeep) {
+    return buffer.slice();
+  }
+  var length = buffer.length,
+      result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+
+  buffer.copy(result);
+  return result;
+}
+
+module.exports = cloneBuffer;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+
+/***/ }),
+
+/***/ "s6cN":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsMatch = __webpack_require__("hmcW"),
+    getMatchData = __webpack_require__("N0V4"),
+    matchesStrictComparable = __webpack_require__("sruz");
+
+/**
+ * The base implementation of `_.matches` which doesn't clone `source`.
+ *
+ * @private
+ * @param {Object} source The object of property values to match.
+ * @returns {Function} Returns the new spec function.
+ */
+function baseMatches(source) {
+  var matchData = getMatchData(source);
+  if (matchData.length == 1 && matchData[0][2]) {
+    return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+  }
+  return function (object) {
+    return object === source || baseIsMatch(object, source, matchData);
+  };
+}
+
+module.exports = baseMatches;
+
+/***/ }),
+
+/***/ "s9iF":
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+module.exports = listCacheClear;
 
 /***/ }),
 
@@ -31761,6 +46102,195 @@ module.exports = {"home":"home__3gqNx","logo":"logo__frIhd","timmer__block":"tim
 
 /***/ }),
 
+/***/ "skbs":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+module.exports = stackGet;
+
+/***/ }),
+
+/***/ "srRO":
+/***/ (function(module, exports) {
+
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+module.exports = arrayPush;
+
+/***/ }),
+
+/***/ "sruz":
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `matchesProperty` for source values suitable
+ * for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+function matchesStrictComparable(key, srcValue) {
+  return function (object) {
+    if (object == null) {
+      return false;
+    }
+    return object[key] === srcValue && (srcValue !== undefined || key in Object(object));
+  };
+}
+
+module.exports = matchesStrictComparable;
+
+/***/ }),
+
+/***/ "tAcL":
+/***/ (function(module, exports, __webpack_require__) {
+
+var identity = __webpack_require__("Jpv1");
+
+/**
+ * Casts `value` to `identity` if it's not a function.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {Function} Returns cast function.
+ */
+function castFunction(value) {
+  return typeof value == 'function' ? value : identity;
+}
+
+module.exports = castFunction;
+
+/***/ }),
+
+/***/ "tQCT":
+/***/ (function(module, exports, __webpack_require__) {
+
+var DataView = __webpack_require__("fLfT"),
+    Map = __webpack_require__("K9uV"),
+    Promise = __webpack_require__("gTE+"),
+    Set = __webpack_require__("IVes"),
+    WeakMap = __webpack_require__("4N03"),
+    baseGetTag = __webpack_require__("e5TX"),
+    toSource = __webpack_require__("g55O");
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    setTag = '[object Set]',
+    weakMapTag = '[object WeakMap]';
+
+var dataViewTag = '[object DataView]';
+
+/** Used to detect maps, sets, and weakmaps. */
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+var getTag = baseGetTag;
+
+// Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
+if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
+    getTag = function getTag(value) {
+        var result = baseGetTag(value),
+            Ctor = result == objectTag ? value.constructor : undefined,
+            ctorString = Ctor ? toSource(Ctor) : '';
+
+        if (ctorString) {
+            switch (ctorString) {
+                case dataViewCtorString:
+                    return dataViewTag;
+                case mapCtorString:
+                    return mapTag;
+                case promiseCtorString:
+                    return promiseTag;
+                case setCtorString:
+                    return setTag;
+                case weakMapCtorString:
+                    return weakMapTag;
+            }
+        }
+        return result;
+    };
+}
+
+module.exports = getTag;
+
+/***/ }),
+
+/***/ "thFQ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var MapCache = __webpack_require__("wtMJ"),
+    setCacheAdd = __webpack_require__("r0r+"),
+    setCacheHas = __webpack_require__("41+b");
+
+/**
+ *
+ * Creates an array cache object to store unique values.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [values] The values to cache.
+ */
+function SetCache(values) {
+    var index = -1,
+        length = values == null ? 0 : values.length;
+
+    this.__data__ = new MapCache();
+    while (++index < length) {
+        this.add(values[index]);
+    }
+}
+
+// Add methods to `SetCache`.
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+
+module.exports = SetCache;
+
+/***/ }),
+
 /***/ "tsWd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31825,18 +46355,40 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ "u+vq":
+/***/ "u9vI":
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
 
-/***/ }),
-
-/***/ "u3et":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"logo":"logo__35n-0"};
+module.exports = isObject;
 
 /***/ }),
 
@@ -31943,6 +46495,153 @@ var MDCFoundation = function () {
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (MDCFoundation);
+
+/***/ }),
+
+/***/ "uMes":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ColorWrap = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _debounce = __webpack_require__("CXfR");
+
+var _debounce2 = _interopRequireDefault(_debounce);
+
+var _color = __webpack_require__("lWGW");
+
+var _color2 = _interopRequireDefault(_color);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var ColorWrap = exports.ColorWrap = function ColorWrap(Picker) {
+  var ColorPicker = function (_ref) {
+    _inherits(ColorPicker, _ref);
+
+    function ColorPicker(props) {
+      _classCallCheck(this, ColorPicker);
+
+      var _this = _possibleConstructorReturn(this, (ColorPicker.__proto__ || Object.getPrototypeOf(ColorPicker)).call(this));
+
+      _this.handleChange = function (data, event) {
+        var isValidColor = _color2.default.simpleCheckForValidColor(data);
+        if (isValidColor) {
+          var colors = _color2.default.toState(data, data.h || _this.state.oldHue);
+          _this.setState(colors);
+          _this.props.onChangeComplete && _this.debounce(_this.props.onChangeComplete, colors, event);
+          _this.props.onChange && _this.props.onChange(colors, event);
+        }
+      };
+
+      _this.handleSwatchHover = function (data, event) {
+        var isValidColor = _color2.default.simpleCheckForValidColor(data);
+        if (isValidColor) {
+          var colors = _color2.default.toState(data, data.h || _this.state.oldHue);
+          _this.props.onSwatchHover && _this.props.onSwatchHover(colors, event);
+        }
+      };
+
+      _this.state = _extends({}, _color2.default.toState(props.color, 0));
+
+      _this.debounce = (0, _debounce2.default)(function (fn, data, event) {
+        fn(data, event);
+      }, 100);
+      return _this;
+    }
+
+    _createClass(ColorPicker, [{
+      key: 'componentWillReceiveProps',
+      value: function componentWillReceiveProps(nextProps) {
+        this.setState(_extends({}, _color2.default.toState(nextProps.color, this.state.oldHue)));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var optionalEvents = {};
+        if (this.props.onSwatchHover) {
+          optionalEvents.onSwatchHover = this.handleSwatchHover;
+        }
+
+        return _react2.default.createElement(Picker, _extends({}, this.props, this.state, {
+          onChange: this.handleChange
+        }, optionalEvents));
+      }
+    }]);
+
+    return ColorPicker;
+  }(_react.PureComponent || _react.Component);
+
+  ColorPicker.propTypes = _extends({}, Picker.propTypes);
+
+  ColorPicker.defaultProps = _extends({}, Picker.defaultProps, {
+    color: {
+      h: 250,
+      s: 0.50,
+      l: 0.20,
+      a: 1
+    }
+  });
+
+  return ColorPicker;
+};
+
+exports.default = ColorWrap;
+
+/***/ }),
+
+/***/ "uTCq":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -32213,6 +46912,137 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "uf6I":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetAllKeys = __webpack_require__("Vhgk"),
+    getSymbols = __webpack_require__("EvLK"),
+    keys = __webpack_require__("HI10");
+
+/**
+ * Creates an array of own enumerable property names and symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeys(object) {
+  return baseGetAllKeys(object, keys, getSymbols);
+}
+
+module.exports = getAllKeys;
+
+/***/ }),
+
+/***/ "uiOY":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("wppe");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+/***/ }),
+
+/***/ "uvMU":
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.filter` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value;
+    }
+  }
+  return result;
+}
+
+module.exports = arrayFilter;
+
+/***/ }),
+
+/***/ "uy4o":
+/***/ (function(module, exports) {
+
+/**
+ * This function is like
+ * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * except that it includes inherited enumerable properties.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = nativeKeysIn;
+
+/***/ }),
+
 /***/ "uz6X":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32287,16 +47117,93 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
+/***/ "vGW8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayMap = __webpack_require__("BblM"),
+    baseIteratee = __webpack_require__("lW7l"),
+    baseMap = __webpack_require__("wrrS"),
+    isArray = __webpack_require__("p/0c");
+
+/**
+ * Creates an array of values by running each element in `collection` thru
+ * `iteratee`. The iteratee is invoked with three arguments:
+ * (value, index|key, collection).
+ *
+ * Many lodash methods are guarded to work as iteratees for methods like
+ * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+ *
+ * The guarded methods are:
+ * `ary`, `chunk`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+ * `fill`, `invert`, `parseInt`, `random`, `range`, `rangeRight`, `repeat`,
+ * `sampleSize`, `slice`, `some`, `sortBy`, `split`, `take`, `takeRight`,
+ * `template`, `trim`, `trimEnd`, `trimStart`, and `words`
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ * @example
+ *
+ * function square(n) {
+ *   return n * n;
+ * }
+ *
+ * _.map([4, 8], square);
+ * // => [16, 64]
+ *
+ * _.map({ 'a': 4, 'b': 8 }, square);
+ * // => [16, 64] (iteration order is not guaranteed)
+ *
+ * var users = [
+ *   { 'user': 'barney' },
+ *   { 'user': 'fred' }
+ * ];
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.map(users, 'user');
+ * // => ['barney', 'fred']
+ */
+function map(collection, iteratee) {
+  var func = isArray(collection) ? arrayMap : baseMap;
+  return func(collection, baseIteratee(iteratee, 3));
+}
+
+module.exports = map;
+
+/***/ }),
+
+/***/ "vW3g":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the value at `key`, unless `key` is "__proto__".
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function safeGet(object, key) {
+  if (key == '__proto__') {
+    return;
+  }
+
+  return object[key];
+}
+
+module.exports = safeGet;
+
+/***/ }),
+
 /***/ "vkNc":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var util_namespaceObject = {};
-__webpack_require__.d(util_namespaceObject, "supportsCssVariables", function() { return supportsCssVariables; });
-__webpack_require__.d(util_namespaceObject, "applyPassive", function() { return applyPassive; });
-__webpack_require__.d(util_namespaceObject, "getMatchesProperty", function() { return getMatchesProperty; });
-__webpack_require__.d(util_namespaceObject, "getNormalizedEventCoords", function() { return getNormalizedEventCoords; });
 
 // EXTERNAL MODULE: ../node_modules/@material/base/component.js
 var component = __webpack_require__("EQDb");
@@ -32512,162 +47419,8 @@ var numbers = {
 };
 
 
-// CONCATENATED MODULE: ../node_modules/@material/ripple/util.js
-/**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-/**
- * Stores result from supportsCssVariables to avoid redundant processing to detect CSS custom variable support.
- * @private {boolean|undefined}
- */
-var supportsCssVariables_ = void 0;
-
-/**
- * Stores result from applyPassive to avoid redundant processing to detect passive event listener support.
- * @private {boolean|undefined}
- */
-var supportsPassive_ = void 0;
-
-/**
- * @param {!Window} windowObj
- * @return {boolean}
- */
-function detectEdgePseudoVarBug(windowObj) {
-  // Detect versions of Edge with buggy var() support
-  // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
-  var document = windowObj.document;
-  var node = document.createElement('div');
-  node.className = 'mdc-ripple-surface--test-edge-var-bug';
-  document.body.appendChild(node);
-
-  // The bug exists if ::before style ends up propagating to the parent element.
-  // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
-  // but Firefox is known to support CSS custom properties correctly.
-  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-  var computedStyle = windowObj.getComputedStyle(node);
-  var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
-  node.remove();
-  return hasPseudoVarBug;
-}
-
-/**
- * @param {!Window} windowObj
- * @param {boolean=} forceRefresh
- * @return {boolean|undefined}
- */
-
-function supportsCssVariables(windowObj) {
-  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  var supportsCssVariables = supportsCssVariables_;
-  if (typeof supportsCssVariables_ === 'boolean' && !forceRefresh) {
-    return supportsCssVariables;
-  }
-
-  var supportsFunctionPresent = windowObj.CSS && typeof windowObj.CSS.supports === 'function';
-  if (!supportsFunctionPresent) {
-    return;
-  }
-
-  var explicitlySupportsCssVars = windowObj.CSS.supports('--css-vars', 'yes');
-  // See: https://bugs.webkit.org/show_bug.cgi?id=154669
-  // See: README section on Safari
-  var weAreFeatureDetectingSafari10plus = windowObj.CSS.supports('(--css-vars: yes)') && windowObj.CSS.supports('color', '#00000000');
-
-  if (explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus) {
-    supportsCssVariables = !detectEdgePseudoVarBug(windowObj);
-  } else {
-    supportsCssVariables = false;
-  }
-
-  if (!forceRefresh) {
-    supportsCssVariables_ = supportsCssVariables;
-  }
-  return supportsCssVariables;
-}
-
-//
-/**
- * Determine whether the current browser supports passive event listeners, and if so, use them.
- * @param {!Window=} globalObj
- * @param {boolean=} forceRefresh
- * @return {boolean|{passive: boolean}}
- */
-function applyPassive() {
-  var globalObj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  if (supportsPassive_ === undefined || forceRefresh) {
-    var isSupported = false;
-    try {
-      globalObj.document.addEventListener('test', null, { get passive() {
-          isSupported = true;
-        } });
-    } catch (e) {}
-
-    supportsPassive_ = isSupported;
-  }
-
-  return supportsPassive_ ? { passive: true } : false;
-}
-
-/**
- * @param {!Object} HTMLElementPrototype
- * @return {!Array<string>}
- */
-function getMatchesProperty(HTMLElementPrototype) {
-  return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
-    return p in HTMLElementPrototype;
-  }).pop();
-}
-
-/**
- * @param {!Event} ev
- * @param {{x: number, y: number}} pageOffset
- * @param {!ClientRect} clientRect
- * @return {{x: number, y: number}}
- */
-function getNormalizedEventCoords(ev, pageOffset, clientRect) {
-  var x = pageOffset.x,
-      y = pageOffset.y;
-
-  var documentX = x + clientRect.left;
-  var documentY = y + clientRect.top;
-
-  var normalizedX = void 0;
-  var normalizedY = void 0;
-  // Determine touch point relative to the ripple container.
-  if (ev.type === 'touchstart') {
-    normalizedX = ev.changedTouches[0].pageX - documentX;
-    normalizedY = ev.changedTouches[0].pageY - documentY;
-  } else {
-    normalizedX = ev.pageX - documentX;
-    normalizedY = ev.pageY - documentY;
-  }
-
-  return { x: normalizedX, y: normalizedY };
-}
-
+// EXTERNAL MODULE: ../node_modules/@material/ripple/util.js
+var util = __webpack_require__("joOv");
 
 // CONCATENATED MODULE: ../node_modules/@material/ripple/foundation.js
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -33205,7 +47958,7 @@ var foundation_MDCRippleFoundation = function (_MDCFoundation) {
 
     var startPoint = void 0;
     if (wasActivatedByPointer) {
-      startPoint = getNormalizedEventCoords(
+      startPoint = Object(util["getNormalizedEventCoords"])(
       /** @type {!Event} */activationEvent, this.adapter_.getWindowPageOffset(), this.adapter_.computeBoundingRect());
     } else {
       startPoint = {
@@ -33437,7 +48190,7 @@ var foundation_MDCRippleFoundation = function (_MDCFoundation) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCRipple", function() { return ripple_MDCRipple; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RippleCapableSurface", function() { return RippleCapableSurface; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "MDCRippleFoundation", function() { return ripple_foundation; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "util", function() { return util_namespaceObject; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "util", function() { return util; });
 var ripple__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function ripple__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33526,11 +48279,11 @@ var ripple_MDCRipple = function (_MDCComponent) {
 
 
   MDCRipple.createAdapter = function createAdapter(instance) {
-    var MATCHES = getMatchesProperty(HTMLElement.prototype);
+    var MATCHES = util["getMatchesProperty"](HTMLElement.prototype);
 
     return {
       browserSupportsCssVars: function browserSupportsCssVars() {
-        return supportsCssVariables(window);
+        return util["supportsCssVariables"](window);
       },
       isUnbounded: function isUnbounded() {
         return instance.unbounded;
@@ -33551,16 +48304,16 @@ var ripple_MDCRipple = function (_MDCComponent) {
         return instance.root_.contains(target);
       },
       registerInteractionHandler: function registerInteractionHandler(evtType, handler) {
-        return instance.root_.addEventListener(evtType, handler, applyPassive());
+        return instance.root_.addEventListener(evtType, handler, util["applyPassive"]());
       },
       deregisterInteractionHandler: function deregisterInteractionHandler(evtType, handler) {
-        return instance.root_.removeEventListener(evtType, handler, applyPassive());
+        return instance.root_.removeEventListener(evtType, handler, util["applyPassive"]());
       },
       registerDocumentInteractionHandler: function registerDocumentInteractionHandler(evtType, handler) {
-        return document.documentElement.addEventListener(evtType, handler, applyPassive());
+        return document.documentElement.addEventListener(evtType, handler, util["applyPassive"]());
       },
       deregisterDocumentInteractionHandler: function deregisterDocumentInteractionHandler(evtType, handler) {
-        return document.documentElement.removeEventListener(evtType, handler, applyPassive());
+        return document.documentElement.removeEventListener(evtType, handler, util["applyPassive"]());
       },
       registerResizeHandler: function registerResizeHandler(handler) {
         return window.addEventListener('resize', handler);
@@ -33672,6 +48425,154 @@ RippleCapableSurface.prototype.disabled;
 
 /***/ }),
 
+/***/ "wVGV":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = __webpack_require__("Asjh");
+
+function emptyFunction() {}
+function emptyFunctionWithReset() {}
+emptyFunctionWithReset.resetWarningCache = emptyFunction;
+
+module.exports = function () {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+    err.name = 'Invariant Violation';
+    throw err;
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    elementType: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim,
+
+    checkPropTypes: emptyFunctionWithReset,
+    resetWarningCache: emptyFunction
+  };
+
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+/***/ }),
+
+/***/ "wayZ":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var calculateChange = exports.calculateChange = function calculateChange(e, hsl, direction, initialA, container) {
+  var containerWidth = container.clientWidth;
+  var containerHeight = container.clientHeight;
+  var x = typeof e.pageX === 'number' ? e.pageX : e.touches[0].pageX;
+  var y = typeof e.pageY === 'number' ? e.pageY : e.touches[0].pageY;
+  var left = x - (container.getBoundingClientRect().left + window.pageXOffset);
+  var top = y - (container.getBoundingClientRect().top + window.pageYOffset);
+
+  if (direction === 'vertical') {
+    var a = void 0;
+    if (top < 0) {
+      a = 0;
+    } else if (top > containerHeight) {
+      a = 1;
+    } else {
+      a = Math.round(top * 100 / containerHeight) / 100;
+    }
+
+    if (hsl.a !== a) {
+      return {
+        h: hsl.h,
+        s: hsl.s,
+        l: hsl.l,
+        a: a,
+        source: 'rgb'
+      };
+    }
+  } else {
+    var _a = void 0;
+    if (left < 0) {
+      _a = 0;
+    } else if (left > containerWidth) {
+      _a = 1;
+    } else {
+      _a = Math.round(left * 100 / containerWidth) / 100;
+    }
+
+    if (initialA !== _a) {
+      return {
+        h: hsl.h,
+        s: hsl.s,
+        l: hsl.l,
+        a: _a,
+        source: 'rgb'
+      };
+    }
+  }
+  return null;
+};
+
+/***/ }),
+
+/***/ "wcxQ":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+function baseProperty(key) {
+  return function (object) {
+    return object == null ? undefined : object[key];
+  };
+}
+
+module.exports = baseProperty;
+
+/***/ }),
+
 /***/ "woEt":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33696,6 +48597,187 @@ module.exports = function transformData(data, headers, fns) {
 
   return data;
 };
+
+/***/ }),
+
+/***/ "wppe":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("MIhM");
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+/***/ }),
+
+/***/ "wrrS":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseEach = __webpack_require__("z7ms"),
+    isArrayLike = __webpack_require__("LN6c");
+
+/**
+ * The base implementation of `_.map` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function baseMap(collection, iteratee) {
+  var index = -1,
+      result = isArrayLike(collection) ? Array(collection.length) : [];
+
+  baseEach(collection, function (value, key, collection) {
+    result[++index] = iteratee(value, key, collection);
+  });
+  return result;
+}
+
+module.exports = baseMap;
+
+/***/ }),
+
+/***/ "wtMJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var mapCacheClear = __webpack_require__("lBq7"),
+    mapCacheDelete = __webpack_require__("cDyG"),
+    mapCacheGet = __webpack_require__("G3gK"),
+    mapCacheHas = __webpack_require__("85ue"),
+    mapCacheSet = __webpack_require__("UY82");
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+    var index = -1,
+        length = entries == null ? 0 : entries.length;
+
+    this.clear();
+    while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+    }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+module.exports = MapCache;
+
+/***/ }),
+
+/***/ "xDQX":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("yEjJ");
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+module.exports = listCacheHas;
+
+/***/ }),
+
+/***/ "xHaC":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CircleSwatch = undefined;
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _common = __webpack_require__("IWvg");
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var CircleSwatch = exports.CircleSwatch = function CircleSwatch(_ref) {
+  var color = _ref.color,
+      onClick = _ref.onClick,
+      onSwatchHover = _ref.onSwatchHover,
+      hover = _ref.hover,
+      active = _ref.active,
+      circleSize = _ref.circleSize,
+      circleSpacing = _ref.circleSpacing;
+
+  var styles = (0, _reactcss2.default)({
+    'default': {
+      swatch: {
+        width: circleSize,
+        height: circleSize,
+        marginRight: circleSpacing,
+        marginBottom: circleSpacing,
+        transform: 'scale(1)',
+        transition: '100ms transform ease'
+      },
+      Swatch: {
+        borderRadius: '50%',
+        background: 'transparent',
+        boxShadow: 'inset 0 0 0 ' + circleSize / 2 + 'px ' + color,
+        transition: '100ms box-shadow ease'
+      }
+    },
+    'hover': {
+      swatch: {
+        transform: 'scale(1.2)'
+      }
+    },
+    'active': {
+      Swatch: {
+        boxShadow: 'inset 0 0 0 3px ' + color
+      }
+    }
+  }, { hover: hover, active: active });
+
+  return _react2.default.createElement('div', { style: styles.swatch }, _react2.default.createElement(_common.Swatch, {
+    style: styles.Swatch,
+    color: color,
+    onClick: onClick,
+    onHover: onSwatchHover,
+    focusStyle: { boxShadow: styles.Swatch.boxShadow + ', 0 0 5px ' + color }
+  }));
+};
+
+CircleSwatch.defaultProps = {
+  circleSize: 28,
+  circleSpacing: 14
+};
+
+exports.default = (0, _reactcss.handleHover)(CircleSwatch);
 
 /***/ }),
 
@@ -33843,11 +48925,60 @@ module.exports = function withSideEffect(reducePropsToState, handleStateChangeOn
 
 /***/ }),
 
+/***/ "xqjy":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFor = __webpack_require__("mduf"),
+    keys = __webpack_require__("HI10");
+
+/**
+ * The base implementation of `_.forOwn` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForOwn(object, iteratee) {
+  return object && baseFor(object, iteratee, keys);
+}
+
+module.exports = baseForOwn;
+
+/***/ }),
+
 /***/ "xxi1":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"home":"home__1xTu8","cardHeader":"cardHeader__1tF-7","cardBody":"cardBody__3Yk1i"};
+
+/***/ }),
+
+/***/ "yEjJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__("LIpy");
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+module.exports = assocIndexOf;
 
 /***/ }),
 
@@ -34100,6 +49231,297 @@ function tryFocus(node) {
 }
 
 module.exports = focusTrap;
+
+/***/ }),
+
+/***/ "yY49":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "yeiR":
+/***/ (function(module, exports, __webpack_require__) {
+
+var castPath = __webpack_require__("Tnr5"),
+    toKey = __webpack_require__("RQ0L");
+
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+function baseGet(object, path) {
+  path = castPath(path, object);
+
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[toKey(path[index++])];
+  }
+  return index && index == length ? object : undefined;
+}
+
+module.exports = baseGet;
+
+/***/ }),
+
+/***/ "yfX1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("MIhM");
+
+/** Built-in value references. */
+var Uint8Array = root.Uint8Array;
+
+module.exports = Uint8Array;
+
+/***/ }),
+
+/***/ "yubd":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseMerge = __webpack_require__("WqwZ"),
+    createAssigner = __webpack_require__("gmQJ");
+
+/**
+ * This method is like `_.assign` except that it recursively merges own and
+ * inherited enumerable string keyed properties of source objects into the
+ * destination object. Source properties that resolve to `undefined` are
+ * skipped if a destination value exists. Array and plain object properties
+ * are merged recursively. Other objects and value types are overridden by
+ * assignment. Source objects are applied from left to right. Subsequent
+ * sources overwrite property assignments of previous sources.
+ *
+ * **Note:** This method mutates `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.5.0
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * var object = {
+ *   'a': [{ 'b': 2 }, { 'd': 4 }]
+ * };
+ *
+ * var other = {
+ *   'a': [{ 'c': 3 }, { 'e': 5 }]
+ * };
+ *
+ * _.merge(object, other);
+ * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+ */
+var merge = createAssigner(function (object, source, srcIndex) {
+  baseMerge(object, source, srcIndex);
+});
+
+module.exports = merge;
+
+/***/ }),
+
+/***/ "z7ms":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseForOwn = __webpack_require__("xqjy"),
+    createBaseEach = __webpack_require__("71Gl");
+
+/**
+ * The base implementation of `_.forEach` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array|Object} Returns `collection`.
+ */
+var baseEach = createBaseEach(baseForOwn);
+
+module.exports = baseEach;
+
+/***/ }),
+
+/***/ "zCYT":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsEqual = __webpack_require__("iKxp"),
+    get = __webpack_require__("5U5Y"),
+    hasIn = __webpack_require__("3Q8v"),
+    isKey = __webpack_require__("2ibm"),
+    isStrictComparable = __webpack_require__("E5qx"),
+    matchesStrictComparable = __webpack_require__("sruz"),
+    toKey = __webpack_require__("RQ0L");
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/**
+ * The base implementation of `_.matchesProperty` which doesn't clone `srcValue`.
+ *
+ * @private
+ * @param {string} path The path of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+function baseMatchesProperty(path, srcValue) {
+  if (isKey(path) && isStrictComparable(srcValue)) {
+    return matchesStrictComparable(toKey(path), srcValue);
+  }
+  return function (object) {
+    var objValue = get(object, path);
+    return objValue === undefined && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
+  };
+}
+
+module.exports = baseMatchesProperty;
+
+/***/ }),
+
+/***/ "zb3a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Uint8Array = __webpack_require__("yfX1");
+
+/**
+ * Creates a clone of `arrayBuffer`.
+ *
+ * @private
+ * @param {ArrayBuffer} arrayBuffer The array buffer to clone.
+ * @returns {ArrayBuffer} Returns the cloned array buffer.
+ */
+function cloneArrayBuffer(arrayBuffer) {
+  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+  return result;
+}
+
+module.exports = cloneArrayBuffer;
+
+/***/ }),
+
+/***/ "zdvN":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Circle = undefined;
+
+var _react = __webpack_require__("eW0v");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__("5D9O");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactcss = __webpack_require__("Htnj");
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _map = __webpack_require__("vGW8");
+
+var _map2 = _interopRequireDefault(_map);
+
+var _merge = __webpack_require__("yubd");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _materialColors = __webpack_require__("7psR");
+
+var material = _interopRequireWildcard(_materialColors);
+
+var _common = __webpack_require__("IWvg");
+
+var _CircleSwatch = __webpack_require__("xHaC");
+
+var _CircleSwatch2 = _interopRequireDefault(_CircleSwatch);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Circle = exports.Circle = function Circle(_ref) {
+  var width = _ref.width,
+      onChange = _ref.onChange,
+      onSwatchHover = _ref.onSwatchHover,
+      colors = _ref.colors,
+      hex = _ref.hex,
+      circleSize = _ref.circleSize,
+      _ref$styles = _ref.styles,
+      passedStyles = _ref$styles === undefined ? {} : _ref$styles,
+      circleSpacing = _ref.circleSpacing,
+      _ref$className = _ref.className,
+      className = _ref$className === undefined ? '' : _ref$className;
+
+  var styles = (0, _reactcss2.default)((0, _merge2.default)({
+    'default': {
+      card: {
+        width: width,
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginRight: -circleSpacing,
+        marginBottom: -circleSpacing
+      }
+    }
+  }, passedStyles));
+
+  var handleChange = function handleChange(hexCode, e) {
+    return onChange({ hex: hexCode, source: 'hex' }, e);
+  };
+
+  return _react2.default.createElement('div', { style: styles.card, className: 'circle-picker ' + className }, (0, _map2.default)(colors, function (c) {
+    return _react2.default.createElement(_CircleSwatch2.default, {
+      key: c,
+      color: c,
+      onClick: handleChange,
+      onSwatchHover: onSwatchHover,
+      active: hex === c.toLowerCase(),
+      circleSize: circleSize,
+      circleSpacing: circleSpacing
+    });
+  }));
+};
+
+Circle.propTypes = {
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  circleSize: _propTypes2.default.number,
+  circleSpacing: _propTypes2.default.number,
+  styles: _propTypes2.default.object
+};
+
+Circle.defaultProps = {
+  width: 252,
+  circleSize: 28,
+  circleSpacing: 14,
+  colors: [material.red['500'], material.pink['500'], material.purple['500'], material.deepPurple['500'], material.indigo['500'], material.blue['500'], material.lightBlue['500'], material.cyan['500'], material.teal['500'], material.green['500'], material.lightGreen['500'], material.lime['500'], material.yellow['500'], material.amber['500'], material.orange['500'], material.deepOrange['500'], material.brown['500'], material.blueGrey['500']],
+  styles: {}
+};
+
+exports.default = (0, _common.ColorWrap)(Circle);
 
 /***/ })
 

@@ -38,12 +38,13 @@ export default class Header extends Component {
 	}
 
 	testScreen() {
-		const viewportheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-		const viewportw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		if (typeof window !== "undefined") {
+			const viewportheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+			const viewportw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-		if (viewportheight < 630) this.setState({ scrollModal: true });
-		if (viewportw < 540) this.setState({ scrollModal: true });
-
+			if (viewportheight < 630) this.setState({ scrollModal: true });
+			if (viewportw < 540) this.setState({ scrollModal: true });
+		}
 	}
 	dialogRef = dialog => (this.dialog = dialog);
 	menuRef = menu => (this.menu = menu);
