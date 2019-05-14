@@ -58,8 +58,7 @@ export default class Login extends Component {
 		});
 	}
 	responseFacebook = ({accessToken}) => {
-		console.log(accessToken);
-		// facebookLogin(response);
+		facebookLogin(accessToken);
 	}
 	
 
@@ -89,7 +88,7 @@ export default class Login extends Component {
 					fields=""
 					textButton="Facebook"
 					icon="fa-facebook"
-					redirectUri="http://localhost:9292/auth/facebook/callback"
+					// redirectUri="http://localhost:9292/auth/facebook/callback"
 					// onClick={componentClicked}
 					callback={this.responseFacebook}
 				/>

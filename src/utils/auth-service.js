@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const ACCESS_TOKEN_KEY = 'va',
 	    ID_TOKEN_KEY = 'la',
-	// BASE_URL = 'http://localhost:3000';
+	BASE_URL = 'http://localhost:3000/';
 	// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-BASE_URL = 'https://api.vote4art.eu/api/v1';
+// BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 export function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -60,7 +60,7 @@ export function logout() {
 export function facebookLogin(data) {
 	// signedRequest
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
-	return axios.post(url).then(response => console.log(response.data)).catch( e => console.log(e));
+	return axios.get(url).then(response => console.log(response.data)).catch( e => console.log(e));
 }
 
 function clearIdToken() {
