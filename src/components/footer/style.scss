@@ -6,6 +6,9 @@
   width: auto;
   align-self: flex-start;
 }
+.l_ek, .l_vrk {
+  display: none;
+}
 .topappbar {
   background: white;
   color: #000;
@@ -24,17 +27,46 @@
   height: 64px;
   position: relative;
 }
+.block_one {
+  display: flex;
+  justify-content: spa;
+  flex-direction: column;
+  width: 50%;
+}
 .footer_row {
-  padding: 4px;
   display: flex;
   padding: 0.5em;
   justify-content: space-between;
   color: white;
 }
-@media only screen and (max-width: 600px) {
-  .logo {
-    height: 51px;
-    width: auto;
-    align-self: flex-start;
+// @media only screen and (max-width: 600px) {
+//   .logo {
+//     height: 51px;
+//     width: auto;
+//     align-self: flex-start;
+//   }
+// }
+
+@media only screen and (max-width: 760px) {
+  .wraper {
+    background: white;
+    display: flex;
   }
+  .l_ek, .l_vrk {
+    display: block;
+    width: auto;
+    height: 54px;
+  }
+  .footer_row {
+    flex-direction: column-reverse;
+  }
+  .block_one {
+    width: 98%;
+  }
+  .block_two {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+  }
+
 }

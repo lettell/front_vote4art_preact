@@ -161,3 +161,31 @@ svg {
     letter-spacing: 0.05em;
   }
 }
+@media (max-width: 410px) {
+  .logo {
+    height: 46px;
+    margin:  0 auto;
+    margin-right: 48px;
+    width: auto;
+    align-self: center;
+    justify-self: center;
+  }
+  .mdc-top-app-bar__row {
+    height: 40px;
+  }
+}
+
+.noScroll {
+  max-height: 100vh !important;
+  position:fixed;
+  overflow:hidden;
+}
+.t_link {
+  color: $mdc-theme-secondary;
+  text-decoration: none;
+  margin-left: 20px;
+}
+.t_link:hover, .t_link:active {
+  color: white;
+  text-decoration: underline;
+}

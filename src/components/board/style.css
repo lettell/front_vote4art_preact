@@ -42,7 +42,14 @@
 
   background: green;
 }
-
+.pixel_block {
+  position: fixed;
+  bottom: 80px;
+  width: 100px;
+  height: 100px;
+  background: red;
+  z-index: 100;
+}
 .pixel__center {
   font-size: 5px;
   display: flex;
@@ -53,8 +60,7 @@
   color: greenyellow;
 }
 .colors_controlls {
- position: absolute;
- display: block;
+ position: fixed;
  margin: 0 auto;
  bottom: 80px;
  right: 0;
@@ -68,3 +74,30 @@
   left: 0;
   z-index: 2;
  }
+ @media only screen and (max-width: 760px) {
+  .colors_controlls {
+    bottom: 0;
+
+   }
+   .colors_controlls {
+    position: fixed;
+    margin: 0 auto;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+   }
+}
+@media only screen and (min-width: 760px) {
+  .colors_controlls {
+    bottom: 64px;
+
+   }
+  .board__controlls {
+    position: fixed;
+    display: flex;
+    margin: 0 auto;
+    top: 84px;
+    left: 0;
+    z-index: 2;
+   }
+}

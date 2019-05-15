@@ -15,6 +15,7 @@ import Controls from './controls';
 export default class Board extends Component {
 	// callback
 	setColor(currentColor) {
+
 		// if (!this.isEditable) return;
 		this.setState(currentColor);
 	}
@@ -171,6 +172,11 @@ export default class Board extends Component {
 	render(props) {
 		return (
 			<div class={style.wrap__board}>
+				<div id="currentPixel" class={this.state.color? style.pixel_block : 'disabled'}>
+					<span>
+						Aktyvus pikselis
+					</span>
+				</div>
 				<div class={style.board__controlls}>
 					<Controls scale={this.scale} callbackFromBoard={this.setZoom} callbackFromBoardSecond={this.setGrid} />
 				</div>

@@ -27,6 +27,9 @@
   height: 100px;
   width: auto;
 }
+.row_two {
+  display: none;
+}
 @media only screen and (max-width: 600px) {
   .logo {
     height: 51px;
@@ -59,5 +62,35 @@
     margin-right: 48px;
     width: auto;
     align-self: center;
+  }
+}
+@media (max-width: 410px) {
+  .mobile_h {
+    display: none;
+  }
+  .mobile_m {
+    display: flex;
+    padding-left: 1em;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .logo {
+    height: 46px;
+    margin:  0 auto;
+    margin-right: 0;
+    margin-left: 88px;
+
+    width: auto;
+    align-self: center;
+    justify-self: center;
+  }
+  .mdc-top-app-bar__row {
+    height: 40px;
+  }
+  .row_two {
+    display: block
+  }
+  .c_btn {
+    display: none;
   }
 }

@@ -24,22 +24,35 @@ export default class Footer extends Component {
 		return (
 			<div class={`${style.footer} mdc-top-app-bar`}>
 				<div class={style.footer_row}>
-					<div>
+					<div class={style.block_one}>
 						<div>
-						©2019 „Europos Komisijos atstovybė Lietuvoje“
+							©2019 „Europos Komisijos atstovybė Lietuvoje“
 						</div>
 						<div>
-							Sąlygos
+							<a class="t_link" href="#">
+								Sąlygos
+							</a>
+							<a  class="t_link"  href="#">
+								Privatumas
+							</a>
 						</div>
 					</div>
-					<div>
+
+					<div class={style.block_two}>
 						<div>
+							<div>
 							Susisiekite
+							</div>
+							<div>
+								<a class="t_link"  href="mailto:info@vote4art.eu">info@vote4art.eu</a>
+							</div>
 						</div>
-						<div>
-							info@vote4art.eu
+						<div class={style.wraper}>
+							<img class={style.l_ek} src="assets/images/logo_ek.svg" alt="Eruropos Komisijos logo" />
+							<img class={style.l_vrk} src="assets/images/VRK log 300x300.png" alt="VRK logo" />
 						</div>
 					</div>
+
 				</div>
 			</div>
 		);

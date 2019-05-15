@@ -70,20 +70,34 @@ export default class Header extends Component {
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
 							<div class={style.c_btn}>
-								<img class={style.l_ek} src='assets/images/logo_ek.svg' alt="Eruropos Komisijos logo"></img>
+								<a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
+									<img class={style.l_ek} src='assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
+								</a>
 								<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
-								<img class={style.l_vrk} src='assets/images/VRK log 300x300.png' alt="VRK logo"></img>
+								<a href="https://www.vrk.lt/" target="_blank">
+									<img class={style.l_vrk} src='assets/images/VRK log 300x300.png' alt="VRK logo" />
+								</a>
 							</div>
-
 						</TopAppBar.Section>
+
 						<TopAppBar.Section align-end shrink-to-fit >
-							<div>
+							<div class={style.mobile_h}>
 								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 							</div>
 						</TopAppBar.Section>
 					</TopAppBar.Row>
-					{/* <TopAppBar.Row /> */}
+					<div class={style.row_two}>
+						<TopAppBar.Row>
+							<TopAppBar.Section align-center shrink-to-fit>
+								<div class={style.mobile_m}>
+									<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
+									<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
+									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+								</div>
+							</TopAppBar.Section>
+						</TopAppBar.Row>
+					</div>
 
 				</TopAppBar>
 
