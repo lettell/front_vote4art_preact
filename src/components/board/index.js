@@ -5,8 +5,8 @@ import injectTapEventPlugin from 'preact-tap-event-plugin';
 injectTapEventPlugin();
 import { getPixels, postPixel } from '../../utils/vote4art-api';
 import * as d3 from 'd3';
+import Snackbar from 'preact-material-components/Snackbar';
 
-import Slider from 'preact-material-components/Slider';
 import 'preact-material-components/Slider/style.css';
 import Colors from './colors';
 import style from './style';
@@ -74,7 +74,7 @@ export default class Board extends Component {
 	transform(e) {
 		
 		let position = e.getTransform();
-		console.log(document.innerHeight, this.pixelPoint[1], this.scale);
+		// console.log(document.innerHeight, this.pixelPoint[1], this.scale);
 		this.scaledPixel = Math.floor(1000 * position.scale);
 		this.scale = position.scale;
 		this.scaledX = position.x;
@@ -98,23 +98,21 @@ export default class Board extends Component {
 	}
 
 	loadPixels() {
-		getPixels().then(resp => {
+		return getPixels().then(resp => {
 			this.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
-				this.currentPhoto = `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
-				this.setState({
-					currentPhoto: resp.meta.photo
-				});
+				const photo = `https://nuotraukos.vote4art.eu${resp.meta.photo}`;
+				if (this.state.currentPhoto !== photo ){
+					this.setState({ photoUpdate: 'done', currentPhoto: photo });
+				}
 			}
-		}
-		).catch(e => console.error(e.error));
+		}).catch(e => console.log(e));
 	}
 
 	setAllPixels(arr) {
-		document.getElementById('activePixels').innerHTML = '';
-		this.svg =d3.select('#activePixels');
-		console.log(arr);
+		document.getElementById('voteForArt').innerHTML = '';
+		this.svg =d3.select('#voteForArt');
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
@@ -136,12 +134,12 @@ export default class Board extends Component {
 		// pix.style.position = 'absolute';
 		// pix.style.bottom = '';
 		// pix.style.top = this.mousePosition[1] + 'px';
-		pix.style.left =  	 + 'px';
-		let scal = 0.01*this.scale;
+		// pix.style.left =  	 + 'px';
+		// let scal = 0.01*this.scale;
 		// pix.style.transform = "scale('scal')";
 
 		// this.zoomController.pause();
-		this.svg =d3.select('#activePixels');
+		this.svg =d3.select('#voteForArt');
 		this.svg.append('svg:rect')
 			.attr('width', 1)
 			.attr('height', 1)
@@ -151,11 +149,10 @@ export default class Board extends Component {
 
 		postPixel(this.pixelPoint, this.state.color).then( resp => {
 			if (resp.data && resp.data.length){
-				console.log(resp.data);
 				this.setAllPixels(resp.data);
-				if (this.currentPhoto !== `https://nuotraukos.vote4art.eu/${resp.meta.photo}` ){
-					this.setState({ photoUpdate: resp.meta.photo });
-					this.currentPhoto =  `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
+				const photo = `https://nuotraukos.vote4art.eu${resp.meta.photo}`;
+				if (this.state.currentPhoto !== photo ){
+					this.setState({ photoUpdate: 'done', currentPhoto: photo });
 				}
 
 			}
@@ -173,20 +170,22 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
+		this.loadPixels();
+
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
 		this.currentZoom = {
 		 x: this.base.clientWidth - a.width,
 		 y: this.base.clientWidth / 2
 		};
-		this.loadPixels();
 		this.initZoom(b, this.currentZoom);
 		a.addEventListener('mousemove', this.mouseMove);
 
 	}
 
 
-	render(props) {
+	render(props) {			console.log('aasd', this.state)
+
 		return (
 			<div class={style.wrap__board}>
 				<div id="currentPixel" style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
@@ -211,12 +210,12 @@ export default class Board extends Component {
 						background-color: white;
 					`}
 				>
-					{this.currentPhoto ? <img
+					{this.state.currentPhoto ? <img
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
 						// src="assets/images/test_image.png"
-						src={this.currentPhoto}
+						src={this.state.currentPhoto}
 					                     /> : ''}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" id="board" height="100%" >
@@ -237,20 +236,17 @@ export default class Board extends Component {
 								x="0"
 								y="0"
 							/>
-							<g id="activePixels" />
 
 						</g>
 						<g fill="none">
-							<rect
-								// fill="url(#smallGrid)"
-								// id="gridArea"								fill="url(#smallGrid)"
-								id="zoomArea"
+							{/* <rect
+				  			id="zoomArea"
 								width={this.scaledPixel}
 								height={this.scaledPixel}
-								x={this.scaledX}
-								y={this.scaledY}
+								x={Math.floor(this.scaledX)}
+								y={Math.floor(this.scaledY)}
 								style="cursor: move;"
-							/>
+							/> */}
 							<rect
 								fill={this.state.color}
 								id="ghost"
@@ -330,6 +326,8 @@ export default class Board extends Component {
 
 				 </g>
 				</svg>
+				{/* <Snackbar ref={bar =>{this.bar=bar;}} /> */}
+
 			</div>
 		);
 	}

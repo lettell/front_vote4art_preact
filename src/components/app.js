@@ -11,12 +11,14 @@ import Start from '../routes/start';
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
+import { checkAuth } from '../utils/auth-service';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
+	
 	respHead = e => {
 		if (e) this.setState({ logined: true, loginType: 'pasikeisti' });
 	}
@@ -25,6 +27,9 @@ export default class App extends Component {
 		// 	currentUrl: e.url
 		// });
 	};
+	componentDidMount() {
+		checkAuth().then(resp => console.log(resp));
+	}
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');

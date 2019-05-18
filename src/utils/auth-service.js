@@ -5,15 +5,41 @@ import { NotificationManager } from 'react-notifications';
 
 const ACCESS_TOKEN_KEY = 'va',
 	    ID_TOKEN_KEY = 'la',
-	BASE_URL = 'http://localhost:3000/';
-	// BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+	BASE_URL = 'http://localhost:3000/',
+	BASE_URL_PRIVATE = BASE_URL + 'api/v1';
 // production
 // BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 export function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
+export function checkAuth() {
+	const url = `${BASE_URL_PRIVATE}/users/info`;
 
+	return axios.get(url,{ headers: { Authorization: `Bearer ${getAccessToken()}` } })
+		.then((response) => {
+			switch (response.status) {
+				case 'info':
+					NotificationManager.info('Info message');
+
+					break;
+				case 200:
+				
+					// NotificationManager.success(response.data.response, 'Sveiki !!!');
+					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+					// Pakeisti!!
+					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+					return response.data;
+				case 'warning':
+					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+					break;
+			}
+		})
+		.catch((error) => {
+			NotificationManager.error(error.response.data.msg
+				,'Klaida', 2000);
+		});
+}
 export function setAccessToken(accessToken) {
 	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 }
@@ -32,8 +58,8 @@ export function login(pramas) {
 					break;
 				case 200:
 				
-					NotificationManager.success(response.data.response, 'Title here');
-					localStorage.setItem(ACCESS_TOKEN_KEY, response.data.jwt);
+					NotificationManager.success(response.data.response, 'Sveiki prisijungę! ');
+					setAccessToken(response.headers.authorization);
 					// Pakeisti!!
 					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 					return response.data;
@@ -43,29 +69,32 @@ export function login(pramas) {
 			}
 		})
 		.catch((error) => {
-			debugger
-			NotificationManager.error(error.msg
+			NotificationManager.error(error.response.data
 				,'Klaida', 2000);
-			console.log(error);
 		});
 }
 export function signup(pramas) {
-	const url = `${BASE_URL}/signup`;
+	const url = `${BASE_URL}/api/v1/signup`;
 	axios.post(url, {
 		username: pramas.username,
 		password: pramas.password,
-		password_confirmation: pramas.password
+		password_confirmation: pramas.password_confirmation,
+		terms_and_conditions: pramas.terms_and_conditions
 
-	})
-		.then((response) => {
-			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-			localStorage.setItem(ID_TOKEN_KEY, response.data.jti);
 
-			console.log(response);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+	}).then((response) => {
+		switch (response.status) {
+			case 200:
+
+				NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
+				setAccessToken(response.headers.authorization);
+				return response.data;
+
+		}
+	}).catch((error) => {
+		NotificationManager.error(error.response.data
+			,'Klaida', 2000);
+	});
 }
 export function logout() {
 	sendLogout();
@@ -75,9 +104,29 @@ export function logout() {
 }
 
 export function facebookLogin(data) {
-	// signedRequest
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
-	return axios.get(url).then(response => console.log(response.data)).catch( e => console.log(e));
+	return axios.get(url).then(response => {
+		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
+		setAccessToken(response.headers.authorization);
+		localStorage.setItem('provider', 'fb');
+
+		return response.data;
+	}).catch((error) => {
+		NotificationManager.error(error.response.data
+			,'Klaida', 2000);
+	});
+}
+
+export function acceptTerms() {
+	const url = `${BASE_URL_PRIVATE}/users/accept_conditions`;
+	return axios.put(url, { accept: true }, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => {
+		localStorage.setItem('provider', 'fb');
+
+		return response.data;
+	}).catch((error) => {
+		NotificationManager.error(error.response.data
+			,'Klaida', 2000);
+	});
 }
 
 function clearIdToken() {

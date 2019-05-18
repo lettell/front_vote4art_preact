@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import Login from '../auth/login';
 import { NotificationContainer } from 'react-notifications';
+import { acceptTerms } from '../../utils/auth-service';
 
 // material
 import TopAppBar from 'preact-material-components/TopAppBar';
@@ -21,25 +22,82 @@ import style from './style.scss';
 import 'preact-material-components/Menu/style.css';
 // import 'preact-material-components/Button/style.css';
 import 'preact-material-components/TabBar/style.css';
+import Registration from '../auth/registration';
 
 export default class Header extends Component {
 	state = {
-		scrollModal: false
+		scrollModal: false,
 	}
 	closeDrawer() {
 		this.state = {
 			darkThemeEnabled: false
 		};
 	}
+	setUserState() {
+		const mode = localStorage.userState || -1;
+		this.switchMode(mode);
+	}
+	switchMode(state) {
+		switch (state) {
+			case 0:
+			case '0': {
+
+				return this.setState({ userState: 'visited' });
+			}
+			case 1:
+			case '1': {
+				return this.setState({ userState: 'auhenticate' });
+			}
+			case 2:
+			case '2': {
+				return this.setState({ userState: 'active' });
+			}
+			case 3:
+			case '3': {
+				return this.setState({ userState: 'disconected' });
+			}
+			default: {
+				this.dialog.MDComponent.show();
+				localStorage.setItem('userState', 0)
+
+				return	this.setState({ dialogContent: 'game' });
+
+			}
+		}
+
+	}
 	callBackFromLogin = (resp) => {
 		this.setState({loginSucces: true});
 		if (this.state.loginSucces){
 			this.dialog.MDComponent.close();
-			this.props.callToApp(this.state.loginSucces);
+			if (this.userState === 'auhenticate') {
+				this.dialog.MDComponent.show();
+				this.setState({ dialogContent: 'rules', editrule: 'social' });
+			}
+			else {
+				this.props.callToApp(this.state.loginSucces);
+			}
 		}
 	}
+	acceptTerms = () => {
+		if(localStorage.provider && localStorage.provider === 'fb') {
+			acceptTerms();
+			localStorage.setItem('userState', 3);
+			this.dialog.MDComponent.close();
+		}else {
+			this.state.backState.terms_and_conditions = true;
+			this.setState({ dialogContent: 'registracija'});
+		}
+
+
+	}
+	callBackFromRegterms = (state) => {
+		this.setState({ scrollModal: true });
+		this.setState({ dialogContent: 'rules', editrule: 'register', backState: state });
+
+	}
 	openContent = (e) => {
-		if (e.target.id === 'rules') this.setState({ scrollModal: true })
+		if (e.target.id === 'rules') this.setState({ scrollModal: true });
 		this.setState({ dialogContent: e.target.id });
 		this.dialog.MDComponent.show();
 	}
@@ -65,6 +123,9 @@ export default class Header extends Component {
 	};
 	componentWillMount() {
 		this.testScreen();
+	}
+	componentDidMount() {
+		this.setUserState();
 	}
 
 	goHome = this.linkTo('/');
@@ -152,12 +213,29 @@ export default class Header extends Component {
 									</p>
 								</article>:
 								this.state.dialogContent === 'rules'?
-									<Terms />:
+									<Terms callHeader={this.callBackFromRegterms}/>:
 									this.state.dialogContent === 'login' ?
-										<Login callToDialog={this.callBackFromLogin} /> : ''
+										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :
+										this.state.dialogContent === 'registracija' ?
+											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :
+											''
+
 						}
 					</Dialog.Body>
 					<Dialog.Footer>
+					{
+							this.state.dialogContent === 'rules'?
+								this.state.editrule ? 
+									<Button onClick={this.acceptTerms} secondary>SUTINKU</Button>
+									:'':
+								this.state.dialogContent === 'game'?
+									<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
+									this.state.dialogContent === 'login'?
+										'':
+										this.state.dialogContent === 'registracija'?
+											'': ''
+
+						}
 					</Dialog.Footer>
 				</Dialog>
 			</div>

@@ -8,10 +8,10 @@ const BASE_URL = 'http://localhost:3000/api/v1';
 // const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 export { getPixels, postPixel };
-
+const head = { headers: { Authorization: `Bearer ${getAccessToken()}` }}
 function getPixels() {
-	const url = `${BASE_URL}/pixels/ready`;
-	return axios.get(url).then(response => JSON.parse(response.data));
+	const url = `${BASE_URL}/public/pixels/ready`;
+	return axios.get(url).then(response => JSON.parse(response.data)).catch(e => console.error(e));
 }
 
 function postPixel(xy, color) {
@@ -25,6 +25,6 @@ function postPixel(xy, color) {
 
 	};
 	const url = `${BASE_URL}/pixels`;
-	return axios.post(url, pramas, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => JSON.parse(response.data));
+	return axios.post(url, pramas, head).then(response => JSON.parse(response.data));
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));

@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 // import { route } from 'preact-router';
-import { login, facebookLogin, logout, signup } from '../../../utils/auth-service';
+import { login, facebookLogin, logout, checkAuth } from '../../../utils/auth-service';
 import Button from 'preact-material-components/Button';
 import TextField from 'preact-material-components/TextField';
 import FacebookLogin from 'react-facebook-login';
@@ -11,6 +11,7 @@ import 'preact-material-components/TextField/style.css';
 
 import style from './style';
 
+import Snackbar from 'preact-material-components/Snackbar';
 
 export default class Login extends Component {
 	constructor() {
@@ -21,9 +22,6 @@ export default class Login extends Component {
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.loginSimple = this.loginSimple.bind(this);
-		this.registerSimple = this.registerSimple.bind(this);
-		this.swith = this.swith.bind(this);
-
 	}
 	loginSimple = () => {
 		login(this.state).then( (resp) => {
@@ -33,27 +31,14 @@ export default class Login extends Component {
 		});
 
 	}
-	registerSimple() {
-		signup(this.state);
-	}
-	swith = (e) => {
-		if (this.tab === 'register') {
-			this.tab = 'login';
-			this.base.getElementsByClassName('tab')[1].classList.remove('disabled');
-			this.base.getElementsByClassName('tab')[0].classList.add('disabled');
-		}
-		else {
-			this.tab = 'register';
-			this.base.getElementsByClassName('tab')[0].classList.remove('disabled');
-			this.base.getElementsByClassName('tab')[1].classList.add('disabled');
-		}
-
+	rules = () => {
+		this.props.callToRules(this.state);
 	}
 	logout() {
 		logout();
 	}
 	isLogedIn() {
-		// isLogedIn();
+		checkAuth();
 	}
 	handleInputChange(event) {
 		const target = event.target;
@@ -64,7 +49,15 @@ export default class Login extends Component {
 		});
 	}
 	responseFacebook = ({accessToken}) => {
-		facebookLogin(accessToken);
+		facebookLogin(accessToken).then(resp => {
+			this.setState({ provider: 'facebook' });
+			if (resp.status === 'authenticated'){ 
+				this.rules();
+			}
+			else {
+				this.props.callToDialog(resp);
+			}
+		});
 	}
 	responseGoogle = (data) => {
 		console.log("Google:", data)
@@ -73,10 +66,11 @@ export default class Login extends Component {
 	respGoogleFail = (data) => {
 		console.log("Google:", data)
 	}
+	goToRegister() {}
 	render(props) {
 		return (
 			<div class={style.container}>
-			<form onSubmit={this.loginSimple} action="javascript:" >
+			<form class={style.container} onSubmit={this.loginSimple} action="javascript:" >
 					<TextField
 						type="text"
 						name="username"
@@ -101,7 +95,7 @@ export default class Login extends Component {
 						<Button  secondary >Prisijungti</Button>
 					</div>
 				</form>
-				<h1>Arba prisijunkite per</h1>
+				<h1 onClick={this.isLogedIn}>Arba prisijunkite per</h1>
 				<hr />
 				<div class={style.social}>
 					<div>
@@ -126,7 +120,7 @@ export default class Login extends Component {
 						/>
 					</div>
 					<div>
-					<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.registrationSimple} unelevated>Registracija</Button>
+					<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToLogin} unelevated>Registracija</Button>
 					</div>
 				</div>
 	
