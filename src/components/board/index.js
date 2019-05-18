@@ -239,14 +239,14 @@ export default class Board extends Component {
 
 						</g>
 						<g fill="none">
-							{/* <rect
+							<rect
 				  			id="zoomArea"
 								width={this.scaledPixel}
 								height={this.scaledPixel}
 								x={Math.floor(this.scaledX)}
 								y={Math.floor(this.scaledY)}
 								style="cursor: move;"
-							/> */}
+							/>
 							<rect
 								fill={this.state.color}
 								id="ghost"
