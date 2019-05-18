@@ -58,19 +58,23 @@ export default class Board extends Component {
 				bounds: true
 			}
 		);
+		// let scal = 12.793964287799751;
+		// let x = 5909.330227150821 ;
+		// let y = 3358.0606079162935;
+		// // pan.zoomAbs(x, y, scal);
+		
 		// pan.zoomAbs(
-		// 	this.currentZoom.x, // initial x position
-		// 	this.currentZoom.y, // initial y position
-		// 	this.initZo// initial zoom
-		// );
+		// 	558, 428, 30.809340591854905		);
+		
 		pan.on('transform', this.transform);
 		this.setState({ zoom: 'ok' });
 		this.zoomController = pan;
 	}
 	// pervadinti i zoom
 	transform(e) {
-		console.log(e);
+		
 		let position = e.getTransform();
+		console.log(document.innerHeight, this.pixelPoint[1], this.scale);
 		this.scaledPixel = Math.floor(1000 * position.scale);
 		this.scale = position.scale;
 		this.scaledX = position.x;
@@ -90,7 +94,7 @@ export default class Board extends Component {
 		}
 		this.pixelPoint = [Math.floor((e.clientX - this.scaledX)  / this.scale), Math.floor((e.clientY - this.scaledY)  / this.scale)];
 		this.setState({ pixelPoint: [Math.floor((e.clientX - this.scaledX)  / this.scale), Math.floor((e.clientY - this.scaledY)  / this.scale)] });
-		this.putPixel();
+		this.putPixel(e);
 	}
 
 	loadPixels() {
@@ -108,7 +112,9 @@ export default class Board extends Component {
 	}
 
 	setAllPixels(arr) {
-		this.svg =d3.select('#voteForArt');
+		document.getElementById('activePixels').innerHTML = '';
+		this.svg =d3.select('#activePixels');
+		console.log(arr);
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
@@ -120,12 +126,22 @@ export default class Board extends Component {
 		this.setState({ activePixels: 'placed_on_board' });
 	}
 
-	putPixel() {
+	putPixel(e) {
 		if (!this.state.color) return;
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
 		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
+		const pix = this.base.querySelector('#currentPixel');
+		// pix.style.top = this.scale* e.clientY;
+		// pix.style.left = this.scale *  e.clientX;
+		// pix.style.position = 'absolute';
+		// pix.style.bottom = '';
+		// pix.style.top = this.mousePosition[1] + 'px';
+		pix.style.left =  	 + 'px';
+		let scal = 0.01*this.scale;
+		// pix.style.transform = "scale('scal')";
+
 		// this.zoomController.pause();
-		this.svg =d3.select('#voteForArt');
+		this.svg =d3.select('#activePixels');
 		this.svg.append('svg:rect')
 			.attr('width', 1)
 			.attr('height', 1)
@@ -135,6 +151,7 @@ export default class Board extends Component {
 
 		postPixel(this.pixelPoint, this.state.color).then( resp => {
 			if (resp.data && resp.data.length){
+				console.log(resp.data);
 				this.setAllPixels(resp.data);
 				if (this.currentPhoto !== `https://nuotraukos.vote4art.eu/${resp.meta.photo}` ){
 					this.setState({ photoUpdate: resp.meta.photo });
@@ -172,7 +189,7 @@ export default class Board extends Component {
 	render(props) {
 		return (
 			<div class={style.wrap__board}>
-				<div id="currentPixel" class={this.state.color? style.pixel_block : 'disabled'}>
+				<div id="currentPixel" style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
 					<span>
 						Aktyvus pikselis
 					</span>
@@ -182,19 +199,6 @@ export default class Board extends Component {
 				</div>
 				<div class={style.colors_controlls}>
 					<Colors	callbackFromBoard={this.setColor}	/>
-				</div>
-				<div
-					class={style.pixel__center}
-					style={`
-						display: ${ this.state.color ? '' : 'none'};
-						top:${this.WY};
-						left:${this.WX};
-/					`}
-			 >
-					 <span class={style.pixel} style={`	
-						 background: ${this.state.color};
-						 `}
-					 />
 				</div>
 				<div
 					class="shadow"
@@ -233,6 +237,7 @@ export default class Board extends Component {
 								x="0"
 								y="0"
 							/>
+							<g id="activePixels" />
 
 						</g>
 						<g fill="none">

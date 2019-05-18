@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import Login from '../auth/login';
+import { NotificationContainer } from 'react-notifications';
 
 // material
 import TopAppBar from 'preact-material-components/TopAppBar';
@@ -12,6 +13,8 @@ import Button from 'preact-material-components/Button';
 // import 'preact-material-components/Dialog/style.css';
 // import 'preact-material-components/Drawer/style.css';
 // import 'preact-material-components/List/style.css';
+import 'react-notifications/lib/notifications.css';
+import Terms from '../dialogs/terms';
 
 import style from './style.scss';
 
@@ -28,8 +31,15 @@ export default class Header extends Component {
 			darkThemeEnabled: false
 		};
 	}
-
+	callBackFromLogin = (resp) => {
+		this.setState({loginSucces: true});
+		if (this.state.loginSucces){
+			this.dialog.MDComponent.close();
+			this.props.callToApp(this.state.loginSucces);
+		}
+	}
 	openContent = (e) => {
+		if (e.target.id === 'rules') this.setState({ scrollModal: true })
 		this.setState({ dialogContent: e.target.id });
 		this.dialog.MDComponent.show();
 	}
@@ -62,6 +72,7 @@ export default class Header extends Component {
 	render(props) {
 		return (
 			<div>
+	     	<NotificationContainer />
 				<TopAppBar className={`${style.topappbar} mdc-elevation--z3`}>
 					<TopAppBar.Row>
 						<TopAppBar.Section align-start>
@@ -109,7 +120,10 @@ export default class Header extends Component {
 								this.state.dialogContent === 'game'?
 									<h1 style="display: inline">ŽAIDIMAS</h1>:
 									this.state.dialogContent === 'login'?
-										<h1 style="display: inline">PRISIJUNGIMAS</h1>: ''
+										<h1 style="display: inline">PRISIJUNGIMAS</h1>:
+										this.state.dialogContent === 'registracija'?
+										<h1 style="display: inline">REGISTRACIJA</h1>: ''
+
 						}
 					<span style="float: right;">
 						<Dialog.FooterButton cancel={true}>
@@ -138,9 +152,9 @@ export default class Header extends Component {
 									</p>
 								</article>:
 								this.state.dialogContent === 'rules'?
-									<h1>APIE</h1>:
-									this.state.dialogContent === 'login'?
-										<Login /> : ''
+									<Terms />:
+									this.state.dialogContent === 'login' ?
+										<Login callToDialog={this.callBackFromLogin} /> : ''
 						}
 					</Dialog.Body>
 					<Dialog.Footer>

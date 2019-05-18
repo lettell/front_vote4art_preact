@@ -11,7 +11,7 @@ import Icon from 'preact-material-components/Icon';
 
 export default class Colors extends Component {
 	state = {
-		mToggler: false
+		colorOpen: false
 	}
 	constructor() {
 		super();
@@ -20,22 +20,29 @@ export default class Colors extends Component {
 		this.setColorEvent = this.setColorEvent.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSetColor = this.handleSetColor.bind(this);
+		this.mToggler = this.mToggler.bind(this);
 
 	}
 	handleSetColor(color, event) {
 		let c = this.colors.indexOf(this.state.currentCollor);
 		this.colors[c] = color.hex;
-		this.setState({ currentCollor: color.hex, openColors: true });
 		localStorage.setItem('userColors', JSON.stringify(this.colors));
 		const params = { color: `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})` };
 		this.props.callbackFromBoard(params);
+		this.setState({ currentCollor: color.hex, openColors: true });
+
 	}
 	handleChange(color, event) {
+		setTimeout(() => {
+			if(!this.state.openColors && this.state.colorOpen) this.mToggler();
+		}, 1000);
 		const params = { color: `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})` };
 		this.setState({ openColors: false, currentCollor: color.hex });
 		this.props.callbackFromBoard(params);
 	}
-	
+ 	mToggler() {
+	 	this.setState({colorOpen: !this.state.colorOpen})
+ 	}
 	
 	openColorPicker(e) {
 		const currentCollor = e.target.title;
@@ -64,6 +71,8 @@ export default class Colors extends Component {
 	render(props) {
 		return (
 			<div>
+
+			<div class={this.state.colorOpen ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
 			<Elevation z={2} >
 				<div class={style.color_picker}>
 					<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
@@ -86,13 +95,13 @@ export default class Colors extends Component {
 					</div>
 				</div>
 			</Elevation>
+		</div>
 			<div class={style.mobile_toggle}>
-				<Fab exited={this.state.mToggler}>
-          <Icon >add_box</Icon>
-        </Fab>
+					<Fab exited={this.state.colorOpen} onClick={this.mToggler}>
+						<Icon >add_box</Icon>
+					</Fab>
 			</div>
 			</div>
 		);
 	}
 }
-

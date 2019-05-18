@@ -1,6 +1,7 @@
 // const ID_TOKEN_KEY = 'id_token';
 
 import axios from 'axios';
+import { NotificationManager } from 'react-notifications';
 
 const ACCESS_TOKEN_KEY = 'va',
 	    ID_TOKEN_KEY = 'la',
@@ -19,15 +20,32 @@ export function setAccessToken(accessToken) {
 export function login(pramas) {
 	const url = `${BASE_URL}/login`;
 
-	axios.post(url, {
+	return axios.post(url, {
 		username: pramas.username,
 		password: pramas.password
 	})
 		.then((response) => {
-			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-			console.log(response);
+			switch (response.status) {
+				case 'info':
+					NotificationManager.info('Info message');
+
+					break;
+				case 200:
+				
+					NotificationManager.success(response.data.response, 'Title here');
+					localStorage.setItem(ACCESS_TOKEN_KEY, response.data.jwt);
+					// Pakeisti!!
+					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+					return response.data;
+				case 'warning':
+					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+					break;
+			}
 		})
 		.catch((error) => {
+			debugger
+			NotificationManager.error(error.msg
+				,'Klaida', 2000);
 			console.log(error);
 		});
 }
@@ -40,7 +58,6 @@ export function signup(pramas) {
 
 	})
 		.then((response) => {
-      
 			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 			localStorage.setItem(ID_TOKEN_KEY, response.data.jti);
 

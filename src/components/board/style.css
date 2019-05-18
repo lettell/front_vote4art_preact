@@ -43,10 +43,11 @@
   background: green;
 }
 .pixel_block {
-  position: fixed;
+  position: absolute;
   bottom: 80px;
   width: 100px;
   height: 100px;
+  transition: all 3s;
   background: red;
   z-index: 100;
 }
@@ -74,11 +75,7 @@
   left: 0;
   z-index: 2;
  }
- @media only screen and (max-width: 760px) {
-  .colors_controlls {
-    bottom: 0;
-
-   }
+ @media only screen and (max-width: 759px) {
    .colors_controlls {
     position: fixed;
     margin: 0 auto;
@@ -87,9 +84,9 @@
     z-index: 2;
    }
 }
-@media only screen and (min-width: 760px) {
+@media only screen and (min-width: 761px) {
   .colors_controlls {
-    bottom: 64px;
+    bottom: 84px;
 
    }
   .board__controlls {

@@ -17,7 +17,9 @@ export default class Login extends Component {
 		super();
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			password_confirmation: ''
+
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.loginSimple = this.loginSimple.bind(this);
@@ -25,8 +27,8 @@ export default class Login extends Component {
 		this.swith = this.swith.bind(this);
 
 	}
-	loginSimple = () => {
-		login(this.state).then( (resp) => {
+	registerSimple = () => {
+		register(this.state).then( (resp) => {
 			if (resp) {
 				this.props.callToDialog(resp);
 			}

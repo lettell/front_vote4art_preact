@@ -7,7 +7,7 @@ import style from './style';
 export default class Home extends Component {
 	constructor() {
 		super();
-		this.countDownDate = new Date("May 19, 2019 15:37:25").getTime();
+		this.countDownDate = new Date("May 20, 2019 08:00:00").getTime();
 		this.textTimer = [['sekundės', 'sekundė', 'sekundžių'],['minutės', 'minutė', 'minučių'],['valandos', 'valanda', 'valandų'], ['dienos', 'diena', 'dienų']];
 		this.countDowown();
 	}
@@ -18,7 +18,7 @@ export default class Home extends Component {
 			// Get todays date and time
 			let now = new Date().getTime();
 			let distance = this.countDownDate - now;
-			let days = ('0'+ Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2)
+			let days = (Math.floor(distance / (1000 * 60 * 60 * 24)))
 			let hours = ('0'+ Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
 			let minutes = ('0'+ Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
 			let seconds = ('0'+ Math.floor((distance % (1000 * 60)) / 1000)).slice(-2);

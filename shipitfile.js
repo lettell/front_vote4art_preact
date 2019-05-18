@@ -15,9 +15,9 @@ module.exports = shipit => {
       servers: 'admin@webmiko.com:20167'
     },
     production: {
-      branch: 'master',
-      deployTo: '/home/admin/front/production',
-      servers: 'admin@webmiko.com:20167'
+      branch: 'staging',
+      deployTo: '/home/admin/front',
+      servers: 'admin@bfcc9.l.dedikuoti.lt'
     }
   });
 };

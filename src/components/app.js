@@ -17,6 +17,9 @@ export default class App extends Component {
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
+	respHead = e => {
+		if (e) this.setState({ logined: true, loginType: 'pasikeisti' });
+	}
 	handleRoute = e => {
 		// this.setState({
 		// 	currentUrl: e.url
@@ -36,7 +39,7 @@ export default class App extends Component {
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 				<link rel="stylesheet" href="assets/animate.css" />
 
-				<Header selectedRoute={this.state.currentUrl} />
+				<Header selectedRoute={this.state.currentUrl} callToApp={this.respHead}/>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Game path="/game/:x?/:y?/:zoom?" />
