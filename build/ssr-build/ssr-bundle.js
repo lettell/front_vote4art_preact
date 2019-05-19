@@ -11089,8 +11089,9 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
-var head = { headers: { Authorization: 'Bearer ' + getAccessToken() } };
+
 function getPixels() {
+
 	var url = vote4art_api_BASE_URL + '/public/pixels/ready';
 	return axios_default.a.get(url).then(function (response) {
 		return JSON.parse(response.data);
@@ -11100,19 +11101,22 @@ function getPixels() {
 }
 
 function postPixel(xy, color) {
-	var colo = color.trim();
-	if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
-	if (11 > color.length && 18 > color.length) return;
-	var pramas = {
-		x: xy[0],
-		y: xy[1],
-		color: colo.trim()
+	if (typeof window !== "undefined") {
+		var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
+		var colo = color.trim();
+		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
+		if (11 > color.length && 18 > color.length) return;
+		var pramas = {
+			x: xy[0],
+			y: xy[1],
+			color: colo.trim()
 
-	};
-	var url = vote4art_api_BASE_URL + '/pixels';
-	return axios_default.a.post(url, pramas, head).then(function (response) {
-		return JSON.parse(response.data);
-	});
+		};
+		var url = vote4art_api_BASE_URL + '/pixels';
+		return axios_default.a.post(url, pramas, head).then(function (response) {
+			return JSON.parse(response.data);
+		});
+	}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
 // CONCATENATED MODULE: ../node_modules/d3/dist/package.js
