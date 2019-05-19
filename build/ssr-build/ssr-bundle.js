@@ -9802,10 +9802,11 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'https://api.vote4art.eu',
+
+// BASE_URL = 'https://api.vote4art.eu',
+BASE_URL = 'http://localhost:3000',
     BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-//  BASE_URL = 'http://localhost:3000',
 
 function getAccessToken() {
 	if (typeof window !== "undefined") {
@@ -9816,6 +9817,7 @@ function checkAuth() {
 	var url = BASE_URL_PRIVATE + '/users/info';
 
 	return axios_default.a.get(url, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
+		var data = JSON.parse(response.data);
 		switch (response.status) {
 			case 'info':
 				lib["NotificationManager"].info('Info message');
@@ -9826,8 +9828,10 @@ function checkAuth() {
 				// NotificationManager.success(response.data.response, 'Sveiki !!!');
 				// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 				// Pakeisti!!
-				// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-				return response.data;
+				if (typeof window !== "undefined") {
+					localStorage.setItem('userStatus', data.data.meta.status);
+				}
+				return data.data;
 			case 'warning':
 				lib["NotificationManager"].warning('Warning message', 'Close after 3000ms', 3000);
 				break;
@@ -9848,6 +9852,10 @@ function login(pramas) {
 		username: pramas.username,
 		password: pramas.password
 	}).then(function (response) {
+		if (typeof window !== "undefined") {
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+		}
+
 		switch (response.status) {
 			case 'info':
 				lib["NotificationManager"].info('Info message');
@@ -9856,9 +9864,7 @@ function login(pramas) {
 			case 200:
 
 				lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę! ');
-				setAccessToken(response.headers.authorization);
 				// Pakeisti!!
-				// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 				return response.data;
 			case 'warning':
 				lib["NotificationManager"].warning('Warning message', 'Close after 3000ms', 3000);
@@ -9870,23 +9876,25 @@ function login(pramas) {
 }
 function signup(pramas) {
 	var url = BASE_URL + '/api/v1/signup';
-	axios_default.a.post(url, {
+	return axios_default.a.post(url, {
 		username: pramas.username,
 		password: pramas.password,
 		password_confirmation: pramas.password_confirmation,
 		terms_and_conditions: pramas.terms_and_conditions
 
 	}).then(function (response) {
+		if (typeof window !== "undefined") {
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+		}
 		switch (response.status) {
 			case 200:
-
-				lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę!');
-				setAccessToken(response.headers.authorization);
-				return response.data;
-
+				{
+					lib["NotificationManager"].success('', 'Sveiki prisijungę!');
+					return response.data;
+				}
 		}
-	}).catch(function (error) {
-		lib["NotificationManager"].error(error.response.data, 'Klaida', 2000);
+	}).catch(function (e) {
+		lib["NotificationManager"].error('', 'Klaida', 2000);
 	});
 }
 function auth_service_logout() {
@@ -9899,14 +9907,14 @@ function auth_service_logout() {
 function facebookLogin(data) {
 	var url = BASE_URL + '/auth/facebook/?facebook_access_token=' + data;
 	return axios_default.a.get(url).then(function (response) {
-		lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę!');
-		setAccessToken(response.headers.authorization);
 		if (typeof window !== "undefined") {
 			localStorage.setItem('provider', 'fb');
 		}
+		lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę!');
+
 		return response.data;
 	}).catch(function (error) {
-		lib["NotificationManager"].error(error.response.data, 'Klaida', 2000);
+		lib["NotificationManager"].error(error.response.data, 'Nepavyko prisijungti', 2000);
 	});
 }
 
@@ -10022,9 +10030,10 @@ var login_Login = function (_Component) {
 		_this.responseFacebook = function (_ref) {
 			var accessToken = _ref.accessToken;
 
+			window.location.href = 'game/';
 			facebookLogin(accessToken).then(function (resp) {
 				_this.setState({ provider: 'facebook' });
-				if (resp.status === 'authenticated') {
+				if (resp.status === 'error') {
 					_this.rules();
 				} else {
 					_this.props.callToDialog(resp);
@@ -10115,9 +10124,9 @@ var login_Login = function (_Component) {
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
 						appId: '449621362498990'
 						// autoLoad
-						, xfbml: true,
-						cookie: true,
-						version: '3.3',
+						, xfbml: true
+						// cookie={true}
+						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
 						icon: 'fa-facebook'
@@ -10374,8 +10383,9 @@ var registration_Registration = function (_Component) {
 
 		var _this = registration__possibleConstructorReturn(this, _Component.call(this));
 
-		_this.loginSimple = function () {
-			login(_this.state).then(function (resp) {
+		_this.registerSimple = function () {
+			_this.state.terms_and_conditions = _this.cb.MDComponent.checked;
+			signup(_this.state).then(function (resp) {
 				if (resp) {
 					_this.props.callToDialog(resp);
 				}
@@ -10384,16 +10394,6 @@ var registration_Registration = function (_Component) {
 
 		_this.rules = function () {
 			_this.props.callToRules(_this.state);
-		};
-
-		_this.registerSimple = function () {
-			_this.state.terms_and_conditions = _this.cb.MDComponent.checked;
-
-			signup(_this.state).then(function (resp) {
-				if (resp) {
-					_this.props.callToDialog(resp);
-				}
-			});
 		};
 
 		_this.checkRef = function (cb) {
@@ -10414,20 +10414,22 @@ var registration_Registration = function (_Component) {
 		};
 
 		_this.responseGoogle = function (data) {
-			console.log("Google:", data);
+			// console.log("Google:", data)
 			// googleLogin(accessToken);
 		};
 
 		_this.respGoogleFail = function (data) {
-			console.log("Google:", data);
+			// console.log("Google:", data)
 		};
 
 		_this.componentDidMount = function () {
-			_this.props.backState && _this.props.backState.terms_and_conditions ? _this.cb.MDComponent.checked = true : null;
+			if (_this.props.backState && _this.props.backState.terms_and_conditions) {
+				_this.cb.MDComponent.checked = true;
+			}
 		};
 
 		_this.componentWillMount = function () {
-			_this.setState({});
+			_this.setState(_this.props.backState);
 		};
 
 		_this.state = {
@@ -10437,9 +10439,8 @@ var registration_Registration = function (_Component) {
 
 		};
 		_this.handleInputChange = _this.handleInputChange.bind(_this);
-		_this.loginSimple = _this.loginSimple.bind(_this);
-		_this.registerSimple = _this.registerSimple.bind(_this);
 		_this.validatePassword = _this.validatePassword.bind(_this);
+		_this.registerSimple = _this.registerSimple.bind(_this);
 
 		return _this;
 	}
@@ -10454,15 +10455,14 @@ var registration_Registration = function (_Component) {
 	};
 
 	Registration.prototype.validatePassword = function validatePassword(e) {
-		if (this.state.password != this.state.confirmation_password) {
-			e.target.setCustomValidity("Slaptažodis nesutampa");
+		if (this.state.password !== this.state.confirmation_password) {
+			e.target.setCustomValidity('Slaptažodis nesutampa');
 		} else {
 			e.target.setCustomValidity('');
 		}
 	};
 
 	Registration.prototype.render = function render(props) {
-		console.log(this.state);
 		return Object(preact_min["h"])(
 			'div',
 			null,
@@ -10534,9 +10534,9 @@ var registration_Registration = function (_Component) {
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
 						appId: '449621362498990'
 						// autoLoad
-						, xfbml: true,
-						cookie: true,
-						version: '3.3',
+						, xfbml: true
+						// cookie={true}
+						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
 						icon: 'fa-facebook'
@@ -10671,21 +10671,26 @@ var header_Header = function (_Component) {
 
 		return _ret = (_temp = (_this = header__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
 			scrollModal: false
-		}, _this.callBackFromLogin = function (resp) {
-			_this.setState({ loginSucces: true });
-			if (_this.state.loginSucces) {
+		}, _this.callBackFromLogin = function (state) {
+			if (state === 'registracija') {
+				_this.setState({ dialogContent: 'registracija' });
+			}
+			if (state.status === 'success') {
 				_this.dialog.MDComponent.close();
-				if (_this.userState === 'auhenticate') {
-					_this.dialog.MDComponent.show();
-					_this.setState({ dialogContent: 'rules', editrule: 'social' });
-				} else {
-					_this.props.callToApp(_this.state.loginSucces);
-				}
+				_this.props.callToApp(true);
+			}
+		}, _this.callBackFromRegistration = function (state) {
+			if (state === 'login') {
+				_this.setState({ dialogContent: 'login' });
+			}
+			if (state.status === 'success') {
+				_this.dialog.MDComponent.close();
+				_this.props.callToApp(true);
 			}
 		}, _this.acceptTerms = function () {
 			if (localStorage.provider && localStorage.provider === 'fb') {
 				acceptTerms();
-				localStorage.setItem('userState', 3);
+				localStorage.setItem('userState', 'success');
 				_this.dialog.MDComponent.close();
 			} else {
 				_this.state.backState.terms_and_conditions = true;
@@ -10722,47 +10727,8 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.setUserState = function setUserState() {
-		var mode = void 0;
 		if (typeof window !== "undefined") {
-			mode = localStorage.userState;
-		} else {
-			mode = -1;
-		}
-		this.switchMode(mode);
-	};
-
-	Header.prototype.switchMode = function switchMode(state) {
-		switch (state) {
-			case 0:
-			case '0':
-				{
-
-					return this.setState({ userState: 'visited' });
-				}
-			case 1:
-			case '1':
-				{
-					return this.setState({ userState: 'auhenticate' });
-				}
-			case 2:
-			case '2':
-				{
-					return this.setState({ userState: 'active' });
-				}
-			case 3:
-			case '3':
-				{
-					return this.setState({ userState: 'disconected' });
-				}
-			default:
-				{
-					if (typeof window !== "undefined") {
-						this.dialog.MDComponent.show();
-						localStorage.setItem('userState', 0);
-					}
-
-					return this.setState({ dialogContent: 'game' });
-				}
+			return this.setState({ userState: localStorage.userState });
 		}
 	};
 
@@ -11115,10 +11081,11 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1';
+var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
+
 
 // production
-var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 var head = { headers: { Authorization: 'Bearer ' + getAccessToken() } };
@@ -31033,11 +31000,8 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {
-		var _this5 = this;
-
-		setInterval(function () {
-			_this5.loadPixels();
-		}, 3000);
+		this.loadPixels();
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
@@ -31125,7 +31089,7 @@ var board_Board = function (_Component) {
 						{ fill: 'transparent',
 							id: 'gridArea',
 							stroke: 'black',
-							'stroke-width': '1',
+							'stroke-width': '0.3',
 							style: 'width: 0.1',
 							transform: 'translate(' + (this.scaledX + 3 * this.scale) + ', ' + (this.scaledY + 130 * this.scale) + ') scale(' + this.scale + ', ' + this.scale + ')'
 						},
@@ -31622,15 +31586,13 @@ var app_App = function (_Component) {
 
 	App.prototype.componentDidMount = function componentDidMount() {
 		document.body.classList.add('noScroll');
-		checkAuth().then(function (resp) {
-			return console.log(resp);
-		});
+		checkAuth().then(function (resp) {});
 	};
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://tvarkoma.vote4art.eu/';
-		// const base = 'https://localhost:8080/';
+		// const base = 'https://tvarkoma.vote4art.eu/';
+		var base = 'http://localhost:8080/';
 
 		return Object(preact_min["h"])(
 			'div',

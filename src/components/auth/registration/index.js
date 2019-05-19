@@ -24,33 +24,24 @@ export default class Registration extends Component {
 			password: '',
 			confirmation_password: ''
 
-		}
+		};
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.loginSimple = this.loginSimple.bind(this);
-		this.registerSimple = this.registerSimple.bind(this);
 		this.validatePassword = this.validatePassword.bind(this);
+		this.registerSimple = this.registerSimple.bind(this);
 
-	}
-	loginSimple = () => {
-		login(this.state).then( (resp) => {
-			if (resp) {
-				this.props.callToDialog(resp);
-			}
-		});
-
-	}
-	rules = () => {
-		this.props.callToRules(this.state);
 	}
 	registerSimple = () => {
 		this.state.terms_and_conditions = this.cb.MDComponent.checked;
-
 		signup(this.state).then( (resp) => {
 			if (resp) {
 				this.props.callToDialog(resp);
 			}
 		});
 	}
+	rules = () => {
+		this.props.callToRules(this.state);
+	}
+	
 	checkRef = cb => (this.cb = cb);
 
 	handleInputChange(event) {
@@ -62,41 +53,44 @@ export default class Registration extends Component {
 		});
 	}
 	validatePassword(e){
-		if (this.state.password != this.state.confirmation_password) {
-			e.target.setCustomValidity("Slaptažodis nesutampa");
-		} else {
+		if (this.state.password !== this.state.confirmation_password) {
+			e.target.setCustomValidity('Slaptažodis nesutampa');
+		}
+		else {
 			e.target.setCustomValidity('');
 		}
 	}
-	responseFacebook = ({accessToken}) => {
+	responseFacebook = ({ accessToken }) => {
 		facebookLogin(accessToken).then(resp => {
 			this.setState({ provider: 'facebook' });
 			if (resp.status === 'authenticated') {
 				this.rules();
-			}else {
+			}
+			else {
 				this.props.callToDialog(resp);
 			}
 
 		});
 	}
 	responseGoogle = (data) => {
-		console.log("Google:", data)
+		// console.log("Google:", data)
 		// googleLogin(accessToken);
 	}
 	respGoogleFail = (data) => {
-		console.log("Google:", data)
+		// console.log("Google:", data)
 	}
 	componentDidMount = () => {
-		this.props.backState && this.props.backState.terms_and_conditions ? this.cb.MDComponent.checked = true: null;
+		if (this.props.backState && this.props.backState.terms_and_conditions) {
+			this.cb.MDComponent.checked = true;
+		}
 	}
 	componentWillMount = () => {
-		this.setState({});
+		this.setState(this.props.backState);
 	}
 	render(props) {
-		console.log(this.state)
 		return (
 			<div>
-			<form class={style.container} onSubmit={this.registerSimple} action="javascript:" >
+				<form class={style.container} onSubmit={this.registerSimple} action="javascript:" >
 					<TextField
 						type="text"
 						name="username"
@@ -132,10 +126,10 @@ export default class Registration extends Component {
 					/>
 
 
-				<div class={style.reg_actions}>
+					<div class={style.reg_actions}>
 						<div class={style.check}>
 							<div class="mdc-button mdc-button--unelevated" onClick={this.rules}>Taisyklės</div>
-							<Checkbox id="rules" required ref={this.checkRef}/>
+							<Checkbox id="rules" required ref={this.checkRef} />
 							<label for="basic-checkbox"  id="rules">sutinku</label>
 
 						</div>
@@ -151,9 +145,9 @@ export default class Registration extends Component {
 						<FacebookLogin
 							appId="449621362498990"
 							// autoLoad
-							xfbml={true}
-							cookie={true}
-							version='3.3'
+							xfbml
+							// cookie={true}
+							version="3.3"
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
@@ -172,7 +166,7 @@ export default class Registration extends Component {
 						/> */}
 					</div>
 					<div>
-					<h4 style="margin-right: 0.5em;">Jau užsiregistraves ?</h4><Button onClick={this.toLoging} unelevated>Prisijungti</Button>
+						<h4 style="margin-right: 0.5em;">Jau užsiregistraves ?</h4><Button onClick={this.toLoging} unelevated>Prisijungti</Button>
 					</div>
 				</div>
 	

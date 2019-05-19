@@ -17,7 +17,7 @@ export default class Login extends Component {
 		this.state = {
 			username: '',
 			password: ''
-		}
+		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.loginSimple = this.loginSimple.bind(this);
 	}
@@ -27,7 +27,6 @@ export default class Login extends Component {
 				this.props.callToDialog(resp);
 			}
 		});
-
 	}
 	rules = () => {
 		this.props.callToRules(this.state);
@@ -46,10 +45,11 @@ export default class Login extends Component {
 			[name]: value
 		});
 	}
-	responseFacebook = ({accessToken}) => {
+	responseFacebook = ({ accessToken }) => {
+		// window.location.href = 'game/';
 		facebookLogin(accessToken).then(resp => {
 			this.setState({ provider: 'facebook' });
-			if (resp.status === 'authenticated'){ 
+			if (resp.status === 'error') {
 				this.rules();
 			}
 			else {
@@ -68,7 +68,7 @@ export default class Login extends Component {
 	render(props) {
 		return (
 			<div class={style.container}>
-			<form class={style.container} autocomplete="off" action="javascript:" onSubmit={this.loginSimple}  >
+				<form class={style.container} autocomplete="off" action="javascript:" onSubmit={this.loginSimple} >
 					<TextField
 						type="text"
 						name="username"
@@ -97,12 +97,12 @@ export default class Login extends Component {
 				<hr />
 				<div class={style.social}>
 					<div>
-					<FacebookLogin
+						<FacebookLogin
 							appId="449621362498990"
 							// autoLoad
-							xfbml={true}
-							cookie={true}
-							version='3.3'
+							xfbml
+							// cookie={true}
+							version="3.3"
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
@@ -121,7 +121,7 @@ export default class Login extends Component {
 						/> */}
 					</div>
 					<div>
-					<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToLogin} unelevated>Registracija</Button>
+						<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToLogin} unelevated>Registracija</Button>
 					</div>
 				</div>
 	

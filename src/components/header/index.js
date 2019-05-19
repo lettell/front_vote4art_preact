@@ -34,59 +34,35 @@ export default class Header extends Component {
 		};
 	}
 	setUserState() {
-		let mode;
-		if (typeof window !== "undefined") { mode = localStorage.userState }
-		else {mode = -1}
-		this.switchMode(mode);
-	}
-	switchMode(state) {
-		switch (state) {
-			case 0:
-			case '0': {
-
-				return this.setState({ userState: 'visited' });
-			}
-			case 1:
-			case '1': {
-				return this.setState({ userState: 'auhenticate' });
-			}
-			case 2:
-			case '2': {
-				return this.setState({ userState: 'active' });
-			}
-			case 3:
-			case '3': {
-				return this.setState({ userState: 'disconected' });
-			}
-			default: {
-				if (typeof window !== "undefined") { 
-					this.dialog.MDComponent.show();
-					localStorage.setItem('userState', 0) }
-								
-
-				return	this.setState({ dialogContent: 'game' });
-
-			}
+		if (typeof window !== "undefined") { 
+			return this.setState({ userState: localStorage.userState });
 		}
-
 	}
-	callBackFromLogin = (resp) => {
-		this.setState({loginSucces: true});
-		if (this.state.loginSucces){
+
+	callBackFromLogin = (state) => {
+		if (state === 'registracija') {
+			this.setState({ dialogContent: 'registracija' });
+
+		}
+		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
-			if (this.userState === 'auhenticate') {
-				this.dialog.MDComponent.show();
-				this.setState({ dialogContent: 'rules', editrule: 'social' });
-			}
-			else {
-				this.props.callToApp(this.state.loginSucces);
-			}
+			this.props.callToApp(true);
+		}
+	}
+	callBackFromRegistration = (state) => {
+		if (state === 'login') {
+			this.setState({ dialogContent: 'login' });
+
+		}
+		if (state.status === 'success'){
+			this.dialog.MDComponent.close();
+			this.props.callToApp(true);
 		}
 	}
 	acceptTerms = () => {
 		if(localStorage.provider && localStorage.provider === 'fb') {
 			acceptTerms();
-			localStorage.setItem('userState', 3);
+			localStorage.setItem('userState', 'success');
 			this.dialog.MDComponent.close();
 		}
 		else {

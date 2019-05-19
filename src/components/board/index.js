@@ -170,7 +170,8 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
-		setInterval( () => { this.loadPixels(); }, 3000);
+		this.loadPixels();
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
@@ -261,7 +262,7 @@ export default class Board extends Component {
 						<g fill="transparent"
 							id="gridArea"
 							stroke="black"
-							stroke-width="1"
+							stroke-width="0.3"
 							style="width: 0.1"
 							transform={`translate(${this.scaledX+(3*this.scale)}, ${this.scaledY+(130*this.scale)}) scale(${this.scale}, ${this.scale})`}
 						>

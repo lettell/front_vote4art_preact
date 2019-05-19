@@ -29,13 +29,15 @@ export default class App extends Component {
 	};
 	componentDidMount() {
 		document.body.classList.add('noScroll');
-		checkAuth().then(resp => console.log(resp));
+		checkAuth().then( resp => {
+
+		} );
 	}
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
 		const base = 'https://tvarkoma.vote4art.eu/';
-		// const base = 'https://localhost:8080/';
+		// const base = 'http://localhost:8080/';
 
 		return (
 			<div id="app">

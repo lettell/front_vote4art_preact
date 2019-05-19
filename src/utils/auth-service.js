@@ -6,9 +6,10 @@ import { NotificationManager } from 'react-notifications';
 const ACCESS_TOKEN_KEY = 'va',
 			ID_TOKEN_KEY = 'la',
 	BASE_URL = 'https://api.vote4art.eu',
+	// BASE_URL = 'http://localhost:3000',
+
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-  //  BASE_URL = 'http://localhost:3000',
 
 export function getAccessToken() {
 	if (typeof window !== "undefined") {
@@ -20,6 +21,7 @@ export function checkAuth() {
 
 	return axios.get(url,{ headers: { Authorization: `Bearer ${getAccessToken()}` } })
 		.then((response) => {
+			const data = JSON.parse(response.data);
 			switch (response.status) {
 				case 'info':
 					NotificationManager.info('Info message');
@@ -30,14 +32,15 @@ export function checkAuth() {
 					// NotificationManager.success(response.data.response, 'Sveiki !!!');
 					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 					// Pakeisti!!
-					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-					return response.data;
+					if (typeof window !== "undefined") {
+						localStorage.setItem('userStatus', data.data.meta.status);
+					}
+					return data.data;
 				case 'warning':
 					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
 					break;
 			}
-		})
-		.catch((error) => {
+		}).catch((error) => {
 			NotificationManager.error(error.response.data.msg
 				,'Klaida', 2000);
 		});
@@ -55,6 +58,10 @@ export function login(pramas) {
 		password: pramas.password
 	})
 		.then((response) => {
+			if (typeof window !== "undefined") {
+				localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+			}
+
 			switch (response.status) {
 				case 'info':
 					NotificationManager.info('Info message');
@@ -63,9 +70,7 @@ export function login(pramas) {
 				case 200:
 				
 					NotificationManager.success(response.data.response, 'Sveiki prisijungę! ');
-					setAccessToken(response.headers.authorization);
 					// Pakeisti!!
-					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 					return response.data;
 				case 'warning':
 					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
@@ -79,7 +84,7 @@ export function login(pramas) {
 }
 export function signup(pramas) {
 	const url = `${BASE_URL}/api/v1/signup`;
-	axios.post(url, {
+	return axios.post(url, {
 		username: pramas.username,
 		password: pramas.password,
 		password_confirmation: pramas.password_confirmation,
@@ -87,16 +92,17 @@ export function signup(pramas) {
 
 
 	}).then((response) => {
-		switch (response.status) {
-			case 200:
-
-				NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
-				setAccessToken(response.headers.authorization);
-				return response.data;
-
+		if (typeof window !== "undefined") {
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		}
-	}).catch((error) => {
-		NotificationManager.error(error.response.data
+		switch (response.status) {
+			case 200: {
+				NotificationManager.success('', 'Sveiki prisijungę!');
+				return response.data;
+			}
+		}
+	}).catch((e) => {
+		NotificationManager.error(''
 			,'Klaida', 2000);
 	});
 }
@@ -110,15 +116,15 @@ export function logout() {
 export function facebookLogin(data) {
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
 	return axios.get(url).then(response => {
-		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
-		setAccessToken(response.headers.authorization);
 		if (typeof window !== "undefined") {
   		localStorage.setItem('provider', 'fb');
 		}
+		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
+
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.error(error.response.data
-			,'Klaida', 2000);
+			,'Nepavyko prisijungti', 2000);
 	});
 }
 
