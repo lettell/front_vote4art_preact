@@ -72,7 +72,8 @@ export default class Board extends Component {
 	}
 	// pervadinti i zoom
 	transform(e) {
-		
+		// setTimeout(function(){ console.log('ok') }, 3000);
+
 		let position = e.getTransform();
 		// console.log(document.innerHeight, this.pixelPoint[1], this.scale);
 		this.scaledPixel = Math.floor(1000 * position.scale);
@@ -154,7 +155,6 @@ export default class Board extends Component {
 				if (this.state.currentPhoto !== photo ){
 					this.setState({ photoUpdate: 'done', currentPhoto: photo });
 				}
-
 			}
 		});
 	}
@@ -170,7 +170,7 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
-		this.loadPixels();
+		setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
@@ -182,6 +182,7 @@ export default class Board extends Component {
 		a.addEventListener('mousemove', this.mouseMove);
 
 	}
+	
 
 
 	render(props) {			console.log('aasd', this.state)
@@ -236,7 +237,7 @@ export default class Board extends Component {
 								x="0"
 								y="0"
 							/>
-
+		
 						</g>
 						<g fill="none">
 							<rect

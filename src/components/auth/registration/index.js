@@ -95,7 +95,7 @@ export default class Registration extends Component {
 	render(props) {
 		console.log(this.state)
 		return (
-			<div >
+			<div>
 			<form class={style.container} onSubmit={this.registerSimple} action="javascript:" >
 					<TextField
 						type="text"
@@ -133,10 +133,12 @@ export default class Registration extends Component {
 
 
 				<div class={style.reg_actions}>
-					<div onClick={this.rules}>Taisyklės</div>
+						<div class={style.check}>
+							<div class="mdc-button mdc-button--unelevated" onClick={this.rules}>Taisyklės</div>
+							<Checkbox id="rules" required ref={this.checkRef}/>
+							<label for="basic-checkbox"  id="rules">sutinku</label>
 
-					<Checkbox id="rules" required ref={this.checkRef}/>
-					<label for="basic-checkbox"  id="rules">sutinku</label>
+						</div>
 						<div class={style.login}>
 							<Button  secondary type="submit">Registruotis</Button>
 						</div>
@@ -158,13 +160,13 @@ export default class Registration extends Component {
 						/>
 					</div>
 					<div>
-				  <GoogleLogin
+				  {/* <GoogleLogin
 							clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
 							buttonText="Google"
 							onSuccess={this.responseGoogle}
 							onFailure={this.respGoogleFail}
 							cookiePolicy={'single_host_origin'}
-						/>
+						/> */}
 					</div>
 					<div>
 					<h4 style="margin-right: 0.5em;">Jau užsiregistraves ?</h4><Button onClick={this.toLoging} unelevated>Prisijungti</Button>

@@ -28,6 +28,7 @@ export default class App extends Component {
 		// });
 	};
 	componentDidMount() {
+		document.body.classList.add('noScroll');
 		checkAuth().then(resp => console.log(resp));
 	}
 

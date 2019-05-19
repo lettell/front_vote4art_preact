@@ -1,8 +1,12 @@
 .container {
   display: flex;
+  margin-top: 1em; 
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+.container > .mdc-text-field {
+  margin-bottom: 0.5em;
 }
 .social {
   display: flex;
@@ -27,6 +31,11 @@
   & button {
     margin: 0 auto;
   }
+}
+.ceehck {
+  display: flex;
+    align-items: center;
+    margin-top: 0.3em;
 }
 @media (max-width: 492px) {
   .social {

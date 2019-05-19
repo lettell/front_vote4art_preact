@@ -22,7 +22,7 @@ import 'preact-material-components/TabBar/style.css';
 export default class Footer extends Component {
 	render(props) {
 		return (
-			<div class={`${style.footer} mdc-top-app-bar`}>
+			<div class={`${style.footer}`}>
 				<div class={style.footer_row}>
 					<div class={style.block_one}>
 						<div>

@@ -11,8 +11,6 @@ import 'preact-material-components/TextField/style.css';
 
 import style from './style';
 
-import Snackbar from 'preact-material-components/Snackbar';
-
 export default class Login extends Component {
 	constructor() {
 		super();
@@ -59,13 +57,13 @@ export default class Login extends Component {
 			}
 		});
 	}
-	responseGoogle = (data) => {
-		console.log("Google:", data)
-		// googleLogin(accessToken);
-	}
-	respGoogleFail = (data) => {
-		console.log("Google:", data)
-	}
+	// responseGoogle = (data) => {
+	// 	console.log("Google:", data)
+	// 	// googleLogin(accessToken);
+	// }
+	// respGoogleFail = (data) => {
+	// 	console.log("Google:", data)
+	// }
 	goToRegister() {}
 	render(props) {
 		return (
@@ -105,19 +103,17 @@ export default class Login extends Component {
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
-							// redirectUri="http://localhost:9292/auth/facebook/callback"
-							// onClick={componentClicked}
 							callback={this.responseFacebook}
 						/>
 					</div>
 					<div>
-				  <GoogleLogin
+				  {/* <GoogleLogin
 							clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
 							buttonText="Google"
 							onSuccess={this.responseGoogle}
 							onFailure={this.respGoogleFail}
 							cookiePolicy={'single_host_origin'}
-						/>
+						/> */}
 					</div>
 					<div>
 					<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToLogin} unelevated>Registracija</Button>
