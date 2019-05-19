@@ -9,7 +9,13 @@ export default class Game extends Component {
 		
 	}
 	resolveState() {
-		const state = localStorage.userState;
+		let state;
+		if (typeof window !== "undefined") { 		
+			state = localStorage.userState;
+		}
+		else {
+			state = -1;
+		}
 		switch (state) {
 			case 0:
 			case '0': {
@@ -29,8 +35,11 @@ export default class Game extends Component {
 				return this.setState({ userState: 'disconected' });
 			}
 			default: {
-				this.dialog.MDComponent.show();
-				localStorage.setItem('userState', 0)
+				if (typeof window !== "undefined") { 
+					this.dialog.MDComponent.show();
+
+					localStorage.setItem('userState', 0)
+				 }
 
 				return	this.setState({ dialogContent: 'game' });
 

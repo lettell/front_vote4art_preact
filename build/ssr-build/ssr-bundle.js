@@ -10689,7 +10689,10 @@ var header_Header = function (_Component) {
 		}, _this.openContent = function (e) {
 			if (e.target.id === 'rules') _this.setState({ scrollModal: true });
 			_this.setState({ dialogContent: e.target.id });
-			_this.dialog.MDComponent.show();
+			if (typeof window !== "undefined") {
+
+				_this.dialog.MDComponent.show();
+			}
 		}, _this.closeContent = function (e) {
 			_this.dialog.MDComponent.close();
 		}, _this.dialogRef = function (dialog) {
@@ -10711,7 +10714,12 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.setUserState = function setUserState() {
-		var mode = localStorage.userState || -1;
+		var mode = void 0;
+		if (typeof window !== "undefined") {
+			mode = localStorage.userState;
+		} else {
+			mode = -1;
+		}
 		this.switchMode(mode);
 	};
 
@@ -10740,8 +10748,10 @@ var header_Header = function (_Component) {
 				}
 			default:
 				{
-					this.dialog.MDComponent.show();
-					localStorage.setItem('userState', 0);
+					if (typeof window !== "undefined") {
+						this.dialog.MDComponent.show();
+						localStorage.setItem('userState', 0);
+					}
 
 					return this.setState({ dialogContent: 'game' });
 				}
@@ -30516,7 +30526,13 @@ var colors_Colors = function (_Component) {
 			colorOpen: false
 		};
 
-		_this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
+		if (typeof window !== "undefined") {
+			_this.dialog.MDComponent.show();
+			_this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
+		} else {
+			_this.colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
+		}
+
 		_this.openColorPicker = _this.openColorPicker.bind(_this);
 		_this.setColorEvent = _this.setColorEvent.bind(_this);
 		_this.handleChange = _this.handleChange.bind(_this);
@@ -31158,7 +31174,12 @@ var game_Game = function (_Component) {
 	}
 
 	Game.prototype.resolveState = function resolveState() {
-		var state = localStorage.userState;
+		var state = void 0;
+		if (typeof window !== "undefined") {
+			state = localStorage.userState;
+		} else {
+			state = -1;
+		}
 		switch (state) {
 			case 0:
 			case '0':
@@ -31183,8 +31204,11 @@ var game_Game = function (_Component) {
 				}
 			default:
 				{
-					this.dialog.MDComponent.show();
-					localStorage.setItem('userState', 0);
+					if (typeof window !== "undefined") {
+						this.dialog.MDComponent.show();
+
+						localStorage.setItem('userState', 0);
+					}
 
 					return this.setState({ dialogContent: 'game' });
 				}

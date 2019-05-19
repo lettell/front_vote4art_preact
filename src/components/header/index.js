@@ -34,7 +34,9 @@ export default class Header extends Component {
 		};
 	}
 	setUserState() {
-		const mode = localStorage.userState || -1;
+		let mode;
+		if (typeof window !== "undefined") { mode = localStorage.userState }
+		else {mode = -1}
 		this.switchMode(mode);
 	}
 	switchMode(state) {
@@ -57,8 +59,10 @@ export default class Header extends Component {
 				return this.setState({ userState: 'disconected' });
 			}
 			default: {
-				this.dialog.MDComponent.show();
-				localStorage.setItem('userState', 0)
+				if (typeof window !== "undefined") { 
+					this.dialog.MDComponent.show();
+					localStorage.setItem('userState', 0) }
+								
 
 				return	this.setState({ dialogContent: 'game' });
 
@@ -84,7 +88,8 @@ export default class Header extends Component {
 			acceptTerms();
 			localStorage.setItem('userState', 3);
 			this.dialog.MDComponent.close();
-		}else {
+		}
+		else {
 			this.state.backState.terms_and_conditions = true;
 			this.setState({ dialogContent: 'registracija'});
 		}
@@ -99,7 +104,10 @@ export default class Header extends Component {
 	openContent = (e) => {
 		if (e.target.id === 'rules') this.setState({ scrollModal: true });
 		this.setState({ dialogContent: e.target.id });
-		this.dialog.MDComponent.show();
+		if (typeof window !== "undefined") { 
+
+			this.dialog.MDComponent.show();
+		 }
 	}
 	closeContent = (e) => {
 		this.dialog.MDComponent.close();
