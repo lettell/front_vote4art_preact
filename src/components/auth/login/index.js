@@ -97,12 +97,17 @@ export default class Login extends Component {
 				<hr />
 				<div class={style.social}>
 					<div>
-						<FacebookLogin
+					<FacebookLogin
 							appId="449621362498990"
 							// autoLoad
+							xfbml={true}
+							cookie={true}
+							version='3.3'
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
+							// redirectUri="http://localhost:9292/auth/facebook/callback"
+							// onClick={componentClicked}
 							callback={this.responseFacebook}
 						/>
 					</div>

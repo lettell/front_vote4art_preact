@@ -10116,10 +10116,15 @@ var login_Login = function (_Component) {
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
 						appId: '449621362498990'
 						// autoLoad
-						, fields: '',
+						, xfbml: true,
+						cookie: true,
+						version: '3.3',
+						fields: '',
 						textButton: 'Facebook',
-						icon: 'fa-facebook',
-						callback: this.responseFacebook
+						icon: 'fa-facebook'
+						// redirectUri="http://localhost:9292/auth/facebook/callback"
+						// onClick={componentClicked}
+						, callback: this.responseFacebook
 					})
 				),
 				Object(preact_min["h"])('div', null),
@@ -10530,7 +10535,10 @@ var registration_Registration = function (_Component) {
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
 						appId: '449621362498990'
 						// autoLoad
-						, fields: '',
+						, xfbml: true,
+						cookie: true,
+						version: '3.3',
+						fields: '',
 						textButton: 'Facebook',
 						icon: 'fa-facebook'
 						// redirectUri="http://localhost:9292/auth/facebook/callback"

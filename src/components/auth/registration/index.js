@@ -151,6 +151,9 @@ export default class Registration extends Component {
 						<FacebookLogin
 							appId="449621362498990"
 							// autoLoad
+							xfbml={true}
+							cookie={true}
+							version='3.3'
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
