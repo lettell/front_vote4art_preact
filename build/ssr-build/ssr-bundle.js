@@ -31583,7 +31583,7 @@ var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
-var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: '/assets/animate.css' });
+var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets/animate.css', as: 'style', onload: 'this.rel=\'stylesheet\'' });
 
 var app__ref4 = Object(preact_min["h"])(home_Home, { path: '/' });
 
@@ -31629,8 +31629,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://tvarkoma.vote4art.eu/';
-		var base = 'http://localhost:8080/';
+		var base = 'https://tvarkoma.vote4art.eu/';
+		// const base = 'https://localhost:8080/';
 
 		return Object(preact_min["h"])(
 			'div',

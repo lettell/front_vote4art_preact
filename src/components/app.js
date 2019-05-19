@@ -34,8 +34,8 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://tvarkoma.vote4art.eu/';
-		const base = 'http://localhost:8080/';
+		const base = 'https://tvarkoma.vote4art.eu/';
+		// const base = 'https://localhost:8080/';
 
 		return (
 			<div id="app">
@@ -45,9 +45,8 @@ export default class App extends Component {
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-				<link rel="stylesheet" href="/assets/animate.css" />
-
-				<Header selectedRoute={this.state.currentUrl} callToApp={this.respHead}/>
+				<link rel="preload" href="/assets/animate.css" as="style" onload="this.rel='stylesheet'" />
+				<Header selectedRoute={this.state.currentUrl} callToApp={this.respHead} />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Game path="/game/:x?/:y?/:zoom?" />
