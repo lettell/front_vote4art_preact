@@ -68,12 +68,12 @@ export default class Login extends Component {
 	render(props) {
 		return (
 			<div class={style.container}>
-			<form class={style.container} onSubmit={this.loginSimple} action="javascript:" >
+			<form class={style.container} autocomplete="off" action="javascript:" onSubmit={this.loginSimple}  >
 					<TextField
 						type="text"
 						name="username"
 						value={this.state.username}
-						onChange={this.handleInputChange}
+						onInput={this.handleInputChange}
 						required
 						minLength={4}
 						maxLength={20}
@@ -98,7 +98,7 @@ export default class Login extends Component {
 				<div class={style.social}>
 					<div>
 						<FacebookLogin
-							appId="284507289101227"
+							appId="449621362498990"
 							// autoLoad
 							fields=""
 							textButton="Facebook"

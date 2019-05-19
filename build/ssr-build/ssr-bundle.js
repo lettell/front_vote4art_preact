@@ -9802,10 +9802,11 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'https://api.vote4art.eu',
-    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+    BASE_URL = 'http://localhost:3000',
+
+// BASE_URL = 'https://api.vote4art.eu',
+BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
-// BASE_URL = 'http://localhost:3000/';
 
 function getAccessToken() {
 	if (typeof window !== "undefined") {
@@ -10073,12 +10074,12 @@ var login_Login = function (_Component) {
 			{ 'class': login_style_default.a.container },
 			Object(preact_min["h"])(
 				'form',
-				{ 'class': login_style_default.a.container, onSubmit: this.loginSimple, action: 'javascript:' },
+				{ 'class': login_style_default.a.container, autocomplete: 'off', action: 'javascript:', onSubmit: this.loginSimple },
 				Object(preact_min["h"])(TextField_default.a, {
 					type: 'text',
 					name: 'username',
 					value: this.state.username,
-					onChange: this.handleInputChange,
+					onInput: this.handleInputChange,
 					required: true,
 					minLength: 4,
 					maxLength: 20,
@@ -10113,7 +10114,7 @@ var login_Login = function (_Component) {
 					'div',
 					null,
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
-						appId: '284507289101227'
+						appId: '449621362498990'
 						// autoLoad
 						, fields: '',
 						textButton: 'Facebook',
@@ -10527,7 +10528,7 @@ var registration_Registration = function (_Component) {
 					'div',
 					null,
 					Object(preact_min["h"])(facebook_login_with_button_default.a, {
-						appId: '284507289101227'
+						appId: '449621362498990'
 						// autoLoad
 						, fields: '',
 						textButton: 'Facebook',
@@ -31621,13 +31622,15 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
+		// const base = 'https://tvarkoma.vote4art.eu/';
+		var base = 'http://localhost:8080/';
 
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
 			Object(preact_min["h"])(Helmet_default.a, {
 				title: 'vote4art.eu',
-				base: { target: '_blank', href: 'https://tvarkoma.vote4art.eu/' }
+				base: { target: '_blank', href: base }
 			}),
 			app__ref,
 			app__ref2,

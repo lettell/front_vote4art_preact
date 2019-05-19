@@ -149,7 +149,7 @@ export default class Registration extends Component {
 				<div class={style.social}>
 					<div>
 						<FacebookLogin
-							appId="284507289101227"
+							appId="449621362498990"
 							// autoLoad
 							fields=""
 							textButton="Facebook"

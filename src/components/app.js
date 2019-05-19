@@ -34,12 +34,14 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
+		// const base = 'https://tvarkoma.vote4art.eu/';
+		const base = 'http://localhost:8080/';
 
 		return (
 			<div id="app">
 				<Helmet
 					title="vote4art.eu"
-					base={{ target: '_blank', href: 'https://tvarkoma.vote4art.eu/' }}
+					base={{ target: '_blank', href: base }}
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
