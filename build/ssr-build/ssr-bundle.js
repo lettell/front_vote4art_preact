@@ -9802,11 +9802,10 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-
-//  BASE_URL = 'http://localhost:3000',
-BASE_URL = 'https://api.vote4art.eu',
+    BASE_URL = 'https://api.vote4art.eu',
     BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
+//  BASE_URL = 'http://localhost:3000',
 
 function getAccessToken() {
 	if (typeof window !== "undefined") {
