@@ -9910,6 +9910,7 @@ function facebookLogin(data) {
 	return axios_default.a.get(url).then(function (response) {
 		if (typeof window !== "undefined") {
 			localStorage.setItem('provider', 'fb');
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		}
 		lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę!');
 

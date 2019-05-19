@@ -117,7 +117,8 @@ export function facebookLogin(data) {
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
 	return axios.get(url).then(response => {
 		if (typeof window !== "undefined") {
-  		localStorage.setItem('provider', 'fb');
+			localStorage.setItem('provider', 'fb');
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		}
 		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
 
