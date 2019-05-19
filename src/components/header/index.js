@@ -151,12 +151,12 @@ export default class Header extends Component {
 						<TopAppBar.Section align-center >
 							<div class={style.c_btn}>
 								<a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
-									<img class={style.l_ek} src='assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
+									<img class={style.l_ek} src='./assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
 								</a>
 								<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
 								<a href="https://www.vrk.lt/" target="_blank">
-									<img class={style.l_vrk} src='assets/images/VRK log 300x300.png' alt="VRK logo" />
+									<img class={style.l_vrk} src='./assets/images/VRK log 300x300.png' alt="VRK logo" />
 								</a>
 							</div>
 						</TopAppBar.Section>

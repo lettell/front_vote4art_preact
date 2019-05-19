@@ -10802,7 +10802,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								'a',
 								{ href: 'https://ec.europa.eu/lithuania/home_lt', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: 'assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
+								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: './assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
 							),
 							Object(preact_min["h"])(
 								Button_default.a,
@@ -10817,7 +10817,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								'a',
 								{ href: 'https://www.vrk.lt/', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: 'assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: './assets/images/VRK log 300x300.png', alt: 'VRK logo' })
 							)
 						)
 					),
@@ -30527,7 +30527,6 @@ var colors_Colors = function (_Component) {
 		};
 
 		if (typeof window !== "undefined") {
-			_this.dialog.MDComponent.show();
 			_this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
 		} else {
 			_this.colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
@@ -31572,7 +31571,7 @@ var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
-var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'assets/animate.css' });
+var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: './assets/animate.css' });
 
 var app__ref4 = Object(preact_min["h"])(home_Home, { path: '/' });
 
