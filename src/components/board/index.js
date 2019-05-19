@@ -170,7 +170,7 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
-		setInterval( () => { this.loadPixels(); }, 3000);
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
@@ -185,7 +185,7 @@ export default class Board extends Component {
 	
 
 
-	render(props) {			console.log('aasd', this.state)
+	render(props) {
 
 		return (
 			<div class={style.wrap__board}>

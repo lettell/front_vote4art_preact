@@ -11,7 +11,9 @@ const ACCESS_TOKEN_KEY = 'va',
 // BASE_URL = 'http://localhost:3000/';
 
 export function getAccessToken() {
+	if (typeof window !== "undefined") {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
+	}
 }
 export function checkAuth() {
 	const url = `${BASE_URL_PRIVATE}/users/info`;
@@ -41,7 +43,9 @@ export function checkAuth() {
 		});
 }
 export function setAccessToken(accessToken) {
-	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+	if (typeof window !== "undefined") {
+  	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+	}
 }
 export function login(pramas) {
 	const url = `${BASE_URL}/login`;
@@ -108,8 +112,9 @@ export function facebookLogin(data) {
 	return axios.get(url).then(response => {
 		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
 		setAccessToken(response.headers.authorization);
-		localStorage.setItem('provider', 'fb');
-
+		if (typeof window !== "undefined") {
+  		localStorage.setItem('provider', 'fb');
+		}
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.error(error.response.data
@@ -120,8 +125,9 @@ export function facebookLogin(data) {
 export function acceptTerms() {
 	const url = `${BASE_URL_PRIVATE}/users/accept_conditions`;
 	return axios.put(url, { accept: true }, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => {
-		localStorage.setItem('provider', 'fb');
-
+		if (typeof window !== "undefined") {
+  		localStorage.setItem('provider', 'fb');
+		}
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.error(error.response.data
@@ -130,7 +136,9 @@ export function acceptTerms() {
 }
 
 function clearIdToken() {
-	localStorage.removeItem(ID_TOKEN_KEY);
+	if (typeof window !== "undefined") {
+		localStorage.removeItem(ID_TOKEN_KEY);
+	}
 }
 
 function sendLogout() {
@@ -139,5 +147,7 @@ function sendLogout() {
 }
 
 function clearAccessToken() {
-	localStorage.removeItem(ACCESS_TOKEN_KEY);
+	if (typeof window !== "undefined") {
+		localStorage.removeItem(ACCESS_TOKEN_KEY);
+	}
 }
