@@ -9802,10 +9802,11 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
+    BASE_URL = 'https://api.vote4art.eu',
 
-// BASE_URL = 'https://api.vote4art.eu',
-BASE_URL = 'http://localhost:3000',
-    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// BASE_URL = 'http://localhost:3000',
+
+BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
 function getAccessToken() {
@@ -10030,7 +10031,7 @@ var login_Login = function (_Component) {
 		_this.responseFacebook = function (_ref) {
 			var accessToken = _ref.accessToken;
 
-			window.location.href = 'game/';
+			// window.location.href = 'game/';
 			facebookLogin(accessToken).then(function (resp) {
 				_this.setState({ provider: 'facebook' });
 				if (resp.status === 'error') {
@@ -11081,11 +11082,11 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
+// const BASE_URL = 'http://localhost:3000/api/v1';
 
 
 // production
-// const BASE_URL = 'https://api.vote4art.eu/api/v1';
+var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 var head = { headers: { Authorization: 'Bearer ' + getAccessToken() } };
@@ -31591,8 +31592,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://tvarkoma.vote4art.eu/';
-		var base = 'http://localhost:8080/';
+		var base = 'https://tvarkoma.vote4art.eu/';
+		// const base = 'http://localhost:8080/';
 
 		return Object(preact_min["h"])(
 			'div',
