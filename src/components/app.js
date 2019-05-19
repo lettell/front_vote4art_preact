@@ -39,7 +39,7 @@ export default class App extends Component {
 			<div id="app">
 				<Helmet
 					title="vote4art.eu"
-					// base={{ target: '_blank', href: 'http://localhost:8080/' }}
+					base={{ target: '_blank', href: 'https://tvarkoma.vote4art.eu/' }}
 				/>
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

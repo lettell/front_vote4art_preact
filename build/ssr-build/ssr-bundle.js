@@ -31568,26 +31568,21 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
-var app__ref = Object(preact_min["h"])(Helmet_default.a, {
-	title: 'vote4art.eu'
-	// base={{ target: '_blank', href: 'http://localhost:8080/' }}
-});
+var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
-var app__ref2 = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
+var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
-var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
+var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'assets/animate.css' });
 
-var app__ref4 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'assets/animate.css' });
+var app__ref4 = Object(preact_min["h"])(home_Home, { path: '/' });
 
-var app__ref5 = Object(preact_min["h"])(home_Home, { path: '/' });
+var app__ref5 = Object(preact_min["h"])(game_Game, { path: '/game/:x?/:y?/:zoom?' });
 
-var app__ref6 = Object(preact_min["h"])(game_Game, { path: '/game/:x?/:y?/:zoom?' });
+var app__ref6 = Object(preact_min["h"])(routes_registration_Registration, { path: '/registration/:city?' });
 
-var app__ref7 = Object(preact_min["h"])(routes_registration_Registration, { path: '/registration/:city?' });
+var app__ref7 = Object(preact_min["h"])(start_Start, { path: '/start' });
 
-var app__ref8 = Object(preact_min["h"])(start_Start, { path: '/start' });
-
-var app__ref9 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref8 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31627,19 +31622,22 @@ var app_App = function (_Component) {
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
+			Object(preact_min["h"])(Helmet_default.a, {
+				title: 'vote4art.eu',
+				base: { target: '_blank', href: 'https://tvarkoma.vote4art.eu/' }
+			}),
 			app__ref,
 			app__ref2,
 			app__ref3,
-			app__ref4,
 			Object(preact_min["h"])(header_Header, { selectedRoute: this.state.currentUrl, callToApp: this.respHead }),
 			Object(preact_min["h"])(
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
+				app__ref4,
 				app__ref5,
 				app__ref6,
 				app__ref7,
-				app__ref8,
-				app__ref9
+				app__ref8
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
 		);
