@@ -31531,8 +31531,8 @@ var footer_Footer = function (_Component) {
 					Object(preact_min["h"])(
 						'div',
 						{ 'class': footer_style_default.a.wraper },
-						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_ek, src: 'assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' }),
-						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_vrk, src: 'assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_ek, src: '/assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' }),
+						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_vrk, src: '/assets/images/VRK log 300x300.png', alt: 'VRK logo' })
 					)
 				)
 			)

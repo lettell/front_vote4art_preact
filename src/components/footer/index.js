@@ -48,8 +48,8 @@ export default class Footer extends Component {
 							</div>
 						</div>
 						<div class={style.wraper}>
-							<img class={style.l_ek} src="assets/images/logo_ek.svg" alt="Eruropos Komisijos logo" />
-							<img class={style.l_vrk} src="assets/images/VRK log 300x300.png" alt="VRK logo" />
+							<img class={style.l_ek} src="/assets/images/logo_ek.svg" alt="Eruropos Komisijos logo" />
+							<img class={style.l_vrk} src="/assets/images/VRK log 300x300.png" alt="VRK logo" />
 						</div>
 					</div>
 
