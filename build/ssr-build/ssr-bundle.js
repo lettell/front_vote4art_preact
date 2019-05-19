@@ -31151,38 +31151,15 @@ var game_Game = function (_Component) {
 
 	Game.prototype.resolveState = function resolveState() {
 		var state = void 0;
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			state = localStorage.userState;
 		} else {
 			state = -1;
 		}
 		switch (state) {
-			case 0:
-			case '0':
-				{
-
-					return this.setState({ userState: 'visited' });
-				}
-			case 1:
-			case '1':
-				{
-					return this.setState({ userState: 'auhenticate' });
-				}
-			case 2:
-			case '2':
-				{
-					return this.setState({ userState: 'active' });
-				}
-			case 3:
-			case '3':
-				{
-					return this.setState({ userState: 'disconected' });
-				}
 			default:
 				{
-					if (typeof window !== "undefined") {
-						this.dialog.MDComponent.show();
-
+					if (typeof window !== 'undefined') {
 						localStorage.setItem('userState', 0);
 					}
 
