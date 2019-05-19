@@ -10802,7 +10802,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								'a',
 								{ href: 'https://ec.europa.eu/lithuania/home_lt', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: './assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
+								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: '/assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
 							),
 							Object(preact_min["h"])(
 								Button_default.a,
@@ -10817,7 +10817,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								'a',
 								{ href: 'https://www.vrk.lt/', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: './assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: '/assets/images/VRK log 300x300.png', alt: 'VRK logo' })
 							)
 						)
 					),
@@ -31571,7 +31571,7 @@ var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
-var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: './assets/animate.css' });
+var app__ref3 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: '/assets/animate.css' });
 
 var app__ref4 = Object(preact_min["h"])(home_Home, { path: '/' });
 
