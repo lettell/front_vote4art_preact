@@ -110,7 +110,7 @@ export default class Login extends Component {
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
-							redirectUri="https://vote4art.eu/callback"
+							redirectUri="https://vote4art.eu/callback/"
 							// onClick={componentClicked}
 							callback={this.responseFacebook}
 						/>
