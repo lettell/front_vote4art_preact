@@ -4,8 +4,8 @@ import { setIdToken, setAccessToken } from '../../utils/auth-service';
 export class Callback extends Component {
 
   componentDidMount() {
-    // setAccessToken();
-    // setIdToken();
+    setAccessToken();
+    setIdToken();
     window.location.href = "/";
   }
 

@@ -161,7 +161,7 @@ export default class Registration extends Component {
 							fields=""
 							textButton="Facebook"
 							icon="fa-facebook"
-							// redirectUri="http://localhost:9292/auth/facebook/callback"
+							redirectUri="https://vote4art.eu/callback"
 							// onClick={componentClicked}
 							callback={this.responseFacebook}
 						/>

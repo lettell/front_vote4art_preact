@@ -49,8 +49,8 @@ function getParameterByName(name) {
 }
 
 function setAccessToken() {
-  let accessToken = getParameterByName('access_token');
-  localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+  let accessToken = getParameterByName('code');
+  localStorage.setItem("fb-access", accessToken);
 }
 
 // Get and store id_token in local storage
