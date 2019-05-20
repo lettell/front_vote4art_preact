@@ -31021,7 +31021,7 @@ var board_Board = function (_Component) {
 			_this2.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length) {
 				_this2.setAllPixels(resp.data);
-				var photo = 'https://nuotraukos.vote4art.eu' + resp.meta.photo;
+				var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
 				if (_this2.state.currentPhoto !== photo) {
 					_this2.setState({ photoUpdate: 'done', currentPhoto: photo });
 				}
