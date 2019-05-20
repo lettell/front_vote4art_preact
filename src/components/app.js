@@ -5,6 +5,7 @@ import { Router } from 'preact-router';
 import Header from './header';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
+import Callback from '../routes/callback';
 
 
 import Helmet from 'preact-helmet';
@@ -103,6 +104,7 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Game gameState={this.state} path="/" callToApp={this.respGame} />
 					<Game path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
+					<Callback path="/callback" />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />

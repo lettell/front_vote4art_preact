@@ -9810,6 +9810,7 @@ var ACCESS_TOKEN_KEY = 'va',
 BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
+
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
@@ -9839,9 +9840,23 @@ function checkAuth() {
 		// 	,'Klaida', 2000);
 	});
 }
-function setAccessToken(accessToken) {
+// Get and store access_token in local storage
+function getParameterByName(name) {
+	var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+	return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function setAccessToken() {
+	var accessToken = getParameterByName('access_token');
 	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 }
+
+// Get and store id_token in local storage
+function setIdToken() {
+	var idToken = getParameterByName('id_token');
+	localStorage.setItem(ID_TOKEN_KEY, idToken);
+}
+
 function login(pramas) {
 	var url = BASE_URL + '/login';
 
@@ -9931,6 +9946,23 @@ function clearIdToken() {
 
 function clearAccessToken() {
 	localStorage.removeItem(ACCESS_TOKEN_KEY);
+}
+
+function getTokenExpirationDate(encodedToken) {
+	var token = decode(encodedToken);
+	if (!token.exp) {
+		return null;
+	}
+
+	var date = new Date(0);
+	date.setUTCSeconds(token.exp);
+
+	return date;
+}
+
+function isTokenExpired(token) {
+	var expirationDate = getTokenExpirationDate(token);
+	return expirationDate < new Date();
 }
 // EXTERNAL MODULE: ../node_modules/preact-material-components/Button/index.js
 var Button = __webpack_require__("7/cg");
@@ -10104,16 +10136,17 @@ var login_Login = function (_Component) {
 				Object(preact_min["h"])(
 					'div',
 					null,
-					Object(preact_min["h"])(facebook_login_with_button_default.a, {
-						appId: '449621362498990'
+					Object(preact_min["h"])(facebook_login_with_button_default.a
+					// appId="449621362498990"284507289101227
+					, { appId: '284507289101227'
 						// autoLoad
 						, xfbml: true
 						// cookie={true}
 						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
-						icon: 'fa-facebook'
-						// redirectUri="https://vote4art.eu/callback"
+						icon: 'fa-facebook',
+						redirectUri: 'http://localhost:8080/callback'
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
@@ -31102,6 +31135,37 @@ var game_Game = function (_Component) {
 }(preact_min["Component"]);
 
 
+// CONCATENATED MODULE: ./routes/callback/index.js
+function callback__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function callback__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function callback__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var Callback = function (_Component) {
+  callback__inherits(Callback, _Component);
+
+  function Callback() {
+    callback__classCallCheck(this, Callback);
+
+    return callback__possibleConstructorReturn(this, _Component.apply(this, arguments));
+  }
+
+  Callback.prototype.componentDidMount = function componentDidMount() {
+    // setAccessToken();
+    // setIdToken();
+    window.location.href = "/";
+  };
+
+  Callback.prototype.render = function render() {
+    return null;
+  };
+
+  return Callback;
+}(preact_min["Component"]);
 // EXTERNAL MODULE: ../node_modules/preact-helmet/lib/Helmet.js
 var Helmet = __webpack_require__("FJnM");
 var Helmet_default = /*#__PURE__*/__webpack_require__.n(Helmet);
@@ -31353,13 +31417,16 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
+
 var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
 var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets/animate.css', as: 'style', onload: 'this.rel=\'stylesheet\'' });
 
-var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref4 = Object(preact_min["h"])(/* Cannot get final name for export "default" in "./routes/callback/index.js" (known exports: Callback, known reexports: ) */ undefined, { path: '/callback' });
+
+var app__ref5 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31463,7 +31530,8 @@ var app_App = function (_Component) {
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/', callToApp: this.respGame }),
 				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
-				app__ref4
+				app__ref4,
+				app__ref5
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
 		);
@@ -35161,7 +35229,7 @@ var nodeUtil = function () {
 }();
 
 module.exports = nodeUtil;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 
@@ -45898,7 +45966,7 @@ var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
 var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 
@@ -47136,6 +47204,34 @@ module.exports = getAllKeysIn;
 
 /***/ }),
 
+/***/ "l262":
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
 /***/ "lBq7":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48325,34 +48421,6 @@ module.exports = overRest;
 
 /***/ }),
 
-/***/ "qrje":
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
-
 /***/ "qxaq":
 /***/ (function(module, exports) {
 
@@ -48561,7 +48629,7 @@ function cloneBuffer(buffer, isDeep) {
 }
 
 module.exports = cloneBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 

@@ -10,11 +10,12 @@ const ACCESS_TOKEN_KEY = 'va',
  
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
+export { getAccessToken, checkAuth, signup, setAccessToken, setIdToken, login, isTokenExpired, facebookLogin,  logout };
 
-export function getAccessToken() {
+function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
-export function checkAuth() {
+function checkAuth() {
 	const url = `${BASE_URL_PRIVATE}/users/info`;
 
 	return axios.get(url,{ headers: { Authorization: `Bearer ${getAccessToken()}` } })
@@ -41,10 +42,24 @@ export function checkAuth() {
 			// 	,'Klaida', 2000);
 		});
 }
-export function setAccessToken(accessToken) {
+// Get and store access_token in local storage
+function getParameterByName(name) {
+  let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function setAccessToken() {
+  let accessToken = getParameterByName('access_token');
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 }
-export function login(pramas) {
+
+// Get and store id_token in local storage
+function setIdToken() {
+  let idToken = getParameterByName('id_token');
+  localStorage.setItem(ID_TOKEN_KEY, idToken);
+}
+
+function login(pramas) {
 	const url = `${BASE_URL}/login`;
 
 	return axios.post(url, {
@@ -73,7 +88,7 @@ export function login(pramas) {
 				,'Klaida', 2000);
 		});
 }
-export function signup(pramas) {
+function signup(pramas) {
 	const url = `${BASE_URL}/api/v1/signup`;
 	return axios.post(url, {
 		username: pramas.username,
@@ -95,7 +110,7 @@ export function signup(pramas) {
 			,'Klaida', 2000);
 	});
 }
-export function logout() {
+function logout() {
 	// sendLogout();
 	clearIdToken();
 	clearAccessToken();
@@ -103,7 +118,7 @@ export function logout() {
 	window.location.href = '/game';
 }
 
-export function facebookLogin(data) {
+function facebookLogin(data) {
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
 	return axios.get(url).then(response => {
 		localStorage.setItem('provider', 'fb');
@@ -140,4 +155,19 @@ function clearIdToken() {
 function clearAccessToken() {
 	localStorage.removeItem(ACCESS_TOKEN_KEY);
 
+}
+
+function getTokenExpirationDate(encodedToken) {
+  const token = decode(encodedToken);
+  if (!token.exp) { return null; }
+
+  const date = new Date(0);
+  date.setUTCSeconds(token.exp);
+
+  return date;
+}
+
+function isTokenExpired(token) {
+  const expirationDate = getTokenExpirationDate(token);
+  return expirationDate < new Date();
 }
