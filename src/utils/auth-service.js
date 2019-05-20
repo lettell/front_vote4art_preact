@@ -30,22 +30,19 @@ export function checkAuth() {
 					// NotificationManager.success(response.data.response, 'Sveiki !!!');
 					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 					// Pakeisti!!
-					if (typeof window !== "undefined") {
 						localStorage.setItem('userStatus', data.data.meta.status);
-					}
 					return data.data;
 				case 'warning':
 					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
 					break;
 			}
 		}).catch((error) => {
-			NotificationManager.error(error.response.data.msg
-				,'Klaida', 2000);
+			// NotificationManager.error(error.response.data.msg
+			// 	,'Klaida', 2000);
 		});
 }
 export function setAccessToken(accessToken) {
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-
 }
 export function login(pramas) {
 	const url = `${BASE_URL}/login`;

@@ -23,10 +23,12 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
-		this.state = {
-			gameState: localStorage.gameState || -1,
-			provider: undefined
-		};
+		if ( typeof window !== 'undefined') {
+			this.state = {
+				gameState: localStorage.gameState || -1,
+				provider: undefined
+			};
+		}
 		this.hash;
 	}
 	resolveState(e) {
@@ -80,8 +82,8 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		const base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		const base = 'http://localhost:8080/';
 		return (
 			<div id="app">
 				<Helmet
@@ -105,9 +107,7 @@ export default class App extends Component {
 				}
 
 				<Router onChange={this.handleRoute}>
-				<Game gameState={this.state} path="/game/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
-
-					<Redirect path="/:?" to="/game" />
+					<Game gameState={this.state} path="/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />
