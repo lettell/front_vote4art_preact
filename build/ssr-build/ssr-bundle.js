@@ -31794,8 +31794,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://vote4art.eu/';
-		var base = 'http://localhost:8080/';
+		var base = 'https://vote4art.eu/';
+		// const base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
