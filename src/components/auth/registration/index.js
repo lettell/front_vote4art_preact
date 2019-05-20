@@ -74,8 +74,9 @@ export default class Registration extends Component {
 				this.rules();
 			}
 			else {
-				this.route('/game');
 				this.props.callToDialog(resp);
+				this.route('/');
+
 			}
 
 		});

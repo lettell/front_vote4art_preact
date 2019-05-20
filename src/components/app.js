@@ -57,11 +57,14 @@ export default class App extends Component {
 	}
 	respHead = e => {
 		this.getInfo();
+		this.setState({update: true})
 	}
+
 	respGame = e => {
 		this.user.meta.active_pixels -= 1;
 		this.setState({update: true})
 	}
+
 	handleRoute = e => {
 		if (e.current.attributes.hash) {
 			if (localStorage.gameState === 1) {
@@ -82,8 +85,8 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		const base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		const base = 'http://192.168.0.100:8080';
 		return (
 			<div id="app">
 				<Helmet
@@ -108,7 +111,7 @@ export default class App extends Component {
 
 				<Router onChange={this.handleRoute}>
 					<Game gameState={this.state} path="/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
-					<Redirect path="/callback" reloadUser={this.respHead} />
+					{/* <Redirect path="/callback" reloadUser={this.respHead} /> */}
 
 					<NotFound default />
 				</Router>

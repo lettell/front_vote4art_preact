@@ -29,10 +29,10 @@ export default class Footer extends Component {
 							©2019 „Europos Komisijos atstovybė Lietuvoje“
 						</div>
 						<div>
-							<a class="t_link" href="#">
+							<a class="t_link" target="_blank" href="https://privacy.vote4art.eu/index.html">
 								Sąlygos
 							</a>
-							<a  class="t_link"  href="#">
+							<a  class="t_link" target="_blank" href="https://privacy.vote4art.eu/terms.html" >
 								Privatumas
 							</a>
 						</div>
