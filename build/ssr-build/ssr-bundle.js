@@ -10120,7 +10120,7 @@ var login_Login = function (_Component) {
 						fields: '',
 						textButton: 'Facebook',
 						icon: 'fa-facebook',
-						redirectUri: 'https://vote4art.eu/callback'
+						redirectUri: 'https://vote4art.eu/callback/'
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
@@ -31438,7 +31438,7 @@ var redirect_Redirect = function (_Component) {
   }
 
   Redirect.prototype.componentWillMount = function componentWillMount() {
-    route(this.props.to, true);
+    return route('/');
   };
 
   Redirect.prototype.render = function render() {
@@ -31710,7 +31710,9 @@ var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'http
 
 var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets/animate.css', as: 'style', onload: 'this.rel=\'stylesheet\'' });
 
-var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref4 = Object(preact_min["h"])(redirect_Redirect, { path: '/callback' });
+
+var app__ref5 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31792,8 +31794,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31818,7 +31820,8 @@ var app_App = function (_Component) {
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?', callToApp: this.respGame }),
-				app__ref4
+				app__ref4,
+				app__ref5
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
 		);
