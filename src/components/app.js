@@ -108,7 +108,7 @@ export default class App extends Component {
 
 				<Router onChange={this.handleRoute}>
 					<Game gameState={this.state} path="/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
-					<Redirect path="/callback" />
+					<Redirect path="/callback" reloadUser={this.respHead} />
 
 					<NotFound default />
 				</Router>

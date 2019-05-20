@@ -31428,7 +31428,7 @@ function redirect__inherits(subClass, superClass) { if (typeof superClass !== "f
 
 
 
-var redirect_Redirect = function (_Component) {
+var Redirect = function (_Component) {
   redirect__inherits(Redirect, _Component);
 
   function Redirect() {
@@ -31438,7 +31438,7 @@ var redirect_Redirect = function (_Component) {
   }
 
   Redirect.prototype.componentWillMount = function componentWillMount() {
-    return route('/');
+    this.props.reloadUser(true);
   };
 
   Redirect.prototype.render = function render() {
@@ -31710,9 +31710,7 @@ var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'http
 
 var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets/animate.css', as: 'style', onload: 'this.rel=\'stylesheet\'' });
 
-var app__ref4 = Object(preact_min["h"])(redirect_Redirect, { path: '/callback' });
-
-var app__ref5 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31820,8 +31818,8 @@ var app_App = function (_Component) {
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?', callToApp: this.respGame }),
-				app__ref4,
-				app__ref5
+				Object(preact_min["h"])(Redirect, { path: '/callback', reloadUser: this.respHead }),
+				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
 		);

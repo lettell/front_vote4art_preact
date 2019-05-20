@@ -3,7 +3,7 @@ import { route } from 'preact-router';
 
 export default class Redirect extends Component {
   componentWillMount() {
-    return route('/')
+    this.props.reloadUser(true);
   }
 
   render() {
