@@ -3,12 +3,9 @@ import { Router } from 'preact-router';
 // import { login } from '../utils/auth-service';
 
 import Header from './header';
-import Home from '../routes/home';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
-import Registration from '../routes/registration';
-import Start from '../routes/start';
-import Redirect from '../routes/redirect';
+
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
@@ -67,15 +64,9 @@ export default class App extends Component {
 
 	handleRoute = e => {
 		if (e.current.attributes.hash) {
-			if (localStorage.gameState === 1) {
-				this.setState({ hash: e.current.attributes.hash });
-			} else {
-				localStorage.setItem('hash', e.current.attributes.hash);
-			}
+			this.setState({ hash: e.current.attributes.hash });
+			localStorage.setItem('hash', e.current.attributes.hash);
 		}
-		// this.setState({
-		// 	currentUrl: e.url
-		// });
 	};
 	componentDidMount() {
 		this.getInfo();
@@ -85,8 +76,8 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://vote4art.eu/';
-		const base = 'http://192.168.0.100:8080';
+		const base = 'https://vote4art.eu/';
+		// const base = 'http://192.168.0.100:8080';
 		return (
 			<div id="app">
 				<Helmet
@@ -110,9 +101,8 @@ export default class App extends Component {
 				}
 
 				<Router onChange={this.handleRoute}>
-					<Game gameState={this.state} path="/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
-					{/* <Redirect path="/callback" reloadUser={this.respHead} /> */}
-
+					<Game gameState={this.state} path="/" callToApp={this.respGame} />
+					<Game path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />

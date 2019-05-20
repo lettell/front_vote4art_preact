@@ -10766,7 +10766,6 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.render = function render(props) {
-		console.log(this.state, 'headdd');
 		return Object(preact_min["h"])(
 			'div',
 			null,
@@ -31747,16 +31746,12 @@ var app_App = function (_Component) {
 		};
 
 		_this.handleRoute = function (e) {
+			debugger;
+
 			if (e.current.attributes.hash) {
-				if (localStorage.gameState === 1) {
-					_this.setState({ hash: e.current.attributes.hash });
-				} else {
-					localStorage.setItem('hash', e.current.attributes.hash);
-				}
+				_this.setState({ hash: e.current.attributes.hash });
+				localStorage.setItem('hash', e.current.attributes.hash);
 			}
-			// this.setState({
-			// 	currentUrl: e.url
-			// });
 		};
 
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
@@ -31771,6 +31766,7 @@ var app_App = function (_Component) {
 	}
 
 	App.prototype.resolveState = function resolveState(e) {
+		debugger;
 		var res = this.arr;
 		return {
 			status: res.splice(e, 1)[0]
@@ -31792,6 +31788,7 @@ var app_App = function (_Component) {
 	};
 
 	App.prototype.render = function render() {
+		console.log(this.state.hash);
 		// document.body.classList.add('mdc-theme--main');
 		// const base = 'https://vote4art.eu/';
 		var base = 'http://192.168.0.100:8080';
@@ -31818,7 +31815,8 @@ var app_App = function (_Component) {
 			Object(preact_min["h"])(
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
-				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', reloadUser: this.respHead }),
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })

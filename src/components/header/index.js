@@ -121,7 +121,6 @@ export default class Header extends Component {
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
 	render(props) {
-		console.log(this.state, 'headdd');
 		return (
 			<div>
 	     	<NotificationContainer />
