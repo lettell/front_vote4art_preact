@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import Login from '../auth/login';
 import { NotificationContainer } from 'react-notifications';
-import { acceptTerms } from '../../utils/auth-service';
+import { acceptTerms, logout } from '../../utils/auth-service';
 
 // material
 import TopAppBar from 'preact-material-components/TopAppBar';
@@ -33,6 +33,9 @@ export default class Header extends Component {
 			darkThemeEnabled: false
 		};
 	}
+	logOut() {
+		logout();
+	}
 	setUserState() {
 		if (typeof window !== "undefined") { 
 			return this.setState({ userState: localStorage.userState });
@@ -46,7 +49,7 @@ export default class Header extends Component {
 		}
 		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
-			this.props.callToApp(true);
+			this.props.callToApp({ status: state.status });
 		}
 	}
 	callBackFromRegistration = (state) => {
@@ -56,16 +59,18 @@ export default class Header extends Component {
 		}
 		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
-			this.props.callToApp(true);
+			this.props.callToApp({ status: state.status });
 		}
 	}
 	acceptTerms = () => {
-		if(localStorage.provider && localStorage.provider === 'fb') {
-			acceptTerms();
-			localStorage.setItem('userState', 'success');
-			this.dialog.MDComponent.close();
-		}
-		else {
+		if (localStorage.provider && localStorage.provider === 'fb') {
+			acceptTerms().then(resp => {
+				localStorage.setItem('userState', 'success');
+				this.dialog.MDComponent.close();
+				this.setState({});
+				this.props.callToApp(true);
+			})
+		} else {
 			this.state.backState.terms_and_conditions = true;
 			this.setState({ dialogContent: 'registracija'});
 		}
@@ -105,6 +110,9 @@ export default class Header extends Component {
 		route(path);
 		this.closeDrawer();
 	};
+	componentWillReceiveProps ({gameState}) {
+		if (gameState)	this.setState(gameState);
+	}
 	componentWillMount() {
 		this.testScreen();
 	}
@@ -115,6 +123,7 @@ export default class Header extends Component {
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
 	render(props) {
+		console.log(this.state, 'headdd');
 		return (
 			<div>
 	     	<NotificationContainer />
@@ -139,8 +148,12 @@ export default class Header extends Component {
 
 						<TopAppBar.Section align-end shrink-to-fit >
 							<div class={style.mobile_h}>
+							{ this.state.logined ?
+								<Button onClick={this.logOut} secondary>Atsijungti</Button> :
 								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+							}
 							</div>
+				
 						</TopAppBar.Section>
 					</TopAppBar.Row>
 					<div class={style.row_two}>
@@ -149,7 +162,10 @@ export default class Header extends Component {
 								<div class={style.mobile_m}>
 									<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 									<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
-									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+									{ this.state.logined ?
+   									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
+										<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+									}
 								</div>
 							</TopAppBar.Section>
 						</TopAppBar.Row>
@@ -212,8 +228,8 @@ export default class Header extends Component {
 								this.state.editrule ? 
 									<Button onClick={this.acceptTerms} secondary>SUTINKU</Button>
 									:'':
-								this.state.dialogContent === 'game'?
-									<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
+									this.state.logined === false &&	this.state.dialogContent === 'game' ?
+										<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
 									this.state.dialogContent === 'login'?
 										'':
 										this.state.dialogContent === 'registracija'?

@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 // import { route } from 'preact-router';
 import { login, facebookLogin, logout, signup } from '../../../utils/auth-service';
+import { route } from 'preact-router';
+
 import Button from 'preact-material-components/Button';
 import TextField from 'preact-material-components/TextField';
 import Checkbox from 'preact-material-components/Checkbox';
@@ -34,6 +36,7 @@ export default class Registration extends Component {
 		this.state.terms_and_conditions = this.cb.MDComponent.checked;
 		signup(this.state).then( (resp) => {
 			if (resp) {
+				this.setState({});
 				this.props.callToDialog(resp);
 			}
 		});
@@ -41,7 +44,9 @@ export default class Registration extends Component {
 	rules = () => {
 		this.props.callToRules(this.state);
 	}
-	
+	toLoging = () => {
+		this.props.callToDialog('login');
+	}
 	checkRef = cb => (this.cb = cb);
 
 	handleInputChange(event) {
@@ -60,13 +65,16 @@ export default class Registration extends Component {
 			e.target.setCustomValidity('');
 		}
 	}
+	
 	responseFacebook = ({ accessToken }) => {
+
 		facebookLogin(accessToken).then(resp => {
-			this.setState({ provider: 'facebook' });
+			this.setState({});
 			if (resp.status === 'authenticated') {
 				this.rules();
 			}
 			else {
+				this.route('/game');
 				this.props.callToDialog(resp);
 			}
 
@@ -80,6 +88,7 @@ export default class Registration extends Component {
 		// console.log("Google:", data)
 	}
 	componentDidMount = () => {
+
 		if (this.props.backState && this.props.backState.terms_and_conditions) {
 			this.cb.MDComponent.checked = true;
 		}

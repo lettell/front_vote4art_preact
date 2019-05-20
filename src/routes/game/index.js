@@ -30,7 +30,7 @@ export default class Game extends Component {
 	render({ x, y, zoom }) {
 		return (
 			 <div class="container_main">
-				<Board x={x} y={y} zoom={zoom} />
+				<Board callToApp={this.props.callToApp} x={x} y={y} zoom={zoom} />
 			</div>
 		);
 	}

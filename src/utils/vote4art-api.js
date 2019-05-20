@@ -8,7 +8,7 @@ import { NotificationManager } from 'react-notifications';
 // production
 const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
-export { getPixels, postPixel };
+export { getPixels, postPixel, getReward };
 
 
 function getPixels() {
@@ -16,7 +16,12 @@ function getPixels() {
 	const url = `${BASE_URL}/public/pixels/ready`;
 	return axios.get(url).then(response => JSON.parse(response.data)).catch(e => console.error(e));
 }
+function getReward(params) {
 
+	const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
+	const url = `${BASE_URL}/rewards/reward`;
+	return axios.post(url, params, head).then(response => JSON.parse(response.data));
+}
 function postPixel(xy, color) {
 	if (typeof window !== "undefined") {
 		const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}

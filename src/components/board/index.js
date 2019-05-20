@@ -7,7 +7,7 @@ import { getPixels, postPixel } from '../../utils/vote4art-api';
 import * as d3 from 'd3';
 import Snackbar from 'preact-material-components/Snackbar';
 
-import 'preact-material-components/Slider/style.css';
+import 'preact-material-components/Slider/style';
 import Colors from './colors';
 import style from './style';
 import Controls from './controls';
@@ -124,8 +124,8 @@ export default class Board extends Component {
 		});
 		this.setState({ activePixels: 'placed_on_board' });
 	}
-
-	putPixel(e) {
+	removePixel = (e) => this.setState({ color: false })
+	putPixel = (e) => {
 		if (!this.state.color) return;
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
 		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
@@ -151,6 +151,7 @@ export default class Board extends Component {
 		postPixel(this.pixelPoint, this.state.color).then( resp => {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
+				this.props.callToApp({ putPixel: -1 });
 				const photo = `https://nuotraukos.vote4art.eu${resp.meta.photo}`;
 				if (this.state.currentPhoto !== photo ){
 					this.setState({ photoUpdate: 'done', currentPhoto: photo });
@@ -190,10 +191,12 @@ export default class Board extends Component {
 
 		return (
 			<div class={style.wrap__board}>
-				<div id="currentPixel" style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
-					<span>
-						Aktyvus pikselis
-					</span>
+				<div id="currentPixel" onTap={this.removePixel} style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
+					<div class={style.ctrl}>
+						<span class={style.ctrl_text}>
+							Atšaukti pasirinka spalva 
+						</span>
+					</div>
 				</div>
 				<div class={style.board__controlls}>
 					<Controls scale={this.scale} callbackFromBoard={this.setZoom} callbackFromBoardSecond={this.setGrid} />

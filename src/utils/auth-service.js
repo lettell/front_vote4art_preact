@@ -7,7 +7,7 @@ const ACCESS_TOKEN_KEY = 'va',
 			ID_TOKEN_KEY = 'la',
 	BASE_URL = 'https://api.vote4art.eu',
 	// BASE_URL = 'http://localhost:3000',
-
+ 
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
@@ -102,15 +102,16 @@ export function signup(pramas) {
 			}
 		}
 	}).catch((e) => {
-		NotificationManager.error(''
+		NotificationManager.error(e.response.data.error.username[0]
 			,'Klaida', 2000);
 	});
 }
 export function logout() {
-	sendLogout();
+	// sendLogout();
 	clearIdToken();
 	clearAccessToken();
-	window.location.href = '/';
+	localStorage.clear();
+	window.location.href = '/game';
 }
 
 export function facebookLogin(data) {
@@ -148,10 +149,10 @@ function clearIdToken() {
 	}
 }
 
-function sendLogout() {
-	const url = `${BASE_URL}/logout`;
-	return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
-}
+// function sendLogout() {
+// 	const url = `${BASE_URL}/logout`;
+// 	return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
+// }
 
 function clearAccessToken() {
 	if (typeof window !== "undefined") {

@@ -1,10 +1,12 @@
 import { h, Component } from 'preact';
 // import { route } from 'preact-router';
-import { login, facebookLogin, logout, checkAuth } from '../../../utils/auth-service';
+import { route } from 'preact-router';
+
+import { login, facebookLogin, checkAuth } from '../../../utils/auth-service';
 import Button from 'preact-material-components/Button';
 import TextField from 'preact-material-components/TextField';
 import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 
 import 'preact-material-components/TextField/style.css';
 
@@ -31,9 +33,6 @@ export default class Login extends Component {
 	rules = () => {
 		this.props.callToRules(this.state);
 	}
-	logout() {
-		logout();
-	}
 	isLogedIn() {
 		checkAuth();
 	}
@@ -50,10 +49,13 @@ export default class Login extends Component {
 		facebookLogin(accessToken).then(resp => {
 			this.setState({ provider: 'facebook' });
 			if (resp.status === 'error') {
+
 				this.rules();
 			}
 			else {
 				this.props.callToDialog(resp);
+				route('/game');
+
 			}
 		});
 	}
@@ -64,7 +66,9 @@ export default class Login extends Component {
 	// respGoogleFail = (data) => {
 	// 	console.log("Google:", data)
 	// }
-	goToRegister() {}
+	goToRegister = () => {
+		this.props.callToDialog('registracija');
+	}
 	render(props) {
 		return (
 			<div class={style.container}>
@@ -121,7 +125,7 @@ export default class Login extends Component {
 						/> */}
 					</div>
 					<div>
-						<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToLogin} unelevated>Registracija</Button>
+						<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToRegister} unelevated>Registracija</Button>
 					</div>
 				</div>
 	
