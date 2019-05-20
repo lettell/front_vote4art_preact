@@ -1267,13 +1267,6 @@ module.exports = isKey;
 
 /***/ }),
 
-/***/ "2n+x":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "3JCP":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10918,120 +10911,6 @@ var Card_default = /*#__PURE__*/__webpack_require__.n(Card);
 // EXTERNAL MODULE: ../node_modules/preact-material-components/Card/style.css
 var Card_style = __webpack_require__("UlEV");
 var Card_style_default = /*#__PURE__*/__webpack_require__.n(Card_style);
-
-// EXTERNAL MODULE: ./routes/home/style.css
-var home_style = __webpack_require__("ZAL5");
-var home_style_default = /*#__PURE__*/__webpack_require__.n(home_style);
-
-// CONCATENATED MODULE: ./routes/home/index.js
-
-
-function home__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function home__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function home__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-// import 'preact-material-components/Button/style.css';
-
-
-var home__ref = Object(preact_min["h"])(
-	'h1',
-	null,
-	'Iki \u017Eaidimo prad\u017Eios liko:'
-);
-
-var home_Home = function (_Component) {
-	home__inherits(Home, _Component);
-
-	function Home() {
-		home__classCallCheck(this, Home);
-
-		var _this = home__possibleConstructorReturn(this, _Component.call(this));
-
-		_this.countDownDate = new Date("May 20, 2019 08:00:00").getTime();
-		_this.textTimer = [['sekundės', 'sekundė', 'sekundžių'], ['minutės', 'minutė', 'minučių'], ['valandos', 'valanda', 'valandų'], ['dienos', 'diena', 'dienų']];
-		_this.countDowown();
-		return _this;
-	}
-
-	Home.prototype.countDowown = function countDowown() {
-		var _this2 = this;
-
-		var x = setInterval(function () {
-
-			// Get todays date and time
-			var now = new Date().getTime();
-			var distance = _this2.countDownDate - now;
-			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			var hours = ('0' + Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))).slice(-2);
-			var minutes = ('0' + Math.floor(distance % (1000 * 60 * 60) / (1000 * 60))).slice(-2);
-			var seconds = ('0' + Math.floor(distance % (1000 * 60) / 1000)).slice(-2);
-
-			// Display the result in the element with id="demo"
-			document.getElementById('countDown').innerHTML = days + ' / ' + hours + ' / ' + minutes + ' / ' + seconds;
-
-			document.getElementById('countText').innerHTML = _this2.textTimer[3][_this2.resT(days)] + ' ' + _this2.textTimer[2][_this2.resT(hours)] + ' ' + _this2.textTimer[1][_this2.resT(minutes)] + ' ' + _this2.textTimer[0][_this2.resT(seconds)];
-
-			// If the count down is finished, write some text 
-			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById('countDown').innerHTML = '';
-			}
-		}, 1000);
-	};
-
-	Home.prototype.resT = function resT(e) {
-		var n = Number(e[1]);
-		if (Number(e) > 10 && Number(e) < 20) n = 0;
-		switch (n) {
-			case 0:
-				return 2;
-			case 1:
-				return 1;
-			default:
-				return 0;
-		}
-	};
-
-	Home.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
-		console.log('tines should');
-	};
-
-	Home.prototype.render = function render() {
-		return Object(preact_min["h"])(
-			'div',
-			{ 'class': home_style_default.a.home + ' page' },
-			Object(preact_min["h"])(
-				'div',
-				null,
-				Object(preact_min["h"])('img', { 'class': home_style_default.a.logo, src: '/assets/images/logo.png' }),
-				home__ref,
-				Object(preact_min["h"])(
-					Card_default.a,
-					{ 'class': home_style_default.a.timmer__block },
-					Object(preact_min["h"])('h1', { 'class': home_style_default.a.timmer, id: 'countDown' }),
-					Object(preact_min["h"])(
-						'h1',
-						{ 'class': home_style_default.a.timmer__text, id: 'countText' },
-						'  diena valanda minut\u0117 sekund\u0117'
-					),
-					Object(preact_min["h"])(
-						'h1',
-						{ 'class': home_style_default.a.timmer__text__mobile },
-						'  d. val. min. sek.'
-					)
-				)
-			)
-		);
-	};
-
-	return Home;
-}(preact_min["Component"]);
-
 
 // EXTERNAL MODULE: ./routes/404/style.css
 var _04_style = __webpack_require__("xxi1");
@@ -31223,231 +31102,6 @@ var game_Game = function (_Component) {
 }(preact_min["Component"]);
 
 
-// EXTERNAL MODULE: ../node_modules/preact-material-components/Card/mdc-card.scss
-var mdc_card = __webpack_require__("uTCq");
-var mdc_card_default = /*#__PURE__*/__webpack_require__.n(mdc_card);
-
-// EXTERNAL MODULE: ./routes/registration/style.css
-var routes_registration_style = __webpack_require__("2n+x");
-var routes_registration_style_default = /*#__PURE__*/__webpack_require__.n(routes_registration_style);
-
-// CONCATENATED MODULE: ./routes/registration/index.js
-
-
-function routes_registration__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function routes_registration__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function routes_registration__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-var registration__ref = Object(preact_min["h"])(
-	'div',
-	null,
-	Object(preact_min["h"])(
-		Card_default.a,
-		null,
-		Object(preact_min["h"])(
-			'div',
-			{ 'class': 'card-header' },
-			Object(preact_min["h"])(
-				'h2',
-				{ 'class': ' mdc-typography--title' },
-				'Title'
-			),
-			Object(preact_min["h"])(
-				'div',
-				{ 'class': ' mdc-typography--caption' },
-				'Caption'
-			)
-		),
-		Object(preact_min["h"])(Card_default.a.Media, { className: 'card-media' }),
-		Object(preact_min["h"])(
-			Card_default.a.Actions,
-			{ className: 'mdc-card__actions--full-bleed' },
-			Object(preact_min["h"])(
-				Card_default.a.ActionButtons,
-				null,
-				Object(preact_min["h"])(
-					Card_default.a.ActionButton,
-					null,
-					'OK'
-				)
-			)
-		)
-	)
-);
-
-var routes_registration_Registration = function (_Component) {
-	routes_registration__inherits(Registration, _Component);
-
-	function Registration() {
-		routes_registration__classCallCheck(this, Registration);
-
-		return routes_registration__possibleConstructorReturn(this, _Component.apply(this, arguments));
-	}
-
-	Registration.prototype.render = function render() {
-		return Object(preact_min["h"])(
-			'div',
-			{ 'class': routes_registration_style_default.a.home + ' page' },
-			registration__ref
-		);
-	};
-
-	return Registration;
-}(preact_min["Component"]);
-
-
-// EXTERNAL MODULE: ./routes/start/style.css
-var start_style = __webpack_require__("scVc");
-var start_style_default = /*#__PURE__*/__webpack_require__.n(start_style);
-
-// CONCATENATED MODULE: ./routes/start/index.js
-
-
-function start__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function start__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function start__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-// import 'preact-material-components/Button/style.css';
-
-
-var start__ref = Object(preact_min["h"])(
-	'h1',
-	null,
-	'Iki \u017Eaidimo prad\u017Eios liko:'
-);
-
-var start_Start = function (_Component) {
-	start__inherits(Start, _Component);
-
-	function Start() {
-		start__classCallCheck(this, Start);
-
-		var _this = start__possibleConstructorReturn(this, _Component.call(this));
-
-		_this.countDownDate = new Date('May 19, 2019 15:37:25').getTime();
-		_this.textTimer = [['sekundės', 'sekundė', 'sekundžių'], ['minutės', 'minutė', 'minučių'], ['valandos', 'valanda', 'valandų'], ['dienos', 'diena', 'dienų']];
-		_this.countDowown();
-		return _this;
-	}
-
-	Start.prototype.countDowown = function countDowown() {
-		var _this2 = this;
-
-		var x = setInterval(function () {
-
-			// Get todays date and time
-			var now = new Date().getTime();
-			var distance = _this2.countDownDate - now;
-			var days = ('0' + Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2);
-			var hours = ('0' + Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))).slice(-2);
-			var minutes = ('0' + Math.floor(distance % (1000 * 60 * 60) / (1000 * 60))).slice(-2);
-			var seconds = ('0' + Math.floor(distance % (1000 * 60) / 1000)).slice(-2);
-
-			// Display the result in the element with id="demo"
-			document.getElementById('countDown').innerHTML = days + ' / ' + hours + ' / ' + minutes + ' / ' + seconds;
-
-			document.getElementById('countText').innerHTML = _this2.textTimer[3][_this2.resT(days)] + ' ' + _this2.textTimer[2][_this2.resT(hours)] + ' ' + _this2.textTimer[1][_this2.resT(minutes)] + ' ' + _this2.textTimer[0][_this2.resT(seconds)];
-
-			// If the count down is finished, write some text
-			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById('countDown').innerHTML = '';
-			}
-		}, 1000);
-	};
-
-	Start.prototype.resT = function resT(e) {
-		var n = Number(e[1]);
-		if (Number(e) > 10 && Number(e) < 20) n = 0;
-		switch (n) {
-			case 0:
-				return 2;
-			case 1:
-				return 1;
-			default:
-				return 0;
-		}
-	};
-
-	Start.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
-		console.log('tines should');
-	};
-
-	Start.prototype.render = function render() {
-		return Object(preact_min["h"])(
-			'div',
-			{ 'class': start_style_default.a.home + ' page' },
-			Object(preact_min["h"])(
-				'div',
-				null,
-				Object(preact_min["h"])('img', { 'class': start_style_default.a.logo, src: '/assets/images/logo.png' }),
-				start__ref,
-				Object(preact_min["h"])(
-					Card_default.a,
-					{ 'class': start_style_default.a.timmer__block },
-					Object(preact_min["h"])('h1', { 'class': start_style_default.a.timmer, id: 'countDown' }),
-					Object(preact_min["h"])(
-						'h1',
-						{ 'class': start_style_default.a.timmer__text, id: 'countText' },
-						'  diena valanda minut\u0117 sekund\u0117'
-					),
-					Object(preact_min["h"])(
-						'h1',
-						{ 'class': start_style_default.a.timmer__text__mobile },
-						'  d. val. min. sek.'
-					)
-				)
-			)
-		);
-	};
-
-	return Start;
-}(preact_min["Component"]);
-
-
-// CONCATENATED MODULE: ./routes/redirect/index.js
-function redirect__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function redirect__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function redirect__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var Redirect = function (_Component) {
-  redirect__inherits(Redirect, _Component);
-
-  function Redirect() {
-    redirect__classCallCheck(this, Redirect);
-
-    return redirect__possibleConstructorReturn(this, _Component.apply(this, arguments));
-  }
-
-  Redirect.prototype.componentWillMount = function componentWillMount() {
-    this.props.reloadUser(true);
-  };
-
-  Redirect.prototype.render = function render() {
-    return null;
-  };
-
-  return Redirect;
-}(preact_min["Component"]);
-
-
 // EXTERNAL MODULE: ../node_modules/preact-helmet/lib/Helmet.js
 var Helmet = __webpack_require__("FJnM");
 var Helmet_default = /*#__PURE__*/__webpack_require__.n(Helmet);
@@ -31699,10 +31353,6 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
-
-
-
-
 var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
@@ -31746,8 +31396,6 @@ var app_App = function (_Component) {
 		};
 
 		_this.handleRoute = function (e) {
-			debugger;
-
 			if (e.current.attributes.hash) {
 				_this.setState({ hash: e.current.attributes.hash });
 				localStorage.setItem('hash', e.current.attributes.hash);
@@ -31766,7 +31414,6 @@ var app_App = function (_Component) {
 	}
 
 	App.prototype.resolveState = function resolveState(e) {
-		debugger;
 		var res = this.arr;
 		return {
 			status: res.splice(e, 1)[0]
@@ -31788,10 +31435,9 @@ var app_App = function (_Component) {
 	};
 
 	App.prototype.render = function render() {
-		console.log(this.state.hash);
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://vote4art.eu/';
-		var base = 'http://192.168.0.100:8080';
+		var base = 'https://vote4art.eu/';
+		// const base = 'http://192.168.0.100:8080';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31815,8 +31461,8 @@ var app_App = function (_Component) {
 			Object(preact_min["h"])(
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
-				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '', callToApp: this.respGame }),
-				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', reloadUser: this.respHead }),
+				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
@@ -41836,14 +41482,6 @@ module.exports = throttle;
 
 /***/ }),
 
-/***/ "ZAL5":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"home":"home__MseGd","logo":"logo__1yT4h","timmer__block":"timmer__block__3Lkyx","timmer":"timmer__19wV6","timmer__text":"timmer__text__APxVL","timmer__text__mobile":"timmer__text__mobile__17drt","cardHeader":"cardHeader__2Vd1U","cardBody":"cardBody__fYYFu"};
-
-/***/ }),
-
 /***/ "ZC1a":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49248,14 +48886,6 @@ default_1.CardMediaContent = CardMediaContent;
 
 /***/ }),
 
-/***/ "scVc":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"home":"home__3gqNx","logo":"logo__frIhd","timmer__block":"timmer__block__m_uBt","timmer":"timmer__2erei","timmer__text":"timmer__text__15eSS","timmer__text__mobile":"timmer__text__mobile__5ZTa_","cardHeader":"cardHeader__3Qatd","cardBody":"cardBody__2oQ2j"};
-
-/***/ }),
-
 /***/ "skbs":
 /***/ (function(module, exports) {
 
@@ -49789,13 +49419,6 @@ var ColorWrap = exports.ColorWrap = function ColorWrap(Picker) {
 };
 
 exports.default = ColorWrap;
-
-/***/ }),
-
-/***/ "uTCq":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
