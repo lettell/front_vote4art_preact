@@ -23,12 +23,10 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
-		if (typeof window !== 'undefined') {
-			this.state = {
-				gameState: localStorage.gameState || -1,
-				provider: undefined
-			};
-		}
+		this.state = {
+			gameState: localStorage.gameState || -1,
+			provider: undefined
+		};
 		this.hash;
 	}
 	resolveState(e) {
@@ -39,9 +37,7 @@ export default class App extends Component {
 	}
 
 	setSt = (e) => {
-		if (typeof window !== 'undefined') {
 		 localStorage.setItem('gameState', this.arr.indexOf(e.status));
-		}
 		if (e.status === 'visited') this.setState({ logined: false, gameAutoload: false,  needTerms: false });
 		if (e.status === 'success') this.setState({ logined: true, gameAutoload: false, needTerms: false });
 		if (e.status === 'error') this.setState({ logined: true, gameAutoload: false, needTerms: true });
@@ -65,13 +61,11 @@ export default class App extends Component {
 		this.setState({update: true})
 	}
 	handleRoute = e => {
-		if (typeof window !== undefined) {
-			if (e.current.attributes.hash) {
-				if (localStorage.gameState === 1) {
-					this.setState({ hash: e.current.attributes.hash });
-				} else {
-					localStorage.setItem('hash', e.current.attributes.hash);
-				}
+		if (e.current.attributes.hash) {
+			if (localStorage.gameState === 1) {
+				this.setState({ hash: e.current.attributes.hash });
+			} else {
+				localStorage.setItem('hash', e.current.attributes.hash);
 			}
 		}
 		// this.setState({
@@ -111,8 +105,9 @@ export default class App extends Component {
 				}
 
 				<Router onChange={this.handleRoute}>
-					<Redirect path="/" to="/game" />
-					<Game gameState={this.state} path="/game/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
+				<Game gameState={this.state} path="/game/:x?/:y?/:zoom?/:hash?" callToApp={this.respGame} />
+
+					<Redirect path="/:?" to="/game" />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />

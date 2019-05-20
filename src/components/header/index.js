@@ -37,9 +37,7 @@ export default class Header extends Component {
 		logout();
 	}
 	setUserState() {
-		if (typeof window !== "undefined") { 
 			return this.setState({ userState: localStorage.userState });
-		}
 	}
 
 	callBackFromLogin = (state) => {

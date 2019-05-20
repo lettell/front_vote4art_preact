@@ -12,9 +12,7 @@ const ACCESS_TOKEN_KEY = 'va',
 // production
 
 export function getAccessToken() {
-	if (typeof window !== "undefined") {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
-	}
 }
 export function checkAuth() {
 	const url = `${BASE_URL_PRIVATE}/users/info`;
@@ -46,9 +44,8 @@ export function checkAuth() {
 		});
 }
 export function setAccessToken(accessToken) {
-	if (typeof window !== "undefined") {
-  	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-	}
+  localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+
 }
 export function login(pramas) {
 	const url = `${BASE_URL}/login`;
@@ -58,10 +55,7 @@ export function login(pramas) {
 		password: pramas.password
 	})
 		.then((response) => {
-			if (typeof window !== "undefined") {
-				localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-			}
-
+			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 			switch (response.status) {
 				case 'info':
 					NotificationManager.info('Info message');
@@ -92,9 +86,7 @@ export function signup(pramas) {
 
 
 	}).then((response) => {
-		if (typeof window !== "undefined") {
-			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		}
+		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		switch (response.status) {
 			case 200: {
 				NotificationManager.success('', 'Sveiki prisijungę!');
@@ -117,10 +109,8 @@ export function logout() {
 export function facebookLogin(data) {
 	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
 	return axios.get(url).then(response => {
-		if (typeof window !== "undefined") {
-			localStorage.setItem('provider', 'fb');
-			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		}
+		localStorage.setItem('provider', 'fb');
+		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
 
 		return response.data;
@@ -133,9 +123,7 @@ export function facebookLogin(data) {
 export function acceptTerms() {
 	const url = `${BASE_URL_PRIVATE}/users/accept_conditions`;
 	return axios.put(url, { accept: true }, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => {
-		if (typeof window !== "undefined") {
-  		localStorage.setItem('provider', 'fb');
-		}
+  	localStorage.setItem('provider', 'fb');
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.error(error.response.data
@@ -144,9 +132,7 @@ export function acceptTerms() {
 }
 
 function clearIdToken() {
-	if (typeof window !== "undefined") {
-		localStorage.removeItem(ID_TOKEN_KEY);
-	}
+	localStorage.removeItem(ID_TOKEN_KEY);
 }
 
 // function sendLogout() {
@@ -155,7 +141,6 @@ function clearIdToken() {
 // }
 
 function clearAccessToken() {
-	if (typeof window !== "undefined") {
-		localStorage.removeItem(ACCESS_TOKEN_KEY);
-	}
+	localStorage.removeItem(ACCESS_TOKEN_KEY);
+
 }
