@@ -152,7 +152,7 @@ export default class Board extends Component {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
 				this.props.callToApp({ putPixel: -1 });
-				const photo = `https://nuotraukos.vote4art.eu${resp.meta.photo}`;
+				const photo = `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
 				if (this.state.currentPhoto !== photo ){
 					this.setState({ photoUpdate: 'done', currentPhoto: photo });
 				}

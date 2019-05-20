@@ -30939,7 +30939,7 @@ var board_Board = function (_Component) {
 				if (resp.data && resp.data.length) {
 					_this.setAllPixels(resp.data);
 					_this.props.callToApp({ putPixel: -1 });
-					var photo = 'https://nuotraukos.vote4art.eu' + resp.meta.photo;
+					var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
 					if (_this.state.currentPhoto !== photo) {
 						_this.setState({ photoUpdate: 'done', currentPhoto: photo });
 					}
@@ -31764,7 +31764,6 @@ var app_App = function (_Component) {
 		};
 
 		_this.respHead = function (e) {
-			_this.setSt(e);
 			_this.getInfo();
 		};
 
@@ -31816,7 +31815,6 @@ var app_App = function (_Component) {
 	};
 
 	App.prototype.componentDidMount = function componentDidMount() {
-		this.setSt(this.resolveState(-1));
 		this.getInfo();
 		document.body.classList.add('noScroll');
 	};

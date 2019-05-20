@@ -58,7 +58,6 @@ export default class App extends Component {
 		} );
 	}
 	respHead = e => {
-		this.setSt(e);
 		this.getInfo();
 	}
 	respGame = e => {
@@ -80,7 +79,6 @@ export default class App extends Component {
 		// });
 	};
 	componentDidMount() {
-		this.setSt(this.resolveState(-1));
 		this.getInfo();
 		document.body.classList.add('noScroll');
 
