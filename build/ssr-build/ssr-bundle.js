@@ -10027,7 +10027,7 @@ var login_Login = function (_Component) {
 					_this.rules();
 				} else {
 					_this.props.callToDialog(resp);
-					route('/game');
+					route('/');
 				}
 			});
 		};
@@ -10119,8 +10119,8 @@ var login_Login = function (_Component) {
 						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
-						icon: 'fa-facebook',
-						redirectUri: 'https://vote4art.eu/callback/'
+						icon: 'fa-facebook'
+						// redirectUri="https://vote4art.eu/callback"
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
@@ -10410,8 +10410,8 @@ var registration_Registration = function (_Component) {
 				if (resp.status === 'authenticated') {
 					_this.rules();
 				} else {
-					_this.route('/game');
 					_this.props.callToDialog(resp);
+					_this.route('/');
 				}
 			});
 		};
@@ -31498,12 +31498,12 @@ var footer__ref2 = Object(preact_min["h"])(
 	null,
 	Object(preact_min["h"])(
 		'a',
-		{ 'class': 't_link', href: '#' },
+		{ 'class': 't_link', target: '_blank', href: 'https://privacy.vote4art.eu/index.html' },
 		'S\u0105lygos'
 	),
 	Object(preact_min["h"])(
 		'a',
-		{ 'class': 't_link', href: '#' },
+		{ 'class': 't_link', target: '_blank', href: 'https://privacy.vote4art.eu/terms.html' },
 		'Privatumas'
 	)
 );
@@ -31738,6 +31738,7 @@ var app_App = function (_Component) {
 
 		_this.respHead = function (e) {
 			_this.getInfo();
+			_this.setState({ update: true });
 		};
 
 		_this.respGame = function (e) {
@@ -31792,8 +31793,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'http://192.168.0.100:8080';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31818,7 +31819,6 @@ var app_App = function (_Component) {
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?', callToApp: this.respGame }),
-				Object(preact_min["h"])(Redirect, { path: '/callback', reloadUser: this.respHead }),
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
