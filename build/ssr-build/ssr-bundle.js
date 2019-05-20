@@ -9847,8 +9847,8 @@ function getParameterByName(name) {
 }
 
 function setAccessToken() {
-	var accessToken = getParameterByName('access_token');
-	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+	var accessToken = getParameterByName('code');
+	localStorage.setItem("fb-access", accessToken);
 }
 
 // Get and store id_token in local storage
@@ -10136,9 +10136,9 @@ var login_Login = function (_Component) {
 				Object(preact_min["h"])(
 					'div',
 					null,
-					Object(preact_min["h"])(facebook_login_with_button_default.a
-					// appId="449621362498990"284507289101227
-					, { appId: '284507289101227'
+					Object(preact_min["h"])(facebook_login_with_button_default.a, {
+						appId: '449621362498990'
+						// appId="284507289101227"
 						// autoLoad
 						, xfbml: true
 						// cookie={true}
@@ -10146,7 +10146,7 @@ var login_Login = function (_Component) {
 						fields: '',
 						textButton: 'Facebook',
 						icon: 'fa-facebook',
-						redirectUri: 'http://localhost:8080/callback'
+						redirectUri: 'https://vote4art.eu/callback'
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
@@ -10569,8 +10569,8 @@ var registration_Registration = function (_Component) {
 						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
-						icon: 'fa-facebook'
-						// redirectUri="http://localhost:9292/auth/facebook/callback"
+						icon: 'fa-facebook',
+						redirectUri: 'https://vote4art.eu/callback'
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
@@ -31145,7 +31145,7 @@ function callback__inherits(subClass, superClass) { if (typeof superClass !== "f
 
 
 
-var Callback = function (_Component) {
+var callback_Callback = function (_Component) {
   callback__inherits(Callback, _Component);
 
   function Callback() {
@@ -31155,8 +31155,8 @@ var Callback = function (_Component) {
   }
 
   Callback.prototype.componentDidMount = function componentDidMount() {
-    // setAccessToken();
-    // setIdToken();
+    setAccessToken();
+    setIdToken();
     window.location.href = "/";
   };
 
