@@ -10119,8 +10119,8 @@ var login_Login = function (_Component) {
 						, version: '3.3',
 						fields: '',
 						textButton: 'Facebook',
-						icon: 'fa-facebook'
-						// redirectUri="http://localhost:9292/auth/facebook/callback"
+						icon: 'fa-facebook',
+						redirectUri: 'https://vote4art.eu/callback'
 						// onClick={componentClicked}
 						, callback: this.responseFacebook
 					})
