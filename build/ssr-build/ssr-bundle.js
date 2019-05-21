@@ -9876,7 +9876,7 @@ function login(pramas) {
 				break;
 		}
 	}).catch(function (error) {
-		lib["NotificationManager"].error(error.response.data, 'Klaida', 2000);
+		lib["NotificationManager"].error(error.message, 'Klaida', 2000);
 	});
 }
 function signup(pramas) {
@@ -9904,7 +9904,7 @@ function logout() {
 	// sendLogout();
 	clearIdToken();
 	clearAccessToken();
-	localStorage.clear();
+	delete localStorage.va;
 	window.location.href = '/';
 }
 
@@ -10029,8 +10029,15 @@ var login_Login = function (_Component) {
 		_this.loginSimple = function () {
 			login(_this.state).then(function (resp) {
 				if (resp) {
+					// atidziai atiduot statusa backend !!!
 					_this.props.callToDialog(resp.status);
-					window.location.href = '/';
+
+					if (localStorage.needReward) {
+						localStorage.removeItem('needReward');
+						window.location.href = localStorage.rewardPath;
+					} else {
+						window.location.href = '/';
+					}
 				}
 			});
 		};
@@ -10048,7 +10055,12 @@ var login_Login = function (_Component) {
 								_this.rules();
 							} else {
 								_this.props.callToDialog('success');
-								window.location.href = '/';
+								if (localStorage.needReward) {
+									localStorage.removeItem('needReward');
+									window.location.href = localStorage.rewardPath;
+								} else {
+									window.location.href = '/';
+								}
 							}
 						});
 					});
@@ -10392,7 +10404,14 @@ var registration_Registration = function (_Component) {
 				if (resp) {
 					_this.setState({});
 					_this.props.callToDialog('success');
-					window.location.href = '/';
+					// atidziai atiduot statusa backend !!!
+
+					if (localStorage.needReward) {
+						localStorage.removeItem('needReward');
+						window.location.href = localStorage.rewardPath;
+					} else {
+						window.location.href = '/';
+					}
 				}
 			});
 		};
@@ -10418,7 +10437,14 @@ var registration_Registration = function (_Component) {
 								_this.rules();
 							} else {
 								_this.props.callToDialog('success');
-								window.location.href = '/';
+								// atidziai atiduot statusa backend !!!
+
+								if (localStorage.needReward) {
+									localStorage.removeItem('needReward');
+									window.location.href = localStorage.rewardPath;
+								} else {
+									window.location.href = '/';
+								}
 							}
 						});
 					});
@@ -11058,7 +11084,7 @@ function getPixels() {
 		return console.error(e);
 	});
 }
-function vote4art_api_getReward(params) {
+function getReward(params) {
 	var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
 	var url = vote4art_api_BASE_URL + '/rewards/reward';
 	return axios_default.a.post(url, params, head).then(function (response) {
@@ -30975,12 +31001,8 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {
-		var _this4 = this;
-
-		this.loadPixels();
-		setInterval(function () {
-			_this4.loadPixels();
-		}, 3000);
+		// this.loadPixels();
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
@@ -31347,9 +31369,7 @@ var userinfo_Userinfo = function (_Component) {
 		return _this;
 	}
 
-	Userinfo.prototype.componentDidMount = function componentDidMount(props) {
-		if (this.props.hash && this.props.hash.hash && this.props.hash.hash.length) this.checkAndSend(this.props.hash);
-	};
+	Userinfo.prototype.componentDidMount = function componentDidMount(props) {};
 
 	Userinfo.prototype.render = function render(props) {
 		return Object(preact_min["h"])(
@@ -31374,8 +31394,7 @@ var userinfo_Userinfo = function (_Component) {
 					'Vartotojas: ',
 					this.props.data.attributes.username
 				)
-			),
-			this.state.showQr ? Object(preact_min["h"])(Qrread, { callToInfo: this.callFromQr }) : ''
+			)
 		);
 	};
 
@@ -31383,6 +31402,88 @@ var userinfo_Userinfo = function (_Component) {
 }(preact_min["Component"]);
 
 
+// CONCATENATED MODULE: ./utils/loc-service.js
+// const ID_TOKEN_KEY = 'id_token';
+
+
+
+
+
+
+
+
+function resolveRew(path) {
+	if (typeof window !== 'undefined') {
+		var ah = path || window.location.pathname;
+		var a = ah.substring(0, 4);
+		var h = ah.substring(4, 12);
+		var i = ['/is/', '/re/', '/ba/'].indexOf(a);
+		switch (i) {
+			case 0:
+				{
+					return needLocation(h);
+				}
+			case 1:
+				{
+					return reKla(h);
+				}
+			case 2:
+				{
+					return needLocation(h);
+				}
+			default:
+				return route('/404');
+		}
+	}
+}
+
+// reikalinga vieta
+
+
+function needLocation(hash) {
+	if (navigator.geolocation) {
+		lib["NotificationManager"].info('Lokacijos patvirtinimas');
+		navigator.geolocation.getCurrentPosition(function (e) {
+			return showPosition(e, hash);
+		});
+	}
+	lib["NotificationManager"].warn('Neveikia lokacija ');
+}
+
+function showPosition(position, hash) {
+	var locParams = {
+		lat: position.coords.latitude,
+		long: position.coords.longitude,
+		hash: hash
+	};
+	if (!['9282c043', 'b357906c', 'bdb4defa'].includes(hash)) {
+		return lib["NotificationManager"].error('Patikrinimas nepraeitas');
+	}
+	getRew(locParams);
+}
+
+function getRew(params) {
+	getReward(params).then(function (rsp) {
+		lib["NotificationManager"].success('Ačiū, kad dalyvaujate');
+		localStorage.removeItem('reward_path');
+		localStorage.removeItem('need_reward');
+		route('/');
+	}).catch(function (e) {
+		lib["NotificationManager"].error('Patikrinimas nepraeitas');
+		route('/');
+	});
+}
+
+function reKla(h) {
+	var _this = this;
+
+	getAdd(h).then(function (resp) {
+		_this.respHead();
+		lib["NotificationManager"].success('Papildomi pikseliai');
+	}).catch(function (e) {
+		lib["NotificationManager"].error('Patikrinimas nepraeitas');
+	});
+}
 // CONCATENATED MODULE: ./components/app.js
 
 
@@ -31460,23 +31561,6 @@ var app_App = function (_Component) {
 			}
 		};
 
-		_this.handleRoute = function (e) {
-			if (e.current.attributes.hash) {
-				_this.setState({ hash: e.current.attributes.hash });
-				localStorage.setItem('hash', e.current.attributes.hash);
-			}
-		};
-
-		_this.showPosition = function (position) {
-			var locParams = {
-				lat: position.coords.latitude,
-				long: position.coords.longitude,
-				hash: _this.hash
-			};
-			if (!['9282c043', 'b357906c', 'bdb4defa'].includes(_this.hash)) return;
-			_this.getReward(locParams);
-		};
-
 		_this.state = {};
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') {
@@ -31512,73 +31596,21 @@ var app_App = function (_Component) {
 		});
 	};
 
-	App.prototype.reKla = function reKla(h) {
-		var _this3 = this;
+	App.prototype.componentDidMount = function componentDidMount() {
+		// patikrinam user;
+		this.getInfo();
 
-		getAdd(h).then(function (resp) {
-			_this3.respHead();
-			lib["NotificationManager"].success('Papildomi pikseliai');
-		}).catch(function (e) {
-			lib["NotificationManager"].error('Patikrinimas nepraeitas');
-		});
-	};
-
-	App.prototype.needLocation = function needLocation() {
-		this.check();
-	};
-
-	App.prototype.check = function check() {
-		if (navigator.geolocation) {
-			lib["NotificationManager"].info('Lokacijos patvirtinimas');
-			navigator.geolocation.getCurrentPosition(this.showPosition);
-		} else {
-			lib["NotificationManager"].warn('Neveikia lokacija');
-		}
-	};
-
-	App.prototype.getReward = function getReward(params) {
-		vote4art_api_getReward(params).then(function (rsp) {
-			lib["NotificationManager"].success('Ačiū, kad dalyvaujate');
-			route('/');
-		}).catch(function (e) {
-			lib["NotificationManager"].error('Patikrinimas nepraeitas');
-			route('/');
-		});
-	};
-
-	App.prototype.resolveRew = function resolveRew() {
-		if (typeof window !== "undefined") {
-			var ah = window.location.pathname;
-
-			var a = ah.substring(0, 4);
-			var _h = ah.substring(4, 12);
-			var i = ['/is/', '/re/', '/ba/'].indexOf(a);
-			switch (i) {
-				case 0:
-					{
-						return this.needLocation(_h);
-					}
-				case 1:
-					{
-						return this.reKla(_h);
-					}
-				case 2:
-					{
-						return this.needLocation(_h);
-					}
-				default:
-					false;
+		if (localStorage.va) {
+			if (window.location.pathname.length > 13) {
+				resolveRew(window.location.pathname);
+			}
+		} else if (typeof window !== 'undefined') {
+			if (window.location.pathname.length > 13) {
+				localStorage.setItem('rewardPath', window.location.pathname);
+				localStorage.setItem('needReward', true);
+				lib["NotificationManager"].info('Privaloma autiorizacija');
 			}
 		}
-	};
-
-	App.prototype.componentWillMount = function componentWillMount() {
-		this.resolveRew();
-	};
-
-	App.prototype.componentDidMount = function componentDidMount() {
-
-		this.getInfo();
 	};
 
 	App.prototype.render = function render() {
