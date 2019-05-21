@@ -51,8 +51,11 @@ export default class Header extends Component {
 
 		}
 		if (state === 'success'){
-			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: state });
+			this.props.callToApp({ status: state, type: 'pixel' });
+			setTimeout(() => {
+				this.dialog.MDComponent.close();
+			}, 1);
+
 		}
 	}
 	callBackFromRegistration = (state) => {
@@ -61,8 +64,12 @@ export default class Header extends Component {
 
 		}
 		if (state === 'success'){
-			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: state });
+			this.props.callToApp({ status: state, type: 'pixel'});
+			setTimeout(() => {
+				this.dialog.MDComponent.close();
+
+			}, 1);
+
 		}
 	}
 	acceptTerms = () => {
