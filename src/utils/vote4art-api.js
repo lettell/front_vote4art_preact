@@ -11,7 +11,6 @@ export { getPixels, postPixel, getReward };
 
 
 function getPixels() {
-
 	const url = `${BASE_URL}/public/pixels/ready`;
 	return axios.get(url).then(response => JSON.parse(response.data)).catch(e => console.error(e));
 }
@@ -22,19 +21,23 @@ function getReward(params) {
 	return axios.post(url, params, head).then(response => JSON.parse(response.data));
 }
 function postPixel(xy, color) {
-	if (typeof window !== "undefined") {
-		const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
-		const colo = color.trim();
-		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
-		if (11 > color.length && 18 > color.length) return;
-		const pramas = {
-			x: xy[0],
-			y: xy[1],
-			color: colo.trim()
+	let pix = parseInt(localStorage.pix);
+	if (!isNaN(pix) && pix > 0) {
+		parseInt(localStorage.pix) !== NaN 
+		if (typeof window !== "undefined") {
+			const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
+			const colo = color.trim();
+			if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
+			if (11 > color.length && 18 > color.length) return;
+			const pramas = {
+				x: xy[0],
+				y: xy[1],
+				color: colo.trim()
 
-		};
-		const url = `${BASE_URL}/pixels`;
-		return axios.post(url, pramas, head).then(response => JSON.parse(response.data));
-	}
+			};
+			const url = `${BASE_URL}/pixels`;
+			return axios.post(url, pramas, head).then(response => JSON.parse(response.data));
+		}
+}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));

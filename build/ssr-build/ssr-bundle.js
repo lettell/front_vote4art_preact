@@ -31383,7 +31383,7 @@ var userinfo_Userinfo = function (_Component) {
 					'h3',
 					null,
 					'Turimi pixeliai: ',
-					this.props.data.meta.active_pixels
+					this.props.data && this.props.data.meta && this.props.data.meta.active_pixels ? this.props.data.meta.active_pixels : 0
 				)
 			),
 			Object(preact_min["h"])(

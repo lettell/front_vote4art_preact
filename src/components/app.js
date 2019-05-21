@@ -54,8 +54,11 @@ export default class App extends Component {
 	}
 	getInfo() {
 		checkAuth().then( resp => {
-			this.setSt(resp.meta);
-			this.user = resp;
+			if( resp.meta.active_pixels ) {
+				localStorage.setItem("pix", resp.meta.active_pixels)
+			}
+			this.setState({user: resp})
+
 		} );
 	}
 	respHead = e => {
@@ -88,12 +91,13 @@ export default class App extends Component {
 
 	}
 	componentDidMount() {
+		this.getInfo()
+
 	}
 	render() {
-		console.log(this.state);
 		// document.body.classList.add('mdc-theme--main');
-		const base = 'https://vote4art.eu/';
-		// const base = 'https://192.168.0.100:8080/';
+		// const base = 'https://vote4art.eu/';
+		const base = 'http://localhost:8080/';
 		return (
 			<div id="app">
 				<Helmet
@@ -110,9 +114,9 @@ export default class App extends Component {
 					callToApp={this.respHead}
 				/>
 
-				{ this.state.logined ?
+				{ this.state.logined  && this.state.user?
 					<Userinfo
-						data={this.user || {}}
+						data={this.state.user}
 						hash={{ hash: this.state.hash || '' }}
 						callToApp={this.respUser}
 					/> : ''
