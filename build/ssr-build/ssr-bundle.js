@@ -10010,7 +10010,7 @@ var login__ref = Object(preact_min["h"])(
 	'Prisijungti'
 );
 
-var _ref2 = Object(preact_min["h"])('hr', null);
+var login__ref2 = Object(preact_min["h"])('hr', null);
 
 var _ref3 = Object(preact_min["h"])(
 	'h4',
@@ -10046,7 +10046,7 @@ var login_Login = function (_Component) {
 							if (resp.status === 'error') {
 								_this.rules();
 							} else {
-								_this.props.callToDialog(resp.status);
+								_this.props.callToDialog('success');
 							}
 						});
 					});
@@ -10118,7 +10118,7 @@ var login_Login = function (_Component) {
 				{ onClick: this.fbLogin },
 				'Arba prisijunkite per'
 			),
-			_ref2,
+			login__ref2,
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': login_style_default.a.social },
@@ -10414,7 +10414,7 @@ var registration_Registration = function (_Component) {
 							if (resp.status === 'error') {
 								_this.rules();
 							} else {
-								_this.props.callToDialog(resp.status);
+								_this.props.callToDialog('success');
 							}
 						});
 					});
@@ -31161,15 +31161,17 @@ var game_Game = function (_Component) {
 		}
 	};
 
-	Game.prototype.render = function render(_ref) {
+	Game.prototype.render = function render(_ref, _ref2) {
 		var x = _ref.x,
 		    y = _ref.y,
 		    zoom = _ref.zoom;
+		var user = _ref2.user;
 
+		console.log(user);
 		return Object(preact_min["h"])(
 			'div',
 			{ 'class': 'container_main' },
-			Object(preact_min["h"])(board_Board, { callToApp: this.props.callToApp, x: x, y: y, zoom: zoom })
+			Object(preact_min["h"])(board_Board, { user: user, callToApp: this.props.callToApp, x: x, y: y, zoom: zoom })
 		);
 	};
 
@@ -31557,7 +31559,7 @@ var app_App = function (_Component) {
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/', callToApp: this.respGame }),
-				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl }),
