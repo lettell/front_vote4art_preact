@@ -31006,7 +31006,7 @@ var board_Board = function (_Component) {
 		this.loadPixels();
 		setInterval(function () {
 			_this4.loadPixels();
-		}, 3000);
+		}, 1000);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
