@@ -28,10 +28,13 @@ export default class App extends Component {
 			};
 		}
 		this.hash;
-		this.lo = localStorage.va || false;
-		if(this.lo) {
-			this.state.logined = true;
+		if (typeof window !== "undefined") {
+			this.lo = localStorage.va || false;
+			if (this.lo) {
+				this.state.logined = true;
+			}
 		}
+
 	}
 	resolveState(e) {
 		const res = this.arr;
@@ -89,7 +92,6 @@ export default class App extends Component {
 	}
 	componentDidMount() {
 	}
-
 	render() {
 		console.log(this.state);
 		// document.body.classList.add('mdc-theme--main');

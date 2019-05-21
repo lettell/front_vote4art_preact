@@ -10777,7 +10777,12 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.setUserState = function setUserState() {
-		return this.setState({ userState: localStorage.userState });
+		this.setState({ userState: localStorage.userState });
+
+		if (!localStorage.va) {
+			this.setState({ dialogContent: 'game' });
+			this.dialog.MDComponent.show();
+		}
 	};
 
 	Header.prototype.testScreen = function testScreen() {
@@ -10801,6 +10806,7 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.componentDidMount = function componentDidMount() {
+
 		this.setUserState();
 	};
 
@@ -31465,9 +31471,12 @@ var app_App = function (_Component) {
 				_this.setState({ update: true });
 			}
 			if (e.type === 'userState') {
-				_this.state;
-				_this.setState({ logined: true, needTerms: false });
-				_this.setState({ update: true });
+				if (_this.lo) {
+					_this.setState({ logined: true, needTerms: false });
+					_this.setState({ update: true });
+				} else {
+					_this.setState({ logined: false });
+				}
 			}
 		};
 
@@ -31478,6 +31487,7 @@ var app_App = function (_Component) {
 			}
 		};
 
+		_this.state = {};
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') {
 			_this.state = {
@@ -31486,6 +31496,13 @@ var app_App = function (_Component) {
 			};
 		}
 		_this.hash;
+		if (typeof window !== "undefined") {
+			_this.lo = localStorage.va || false;
+			if (_this.lo) {
+				_this.state.logined = true;
+			}
+		}
+
 		return _this;
 	}
 
