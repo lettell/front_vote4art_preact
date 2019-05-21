@@ -23,7 +23,6 @@ function getReward(params) {
 function postPixel(xy, color) {
 	let pix = parseInt(localStorage.pix);
 	if (!isNaN(pix) && pix > 0) {
-		parseInt(localStorage.pix) !== NaN 
 		if (typeof window !== "undefined") {
 			const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
 			const colo = color.trim();

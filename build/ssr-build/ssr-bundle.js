@@ -11043,7 +11043,6 @@ var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 function getPixels() {
-
 	var url = vote4art_api_BASE_URL + '/public/pixels/ready';
 	return axios_default.a.get(url).then(function (response) {
 		return JSON.parse(response.data);
@@ -11060,21 +11059,24 @@ function vote4art_api_getReward(params) {
 	});
 }
 function postPixel(xy, color) {
-	if (typeof window !== "undefined") {
-		var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
-		var colo = color.trim();
-		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
-		if (11 > color.length && 18 > color.length) return;
-		var pramas = {
-			x: xy[0],
-			y: xy[1],
-			color: colo.trim()
+	var pix = parseInt(localStorage.pix);
+	if (!isNaN(pix) && pix > 0) {
+		if (typeof window !== "undefined") {
+			var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
+			var colo = color.trim();
+			if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
+			if (11 > color.length && 18 > color.length) return;
+			var pramas = {
+				x: xy[0],
+				y: xy[1],
+				color: colo.trim()
 
-		};
-		var url = vote4art_api_BASE_URL + '/pixels';
-		return axios_default.a.post(url, pramas, head).then(function (response) {
-			return JSON.parse(response.data);
-		});
+			};
+			var url = vote4art_api_BASE_URL + '/pixels';
+			return axios_default.a.post(url, pramas, head).then(function (response) {
+				return JSON.parse(response.data);
+			});
+		}
 	}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
@@ -31514,20 +31516,23 @@ var app_App = function (_Component) {
 		var _this2 = this;
 
 		checkAuth().then(function (resp) {
-			_this2.setSt(resp.meta);
-			_this2.user = resp;
+			if (resp.meta.active_pixels) {
+				localStorage.setItem("pix", resp.meta.active_pixels);
+			}
+			_this2.setState({ user: resp });
 		});
 	};
 
 	App.prototype.componentWillMount = function componentWillMount() {};
 
-	App.prototype.componentDidMount = function componentDidMount() {};
+	App.prototype.componentDidMount = function componentDidMount() {
+		this.getInfo();
+	};
 
 	App.prototype.render = function render() {
-		console.log(this.state);
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'https://192.168.0.100:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31543,8 +31548,8 @@ var app_App = function (_Component) {
 				selectedRoute: this.state.currentUrl,
 				callToApp: this.respHead
 			}),
-			this.state.logined ? Object(preact_min["h"])(userinfo_Userinfo, {
-				data: this.user || {},
+			this.state.logined && this.state.user ? Object(preact_min["h"])(userinfo_Userinfo, {
+				data: this.state.user,
 				hash: { hash: this.state.hash || '' },
 				callToApp: this.respUser
 			}) : '',
