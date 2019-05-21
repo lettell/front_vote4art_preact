@@ -45,23 +45,21 @@ export default class Header extends Component {
 			this.setState({ dialogContent: 'registracija' });
 
 		}
-		if (state === 'success'){
-
+		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: status });
+			this.props.callToApp({ status: state.status });
 		}
 	}
-	
 	callBackFromRegistration = (state) => {
 		if (state === 'login') {
 			this.setState({ dialogContent: 'login' });
+
 		}
 		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
 			this.props.callToApp({ status: state.status });
 		}
 	}
-	
 	acceptTerms = () => {
 		if (localStorage.provider && localStorage.provider === 'fb') {
 			acceptTerms().then(resp => {
@@ -124,7 +122,6 @@ export default class Header extends Component {
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
 	render(props) {
-		console.log(props);
 		return (
 			<div>
 	     	<NotificationContainer />
@@ -149,7 +146,7 @@ export default class Header extends Component {
 
 						<TopAppBar.Section align-end shrink-to-fit >
 							<div class={style.mobile_h}>
-							{ this.state.logined || props.gameState.logined ?
+							{ this.state.logined ?
 								<Button onClick={this.logOut} secondary>Atsijungti</Button> :
 								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 							}

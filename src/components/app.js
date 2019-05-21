@@ -5,13 +5,11 @@ import { Router } from 'preact-router';
 import Header from './header';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
-import Callback from '../routes/callback';
 
-import FacebookLogin from 'react-facebook-login';
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
-import { checkAuth, facebookLogin } from '../utils/auth-service';
+import { checkAuth } from '../utils/auth-service';
 import Userinfo from './userinfo';
 
 export default class App extends Component {
