@@ -10719,16 +10719,20 @@ var header_Header = function (_Component) {
 				_this.setState({ dialogContent: 'registracija' });
 			}
 			if (state === 'success') {
-				_this.dialog.MDComponent.close();
-				_this.props.callToApp({ status: state });
+				_this.props.callToApp({ status: state, type: 'pixel' });
+				setTimeout(function () {
+					_this.dialog.MDComponent.close();
+				}, 1);
 			}
 		}, _this.callBackFromRegistration = function (state) {
 			if (state === 'login') {
 				_this.setState({ dialogContent: 'login' });
 			}
 			if (state === 'success') {
-				_this.dialog.MDComponent.close();
-				_this.props.callToApp({ status: state });
+				_this.props.callToApp({ status: state, type: 'pixel' });
+				setTimeout(function () {
+					_this.dialog.MDComponent.close();
+				}, 1);
 			}
 		}, _this.acceptTerms = function () {
 			if (localStorage.provider && localStorage.provider === 'fb') {
