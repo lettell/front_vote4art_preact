@@ -31001,8 +31001,12 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.componentDidMount = function componentDidMount() {
-		// this.loadPixels();
-		// setInterval( () => { this.loadPixels(); }, 3000);
+		var _this4 = this;
+
+		this.loadPixels();
+		setInterval(function () {
+			_this4.loadPixels();
+		}, 3000);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
