@@ -38,7 +38,15 @@ export default class Registration extends Component {
 			if (resp) {
 				this.setState({});
 				this.props.callToDialog('success');
-				window.location.href = '/';
+				// atidziai atiduot statusa backend !!!
+		
+				if (localStorage.needReward) {
+					localStorage.removeItem('needReward');
+					window.location.href = localStorage.rewardPath;
+				}
+				else {
+					window.location.href = '/';
+				}
 			}
 		});
 	}
@@ -71,13 +79,21 @@ export default class Registration extends Component {
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				FB.api('/me', (response) => {
-				facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
+					facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
 						if (resp.status === 'error') {
 							this.rules();
 						}
 						else {
 							this.props.callToDialog('success');
-							window.location.href = '/';
+							// atidziai atiduot statusa backend !!!
+					
+							if (localStorage.needReward) {
+								localStorage.removeItem('needReward');
+								window.location.href = localStorage.rewardPath;
+							}
+							else {
+								window.location.href = '/';
+							}
 
 						}
 					});

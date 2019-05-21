@@ -171,8 +171,8 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
-		this.loadPixels();
-		setInterval( () => { this.loadPixels(); }, 3000);
+		// this.loadPixels();
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');

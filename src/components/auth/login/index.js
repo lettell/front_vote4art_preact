@@ -26,8 +26,17 @@ export default class Login extends Component {
 	loginSimple = () => {
 		login(this.state).then((resp) => {
 			if (resp) {
+				// atidziai atiduot statusa backend !!!
 				this.props.callToDialog(resp.status);
-				window.location.href = '/';
+
+				if (localStorage.needReward) {
+					localStorage.removeItem('needReward');
+					window.location.href = localStorage.rewardPath;
+				}
+				else {
+					window.location.href = '/';
+				}
+				
 			}
 		});
 	}
@@ -57,8 +66,13 @@ export default class Login extends Component {
 						}
 						else {
 							this.props.callToDialog('success');
-							window.location.href = '/';
-
+							if (localStorage.needReward) {
+								localStorage.removeItem('needReward');
+								window.location.href = localStorage.rewardPath;
+							}
+							else {
+								window.location.href = '/';
+							}
 						}
 
 					});

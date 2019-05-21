@@ -15,7 +15,6 @@ export default class Userinfo extends Component {
 	}
 
 	componentDidMount(props) {
-		if (this.props.hash && this.props.hash.hash && this.props.hash.hash.length) this.checkAndSend(this.props.hash);
 	}
 	render(props) {
 		return (
@@ -26,9 +25,9 @@ export default class Userinfo extends Component {
 				<div>
 					<h3>Vartotojas: {this.props.data.attributes.username}</h3>
 				</div>
-				{ this.state.showQr ?
+				{/* { this.state.showQr ?
 					<Qrread  callToInfo={this.callFromQr} /> : ''
-				}
+				} */}
 
 			</div>
 		);

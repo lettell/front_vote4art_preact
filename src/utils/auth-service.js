@@ -6,7 +6,7 @@ import { NotificationManager } from 'react-notifications';
 
 const ACCESS_TOKEN_KEY = 'va',
 			ID_TOKEN_KEY = 'la',
-	BASE_URL = 'https://api.vote4art.eu',
+	  	BASE_URL = 'https://api.vote4art.eu',
 	// BASE_URL = 'http://localhost:3000',
  
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
@@ -81,7 +81,7 @@ function login(pramas) {
 			}
 		})
 		.catch((error) => {
-			NotificationManager.error(error.response.data
+			NotificationManager.error(error.message
 				,'Klaida', 2000);
 		});
 }
@@ -111,7 +111,7 @@ function logout() {
 	// sendLogout();
 	clearIdToken();
 	clearAccessToken();
-	localStorage.clear();
+	delete localStorage.va;
 	window.location.href = '/';
 }
 
