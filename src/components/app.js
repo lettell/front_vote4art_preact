@@ -123,7 +123,7 @@ export default class App extends Component {
 				}
 				<Router onChange={this.handleRoute}>
 					<Game gameState={this.state} path="/" callToApp={this.respGame} />
-					<Game path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
+					<Game  gameState={this.state} path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />

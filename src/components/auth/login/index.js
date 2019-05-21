@@ -55,7 +55,7 @@ export default class Login extends Component {
 							this.rules();
 						}
 						else {
-							this.props.callToDialog(resp.status);
+							this.props.callToDialog('success');
 							
 						}
 					});

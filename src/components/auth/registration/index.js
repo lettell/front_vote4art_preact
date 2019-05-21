@@ -75,7 +75,7 @@ export default class Registration extends Component {
 							this.rules();
 						}
 						else {
-							this.props.callToDialog(resp.status);
+							this.props.callToDialog('success');
 							
 						}
 					});
