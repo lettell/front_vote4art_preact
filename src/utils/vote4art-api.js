@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1';
 import { NotificationManager } from 'react-notifications';
 
 // production
-const BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
+const BASE_URL = 'http://localhost:3000/api/v1';
 
-export { getPixels, postPixel, getReward };
+export { getPixels, postPixel, getReward, getAdd };
 
 
 function getPixels() {
@@ -15,11 +15,16 @@ function getPixels() {
 	return axios.get(url).then(response => JSON.parse(response.data)).catch(e => console.error(e));
 }
 function getReward(params) {
-
 	const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
 	const url = `${BASE_URL}/rewards/reward`;
 	return axios.post(url, params, head).then(response => JSON.parse(response.data));
 }
+function getAdd(params) {
+	const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
+	const url = `${BASE_URL}/rewards/reklaminis`;
+	return axios.post(url, {hash: params}, head).then(response => JSON.parse(response.data));
+}
+
 function postPixel(xy, color) {
 	let pix = parseInt(localStorage.pix);
 	if (!isNaN(pix) && pix > 0) {

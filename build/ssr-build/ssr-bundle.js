@@ -9803,11 +9803,10 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'https://api.vote4art.eu',
 
-// BASE_URL = 'http://localhost:3000',
-
-BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// BASE_URL = 'https://api.vote4art.eu',
+BASE_URL = 'http://localhost:3000',
+    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
 
@@ -10029,7 +10028,8 @@ var login_Login = function (_Component) {
 		_this.loginSimple = function () {
 			login(_this.state).then(function (resp) {
 				if (resp) {
-					_this.props.callToDialog(resp);
+					_this.props.callToDialog(resp.status);
+					window.location.href = '/';
 				}
 			});
 		};
@@ -10390,7 +10390,8 @@ var registration_Registration = function (_Component) {
 			signup(_this.state).then(function (resp) {
 				if (resp) {
 					_this.setState({});
-					_this.props.callToDialog(resp);
+					_this.props.callToDialog('success');
+					window.location.href = '/';
 				}
 			});
 		};
@@ -11040,11 +11041,11 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1';
 
 
 // production
-var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
+var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
 
 
 
@@ -11057,13 +11058,20 @@ function getPixels() {
 	});
 }
 function vote4art_api_getReward(params) {
-
 	var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
 	var url = vote4art_api_BASE_URL + '/rewards/reward';
 	return axios_default.a.post(url, params, head).then(function (response) {
 		return JSON.parse(response.data);
 	});
 }
+function getAdd(params) {
+	var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
+	var url = vote4art_api_BASE_URL + '/rewards/reklaminis';
+	return axios_default.a.post(url, { hash: params }, head).then(function (response) {
+		return JSON.parse(response.data);
+	});
+}
+
 function postPixel(xy, color) {
 	var pix = parseInt(localStorage.pix);
 	if (!isNaN(pix) && pix > 0) {
@@ -31322,8 +31330,6 @@ function userinfo__inherits(subClass, superClass) { if (typeof superClass !== "f
 
 
 
-
-
 var userinfo_Userinfo = function (_Component) {
 	userinfo__inherits(Userinfo, _Component);
 
@@ -31332,31 +31338,6 @@ var userinfo_Userinfo = function (_Component) {
 
 		var _this = userinfo__possibleConstructorReturn(this, _Component.call(this));
 
-		_this.checkAndSend = function (hash) {
-			_this.params.hash = hash;
-			if (navigator.geolocation) {
-				lib["NotificationManager"].info("Lokacijos patvirtinimas");
-				navigator.geolocation.getCurrentPosition(_this.showPosition);
-			} else {
-				lib["NotificationManager"].warn("Neveikia lokacija");
-			}
-		};
-
-		_this.showPosition = function (position) {
-			_this.params = {
-				lat: position.coords.latitude,
-				long: position.coords.longitude,
-				hash: _this.params.hash.hash.slice(0, 8)
-			};
-			if (['9282c043', 'b357906c', 'bdb4defa'].includes(_this.params.hash)) {
-				_this.getReward(_this.params);
-			} else {
-				// NotificationManager.info("Nuskaitykite qr koda")
-
-				// this.setState({showQr: true})
-			}
-		};
-
 		_this.params = {
 			lat: 0,
 			long: 0,
@@ -31364,19 +31345,6 @@ var userinfo_Userinfo = function (_Component) {
 		};
 		return _this;
 	}
-
-	Userinfo.prototype.getReward = function getReward(params) {
-		vote4art_api_getReward(params).then(function (rsp) {
-			route('game/');
-			lib["NotificationManager"].success("Ačiū, kad dalyvaujate");
-		}).catch(function (e) {
-			route('game/');
-		});
-	};
-	// callFromQr = (data) => {
-	// 	console.log(data);
-	// }
-
 
 	Userinfo.prototype.componentDidMount = function componentDidMount(props) {
 		if (this.props.hash && this.props.hash.hash && this.props.hash.hash.length) this.checkAndSend(this.props.hash);
@@ -31426,6 +31394,8 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 // import { login } from '../utils/auth-service';
+
+
 
 
 
@@ -31496,6 +31466,16 @@ var app_App = function (_Component) {
 			}
 		};
 
+		_this.showPosition = function (position) {
+			var locParams = {
+				lat: position.coords.latitude,
+				long: position.coords.longitude,
+				hash: _this.hash
+			};
+			if (!['9282c043', 'b357906c', 'bdb4defa'].includes(_this.hash)) return;
+			_this.getReward(locParams);
+		};
+
 		_this.state = {};
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') {
@@ -31525,22 +31505,85 @@ var app_App = function (_Component) {
 
 		checkAuth().then(function (resp) {
 			if (resp.meta.active_pixels) {
-				localStorage.setItem("pix", resp.meta.active_pixels);
+				localStorage.setItem('pix', resp.meta.active_pixels);
 			}
 			_this2.setState({ user: resp });
 		});
 	};
 
-	App.prototype.componentWillMount = function componentWillMount() {};
+	App.prototype.reKla = function reKla(h) {
+		var _this3 = this;
+
+		getAdd(h).then(function (resp) {
+			_this3.respHead();
+			lib["NotificationManager"].success('Papildomi pikseliai');
+		}).catch(function (e) {
+			lib["NotificationManager"].error('Patikrinimas nepraeitas');
+		});
+	};
+
+	App.prototype.needLocation = function needLocation() {
+		this.check();
+	};
+
+	App.prototype.check = function check() {
+		if (navigator.geolocation) {
+			lib["NotificationManager"].info('Lokacijos patvirtinimas');
+			navigator.geolocation.getCurrentPosition(this.showPosition);
+		} else {
+			lib["NotificationManager"].warn('Neveikia lokacija');
+		}
+	};
+
+	App.prototype.getReward = function getReward(params) {
+		vote4art_api_getReward(params).then(function (rsp) {
+			lib["NotificationManager"].success('Ačiū, kad dalyvaujate');
+			route('/');
+		}).catch(function (e) {
+			lib["NotificationManager"].error('Patikrinimas nepraeitas');
+			route('/');
+		});
+	};
+
+	App.prototype.resolveRew = function resolveRew() {
+		if (typeof window !== "undefined") {
+			var ah = window.location.pathname;
+
+			var a = ah.substring(0, 4);
+			var _h = ah.substring(4, 12);
+			var i = ['/is/', '/re/', '/ba/'].indexOf(a);
+			switch (i) {
+				case 0:
+					{
+						return this.needLocation(_h);
+					}
+				case 1:
+					{
+						return this.reKla(_h);
+					}
+				case 2:
+					{
+						return this.needLocation(_h);
+					}
+				default:
+					false;
+			}
+		}
+	};
+
+	App.prototype.componentWillMount = function componentWillMount() {
+		this.resolveRew();
+	};
 
 	App.prototype.componentDidMount = function componentDidMount() {
+
 		this.getInfo();
 	};
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },

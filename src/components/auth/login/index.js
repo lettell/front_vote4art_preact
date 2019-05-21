@@ -26,7 +26,8 @@ export default class Login extends Component {
 	loginSimple = () => {
 		login(this.state).then((resp) => {
 			if (resp) {
-				this.props.callToDialog(resp);
+				this.props.callToDialog(resp.status);
+				window.location.href = '/';
 			}
 		});
 	}

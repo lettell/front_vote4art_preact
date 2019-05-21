@@ -37,7 +37,8 @@ export default class Registration extends Component {
 		signup(this.state).then( (resp) => {
 			if (resp) {
 				this.setState({});
-				this.props.callToDialog(resp);
+				this.props.callToDialog('success');
+				window.location.href = '/';
 			}
 		});
 	}
