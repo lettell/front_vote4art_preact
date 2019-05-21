@@ -9803,11 +9803,10 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'https://api.vote4art.eu',
 
-// BASE_URL = 'http://localhost:3000',
-
-BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// BASE_URL = 'https://api.vote4art.eu',
+BASE_URL = 'http://localhost:3000',
+    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
 
@@ -10044,10 +10043,8 @@ var login_Login = function (_Component) {
 					FB.api('/me', function (response) {
 						facebookLogin({ id: "" + response.id, name: response.name }).then().then(function (resp) {
 							if (resp.status === 'error') {
-
 								_this.rules();
 							} else {
-								debugger;
 								_this.props.callToDialog(resp.status);
 							}
 						});
@@ -10631,32 +10628,74 @@ var _ref7 = Object(preact_min["h"])(
 );
 
 var _ref8 = Object(preact_min["h"])(
+	'h1',
+	{ style: 'display: inline' },
+	'EP rinkimai 2019'
+);
+
+var _ref9 = Object(preact_min["h"])(
 	'article',
 	null,
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Kasdien nuo gegu\u017E\u0117s 20 d. iki Europos Parlamento rinkim\u0173 gauk pikseli\u0173 ir platformoje Vote4Art kurk virtual\u0173 pie\u0161in\u012F. Rinkim\u0173 dien\u0105 at\u0117j\u0119s balsuoti gausi dar daugiau pikseli\u0173 ir gal\u0117si palikti savo \u017Eym\u0119 bendrame virtualiame pie\u0161inyje, kuris taps m\u016Bs\u0173 istorijos dalimi.'
+		' Sukurkime Lietuvos dyd\u017Eio mozaik\u0105!'
 	),
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Nuo registracijos prad\u017Eios kas 1 valand\u0105 gausi po 1 piksel\u012F. Dienos pikselius gal\u0117si kaupti (iki 24 per dien\u0105), bet jei j\u0173 nei\u0161naudosi iki dienos pabaigos, vidurnakt\u012F jie anuliuosis.'
+		'Taisykl\u0117s paprastos: u\u017Esiregistruokite, gaukite pikseli\u0173 ir sukurkite Lietuvos dyd\u017Eio pie\u0161in\u012F. Ateikite balsuoti \u012F Europos Parlamento rinkimus, skenuokite apylink\u0117se esan\u010Dius QR kodus esan\u010Dius ant Vote4Art plakat\u0173 ir gaukite dar daugiau pikseli\u0173!'
 	),
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Burk koalicijas ir koordinuok veiksmus su kitais. Nesnausk, nes kiti \u017Eaid\u0117jai gali perimti tavo iniciatyv\u0105 ir pie\u0161ti kitaip, nei nori tu.'
+		'O svarbiausia taisykl\u0117 paskutin\u0117 - i\u0161rei\u0161kite savo nuomon\u0119 Europos Parlamento rinkimuose ir formuokite ne tik mozaik\u0105, bet ir Europos ateit\u012F!'
 	),
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Kulminacija laukia rinkim\u0173 dien\u0105. At\u0117j\u0119s \u012F rinkim\u0173 apylink\u0119, nuskanav\u0119s plakat\u0105 su QR kodu ir patvirtin\u0119s savo buvimo viet\u0105 b\u016Bsi apdovanotas papildomais 84 pikseliais. Ateidamas balsuoti tu \u012Fgysi \u017Eymiai didesn\u0119 \u012Ftak\u0105 galutiniam pie\u0161iniui.'
+		'Daugiau info apie EP rinkimus: ',
+		Object(preact_min["h"])(
+			'a',
+			{ 'class': 't_link', target: '_blank', href: 'https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections' },
+			'https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections'
+		)
+	),
+	'       '
+);
+
+var _ref10 = Object(preact_min["h"])(
+	'article',
+	null,
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'2019-\u0173j\u0173 gegu\u017E\u0117s Europos Parlamento rinkimai tiesiogiai paveiks j\u016Bs\u0173 gyvenim\u0105. Jie nulems, k\u0105 ateinan\u010Diais metais darys Europa, kad i\u0161spr\u0119st\u0173 jums r\u016Bpimus darbo, verslo, saugumo, migracijos ir klimato kaitos klausimus.'
 	),
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Paskutinius pikselius gal\u0117si pad\u0117ti iki gegu\u017E\u0117s 26 d. 20.00 val. Bendrai sukurtas pie\u0161inys taps m\u016Bs\u0173 vis\u0173 istorijos dalimi.'
+		'Europa yra m\u016Bs\u0173 vis\u0173, tod\u0117l \u0161iuos sprendimus tur\u0117tume priimti kartu. Taigi svarbu, kad balsuotum\u0117te ne tik j\u016Bs, bet ir j\u016Bs\u0173 \u0161eima, draugai, kaimynai bei kolegos. Kai balsuoja visi, tai ir laimi visi. '
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Kur galiu balsuoti?'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'I\u0161 anksto balsuoti galite gegu\u017E\u0117s 20-24 dienomis visose savivaldyb\u0117se. Gegu\u017E\u0117s 26\u2019\u0105 balsuoti galite bet kurioje Lietuvos rinkim\u0173 apylink\u0117je (nuo 7 iki 20 val.).'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Savivaldybi\u0173 ir apylinki\u0173 \u017Eem\u0117lap\u012F galite rasti \u010Dia ',
+		Object(preact_min["h"])(
+			'a',
+			{ href: 'https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100', target: '_blank' },
+			'\u010Dia'
+		)
 	)
 );
 
@@ -10678,17 +10717,17 @@ var header_Header = function (_Component) {
 			if (state === 'registracija') {
 				_this.setState({ dialogContent: 'registracija' });
 			}
-			if (state.status === 'success') {
+			if (state === 'success') {
 				_this.dialog.MDComponent.close();
-				_this.props.callToApp({ status: state.status });
+				_this.props.callToApp({ status: state });
 			}
 		}, _this.callBackFromRegistration = function (state) {
 			if (state === 'login') {
 				_this.setState({ dialogContent: 'login' });
 			}
-			if (state.status === 'success') {
+			if (state === 'success') {
 				_this.dialog.MDComponent.close();
-				_this.props.callToApp({ status: state.status });
+				_this.props.callToApp({ status: state });
 			}
 		}, _this.acceptTerms = function () {
 			if (localStorage.provider && localStorage.provider === 'fb') {
@@ -10788,11 +10827,6 @@ var header_Header = function (_Component) {
 							'div',
 							{ 'class': header_style_default.a.c_btn },
 							Object(preact_min["h"])(
-								'a',
-								{ href: 'https://ec.europa.eu/lithuania/home_lt', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_ek, src: '/assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
-							),
-							Object(preact_min["h"])(
 								Button_default.a,
 								{ id: 'game', onClick: this.openContent, unelevated: true },
 								'\u017DAIDIMAS'
@@ -10803,9 +10837,9 @@ var header_Header = function (_Component) {
 								'TAISYKL\u0116S'
 							),
 							Object(preact_min["h"])(
-								'a',
-								{ href: 'https://www.vrk.lt/', target: '_blank' },
-								Object(preact_min["h"])('img', { 'class': header_style_default.a.l_vrk, src: '/assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+								Button_default.a,
+								{ id: 'eu', onClick: this.openContent, unelevated: true },
+								'TAISYKL\u0116S'
 							)
 						)
 					),
@@ -10869,7 +10903,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Header,
 					null,
-					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : '',
+					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : this.state.dialogContent === 'eu' ? _ref8 : '',
 					Object(preact_min["h"])(
 						'span',
 						{ style: 'float: right;' },
@@ -10887,7 +10921,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Body,
 					{ scrollable: this.state.scrollModal },
-					this.state.dialogContent === 'game' ? _ref8 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Terms, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : ''
+					this.state.dialogContent === 'game' ? _ref9 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Terms, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? _ref10 : ''
 				),
 				Object(preact_min["h"])(
 					Dialog_default.a.Footer,
@@ -10988,11 +11022,11 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1';
+var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
 
 
 // production
-var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 
@@ -30724,13 +30758,13 @@ var board__ref8 = Object(preact_min["h"])('path', {
 	id: 'LT-SA'
 });
 
-var _ref9 = Object(preact_min["h"])('path', {
+var board__ref9 = Object(preact_min["h"])('path', {
 	d: 'm 123.97599,203.87382 13.34,-3.23 1.51,-1.21 1.04,1.99 3.85,0 -0.17,-1.49 3.14,-1.8 -0.18,-2.76 2.4,-1.44 0.1,-2.65 2.07,-0.99 0.3,-1.18 4.34,1.96 0.01,-1.84 4.21,-3.07 5.11,-0.88 8.52,-4.3 7.3,5.48 1.07,-2.2 1.13,0.76 1.94,-0.64 5.68,3.97 5.29,-3.09 4.18,1.82 3.44,-2.32 0,0 1.64,3.59 -0.8,5.51 1.47,1.18 1.22,-0.21 2.39,2.31 -1.46,2.51 0.13,1.62 0,0 -0.18,0.83 0,0 -0.2,2.67 3.97,1.01 2.83,6.35 3.95,-0.33 -0.65,3.6 3.37,5.21 2.56,1.39 2.51,3.25 -0.34,0.96 1.05,1.49 -3.25,1.88 -0.13,1.06 7.3,1.24 0,0 2.04,1.35 -0.24,1.55 -2.86,1.86 1.48,1.12 2,7.59 3.16,-0.63 0.78,-1.43 1.77,0.14 0.22,3.99 -1.7,1.79 0.66,2.58 2.43,-0.12 0.92,2.54 3.65,-1.18 1.83,0.64 1.67,3.28 0.2,4.39 -2.47,1.76 -0.19,3.7 2.69,1.24 4.57,-1.1 0.06,2.67 2.68,1.69 0,4.52 1.05,-0.47 0.83,-2.25 2.27,0.21 0.15,-2.53 4.81,-0.65 -0.79,-2.13 1.15,-0.54 1.16,2.32 5.21,-1.53 -1.32,6.23 3.9,1.2 2.61,2.18 -3.09,4.18 0.54,1.27 8.32,0.49 1.56,-3.09 6.04,1.4 3.04,-0.63 1.59,-1.99 2.67,0.87 1.04,-1.33 1.06,3.48 0.04,2.2 -1.37,0.77 0.45,1.87 2.4,0.07 1.47,-1.05 0.19,0.94 6.87,-0.63 1.85,1.33 2.81,-0.16 1.13,-1.9 0.67,0.75 6.52,-0.96 1.23,1.12 -0.24,4.63 2.62,1.52 2.25,-0.93 1.17,1.56 4.44,-1.98 0.31,1.45 6.72,2 -3.73,10.14 -0.05,8.58 -3.92,5.46 -1.31,3.98 -3.82,2.61 0,0 -3.31,-0.3 -4.59,1.68 -3.71,0.02 -19.26,-5.06 -6.61,-0.48 -10.18,-3.22 -5.66,1 -10.57,4.22 -11.06,-1.19 -4.98,2.66 -4.43,0.09 -4.71,3.84 -10.88,2.47 -3.19,-0.58 -6.53,-4.26 0,0 -5.3,0.72 -7.64,4.17 -3.44,0.88 -4.98,-1.96 -5.36,-0.23 -5.61,-1.86 -9.61,-0.54 0,0 -2.23,-9.69 0.77,-2.19 -0.56,-1.68 1.34,-2.23 -0.79,-1.31 1.99,-0.42 2.02,1.19 1.23,-0.84 -2.9,-2.61 -3.69,0.23 -5.53,-1.87 -4.02,0.8 -3.77,-4.27 -1.38,1.26 -5.72,-0.7 -6.1,1.02 -1.91,-7.84 -2.7,-6.01 1.21,-3.15 -6,-2.91 -2.68,-2.8 -4.11,-0.12 -6.84,-2.41 1.06,-3.21 6.19,-8.78 1.81,-1.01 0.15,-1.66 4.08,-3.71 0.58,-2.48 3.48,-5.31 0.48,-3.02 -0.86,-3.24 -1.03,0.16 -1.18,-3.1 -4.45,0.82 -6.06,-3.59 -5.33,3 -1.32,-0.09 -0.64,-9.85 -2.09,-7.76 -1.75,0.77 -1.86,-5.04 -0.18,-5.08 2.26,-2.31 -0.65,-0.78 -2.36,1.2 -0.6,-0.56 2.94,-4.13 1.04,0.17 0.95,-1.7 0.92,0.42 2.95,-1.91 -1.12,-1.32 z',
 	title: 'Taurag\u0117',
 	id: 'LT-TA'
 });
 
-var _ref10 = Object(preact_min["h"])('path', {
+var board__ref10 = Object(preact_min["h"])('path', {
 	d: 'm 157.29599,4.3338239 4.87,2.66 5.56,-1.04 1.1,2.94 2.4,0.65 1.35,1.6900001 9.37,-1.5000001 0.98,1.7400001 1.77,-0.03 2.18,1.69 2.15,-1.85 3.29,0.26 2.94,-2.0500001 8.71,1.1400001 4.41,2.91 2.35,-0.19 3.7,1.47 3.34,-0.68 0.98,1.5 3.51,0.33 3.91,4.48 0,0 -0.23,0.94 -6.92,-0.24 1,2.72 1.9,1.88 -0.14,1.15 1.83,0.6 -3.16,7.34 -8.38,-1.61 -0.68,2.71 -5.89,-1.15 -3.03,0.5 1.76,1.57 0.22,2.28 2.66,-0.36 -1.53,7.85 -2.53,1.61 -5.2,0.02 -1.13,9.26 -0.93,0.41 0.34,1.44 -1.02,0.02 -1.55,9.18 -0.1,1.55 2.77,1.3 0.69,-1.13 1.75,1.85 -2.1,5.4 1.39,0.43 1.28,-1.72 0.94,0.14 -0.2,2.52 -1.03,0.09 -1.47,2.27 5.85,0.27 0.2,1.05 3.51,0.53 2.16,-0.96 -0.16,-1.41 3.44,0.07 2.62,0.84 3.61,3.15 3.85,0.7 0.81,-2.01 1.61,0.43 0.22,-3.44 2.45,0.35 6.89,-2.99 1.47,1.42 0.5,-0.48 0.48,1.48 -1.15,1.08 -0.01,4.87 4.19,3.04 0.98,3.75 -1.18,-0.43 -6.54,2.75 -3.73,-1.17 -3.41,2.41 -0.31,1.57 -2.5,-2.22 0.39,2.87 1.4,1.619996 -1.64,1.31 0.67,0.98 -1.34,1.86 -0.8,4.72 -1.64,0.22 -1.86,2.21 1.51,3.05 1.18,0.46 -0.41,3.24 2.21,0.73 2.47,-0.71 1.24,1.36 1.3,-0.5 -1.4,-6.05 2.9,1 1.93,7.5 1.05,0.12 -0.2,1.9 3.02,0.1 0.6,2.33 -3.05,0.81 0.83,3.21 1.06,-0.24 -0.3,5.26 -3.66,0.05 1.31,2.42 -0.47,1.59 -3.06,-2.06 -1.99,0.76 0.04,1.3 -1.87,1.48 -7.76,-0.67 -1.15,1.45 1.87,2.38 -0.34,9.4 -12.86,3.13 5.69,11.16 -0.76,1.99 1.53,0.69 0.51,6.53 -0.37,3.13 -1.78,1.49 -4.17,0.35 -1.56,2.91 0,0 -3.44,2.32 -4.18,-1.82 -5.29,3.09 -5.68,-3.97 -1.94,0.64 -1.13,-0.76 -1.07,2.2 -7.3,-5.48 -8.52,4.3 -5.11,0.88 -4.21,3.07 -0.01,1.84 -4.34,-1.96 -0.3,1.18 -2.07,0.99 -0.1,2.65 -2.4,1.44 0.18,2.76 -3.14,1.8 0.17,1.49 -3.85,0 -1.04,-1.99 -1.51,1.21 -13.34,3.23 0,0 -6.42,-5.33 -5.13,1.67 -0.35,-5.69 -1.54,-0.23 -1.75,-2.2 -0.08,-1.87 1.67,0.4 -0.59,-3.94 1.59,-1.92 0.22,-2.93 2.44,-2.25 -0.34,-0.69 -2.86,0.62 -1.26,-1.94 -2.16,0 -1.81,-1.92 0.71,-3.12 1.31,-1 -0.12,-6.34 -2.49,-1.55 -1.04,2.52 -1.64,0.64 -0.76,-1.71 -1.11,1.56 -6.510005,-3.29 -2.19,2.84 -2.75,-0.73 0.25,-4.2 1.06,0.12 0.21,-0.99 -1.26,0.35 -0.8,-0.87 0.63,-2.49 -1.56,-0.83 -0.27,-1.52 -2.54,-1.12 -1.04,-3.56 -1.59,0.1 0.29,3.15 -1.15,-0.04 -1.51,1.8 -6.29,-3.96 2.4,-6.27 1.67,1.05 -0.81,-3.83 0.59,-0.76 2.27,0.26 0.08,-2.33 2.3,-1.21 1.85,0.31 0.5,-1.71 -0.82,-1.5 1.77,-2.28 2.15,0.43 1.48,-1.45 -3.19,-3.38 -2.15,-1.14 -1.11,0.38 -0.67,-2.38 2.38,-0.07 -0.15,-5.64 -1.03,-2.17 3.37,-7.56 -4.72,-2.05 1.59,-3.81 4.08,-0.1 2.72,2.17 1.25,-1 2.06,0.48 3.51,-8.379996 1.08,-0.19 -0.45,-1.1 0.92,-0.14 2.810005,-8.19 3.07,0.67 2.82,-7.39 3.21,0.36 0.26,-0.72 8.83,3.4 -0.81,-5.05 -1.6,-1.74 0.86,-1.82 2.13,0.28 -0.11,1.44 7.22,1.1 0,1.17 2.14,0.82 0.96,-1.49 -0.51,-1.07 1.94,-2.16 1.17,-10.6 1.75,-0.1 0.85,-5.61 6.38,1.15 0.18,-3.54 -3.42,-3.5 1.19,-1.42 -0.81,-4.08 -1.27,-0.67 -0.77,-3.77 -1.02,-0.22 1.05,-11.43 -6.12,-0.61 0.57,-8.03 3.81,0.19 1.38,-0.98 -0.62,-2.75 0.62,-2.31 0,0 2.87,-8.9100001 2.5,-0.29 0.3,-2.12 2.61,-0.08 1.59,1.69 0.66,-0.94 1.99,0.12 0.6,-1.11 1.15,0.58 1.25,-1.3 1.54,0.48 z',
 	title: 'Tel\u0161iai',
 	id: 'LT-TE'
@@ -30798,7 +30832,7 @@ var board_Board = function (_Component) {
 			postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
 				if (resp.data && resp.data.length) {
 					_this.setAllPixels(resp.data);
-					_this.props.callToApp({ putPixel: -1 });
+					_this.props.callToApp({ putPixel: -1, type: 'pixel' });
 					var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
 					if (_this.state.currentPhoto !== photo) {
 						_this.setState({ photoUpdate: 'done', currentPhoto: photo });
@@ -31031,8 +31065,8 @@ var board_Board = function (_Component) {
 							board__ref6,
 							board__ref7,
 							board__ref8,
-							_ref9,
-							_ref10,
+							board__ref9,
+							board__ref10,
 							_ref11,
 							_ref12
 						)
@@ -31068,23 +31102,31 @@ var game_Game = function (_Component) {
 
 		var _this = game__possibleConstructorReturn(this, _Component.call(this));
 
+		_this.statusChangeCallback = function (response) {
+			if (response.status === 'connected') {
+				_this.props.callToApp({ logined: true, type: 'userState' });
+			}
+		};
+
 		_this.userStata = _this.resolveState();
 		if (typeof window !== "undefined") {
 			document.body.classList.add('noScroll');
 		}
 
-		// FB.login(function (response) {
-		// 	if (response.status === 'connected') {
-		// 		FB.api('/me', function(response) {
-		// 			facebookLogin({id: ""+response.id, name: response.name});
-		// 		});
-		// 	} else {
-		// 		alert('nee')
-		// 	}
-		// });
-
 		return _this;
 	}
+
+	Game.prototype.checkFb = function checkFb() {
+		var _this2 = this;
+
+		FB.getLoginStatus(function (response) {
+			_this2.statusChangeCallback(response);
+		});
+	};
+
+	Game.prototype.componentDidMount = function componentDidMount() {
+		this.checkFb();
+	};
 
 	Game.prototype.resolveState = function resolveState() {
 		var state = void 0;
@@ -31412,20 +31454,21 @@ var app_App = function (_Component) {
 		};
 
 		_this.respGame = function (e) {
-			_this.user.meta.active_pixels -= 1;
-			_this.setState({ update: true });
+			if (e.type === 'pixel') {
+				_this.user.meta.active_pixels -= 1;
+				_this.setState({ update: true });
+			}
+			if (e.type === 'userState') {
+				_this.state;
+				_this.setState({ logined: true, needTerms: false });
+				_this.setState({ update: true });
+			}
 		};
 
 		_this.handleRoute = function (e) {
 			if (e.current.attributes.hash) {
 				_this.setState({ hash: e.current.attributes.hash });
 				localStorage.setItem('hash', e.current.attributes.hash);
-			}
-		};
-
-		_this.statusChangeCallback = function (response) {
-			if (response.status === 'connected') {
-				_this.setState({ logined: true });
 			}
 		};
 
@@ -31460,16 +31503,11 @@ var app_App = function (_Component) {
 
 	App.prototype.componentDidMount = function componentDidMount() {};
 
-	App.prototype.checkFb = function checkFb() {
-		return FB.getLoginStatus(function (response) {
-			this.statusChangeCallback(response);
-		});
-	};
-
 	App.prototype.render = function render() {
+		console.log(this.state);
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'https://192.168.0.100:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'https://192.168.0.100:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31485,9 +31523,9 @@ var app_App = function (_Component) {
 				selectedRoute: this.state.currentUrl,
 				callToApp: this.respHead
 			}),
-			this.state.logined && !this.state.needTerms ? Object(preact_min["h"])(userinfo_Userinfo, {
-				data: this.user,
-				hash: { hash: this.state.hash },
+			this.state.logined ? Object(preact_min["h"])(userinfo_Userinfo, {
+				data: this.user || {},
+				hash: { hash: this.state.hash || '' },
 				callToApp: this.respUser
 			}) : '',
 			Object(preact_min["h"])(
@@ -35194,7 +35232,7 @@ var nodeUtil = function () {
 }();
 
 module.exports = nodeUtil;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 
@@ -45931,7 +45969,7 @@ var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
 var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 
@@ -47169,6 +47207,34 @@ module.exports = getAllKeysIn;
 
 /***/ }),
 
+/***/ "l262":
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
 /***/ "lBq7":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48358,34 +48424,6 @@ module.exports = overRest;
 
 /***/ }),
 
-/***/ "qrje":
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
-
 /***/ "qxaq":
 /***/ (function(module, exports) {
 
@@ -48594,7 +48632,7 @@ function cloneBuffer(buffer, isDeep) {
 }
 
 module.exports = cloneBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
 
 /***/ }),
 
@@ -52347,7 +52385,7 @@ exports.default = (0, _common.ColorWrap)(Circle);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"container__3r50c","social":"social__2XomN","login":"login__1lroj","loginBtn":"loginBtn__3ZCIY","loginBtn--facebook":"loginBtn--facebook__25noc"};
+module.exports = {"container":"container__3r50c","social":"social__2XomN","login":"login__1lroj"};
 
 /***/ })
 

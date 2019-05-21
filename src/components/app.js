@@ -58,8 +58,16 @@ export default class App extends Component {
 	}
 
 	respGame = e => {
-		this.user.meta.active_pixels -= 1;
-		this.setState({ update: true });
+		if(e.type === 'pixel') {
+			this.user.meta.active_pixels -= 1;
+			this.setState({ update: true });
+		}
+		if(e.type === 'userState') {
+			this.state 
+			this.setState({logined: true, needTerms: false})
+			this.setState({ update: true });
+
+		}
 	}
 
 	handleRoute = e => {
@@ -72,25 +80,13 @@ export default class App extends Component {
 
 	}
 	componentDidMount() {
-
 	}
 
-	checkFb() {
-		return FB.getLoginStatus(function(response) {
-			this.statusChangeCallback(response)
-		});
-	}
-
-	statusChangeCallback = (response) => {
-		if (response.status === 'connected') {
-			this.setState({logined: true});
-			
-		}
-	}
 	render() {
+		console.log(this.state);
 		// document.body.classList.add('mdc-theme--main');
-		const base = 'https://vote4art.eu/';
-		// const base = 'https://192.168.0.100:8080/';
+		// const base = 'https://vote4art.eu/';
+		const base = 'https://192.168.0.100:8080/';
 		return (
 			<div id="app">
 				<Helmet
@@ -107,10 +103,10 @@ export default class App extends Component {
 					callToApp={this.respHead}
 				/>
 
-				{ this.state.logined && !this.state.needTerms ?
+				{ this.state.logined ?
 					<Userinfo
-						data={this.user}
-						hash={{ hash: this.state.hash }}
+						data={this.user || {}}
+						hash={{ hash: this.state.hash || '' }}
 						callToApp={this.respUser}
 					/> : ''
 				}

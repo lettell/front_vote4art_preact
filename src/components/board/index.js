@@ -151,7 +151,7 @@ export default class Board extends Component {
 		postPixel(this.pixelPoint, this.state.color).then( resp => {
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
-				this.props.callToApp({ putPixel: -1 });
+				this.props.callToApp({ putPixel: -1, type: 'pixel' });
 				const photo = `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
 				if (this.state.currentPhoto !== photo ){
 					this.setState({ photoUpdate: 'done', currentPhoto: photo });

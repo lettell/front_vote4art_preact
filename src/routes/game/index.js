@@ -12,17 +12,25 @@ export default class Game extends Component {
 
 		 }
 		
-		// FB.login(function (response) {
-		// 	if (response.status === 'connected') {
-		// 		FB.api('/me', function(response) {
-		// 			facebookLogin({id: ""+response.id, name: response.name});
-		// 		});
-		// 	} else {
-		// 		alert('nee')
-		// 	}
-		// });
-		
+
+
 	}
+
+	checkFb() {
+		FB.getLoginStatus((response) => {
+		 this.statusChangeCallback(response)
+	 });
+ }
+
+ statusChangeCallback = (response) => {
+	 if (response.status === 'connected') {
+			this.props.callToApp({logined: true, type: 'userState'})		 
+	 }
+ } 
+ componentDidMount() {
+	 	this.checkFb();
+
+ }
 	resolveState() {
 		let state;
 		if (typeof window !== 'undefined') {

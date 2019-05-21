@@ -52,12 +52,9 @@ export default class Login extends Component {
 				FB.api('/me', (response) => {
 				facebookLogin({id: ""+response.id, name: response.name}).then().then(resp => {
 						if (resp.status === 'error') {
-							
 							this.rules();
-
 						}
 						else {
-							debugger
 							this.props.callToDialog(resp.status);
 							
 						}

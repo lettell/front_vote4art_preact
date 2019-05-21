@@ -45,9 +45,9 @@ export default class Header extends Component {
 			this.setState({ dialogContent: 'registracija' });
 
 		}
-		if (state.status === 'success'){
+		if (state === 'success'){
 			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: state.status });
+			this.props.callToApp({ status: state });
 		}
 	}
 	callBackFromRegistration = (state) => {
@@ -55,9 +55,9 @@ export default class Header extends Component {
 			this.setState({ dialogContent: 'login' });
 
 		}
-		if (state.status === 'success'){
+		if (state === 'success'){
 			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: state.status });
+			this.props.callToApp({ status: state });
 		}
 	}
 	acceptTerms = () => {
@@ -133,14 +133,16 @@ export default class Header extends Component {
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
 							<div class={style.c_btn}>
-								<a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
+								{/* <a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
 									<img class={style.l_ek} src='/assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
-								</a>
+								</a> */}
 								<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
-								<a href="https://www.vrk.lt/" target="_blank">
+								<Button id="eu" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
+
+								{/* <a href="https://www.vrk.lt/" target="_blank">
 									<img class={style.l_vrk} src='/assets/images/VRK log 300x300.png' alt="VRK logo" />
-								</a>
+								</a> */}
 							</div>
 						</TopAppBar.Section>
 
@@ -181,8 +183,9 @@ export default class Header extends Component {
 									this.state.dialogContent === 'login'?
 										<h1 style="display: inline">PRISIJUNGIMAS</h1>:
 										this.state.dialogContent === 'registracija'?
-										<h1 style="display: inline">REGISTRACIJA</h1>: ''
-
+										<h1 style="display: inline">REGISTRACIJA</h1>:
+										this.state.dialogContent === 'eu' ? 
+										<h1 style="display: inline">EP rinkimai 2019</h1>: ''
 						}
 					<span style="float: right;">
 						<Dialog.FooterButton cancel={true}>
@@ -195,28 +198,39 @@ export default class Header extends Component {
 						{
 							this.state.dialogContent === 'game'?
 								<article>
-									<p>Kasdien nuo gegužės 20 d. iki Europos Parlamento rinkimų gauk pikselių ir platformoje Vote4Art kurk virtualų piešinį. Rinkimų dieną atėjęs balsuoti gausi dar daugiau pikselių ir galėsi palikti savo žymę bendrame virtualiame piešinyje, kuris taps mūsų istorijos dalimi.
-									</p>
-									<p>
-								Nuo registracijos pradžios kas 1 valandą gausi po 1 pikselį. Dienos pikselius galėsi kaupti (iki 24 per dieną), bet jei jų neišnaudosi iki dienos pabaigos, vidurnaktį jie anuliuosis.
-									</p>
-									<p>
-								Burk koalicijas ir koordinuok veiksmus su kitais. Nesnausk, nes kiti žaidėjai gali perimti tavo iniciatyvą ir piešti kitaip, nei nori tu.
-									</p>
-									<p>
-								Kulminacija laukia rinkimų dieną. Atėjęs į rinkimų apylinkę, nuskanavęs plakatą su QR kodu ir patvirtinęs savo buvimo vietą būsi apdovanotas papildomais 84 pikseliais. Ateidamas balsuoti tu įgysi žymiai didesnę įtaką galutiniam piešiniui.
-									</p>
-									<p>
-								Paskutinius pikselius galėsi padėti iki gegužės 26 d. 20.00 val. Bendrai sukurtas piešinys taps mūsų visų istorijos dalimi.
-									</p>
-								</article>:
-								this.state.dialogContent === 'rules'?
+	<p>	Sukurkime Lietuvos dydžio mozaiką!</p>
+<p>
+Taisyklės paprastos: užsiregistruokite, gaukite pikselių ir sukurkite Lietuvos dydžio piešinį. Ateikite balsuoti į Europos Parlamento rinkimus, skenuokite apylinkėse esančius QR kodus esančius ant Vote4Art plakatų ir gaukite dar daugiau pikselių!
+</p>
+<p>
+O svarbiausia taisyklė paskutinė - išreiškite savo nuomonę Europos Parlamento rinkimuose ir formuokite ne tik mozaiką, bet ir Europos ateitį!</p>
+<p>
+Daugiau info apie EP rinkimus: <a class="t_link" target="_blank" href="https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections" >https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections</a>
+</p>							</article> :			this.state.dialogContent === 'rules'?
 									<Terms callHeader={this.callBackFromRegterms}/>:
 									this.state.dialogContent === 'login' ?
 										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :
 										this.state.dialogContent === 'registracija' ?
-											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :
-											''
+											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :	this.state.dialogContent === 'registracija' ?
+												<article>
+													<p>
+													2019-ųjų gegužės Europos Parlamento rinkimai tiesiogiai paveiks jūsų gyvenimą. Jie nulems, ką ateinančiais metais darys Europa, kad išspręstų jums rūpimus darbo, verslo, saugumo, migracijos ir klimato kaitos klausimus.
+													</p>
+													<p>
+													Europa yra mūsų visų, todėl šiuos sprendimus turėtume priimti kartu. Taigi svarbu, kad balsuotumėte ne tik jūs, bet ir jūsų šeima, draugai, kaimynai bei kolegos. Kai balsuoja visi, tai ir laimi visi.	</p>
+													<p>
+													Kur galiu balsuoti?
+													</p>
+													<p>
+													Iš anksto balsuoti galite gegužės 20-24 dienomis visose savivaldybėse.
+Gegužės 26’ą balsuoti galite bet kurioje Lietuvos rinkimų apylinkėje (nuo 7 iki 20 val.).
+													</p>
+													<p>
+													Savivaldybių ir apylinkių žemėlapį galite rasti čia <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100" target="_blank" >
+													čia
+													</a>
+													</p>
+												</article>:''
 
 						}
 					</Dialog.Body>
