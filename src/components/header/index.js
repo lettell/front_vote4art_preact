@@ -37,7 +37,12 @@ export default class Header extends Component {
 		logout();
 	}
 	setUserState() {
-		return this.setState({ userState: localStorage.userState });
+		this.setState({ userState: localStorage.userState });
+	
+		if (!localStorage.va) {
+			this.setState({ dialogContent: 'game' });
+			this.dialog.MDComponent.show();
+		}
 	}
 
 	callBackFromLogin = (state) => {
@@ -116,6 +121,7 @@ export default class Header extends Component {
 		this.testScreen();
 	}
 	componentDidMount() {
+
 		this.setUserState();
 	}
 
