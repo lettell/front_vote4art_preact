@@ -50,14 +50,16 @@ export default class Login extends Component {
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				FB.api('/me', (response) => {
-				facebookLogin({id: ""+response.id, name: response.name}).then().then(resp => {
+				facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
 						if (resp.status === 'error') {
 							this.rules();
 						}
 						else {
 							this.props.callToDialog('success');
-							
+							window.location.href = '/';
+
 						}
+
 					});
 				});
 			}

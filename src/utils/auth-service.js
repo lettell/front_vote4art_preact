@@ -112,7 +112,7 @@ function logout() {
 	clearIdToken();
 	clearAccessToken();
 	localStorage.clear();
-	window.location.href = '/game';
+	window.location.href = '/';
 }
 
 function facebookLogin(data) {

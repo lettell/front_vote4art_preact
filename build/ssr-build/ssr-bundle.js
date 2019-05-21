@@ -9905,7 +9905,7 @@ function logout() {
 	clearIdToken();
 	clearAccessToken();
 	localStorage.clear();
-	window.location.href = '/game';
+	window.location.href = '/';
 }
 
 function facebookLogin(data) {
@@ -10042,11 +10042,12 @@ var login_Login = function (_Component) {
 			FB.login(function (response) {
 				if (response.status === 'connected') {
 					FB.api('/me', function (response) {
-						facebookLogin({ id: "" + response.id, name: response.name }).then().then(function (resp) {
+						facebookLogin({ id: "" + response.id, name: response.name }).then(function (resp) {
 							if (resp.status === 'error') {
 								_this.rules();
 							} else {
 								_this.props.callToDialog('success');
+								window.location.href = '/';
 							}
 						});
 					});
@@ -10410,11 +10411,12 @@ var registration_Registration = function (_Component) {
 			FB.login(function (response) {
 				if (response.status === 'connected') {
 					FB.api('/me', function (response) {
-						facebookLogin({ id: "" + response.id, name: response.name }).then().then(function (resp) {
+						facebookLogin({ id: "" + response.id, name: response.name }).then(function (resp) {
 							if (resp.status === 'error') {
 								_this.rules();
 							} else {
 								_this.props.callToDialog('success');
+								window.location.href = '/';
 							}
 						});
 					});
