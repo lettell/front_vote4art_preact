@@ -1,11 +1,23 @@
 import { h, Component } from 'preact';
 
 import Board from '../../components/board';
+import {facebookLogin} from '../../utils/auth-service';
 
 export default class Game extends Component {
 	constructor() {
 		super();
 		this.userStata = this.resolveState();
+		document.body.classList.add('noScroll');
+		
+		// FB.login(function (response) {
+		// 	if (response.status === 'connected') {
+		// 		FB.api('/me', function(response) {
+		// 			facebookLogin({id: ""+response.id, name: response.name});
+		// 		});
+		// 	} else {
+		// 		alert('nee')
+		// 	}
+		// });
 		
 	}
 	resolveState() {
@@ -20,16 +32,16 @@ export default class Game extends Component {
 			default: {
 				if (typeof window !== 'undefined') {
 					localStorage.setItem('userState', 0);
-				 }
+				}
 
-				return	this.setState({ dialogContent: 'game' });
+				return this.setState({ dialogContent: 'game' });
 
 			}
 		}
 	}
 	render({ x, y, zoom }) {
 		return (
-			 <div class="container_main">
+			<div class="container_main">
 				<Board callToApp={this.props.callToApp} x={x} y={y} zoom={zoom} />
 			</div>
 		);

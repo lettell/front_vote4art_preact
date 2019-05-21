@@ -3,10 +3,11 @@
 import axios from 'axios';
 import { NotificationManager } from 'react-notifications';
 
+
 const ACCESS_TOKEN_KEY = 'va',
 			ID_TOKEN_KEY = 'la',
-	BASE_URL = 'https://api.vote4art.eu',
-	// BASE_URL = 'http://localhost:3000',
+	// BASE_URL = 'https://api.vote4art.eu',
+	BASE_URL = 'http://localhost:3000',
  
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
@@ -43,21 +44,17 @@ function checkAuth() {
 		});
 }
 // Get and store access_token in local storage
-function getParameterByName(name) {
-  let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
 
-function setAccessToken() {
-  let accessToken = getParameterByName('code');
-  localStorage.setItem("fb-access", accessToken);
-}
+// function setAccessToken() {
+//   let accessToken = getParameterByName('code');
+//   localStorage.setItem("fb-access", accessToken);
+// }
 
-// Get and store id_token in local storage
-function setIdToken() {
-  let idToken = getParameterByName('id_token');
-  localStorage.setItem(ID_TOKEN_KEY, idToken);
-}
+// // Get and store id_token in local storage
+// function setIdToken() {
+//   let idToken = getParameterByName('id_token');
+//   localStorage.setItem(ID_TOKEN_KEY, idToken);
+// }
 
 function login(pramas) {
 	const url = `${BASE_URL}/login`;
@@ -119,12 +116,16 @@ function logout() {
 }
 
 function facebookLogin(data) {
-	const url = `${BASE_URL}/auth/facebook/?facebook_access_token=${data}`;
+	const url = `${BASE_URL}/auth/facebook/?uid=${data.id}&name=${data.name}`;
 	return axios.get(url).then(response => {
 		localStorage.setItem('provider', 'fb');
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		NotificationManager.success(response.data.response, 'Sveiki prisijungę!');
+		if (response.data.status == 'error') {
+			NotificationManager.info('', 'Privalote sutikti su taisyklemis');
 
+		} else {
+			NotificationManager.success('', 'Sveiki prisijungę!');
+		}
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.error(error.response.data
@@ -135,10 +136,10 @@ function facebookLogin(data) {
 export function acceptTerms() {
 	const url = `${BASE_URL_PRIVATE}/users/accept_conditions`;
 	return axios.put(url, { accept: true }, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => {
-  	localStorage.setItem('provider', 'fb');
+  	localStorage.setItem('windowovider', 'fb');
 		return response.data;
 	}).catch((error) => {
-		NotificationManager.error(error.response.data
+		NotificationManager.erwindowr(error.response.data
 			,'Klaida', 2000);
 	});
 }
@@ -157,17 +158,17 @@ function clearAccessToken() {
 
 }
 
-function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
-  if (!token.exp) { return null; }
+// function getTokenExpirationDate(encodedToken) {
+//   const token = decode(encodedToken);
+//   if (!token.exp) { return null; }
 
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
+//   const date = new Date(0);
+//   date.setUTCSeconds(token.exp);
 
-  return date;
-}
+//   return date;
+// }
 
-function isTokenExpired(token) {
-  const expirationDate = getTokenExpirationDate(token);
-  return expirationDate < new Date();
-}
+// function isTokenExpired(token) {
+//   const expirationDate = getTokenExpirationDate(token);
+//   return expirationDate < new Date();
+// }

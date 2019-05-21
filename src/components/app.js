@@ -7,10 +7,11 @@ import NotFound from '../routes/404';
 import Game from '../routes/game';
 import Callback from '../routes/callback';
 
+import FacebookLogin from 'react-facebook-login';
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
-import { checkAuth } from '../utils/auth-service';
+import { checkAuth, facebookLogin } from '../utils/auth-service';
 import Userinfo from './userinfo';
 
 export default class App extends Component {
@@ -55,12 +56,12 @@ export default class App extends Component {
 	}
 	respHead = e => {
 		this.getInfo();
-		this.setState({update: true})
+		this.setState({ update: true });
 	}
 
 	respGame = e => {
 		this.user.meta.active_pixels -= 1;
-		this.setState({update: true})
+		this.setState({ update: true });
 	}
 
 	handleRoute = e => {
@@ -69,16 +70,29 @@ export default class App extends Component {
 			localStorage.setItem('hash', e.current.attributes.hash);
 		}
 	};
+	componentWillMount() {
+
+	}
 	componentDidMount() {
-		this.getInfo();
-		document.body.classList.add('noScroll');
 
 	}
 
+	checkFb() {
+		return FB.getLoginStatus(function(response) {
+			this.statusChangeCallback(response)
+		});
+	}
+
+	statusChangeCallback = (response) => {
+		if (response.status === 'connected') {
+			this.setState({logined: true});
+			
+		}
+	}
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		const base = 'https://vote4art.eu/';
-		// const base = 'http://192.168.0.100:8080';
+		// const base = 'https://vote4art.eu/';
+		const base = 'https://192.168.0.100:8080/';
 		return (
 			<div id="app">
 				<Helmet
@@ -88,11 +102,13 @@ export default class App extends Component {
 				<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 				<link rel="preload" href="/assets/animate.css" as="style" onload="this.rel='stylesheet'" />
+
 				<Header
 					gameState={this.state}
 					selectedRoute={this.state.currentUrl}
 					callToApp={this.respHead}
 				/>
+
 				{ this.state.logined && !this.state.needTerms ?
 					<Userinfo
 						data={this.user}
@@ -100,16 +116,16 @@ export default class App extends Component {
 						callToApp={this.respUser}
 					/> : ''
 				}
-
 				<Router onChange={this.handleRoute}>
 					<Game gameState={this.state} path="/" callToApp={this.respGame} />
 					<Game path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
-					<Callback path="/callback" />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />
 
+				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
 			</div>
+			
 		);
 	}
 }

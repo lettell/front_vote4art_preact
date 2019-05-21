@@ -24,7 +24,7 @@ export default class Login extends Component {
 		this.loginSimple = this.loginSimple.bind(this);
 	}
 	loginSimple = () => {
-		login(this.state).then( (resp) => {
+		login(this.state).then((resp) => {
 			if (resp) {
 				this.props.callToDialog(resp);
 			}
@@ -44,31 +44,33 @@ export default class Login extends Component {
 			[name]: value
 		});
 	}
-	responseFacebook = ({ accessToken }) => {
-		// window.location.href = 'game/';
-		facebookLogin(accessToken).then(resp => {
-			this.setState({ provider: 'facebook' });
-			if (resp.status === 'error') {
 
-				this.rules();
-			}
-			else {
-				this.props.callToDialog(resp);
-				route('/');
 
+	fbLogin = ( ) => {
+		FB.login( (response) => {
+			if (response.status === 'connected') {
+				FB.api('/me', (response) => {
+				facebookLogin({id: ""+response.id, name: response.name}).then().then(resp => {
+						if (resp.status === 'error') {
+							
+							this.rules();
+
+						}
+						else {
+							debugger
+							this.props.callToDialog(resp.status);
+							
+						}
+					});
+				});
 			}
 		});
 	}
-	// responseGoogle = (data) => {
-	// 	console.log("Google:", data)
-	// 	// googleLogin(accessToken);
-	// }
-	// respGoogleFail = (data) => {
-	// 	console.log("Google:", data)
-	// }
+
 	goToRegister = () => {
 		this.props.callToDialog('registracija');
 	}
+
 	render(props) {
 		return (
 			<div class={style.container}>
@@ -94,42 +96,24 @@ export default class Login extends Component {
 						label="Slaptažodis"
 					/>
 					<div class={style.login}>
-						<Button  secondary >Prisijungti</Button>
+						<Button secondary >Prisijungti</Button>
 					</div>
 				</form>
-				<h1 onClick={this.isLogedIn}>Arba prisijunkite per</h1>
+				<h1 onClick={this.fbLogin}>Arba prisijunkite per</h1>
 				<hr />
 				<div class={style.social}>
 					<div>
-						<FacebookLogin
-							appId="449621362498990"
-							// appId="284507289101227"
-							// autoLoad
-							xfbml
-							// cookie={true}
-							version="3.3"
-							fields=""
-							textButton="Facebook"
-							icon="fa-facebook"
-							redirectUri="https://vote4art.eu/callback"
-							// onClick={componentClicked}
-							callback={this.responseFacebook}
-						/>
+					<button class="loginBtn loginBtn--facebook" onClick={this.fbLogin}>
+						Facebook
+					</button>
+
 					</div>
-					<div>
-				  {/* <GoogleLogin
-							clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-							buttonText="Google"
-							onSuccess={this.responseGoogle}
-							onFailure={this.respGoogleFail}
-							cookiePolicy={'single_host_origin'}
-						/> */}
-					</div>
+
 					<div>
 						<h4 style="margin-right: 0.5em;">Naujas vartotojas ?</h4><Button onClick={this.goToRegister} unelevated>Registracija</Button>
 					</div>
 				</div>
-	
+
 
 			</div>
 		);

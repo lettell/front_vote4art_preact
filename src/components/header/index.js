@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import Login from '../auth/login';
 import { NotificationContainer } from 'react-notifications';
-import { acceptTerms, logout } from '../../utils/auth-service';
+import { acceptTerms, logout, facebookLogin } from '../../utils/auth-service';
 
 // material
 import TopAppBar from 'preact-material-components/TopAppBar';
@@ -45,21 +45,23 @@ export default class Header extends Component {
 			this.setState({ dialogContent: 'registracija' });
 
 		}
-		if (state.status === 'success'){
+		if (state === 'success'){
+
 			this.dialog.MDComponent.close();
-			this.props.callToApp({ status: state.status });
+			this.props.callToApp({ status: status });
 		}
 	}
+	
 	callBackFromRegistration = (state) => {
 		if (state === 'login') {
 			this.setState({ dialogContent: 'login' });
-
 		}
 		if (state.status === 'success'){
 			this.dialog.MDComponent.close();
 			this.props.callToApp({ status: state.status });
 		}
 	}
+	
 	acceptTerms = () => {
 		if (localStorage.provider && localStorage.provider === 'fb') {
 			acceptTerms().then(resp => {
@@ -118,9 +120,11 @@ export default class Header extends Component {
 		this.setUserState();
 	}
 
+
 	goHome = this.linkTo('/');
 	goToMyProfile = this.linkTo('/profile');
 	render(props) {
+		console.log(props);
 		return (
 			<div>
 	     	<NotificationContainer />
@@ -145,7 +149,7 @@ export default class Header extends Component {
 
 						<TopAppBar.Section align-end shrink-to-fit >
 							<div class={style.mobile_h}>
-							{ this.state.logined ?
+							{ this.state.logined || props.gameState.logined ?
 								<Button onClick={this.logOut} secondary>Atsijungti</Button> :
 								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 							}
