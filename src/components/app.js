@@ -19,6 +19,7 @@ export default class App extends Component {
 	 */
 	constructor() {
 		super();
+		this.state = {};
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if ( typeof window !== 'undefined') {
 			this.state = {
@@ -27,6 +28,10 @@ export default class App extends Component {
 			};
 		}
 		this.hash;
+		this.lo = localStorage.va || false;
+		if(this.lo) {
+			this.state.logined = true;
+		}
 	}
 	resolveState(e) {
 		const res = this.arr;
@@ -62,10 +67,13 @@ export default class App extends Component {
 			this.user.meta.active_pixels -= 1;
 			this.setState({ update: true });
 		}
-		if(e.type === 'userState') {
-			this.state 
-			this.setState({logined: true, needTerms: false})
-			this.setState({ update: true });
+		if (e.type === 'userState') {
+			if(this.lo) {
+				this.setState({logined: true, needTerms: false})
+				this.setState({ update: true });
+			}else{
+				this.setState({logined: false})
+			}
 
 		}
 	}
