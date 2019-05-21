@@ -7,7 +7,10 @@ export default class Game extends Component {
 	constructor() {
 		super();
 		this.userStata = this.resolveState();
-		document.body.classList.add('noScroll');
+		if (typeof window !== "undefined") { 
+			document.body.classList.add('noScroll');
+
+		 }
 		
 		// FB.login(function (response) {
 		// 	if (response.status === 'connected') {

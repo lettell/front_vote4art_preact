@@ -9803,11 +9803,10 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
-    BASE_URL = 'https://api.vote4art.eu',
 
-// BASE_URL = 'http://localhost:3000',
-
-BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// BASE_URL = 'https://api.vote4art.eu',
+BASE_URL = 'http://localhost:3000',
+    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
 
@@ -9841,21 +9840,17 @@ function checkAuth() {
 	});
 }
 // Get and store access_token in local storage
-function getParameterByName(name) {
-	var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-	return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
 
-function setAccessToken() {
-	var accessToken = getParameterByName('code');
-	localStorage.setItem("fb-access", accessToken);
-}
+// function setAccessToken() {
+//   let accessToken = getParameterByName('code');
+//   localStorage.setItem("fb-access", accessToken);
+// }
 
-// Get and store id_token in local storage
-function setIdToken() {
-	var idToken = getParameterByName('id_token');
-	localStorage.setItem(ID_TOKEN_KEY, idToken);
-}
+// // Get and store id_token in local storage
+// function setIdToken() {
+//   let idToken = getParameterByName('id_token');
+//   localStorage.setItem(ID_TOKEN_KEY, idToken);
+// }
 
 function login(pramas) {
 	var url = BASE_URL + '/login';
@@ -9913,12 +9908,15 @@ function logout() {
 }
 
 function facebookLogin(data) {
-	var url = BASE_URL + '/auth/facebook/?facebook_access_token=' + data;
+	var url = BASE_URL + '/auth/facebook/?uid=' + data.id + '&name=' + data.name;
 	return axios_default.a.get(url).then(function (response) {
 		localStorage.setItem('provider', 'fb');
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		lib["NotificationManager"].success(response.data.response, 'Sveiki prisijungę!');
-
+		if (response.data.status == 'error') {
+			lib["NotificationManager"].info('', 'Privalote sutikti su taisyklemis');
+		} else {
+			lib["NotificationManager"].success('', 'Sveiki prisijungę!');
+		}
 		return response.data;
 	}).catch(function (error) {
 		lib["NotificationManager"].error(error.response.data, 'Nepavyko prisijungti', 2000);
@@ -9928,10 +9926,10 @@ function facebookLogin(data) {
 function acceptTerms() {
 	var url = BASE_URL_PRIVATE + '/users/accept_conditions';
 	return axios_default.a.put(url, { accept: true }, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
-		localStorage.setItem('provider', 'fb');
+		localStorage.setItem('windowovider', 'fb');
 		return response.data;
 	}).catch(function (error) {
-		lib["NotificationManager"].error(error.response.data, 'Klaida', 2000);
+		lib["NotificationManager"].erwindowr(error.response.data, 'Klaida', 2000);
 	});
 }
 
@@ -9948,22 +9946,20 @@ function clearAccessToken() {
 	localStorage.removeItem(ACCESS_TOKEN_KEY);
 }
 
-function getTokenExpirationDate(encodedToken) {
-	var token = decode(encodedToken);
-	if (!token.exp) {
-		return null;
-	}
+// function getTokenExpirationDate(encodedToken) {
+//   const token = decode(encodedToken);
+//   if (!token.exp) { return null; }
 
-	var date = new Date(0);
-	date.setUTCSeconds(token.exp);
+//   const date = new Date(0);
+//   date.setUTCSeconds(token.exp);
 
-	return date;
-}
+//   return date;
+// }
 
-function isTokenExpired(token) {
-	var expirationDate = getTokenExpirationDate(token);
-	return expirationDate < new Date();
-}
+// function isTokenExpired(token) {
+//   const expirationDate = getTokenExpirationDate(token);
+//   return expirationDate < new Date();
+// }
 // EXTERNAL MODULE: ../node_modules/preact-material-components/Button/index.js
 var Button = __webpack_require__("7/cg");
 var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
@@ -10007,15 +10003,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var _ref2 = Object(preact_min["h"])(
+var login__ref = Object(preact_min["h"])(
 	Button_default.a,
 	{ secondary: true },
 	'Prisijungti'
 );
 
-var _ref3 = Object(preact_min["h"])('hr', null);
+var _ref2 = Object(preact_min["h"])('hr', null);
 
-var _ref4 = Object(preact_min["h"])(
+var _ref3 = Object(preact_min["h"])(
 	'h4',
 	{ style: 'margin-right: 0.5em;' },
 	'Naujas vartotojas ?'
@@ -10041,18 +10037,20 @@ var login_Login = function (_Component) {
 			_this.props.callToRules(_this.state);
 		};
 
-		_this.responseFacebook = function (_ref) {
-			var accessToken = _ref.accessToken;
+		_this.fbLogin = function () {
+			FB.login(function (response) {
+				if (response.status === 'connected') {
+					FB.api('/me', function (response) {
+						facebookLogin({ id: "" + response.id, name: response.name }).then().then(function (resp) {
+							if (resp.status === 'error') {
 
-			// window.location.href = 'game/';
-			facebookLogin(accessToken).then(function (resp) {
-				_this.setState({ provider: 'facebook' });
-				if (resp.status === 'error') {
-
-					_this.rules();
-				} else {
-					_this.props.callToDialog(resp);
-					route('/');
+								_this.rules();
+							} else {
+								debugger;
+								_this.props.callToDialog(resp.status);
+							}
+						});
+					});
 				}
 			});
 		};
@@ -10082,14 +10080,6 @@ var login_Login = function (_Component) {
 		var name = target.name;
 		this.setState((_setState = {}, _setState[name] = value, _setState));
 	};
-	// responseGoogle = (data) => {
-	// 	console.log("Google:", data)
-	// 	// googleLogin(accessToken);
-	// }
-	// respGoogleFail = (data) => {
-	// 	console.log("Google:", data)
-	// }
-
 
 	Login.prototype.render = function render(props) {
 		return Object(preact_min["h"])(
@@ -10121,41 +10111,31 @@ var login_Login = function (_Component) {
 				Object(preact_min["h"])(
 					'div',
 					{ 'class': login_style_default.a.login },
-					_ref2
+					login__ref
 				)
 			),
 			Object(preact_min["h"])(
 				'h1',
-				{ onClick: this.isLogedIn },
+				{ onClick: this.fbLogin },
 				'Arba prisijunkite per'
 			),
-			_ref3,
+			_ref2,
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': login_style_default.a.social },
 				Object(preact_min["h"])(
 					'div',
 					null,
-					Object(preact_min["h"])(facebook_login_with_button_default.a, {
-						appId: '449621362498990'
-						// appId="284507289101227"
-						// autoLoad
-						, xfbml: true
-						// cookie={true}
-						, version: '3.3',
-						fields: '',
-						textButton: 'Facebook',
-						icon: 'fa-facebook',
-						redirectUri: 'https://vote4art.eu/callback'
-						// onClick={componentClicked}
-						, callback: this.responseFacebook
-					})
+					Object(preact_min["h"])(
+						'button',
+						{ 'class': 'loginBtn loginBtn--facebook', onClick: this.fbLogin },
+						'Facebook'
+					)
 				),
-				Object(preact_min["h"])('div', null),
 				Object(preact_min["h"])(
 					'div',
 					null,
-					_ref4,
+					_ref3,
 					Object(preact_min["h"])(
 						Button_default.a,
 						{ onClick: this.goToRegister, unelevated: true },
@@ -10371,27 +10351,27 @@ function registration__inherits(subClass, superClass) { if (typeof superClass !=
 
 
 
-var registration__ref2 = Object(preact_min["h"])(
+var registration__ref = Object(preact_min["h"])(
 	'label',
 	{ 'for': 'basic-checkbox', id: 'rules' },
 	'sutinku'
 );
 
-var registration__ref3 = Object(preact_min["h"])(
+var registration__ref2 = Object(preact_min["h"])(
 	Button_default.a,
 	{ secondary: true, type: 'submit' },
 	'Registruotis'
 );
 
-var registration__ref4 = Object(preact_min["h"])(
+var registration__ref3 = Object(preact_min["h"])(
 	'h1',
 	null,
 	'Arba registruokis per'
 );
 
-var _ref5 = Object(preact_min["h"])('hr', null);
+var _ref4 = Object(preact_min["h"])('hr', null);
 
-var _ref6 = Object(preact_min["h"])(
+var _ref5 = Object(preact_min["h"])(
 	'h4',
 	{ style: 'margin-right: 0.5em;' },
 	'Jau u\u017Esiregistraves ?'
@@ -10427,17 +10407,18 @@ var registration_Registration = function (_Component) {
 			return _this.cb = cb;
 		};
 
-		_this.responseFacebook = function (_ref) {
-			var accessToken = _ref.accessToken;
-
-
-			facebookLogin(accessToken).then(function (resp) {
-				_this.setState({});
-				if (resp.status === 'authenticated') {
-					_this.rules();
-				} else {
-					_this.props.callToDialog(resp);
-					_this.route('/');
+		_this.fbLogin = function () {
+			FB.login(function (response) {
+				if (response.status === 'connected') {
+					FB.api('/me', function (response) {
+						facebookLogin({ id: "" + response.id, name: response.name }).then().then(function (resp) {
+							if (resp.status === 'error') {
+								_this.rules();
+							} else {
+								_this.props.callToDialog(resp.status);
+							}
+						});
+					});
 				}
 			});
 		};
@@ -10544,42 +10525,33 @@ var registration_Registration = function (_Component) {
 							'Taisykl\u0117s'
 						),
 						Object(preact_min["h"])(Checkbox_default.a, { id: 'rules', required: true, ref: this.checkRef }),
-						registration__ref2
+						registration__ref
 					),
 					Object(preact_min["h"])(
 						'div',
 						{ 'class': registration_style_default.a.login },
-						registration__ref3
+						registration__ref2
 					)
 				)
 			),
-			registration__ref4,
-			_ref5,
+			registration__ref3,
+			_ref4,
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': registration_style_default.a.social },
 				Object(preact_min["h"])(
 					'div',
 					null,
-					Object(preact_min["h"])(facebook_login_with_button_default.a, {
-						appId: '449621362498990'
-						// autoLoad
-						, xfbml: true
-						// cookie={true}
-						, version: '3.3',
-						fields: '',
-						textButton: 'Facebook',
-						icon: 'fa-facebook',
-						redirectUri: 'https://vote4art.eu/callback'
-						// onClick={componentClicked}
-						, callback: this.responseFacebook
-					})
+					Object(preact_min["h"])(
+						'button',
+						{ 'class': 'loginBtn loginBtn--facebook', onClick: this.fbLogin },
+						'Facebook'
+					)
 				),
-				Object(preact_min["h"])('div', null),
 				Object(preact_min["h"])(
 					'div',
 					null,
-					_ref6,
+					_ref5,
 					Object(preact_min["h"])(
 						Button_default.a,
 						{ onClick: this.toLoging, unelevated: true },
@@ -10645,7 +10617,7 @@ var header__ref5 = Object(preact_min["h"])(
 	'\u017DAIDIMAS'
 );
 
-var header__ref6 = Object(preact_min["h"])(
+var _ref6 = Object(preact_min["h"])(
 	'h1',
 	{ style: 'display: inline' },
 	'PRISIJUNGIMAS'
@@ -10896,7 +10868,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Header,
 					null,
-					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? header__ref6 : this.state.dialogContent === 'registracija' ? _ref7 : '',
+					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : '',
 					Object(preact_min["h"])(
 						'span',
 						{ style: 'float: right;' },
@@ -11014,13 +10986,12 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 // CONCATENATED MODULE: ./utils/vote4art-api.js
 
 
-
 // local
-// const BASE_URL = 'http://localhost:3000/api/v1';
+var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
 
 
 // production
-var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 
@@ -31087,6 +31058,7 @@ function game__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
+
 var game_Game = function (_Component) {
 	game__inherits(Game, _Component);
 
@@ -31096,6 +31068,19 @@ var game_Game = function (_Component) {
 		var _this = game__possibleConstructorReturn(this, _Component.call(this));
 
 		_this.userStata = _this.resolveState();
+		if (typeof window !== "undefined") {
+			document.body.classList.add('noScroll');
+		}
+
+		// FB.login(function (response) {
+		// 	if (response.status === 'connected') {
+		// 		FB.api('/me', function(response) {
+		// 			facebookLogin({id: ""+response.id, name: response.name});
+		// 		});
+		// 	} else {
+		// 		alert('nee')
+		// 	}
+		// });
 
 		return _this;
 	}
@@ -31135,37 +31120,6 @@ var game_Game = function (_Component) {
 }(preact_min["Component"]);
 
 
-// CONCATENATED MODULE: ./routes/callback/index.js
-function callback__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function callback__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function callback__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var callback_Callback = function (_Component) {
-  callback__inherits(Callback, _Component);
-
-  function Callback() {
-    callback__classCallCheck(this, Callback);
-
-    return callback__possibleConstructorReturn(this, _Component.apply(this, arguments));
-  }
-
-  Callback.prototype.componentDidMount = function componentDidMount() {
-    setAccessToken();
-    setIdToken();
-    window.location.href = "/";
-  };
-
-  Callback.prototype.render = function render() {
-    return null;
-  };
-
-  return Callback;
-}(preact_min["Component"]);
 // EXTERNAL MODULE: ../node_modules/preact-helmet/lib/Helmet.js
 var Helmet = __webpack_require__("FJnM");
 var Helmet_default = /*#__PURE__*/__webpack_require__.n(Helmet);
@@ -31417,16 +31371,15 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
-
 var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
 
 var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets/animate.css', as: 'style', onload: 'this.rel=\'stylesheet\'' });
 
-var app__ref4 = Object(preact_min["h"])(/* Cannot get final name for export "default" in "./routes/callback/index.js" (known exports: Callback, known reexports: ) */ undefined, { path: '/callback' });
+var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
-var app__ref5 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
+var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990' });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31469,6 +31422,12 @@ var app_App = function (_Component) {
 			}
 		};
 
+		_this.statusChangeCallback = function (response) {
+			if (response.status === 'connected') {
+				_this.setState({ logined: true });
+			}
+		};
+
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') {
 			_this.state = {
@@ -31496,15 +31455,20 @@ var app_App = function (_Component) {
 		});
 	};
 
-	App.prototype.componentDidMount = function componentDidMount() {
-		this.getInfo();
-		document.body.classList.add('noScroll');
+	App.prototype.componentWillMount = function componentWillMount() {};
+
+	App.prototype.componentDidMount = function componentDidMount() {};
+
+	App.prototype.checkFb = function checkFb() {
+		return FB.getLoginStatus(function (response) {
+			this.statusChangeCallback(response);
+		});
 	};
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'http://192.168.0.100:8080';
+		// const base = 'https://vote4art.eu/';
+		var base = 'https://192.168.0.100:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31530,10 +31494,10 @@ var app_App = function (_Component) {
 				{ onChange: this.handleRoute },
 				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/', callToApp: this.respGame }),
 				Object(preact_min["h"])(game_Game, { path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
-				app__ref4,
-				app__ref5
+				app__ref4
 			),
-			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl })
+			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl }),
+			app__ref5
 		);
 	};
 
@@ -35229,7 +35193,7 @@ var nodeUtil = function () {
 }();
 
 module.exports = nodeUtil;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
 
 /***/ }),
 
@@ -45966,7 +45930,7 @@ var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
 var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
 
 /***/ }),
 
@@ -47204,34 +47168,6 @@ module.exports = getAllKeysIn;
 
 /***/ }),
 
-/***/ "l262":
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
-
 /***/ "lBq7":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48421,6 +48357,34 @@ module.exports = overRest;
 
 /***/ }),
 
+/***/ "qrje":
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
 /***/ "qxaq":
 /***/ (function(module, exports) {
 
@@ -48629,7 +48593,7 @@ function cloneBuffer(buffer, isDeep) {
 }
 
 module.exports = cloneBuffer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("l262")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("qrje")(module)))
 
 /***/ }),
 
@@ -52382,7 +52346,7 @@ exports.default = (0, _common.ColorWrap)(Circle);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"container__3r50c","social":"social__2XomN","login":"login__1lroj"};
+module.exports = {"container":"container__3r50c","social":"social__2XomN","login":"login__1lroj","loginBtn":"loginBtn__3ZCIY","loginBtn--facebook":"loginBtn--facebook__25noc"};
 
 /***/ })
 
