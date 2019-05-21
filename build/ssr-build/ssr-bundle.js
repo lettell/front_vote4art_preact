@@ -9803,10 +9803,11 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 var ACCESS_TOKEN_KEY = 'va',
     ID_TOKEN_KEY = 'la',
+    BASE_URL = 'https://api.vote4art.eu',
 
-// BASE_URL = 'https://api.vote4art.eu',
-BASE_URL = 'http://localhost:3000',
-    BASE_URL_PRIVATE = BASE_URL + '/api/v1';
+// BASE_URL = 'http://localhost:3000',
+
+BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 // production
 
 
@@ -10987,11 +10988,11 @@ var preact_tap_event_plugin_default = /*#__PURE__*/__webpack_require__.n(preact_
 
 
 // local
-var vote4art_api_BASE_URL = 'http://localhost:3000/api/v1';
+// const BASE_URL = 'http://localhost:3000/api/v1';
 
 
 // production
-// const BASE_URL = 'https://api.vote4art.eu/api/v1';
+var vote4art_api_BASE_URL = 'https://api.vote4art.eu/api/v1';
 
 
 
@@ -31467,8 +31468,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://vote4art.eu/';
-		var base = 'https://192.168.0.100:8080/';
+		var base = 'https://vote4art.eu/';
+		// const base = 'https://192.168.0.100:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
