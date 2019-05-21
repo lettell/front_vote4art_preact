@@ -4,8 +4,8 @@ import axios from 'axios';
 import { NotificationManager } from 'react-notifications';
 
 // production
-// const BASE_URL = 'https://api.vote4art.eu/api/v1';
-const BASE_URL = 'http://localhost:3000/api/v1';
+const BASE_URL = 'https://api.vote4art.eu/api/v1';
+// const BASE_URL = 'http://localhost:3000/api/v1';
 
 export { getPixels, postPixel, getReward, getAdd };
 
