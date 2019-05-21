@@ -10748,7 +10748,7 @@ var header_Header = function (_Component) {
 		}, _this.openContent = function (e) {
 			if (e.target.id === 'rules') _this.setState({ scrollModal: true });
 			_this.setState({ dialogContent: e.target.id });
-			if (typeof window !== "undefined") {
+			if (typeof window !== 'undefined') {
 
 				_this.dialog.MDComponent.show();
 			}
@@ -10781,7 +10781,7 @@ var header_Header = function (_Component) {
 	};
 
 	Header.prototype.testScreen = function testScreen() {
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			var viewportheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			var viewportw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -10840,7 +10840,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								Button_default.a,
 								{ id: 'eu', onClick: this.openContent, unelevated: true },
-								'TAISYKL\u0116S'
+								'EP rinkimai 2019'
 							)
 						)
 					),
@@ -10884,6 +10884,11 @@ var header_Header = function (_Component) {
 									{ id: 'rules', onClick: this.openContent, unelevated: true },
 									'TAISYKL\u0116S'
 								),
+								Object(preact_min["h"])(
+									Button_default.a,
+									{ id: 'eu', onClick: this.openContent, unelevated: true },
+									'EP rinkimai 2019'
+								),
 								this.state.logined ? Object(preact_min["h"])(
 									Button_default.a,
 									{ onClick: this.logOut, secondary: true },
@@ -10922,7 +10927,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Body,
 					{ scrollable: this.state.scrollModal },
-					this.state.dialogContent === 'game' ? _ref9 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Terms, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? _ref10 : ''
+					this.state.dialogContent === 'game' ? _ref9 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Terms, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'eu' ? _ref10 : ''
 				),
 				Object(preact_min["h"])(
 					Dialog_default.a.Footer,
@@ -10931,7 +10936,7 @@ var header_Header = function (_Component) {
 						Button_default.a,
 						{ onClick: this.acceptTerms, secondary: true },
 						'SUTINKU'
-					) : '' : this.state.logined === false && this.state.dialogContent === 'game' ? Object(preact_min["h"])(
+					) : '' : this.state.dialogContent === 'game' ? Object(preact_min["h"])(
 						Button_default.a,
 						{ id: 'registracija', onClick: this.openContent, secondary: true },
 						'\u017DAISTI'

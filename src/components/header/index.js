@@ -26,7 +26,7 @@ import Registration from '../auth/registration';
 
 export default class Header extends Component {
 	state = {
-		scrollModal: false,
+		scrollModal: false
 	}
 	closeDrawer() {
 		this.state = {
@@ -67,10 +67,11 @@ export default class Header extends Component {
 				this.dialog.MDComponent.close();
 				this.setState({});
 				this.props.callToApp(true);
-			})
-		} else {
+			});
+		}
+ else {
 			this.state.backState.terms_and_conditions = true;
-			this.setState({ dialogContent: 'registracija'});
+			this.setState({ dialogContent: 'registracija' });
 		}
 
 
@@ -83,7 +84,7 @@ export default class Header extends Component {
 	openContent = (e) => {
 		if (e.target.id === 'rules') this.setState({ scrollModal: true });
 		this.setState({ dialogContent: e.target.id });
-		if (typeof window !== "undefined") { 
+		if (typeof window !== 'undefined') {
 
 			this.dialog.MDComponent.show();
 		 }
@@ -93,7 +94,7 @@ export default class Header extends Component {
 	}
 
 	testScreen() {
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			const viewportheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			const viewportw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -108,7 +109,7 @@ export default class Header extends Component {
 		route(path);
 		this.closeDrawer();
 	};
-	componentWillReceiveProps ({gameState}) {
+	componentWillReceiveProps ({ gameState }) {
 		if (gameState)	this.setState(gameState);
 	}
 	componentWillMount() {
@@ -138,7 +139,7 @@ export default class Header extends Component {
 								</a> */}
 								<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
-								<Button id="eu" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
+								<Button id="eu" onClick={this.openContent} unelevated >EP rinkimai 2019</Button>
 
 								{/* <a href="https://www.vrk.lt/" target="_blank">
 									<img class={style.l_vrk} src='/assets/images/VRK log 300x300.png' alt="VRK logo" />
@@ -148,10 +149,10 @@ export default class Header extends Component {
 
 						<TopAppBar.Section align-end shrink-to-fit >
 							<div class={style.mobile_h}>
-							{ this.state.logined ?
-								<Button onClick={this.logOut} secondary>Atsijungti</Button> :
-								<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
-							}
+								{ this.state.logined ?
+									<Button onClick={this.logOut} secondary>Atsijungti</Button> :
+									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+								}
 							</div>
 				
 						</TopAppBar.Section>
@@ -162,6 +163,7 @@ export default class Header extends Component {
 								<div class={style.mobile_m}>
 									<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 									<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
+									<Button id="eu" onClick={this.openContent} unelevated >EP rinkimai 2019</Button>
 									{ this.state.logined ?
    									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
 										<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
@@ -183,14 +185,14 @@ export default class Header extends Component {
 									this.state.dialogContent === 'login'?
 										<h1 style="display: inline">PRISIJUNGIMAS</h1>:
 										this.state.dialogContent === 'registracija'?
-										<h1 style="display: inline">REGISTRACIJA</h1>:
-										this.state.dialogContent === 'eu' ? 
-										<h1 style="display: inline">EP rinkimai 2019</h1>: ''
+											<h1 style="display: inline">REGISTRACIJA</h1>:
+											this.state.dialogContent === 'eu' ?
+												<h1 style="display: inline">EP rinkimai 2019</h1>: ''
 						}
-					<span style="float: right;">
-						<Dialog.FooterButton cancel={true}>
+						<span style="float: right;">
+							<Dialog.FooterButton cancel>
 								<Button id="rules" onClick={this.closeContent} unelevated >Uždaryti</Button>
-						</Dialog.FooterButton>
+							</Dialog.FooterButton>
 						</span>
 
 					</Dialog.Header>
@@ -198,20 +200,20 @@ export default class Header extends Component {
 						{
 							this.state.dialogContent === 'game'?
 								<article>
-	<p>	Sukurkime Lietuvos dydžio mozaiką!</p>
-<p>
+									<p>	Sukurkime Lietuvos dydžio mozaiką!</p>
+									<p>
 Taisyklės paprastos: užsiregistruokite, gaukite pikselių ir sukurkite Lietuvos dydžio piešinį. Ateikite balsuoti į Europos Parlamento rinkimus, skenuokite apylinkėse esančius QR kodus esančius ant Vote4Art plakatų ir gaukite dar daugiau pikselių!
-</p>
-<p>
+									</p>
+									<p>
 O svarbiausia taisyklė paskutinė - išreiškite savo nuomonę Europos Parlamento rinkimuose ir formuokite ne tik mozaiką, bet ir Europos ateitį!</p>
-<p>
+									<p>
 Daugiau info apie EP rinkimus: <a class="t_link" target="_blank" href="https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections" >https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections</a>
-</p>							</article> :			this.state.dialogContent === 'rules'?
-									<Terms callHeader={this.callBackFromRegterms}/>:
+									</p>							</article> :			this.state.dialogContent === 'rules'?
+									<Terms callHeader={this.callBackFromRegterms} />:
 									this.state.dialogContent === 'login' ?
 										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :
 										this.state.dialogContent === 'registracija' ?
-											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :	this.state.dialogContent === 'registracija' ?
+											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :	this.state.dialogContent === 'eu' ?
 												<article>
 													<p>
 													2019-ųjų gegužės Europos Parlamento rinkimai tiesiogiai paveiks jūsų gyvenimą. Jie nulems, ką ateinančiais metais darys Europa, kad išspręstų jums rūpimus darbo, verslo, saugumo, migracijos ir klimato kaitos klausimus.
@@ -228,20 +230,20 @@ Gegužės 26’ą balsuoti galite bet kurioje Lietuvos rinkimų apylinkėje (nuo
 													<p>
 													Savivaldybių ir apylinkių žemėlapį galite rasti čia <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100" target="_blank" >
 													čia
-													</a>
+														</a>
 													</p>
 												</article>:''
 
 						}
 					</Dialog.Body>
 					<Dialog.Footer>
-					{
+						{
 							this.state.dialogContent === 'rules'?
-								this.state.editrule ? 
+								this.state.editrule ?
 									<Button onClick={this.acceptTerms} secondary>SUTINKU</Button>
 									:'':
-									this.state.logined === false &&	this.state.dialogContent === 'game' ?
-										<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
+								 this.state.dialogContent === 'game' ?
+									<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
 									this.state.dialogContent === 'login'?
 										'':
 										this.state.dialogContent === 'registracija'?
