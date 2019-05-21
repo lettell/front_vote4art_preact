@@ -26,9 +26,7 @@ export default class App extends Component {
 				gameState: localStorage.gameState || -1,
 				provider: undefined
 			};
-		}
 		this.hash;
-		if (typeof window !== "undefined") {
 			this.lo = localStorage.va || false;
 			if (this.lo) {
 				this.state.logined = true;
@@ -66,9 +64,8 @@ export default class App extends Component {
 	}
 
 	respGame = e => {
-		if(e.type === 'pixel') {
-			this.user.meta.active_pixels -= 1;
-			this.setState({ update: true });
+		if (e.type === 'pixel') {
+			this.respHead();
 		}
 		if (e.type === 'userState') {
 			if(this.lo) {

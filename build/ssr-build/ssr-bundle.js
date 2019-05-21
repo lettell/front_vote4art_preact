@@ -31467,8 +31467,7 @@ var app_App = function (_Component) {
 
 		_this.respGame = function (e) {
 			if (e.type === 'pixel') {
-				_this.user.meta.active_pixels -= 1;
-				_this.setState({ update: true });
+				_this.respHead();
 			}
 			if (e.type === 'userState') {
 				if (_this.lo) {
@@ -31494,9 +31493,7 @@ var app_App = function (_Component) {
 				gameState: localStorage.gameState || -1,
 				provider: undefined
 			};
-		}
-		_this.hash;
-		if (typeof window !== "undefined") {
+			_this.hash;
 			_this.lo = localStorage.va || false;
 			if (_this.lo) {
 				_this.state.logined = true;
