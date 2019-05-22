@@ -31,25 +31,25 @@ export default class Rules extends Component {
 			4.   Draudžiama platinti dezinformaciją ir informaciją, šmeižiančią, įžeidžiančią žmogų, žeminančią jo garbę ir orumą.
 				</p>
 				<section>
-				<p>
+					<p>
 						1) raginama prievarta pažeisti Lietuvos Respublikos suverenitetą – pakeisti jos konstitucinę santvarką, kėsintis į jos nepriklausomybę arba pažeisti teritorijos vientisumą;
-				</p>
-				<p>
+					</p>
+					<p>
 						2) skatinami ar kurstomi teroristiniai nusikaltimai;
-				</p>
-				<p>
+					</p>
+					<p>
 			3) skleidžiama karo propaganda, kurstomas karas ar neapykanta, tyčiojimasis, niekinimas, kurstoma diskriminuoti, smurtauti, fiziškai susidoroti su žmonių grupe ar jai priklausančiu asmeniu dėl amžiaus, lyties, lytinės orientacijos, etninės priklausomybės, rasės, tautybės, pilietybės, kalbos, kilmės, socialinės padėties, negalios, tikėjimo, įsitikinimų, pažiūrų ar religijos pagrindu;
-				</p>
-				<p>
+					</p>
+					<p>
 			4) platinama, propaguojama ar reklamuojama pornografija, taip pat propaguojamos ir (ar) reklamuojamos seksualinės paslaugos, lytiniai iškrypimai;
-				</p>
+					</p>
 			5) propaguojami ir (ar) reklamuojami žalingi įpročiai ir narkotinės ar psichotropinės medžiagos.
-				<p>
+					<p>
 			4.   Draudžiama platinti dezinformaciją ir informaciją, šmeižiančią, įžeidžiančią žmogų, žeminančią jo garbę ir orumą.
-				</p>
-				<p>
+					</p>
+					<p>
 			5.   Draudžiama skleisti informaciją, pažeidžiančią nekaltumo prezumpciją.
-				</p>
+					</p>
 				</section>
 				<p>
 			5.   Draudžiama skleisti informaciją, pažeidžiančią nekaltumo prezumpciją.
@@ -59,14 +59,14 @@ export default class Rules extends Component {
 				</h3>
 				<p>
 			Vienas žmogus gali susikurti vieną paskyrą ir jei būtų kuriama daugiau, tokie dalyviai bus šalinami.
-			</p>
-			<p>
+				</p>
+				<p>
 			Nesilaikantys taisyklių dalyviai bus šaliniami.
-			</p>
-			<p>
+				</p>
+				<p>
 			Konkurso organizatoriai gali keisti taisykles.
-			</p>		
-</div>
+				</p>
+			</div>
 		);
 	}
 }

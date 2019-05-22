@@ -67,16 +67,16 @@ export default class Header extends Component {
 
 		}
 		if (state === 'success'){
-			this.props.callToApp({ status: state, type: 'pixel'});
+			this.props.callToApp({ status: state, type: 'pixel' });
 			setTimeout(() => {
 				this.dialog.MDComponent.close();
 
 			}, 1);
 
 		}
-		if(state === 'wellcome') {
+		if (state === 'wellcome') {
 			// this.props.callToApp({ status: state, type: 'pixel'});
-			this.props.callToApp({ type: 'registered'});
+			this.props.callToApp({ type: 'registered' });
 			this.setState({ dialogContent: 'wellcome', logined: true });
 		}
 	}
@@ -92,7 +92,7 @@ export default class Header extends Component {
 				this.props.callToApp(true);
 			});
 		}
- else {
+		else {
 			this.state.backState.terms_and_conditions = true;
 			this.setState({ dialogContent: 'registracija' });
 		}
@@ -155,14 +155,14 @@ export default class Header extends Component {
 					<TopAppBar.Row>
 						<TopAppBar.Section align-center>
 							<img class={style.logo} src="/assets/images/logo.png" />
-									<TopAppBar.Title></TopAppBar.Title>
+							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
-						<div class={style.mobile_login}>
-						{ this.state.logined ?
+							<div class={style.mobile_login}>
+								{ this.state.logined ?
    									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
-										<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
-									}
+									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+								}
 							</div>
 							<div class={style.c_btn}>
 								{/* <a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
@@ -228,7 +228,7 @@ export default class Header extends Component {
 					<Dialog.Body scrollable={this.state.scrollModal}>
 						{
 							this.state.dialogContent === 'game'?
-							<About /> :			this.state.dialogContent === 'rules'?
+								<About /> :			this.state.dialogContent === 'rules'?
 									<Rules callHeader={this.callBackFromRegterms} />:
 									this.state.dialogContent === 'login' ?
 										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :

@@ -15,20 +15,23 @@ function getPixels() {
 	return axios.get(url).then(response => JSON.parse(response.data)).catch(e => console.error(e));
 }
 function getReward(params) {
-	const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
+	const head = { headers: { Authorization: `Bearer ${localStorage.va}` } };
 	const url = `${BASE_URL}/rewards/reward`;
 	return axios.post(url, params, head).then(response => JSON.parse(response.data));
 }
 function getAdd(params) {
-	const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
+	const head = { headers: { Authorization: `Bearer ${localStorage.va}` } };
 	const url = `${BASE_URL}/rewards/reklaminis`;
-	return axios.post(url, {hash: params}, head).then(response => JSON.parse(response.data));
+	return axios.post(url, { hash: params }, head).then(response => JSON.parse(response.data));
 }
 
 function postPixel(xy, color) {
-	// let pix = parseInt(localStorage.pix);
-	// if (!isNaN(pix) && pix > 0) {
-		if (typeof window !== "undefined") {
+
+	if (typeof window !== "undefined") {
+		if (localStorage.pixelStop === 'true')	{
+			return	NotificationManager.error("Išnaudotas limitas", '', 2000);
+		}
+		
 			const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
 			const colo = color.trim();
 			if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
@@ -40,7 +43,19 @@ function postPixel(xy, color) {
 
 			};
 			const url = `${BASE_URL}/pixels`;
-			return axios.post(url, pramas, head).then(response => JSON.parse(response.data));
-		}
+			return axios.post(url, pramas, head)
+				.then(response => JSON.parse(response.data))
+				.catch(e => {
+					if (e.response.data.messages) {
+						NotificationManager.error(e.response.data.messages);
+					}
+					else {
+						NotificationManager.error(e.messages);
+					}
+				});
+			
+
+		// dasidet notification
+	}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));

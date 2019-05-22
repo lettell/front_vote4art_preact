@@ -80,7 +80,7 @@ export default class Registration extends Component {
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				FB.api('/me', (response) => {
-					facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
+					facebookLogin({ id: ''+response.id, name: response.name }).then(resp => {
 						if (resp.status === 'error') {
 							localStorage.setItem('provider', 'fb');
 
@@ -177,9 +177,9 @@ export default class Registration extends Component {
 				<hr />
 				<div class={style.social}>
 					<div>
-					<button class="loginBtn loginBtn--facebook" onClick={this.fbLogin}>
+						<button class="loginBtn loginBtn--facebook" onClick={this.fbLogin}>
 						Facebook
-					</button>
+						</button>
 
 					</div>
 

@@ -5,13 +5,12 @@ import { NotificationManager } from 'react-notifications';
 
 
 const ACCESS_TOKEN_KEY = 'va',
-			ID_TOKEN_KEY = 'la',
-	  	BASE_URL = 'https://api.vote4art.eu',
+	ID_TOKEN_KEY = 'la',
+	BASE_URL = 'https://api.vote4art.eu',
 	// BASE_URL = 'http://localhost:3000',
- 
 	BASE_URL_PRIVATE = BASE_URL + '/api/v1';
-// production
-export { getAccessToken, checkAuth, signup, setAccessToken, setIdToken, login, isTokenExpired, facebookLogin,  logout };
+
+export { getAccessToken, checkAuth, signup, login, facebookLogin,  logout };
 
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -32,7 +31,7 @@ function checkAuth() {
 					// NotificationManager.success(response.data.response, 'Sveiki !!!');
 					// localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 					// Pakeisti!!
-						localStorage.setItem('userStatus', data.data.meta.status);
+					localStorage.setItem('userStatus', data.data.meta.status);
 					return data.data;
 				case 'warning':
 					NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
@@ -125,10 +124,11 @@ function facebookLogin(data) {
 		localStorage.setItem('visited', true);
 
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		if (response.data.status == 'error') {
+		if (response.data.status === 'error') {
 			NotificationManager.info('', 'Privalote sutikti su taisyklemis');
 
-		} else {
+		}
+		else {
 			NotificationManager.success('', 'Sveiki prisijungę!');
 		}
 		return response.data;
@@ -151,19 +151,11 @@ export function acceptTerms() {
 	});
 }
 
-function clearIdToken() {
-	localStorage.removeItem(ID_TOKEN_KEY);
-}
 
 // function sendLogout() {
 // 	const url = `${BASE_URL}/logout`;
 // 	return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
 // }
-
-function clearAccessToken() {
-	localStorage.removeItem(ACCESS_TOKEN_KEY);
-
-}
 
 // function getTokenExpirationDate(encodedToken) {
 //   const token = decode(encodedToken);

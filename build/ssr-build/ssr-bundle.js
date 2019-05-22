@@ -9806,9 +9806,8 @@ var ACCESS_TOKEN_KEY = 'va',
     BASE_URL = 'https://api.vote4art.eu',
 
 // BASE_URL = 'http://localhost:3000',
-
 BASE_URL_PRIVATE = BASE_URL + '/api/v1';
-// production
+
 
 
 function getAccessToken() {
@@ -9918,7 +9917,7 @@ function facebookLogin(data) {
 		localStorage.setItem('visited', true);
 
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
-		if (response.data.status == 'error') {
+		if (response.data.status === 'error') {
 			lib["NotificationManager"].info('', 'Privalote sutikti su taisyklemis');
 		} else {
 			lib["NotificationManager"].success('', 'Sveiki prisijungę!');
@@ -9941,18 +9940,10 @@ function acceptTerms() {
 	});
 }
 
-function clearIdToken() {
-	localStorage.removeItem(ID_TOKEN_KEY);
-}
-
 // function sendLogout() {
 // 	const url = `${BASE_URL}/logout`;
 // 	return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
 // }
-
-function clearAccessToken() {
-	localStorage.removeItem(ACCESS_TOKEN_KEY);
-}
 
 // function getTokenExpirationDate(encodedToken) {
 //   const token = decode(encodedToken);
@@ -10057,7 +10048,7 @@ var login_Login = function (_Component) {
 			FB.login(function (response) {
 				if (response.status === 'connected') {
 					FB.api('/me', function (response) {
-						facebookLogin({ id: "" + response.id, name: response.name }).then(function (resp) {
+						facebookLogin({ id: '' + response.id, name: response.name }).then(function (resp) {
 							if (resp.status === 'error') {
 								_this.rules();
 							} else {
@@ -10440,7 +10431,7 @@ var registration_Registration = function (_Component) {
 			FB.login(function (response) {
 				if (response.status === 'connected') {
 					FB.api('/me', function (response) {
-						facebookLogin({ id: "" + response.id, name: response.name }).then(function (resp) {
+						facebookLogin({ id: '' + response.id, name: response.name }).then(function (resp) {
 							if (resp.status === 'error') {
 								localStorage.setItem('provider', 'fb');
 
@@ -11230,9 +11221,12 @@ function getAdd(params) {
 }
 
 function postPixel(xy, color) {
-	// let pix = parseInt(localStorage.pix);
-	// if (!isNaN(pix) && pix > 0) {
+
 	if (typeof window !== "undefined") {
+		if (localStorage.pixelStop === 'true') {
+			return lib["NotificationManager"].error("Išnaudotas limitas", '', 2000);
+		}
+
 		var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
 		var colo = color.trim();
 		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
@@ -11246,7 +11240,15 @@ function postPixel(xy, color) {
 		var url = vote4art_api_BASE_URL + '/pixels';
 		return axios_default.a.post(url, pramas, head).then(function (response) {
 			return JSON.parse(response.data);
+		}).catch(function (e) {
+			if (e.response.data.messages) {
+				lib["NotificationManager"].error(e.response.data.messages);
+			} else {
+				lib["NotificationManager"].error(e.messages);
+			}
 		});
+
+		// dasidet notification
 	}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
@@ -30897,7 +30899,6 @@ var board__ref3 = Object(preact_min["h"])('path', {
 });
 
 var board__ref4 = Object(preact_min["h"])('path', {
-	style: 'cursor: pointer;',
 	d: 'm 230.97599,231.88382 3.06,-2.61 1.64,1.2 5.76,-7.06 2.08,2.43 3.59,0.11 2.24,-1.27 2.22,0.99 1.63,-0.63 -0.43,2.04 1.15,1.49 -1.22,1.76 0.9,0.52 -3.41,1.34 2.53,3.53 0.77,0.23 0.78,-2.28 2.08,0 0.56,0.8 -0.66,1.04 1.92,-0.97 0.65,0.85 5.38,-5.15 5.13,-0.52 2.28,-1.25 1.57,-0.04 -0.02,1.22 1.24,-0.8 -0.26,-1.08 0.91,-0.43 0.38,0.71 3.73,-3.86 1.98,2.19 0.36,-2.8 0.84,1.41 2.57,0.89 0.75,-1.17 -2.22,-6.39 0.18,-0.8 2.94,-0.28 -0.29,-3.35 1,-0.28 -0.77,-2.43 3.63,-0.75 0.54,3.35 2.27,0.35 9.63,-3.02 0.71,-2.1 0.98,-0.16 -0.58,2.64 1.07,1.04 1.14,6.01 1.97,0.21 0.24,1.46 2.58,-2.07 -0.29,-1.54 1.04,-0.42 0.54,2 5.98,-3.53 1.19,0.23 0.39,1.02 2.36,0.35 2.66,2.17 2.84,3.81 0.01,2.5 2.12,-0.14 5.2,2.4 -0.95,1.6 2.35,0.71 1.33,-0.76 0.33,-1.64 0.68,0.18 -1.12,-4.54 3.9,-0.26 0.14,-0.92 3.99,-0.82 0.75,1.46 3.69,2.14 -1.14,3.3 0.91,4.63 6.74,-0.44 2.41,1.08 3.21,-0.19 0.7,-2.21 -1.1,-0.8 3.73,-2.28 1.67,-3.3 5.61,-1.63 -0.16,-1.64 11.21,-4.65 -0.17,-0.84 3.97,-1.56 1.37,0.61 4.53,-3.49 0,0 3.2,4.34 -2.28,0.9 0.86,2.68 3.51,4.08 3.16,2.09 0.13,-1.48 3.17,-0.4 7.79,8.05 2.83,-0.52 -1.94,6.54 1.02,1.01 6.01,1.34 1.55,-2.47 2.5,0.19 1.74,3.15 1.84,-0.84 1.89,-2.52 5.13,0.26 0.73,-5.41 5.37,2.23 0.24,3.39 6.44,2.37 1.81,-3.73 0.84,1.97 3.64,2.4 1.48,-0.73 0.89,1.08 0.97,-0.8 3.31,2.07 -0.29,4.09 4.02,3.43 2.52,0.16 0,0 -0.26,5.42 -2.89,1.18 -0.31,3.23 -1.96,1.2 0.28,4.1 -1.11,0.4 -1.12,9.19 4.34,0.4 0.08,2.62 1,-0.1 -2.08,10.91 2.06,0.21 -0.04,1.26 1.77,0.19 0.36,-1.1 8.07,2.59 -3.16,4.16 1.44,2.29 -0.25,2.69 1.28,1.8 0.05,2.24 0.5,1 5.17,1.07 -0.7,1.73 -1.92,1.1 2.54,2.91 -0.83,0.66 1.14,0.32 -0.31,1.26 2.32,2.77 1.3,-1.07 1.56,0.47 0.02,3.73 1.24,1.16 -0.62,1.91 1.09,0.24 -0.47,1.51 1.52,-0.65 0.1,0.74 1.43,0.07 2.03,2.31 0.1,2.95 1.82,0.47 -1.12,1.44 -1.38,-0.02 -0.61,1.16 1.19,0.7 -0.38,0.98 -5.49,0.93 0.67,3.63 -3.57,1.3 -0.16,2.23 -1.58,1.58 3.67,3.95 5.3,-0.07 2.49,4.11 5.31,2.32 1.54,4.39 5.35,-1 0,0 2.57,0 0,0 2.24,3.13 4.18,1.72 1.82,1.86 -0.15,3.29 -1.28,0.97 -1.39,0.6 -1.27,-1.62 -0.67,1 -2.67,0.11 0.4,0.86 -1.01,0.33 1.74,12.66 -1.17,0.35 0.21,-1.11 -1.22,0.21 -1.04,1.76 -1.51,-1.37 -0.21,1.58 -5.56,0.71 -5.64,3.7 -0.32,4.95 -1.35,2.01 0.76,1.9 0.75,-0.09 0.35,2.33 -1.86,0.34 0.25,3.52 -1.15,0.67 0.53,1.63 -1.29,1.18 1.27,1.8 -0.47,1.57 -1.8,0.81 -2.53,-0.35 -1.44,-2.65 -2.79,-0.28 -0.2,-0.9 -1.19,0.14 0.64,3.35 -1.08,2.79 -5.37,-2.56 -3.92,0.81 -0.01,1.24 -0.59,-0.25 -2.19,3.3 0.19,4.26 2.03,5.92 -2.93,1.87 2.57,-0.02 1.53,5.2 -1.13,0.62 -0.91,-1.06 -1.42,2.79 -1.31,-0.35 -1.32,1.61 -1.71,-1.31 0.41,7.66 -1.83,7.15 0,0 -1.21,0.41 -0.11,1.86 -1.75,-0.59 -3.7,1.4 -2.71,-1.01 -3.22,1.05 -5.23,-1.21 -1.1,-3.61 -1.46,-1.52 0.1,-3.54 1.23,-0.87 -1.51,0.41 -0.43,-0.94 -2.44,2.21 -4.57,-0.05 -1.06,4.09 -9.14,-0.04 -2.66,2.32 -2.63,-4.53 -4.73,-0.9 -5.41,2.44 -2.51,6.16 2.43,1.26 -0.52,2.94 -2.79,1.65 -1.63,-0.39 -0.49,1.47 -8.79,-0.83 -0.69,1.29 0.68,4.43 -6.05,2.2 0.06,-1.06 1.55,0.03 0.02,-1.7 -8.2,-0.28 -1.12,-1.1 -1.31,2.94 -2.46,0.34 -1.48,-1.85 -1.19,0.22 0,0 4.09,-5.43 0.57,-3.01 -4.32,-4.53 -1.43,-6.22 -5.83,1.97 -5.01,-9.79 4.49,-2.25 -3.4,-5.67 -3.86,0.35 0.52,-1.8 -2.23,0.25 -0.37,-1.47 5.94,-2.23 -2.25,-1.36 -0.07,-1.75 2.66,-1.85 -0.62,-3.8 -4.27,-6.67 3.79,-3.16 -3.63,-6.4 1.37,-3.46 -2.24,-1.18 -6.59,1.8 0.26,-0.94 3.9,-1.74 4.55,-6.45 -5.63,-5.81 1.49,-1.82 -1.64,-1.83 2.91,-4.36 -11.69,-8.8 -3.81,1.67 -0.4,1.71 -1.26,0.05 0.16,-1.39 -2.48,-0.35 -0.58,-0.9 0.51,-1.97 -0.67,-0.1 -0.4,-5.98 -10.87,-5.48 1.08,-1.49 1.52,0.28 4.47,-4.87 8.93,-1.63 2.01,-1.14 0.21,-1.07 6.24,-2.21 1.43,-1.21 -0.05,-5.58 -4.22,-2.39 -9.4,-1.03 -7.31,-5.45 -2.24,-0.44 0,0 3.82,-2.61 1.31,-3.98 3.92,-5.46 0.05,-8.58 3.73,-10.14 -6.72,-2 -0.31,-1.45 -4.44,1.98 -1.17,-1.56 -2.25,0.93 -2.62,-1.52 0.24,-4.63 -1.23,-1.12 -6.52,0.96 -0.67,-0.75 -1.13,1.9 -2.81,0.16 -1.85,-1.33 -6.87,0.63 -0.19,-0.94 -1.47,1.05 -2.4,-0.07 -0.45,-1.87 1.37,-0.77 -0.04,-2.2 -1.06,-3.48 -1.04,1.33 -2.67,-0.87 -1.59,1.99 -3.04,0.63 -6.04,-1.4 -1.56,3.09 -8.32,-0.49 -0.54,-1.27 3.09,-4.18 -2.61,-2.18 -3.9,-1.2 1.32,-6.23 -5.21,1.53 -1.16,-2.32 -1.15,0.54 0.79,2.13 -4.81,0.65 -0.15,2.53 -2.27,-0.21 -0.83,2.25 -1.05,0.47 0,-4.52 -2.68,-1.69 -0.06,-2.67 -4.57,1.1 -2.69,-1.24 0.19,-3.7 2.47,-1.76 -0.2,-4.39 -1.67,-3.28 -1.83,-0.64 -3.65,1.18 -0.92,-2.54 -2.43,0.12 -0.66,-2.58 1.7,-1.79 -0.22,-3.99 -1.77,-0.14 -0.78,1.43 -3.16,0.63 -2,-7.59 -1.48,-1.12 2.86,-1.86 0.24,-1.55 z',
 	title: 'Kaunas',
 	id: 'LT-KU'
@@ -30978,7 +30979,7 @@ var board_Board = function (_Component) {
 
 		_this.stopPixel = function () {
 			_this.setState({ needStop: true });
-			_this.setState({ color: false });
+			_this.setState({ color: '' });
 		};
 
 		_this.removePixel = function (e) {
@@ -30986,9 +30987,14 @@ var board_Board = function (_Component) {
 		};
 
 		_this.putPixel = function (e) {
-			// this.setState({needStop: false});
-
 			if (!_this.state.color) return;
+			if (localStorage.pixelStop === 'true') {
+				if (!localStorage.va) {
+					return lib["NotificationManager"].info("Autorizacija privaloma", '', 2000);
+				} else {
+					return lib["NotificationManager"].warning("Išnaudotas limitas", '', 2000);
+				}
+			}
 			if (_this.pixelPoint[0] < 0 || _this.pixelPoint[0] > 1000) return;
 			if (_this.pixelPoint[1] < 0 || _this.pixelPoint[1] > 1000) return;
 			var pix = _this.base.querySelector('#currentPixel');
@@ -31059,21 +31065,24 @@ var board_Board = function (_Component) {
 
 
 	Board.prototype.transform = function transform(e) {
+		this.setState({ transforming: true });
 		// setTimeout(function(){ console.log('ok') }, 3000);
-
 		var position = e.getTransform();
 		// console.log(document.innerHeight, this.pixelPoint[1], this.scale);
 		this.scaledPixel = Math.floor(1000 * position.scale);
 		this.scale = position.scale;
 		this.scaledX = position.x;
 		this.scaledY = position.y;
-		this.setState({ transforming: true });
+		// setTimeout(() => this.setState({transforming: false}), 3000 )
+
 	};
 
 	Board.prototype.mouseMove = function mouseMove(e) {
 		if (!this.state.color) return;
 		this.mousePosition = [e.clientX, e.clientY];
-		this.setState({ nouseMove: true });
+		this.setState({ mouseMove: true });
+		// if (x) clearTimeout(x); 
+		// let x = setTimeout(this.setState({ mouseMove: false }), 200); 
 	};
 
 	Board.prototype.getCord = function getCord(e) {
@@ -31133,7 +31142,7 @@ var board_Board = function (_Component) {
 		this.loadPixels();
 		setInterval(function () {
 			_this4.loadPixels();
-		}, 2000);
+		}, 2300);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
@@ -31145,21 +31154,21 @@ var board_Board = function (_Component) {
 		a.addEventListener('mousemove', this.mouseMove);
 	};
 
-	Board.prototype.render = function render(props) {
+	Board.prototype.render = function render() {
 
 		return Object(preact_min["h"])(
 			'div',
 			{ 'class': board_style_default.a.wrap__board },
 			Object(preact_min["h"])(
 				'div',
-				{ id: 'currentPixel', onTouchTap: this.stopPixel, style: 'background: ' + this.state.color, 'class': this.state.color ? board_style_default.a.pixel_block : 'disabled' },
+				{ id: 'currentPixel', onTouchEnd: this.stopPixel, style: 'background: ' + this.state.color, 'class': this.state.color ? board_style_default.a.pixel_block : 'disabled' },
 				Object(preact_min["h"])(
 					'div',
-					{ 'class': board_style_default.a.ctrl, onTouchTap: this.stopPixel },
+					{ 'class': board_style_default.a.ctrl, onTouchEnd: this.stopPixel },
 					Object(preact_min["h"])(
 						'span',
 						{ onTouchTap: this.stopPixel },
-						'At\u0161aukti pasirinka spalva'
+						'At\u0161aukti pasirinkta spalva'
 					)
 				)
 			),
@@ -31171,7 +31180,7 @@ var board_Board = function (_Component) {
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': board_style_default.a.colors_controlls },
-				Object(preact_min["h"])(colors_Colors, { callbackFromBoard: this.setColor })
+				Object(preact_min["h"])(colors_Colors, { callbackFromBoard: this.setColor, color: this.state.currentColor })
 			),
 			Object(preact_min["h"])(
 				'div',
@@ -31238,8 +31247,7 @@ var board_Board = function (_Component) {
 							{
 								transform: 'scale(1.26 1.26)',
 								onTouchTap: this.getCord,
-								style: 'cursor: pointer'
-
+								style: this.state.color ? 'cursor: pointer' : 'cursor: move'
 							},
 							board__ref3,
 							board__ref4,
@@ -31275,7 +31283,6 @@ function game__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
-
 var game_Game = function (_Component) {
 	game__inherits(Game, _Component);
 
@@ -31291,7 +31298,7 @@ var game_Game = function (_Component) {
 		};
 
 		_this.userStata = _this.resolveState();
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			document.body.classList.add('noScroll');
 		}
 		return _this;
@@ -31480,7 +31487,6 @@ function userinfo__inherits(subClass, superClass) { if (typeof superClass !== "f
 
 
 
-
 var userinfo_Userinfo = function (_Component) {
 	userinfo__inherits(Userinfo, _Component);
 
@@ -31510,7 +31516,7 @@ var userinfo_Userinfo = function (_Component) {
 					'h3',
 					null,
 					'Turimi pixeliai: ',
-					this.props.data.meta.active_pixels
+					this.props.data.pixels
 				)
 			),
 			Object(preact_min["h"])(
@@ -31520,7 +31526,7 @@ var userinfo_Userinfo = function (_Component) {
 					'h3',
 					null,
 					'Vartotojas: ',
-					this.props.data.attributes.username
+					this.props.data.username
 				)
 			)
 		);
@@ -31540,76 +31546,108 @@ var userinfo_Userinfo = function (_Component) {
 
 
 
-function resolveRew(path) {
-	if (typeof window !== 'undefined') {
-		var ah = path || window.location.pathname;
-		var a = ah.substring(0, 4);
-		var h = ah.substring(4, 12);
-		var i = ['/is/', '/re/', '/ba/'].indexOf(a);
-		switch (i) {
-			case 0:
-				{
-					return needLocation(h);
+function getRewar(path) {
+
+	return new Promise(function (resolve, reject) {
+		var p = path;
+		function resolveRew(pa) {
+
+			if (typeof window !== 'undefined') {
+				var ah = pa || window.location.pathname;
+				var a = ah.substring(0, 4);
+				var h = ah.substring(4, 12);
+				var i = ['/is/', '/re/', '/ba/'].indexOf(a);
+				switch (i) {
+					case 0:
+						{
+							needLocation(h);break;
+						}
+					case 1:
+						{
+							reKla(h);break;
+						}
+					case 2:
+						{
+							needLocation(h);break;
+						}
+					default:
+						return route('/404');
 				}
-			case 1:
-				{
-					return reKla(h);
-				}
-			case 2:
-				{
-					return needLocation(h);
-				}
-			default:
-				return route('/404');
+			}
 		}
-	}
-}
 
-// reikalinga vieta
+		// reikalinga vieta
 
 
-function needLocation(hash) {
-	if (navigator.geolocation) {
-		lib["NotificationManager"].info('Lokacijos patvirtinimas');
-		navigator.geolocation.getCurrentPosition(function (e) {
-			return showPosition(e, hash);
-		});
-	}
-	lib["NotificationManager"].warn('Neveikia lokacija ');
-}
+		function needLocation(hash) {
 
-function showPosition(position, hash) {
-	var locParams = {
-		lat: position.coords.latitude,
-		long: position.coords.longitude,
-		hash: hash
-	};
-	if (!['9282c043', 'b357906c', 'bdb4defa'].includes(hash)) {
-		return lib["NotificationManager"].error('Patikrinimas nepraeitas');
-	}
-	getRew(locParams);
-}
+			if (navigator.geolocation) {
+				lib["NotificationManager"].info('Lokacijos patvirtinimas');
+				return navigator.geolocation.getCurrentPosition(function (e) {
+					showPosition(e, hash);
+				}, function (error) {
+					switch (error.code) {
+						case error.PERMISSION_DENIED:
+							lib["NotificationManager"].error('Aktyvuokite vietovės nustatymą ir bandykite iš naujo');
+							break;
+						case error.POSITION_UNAVAILABLE:
+							lib["NotificationManager"].error('Vietovės nustatyti nepavyko');
+							break;
+						case error.TIMEOUT:
+							lib["NotificationManager"].error('Vietovės nustatimo laikas pasibaigė');
+							break;
+						case error.UNKNOWN_ERROR:
+							lib["NotificationManager"].error('Kita nežinoma klaida');
+							break;
+					}
+				});
+			}
+			lib["NotificationManager"].warrning('Neveikia lokacijos funkcija ');
+		}
 
-function getRew(params) {
-	getReward(params).then(function (rsp) {
-		lib["NotificationManager"].success('Ačiū, kad dalyvaujate');
-		localStorage.removeItem('reward_path');
-		localStorage.removeItem('need_reward');
-		route('/');
-	}).catch(function (e) {
-		lib["NotificationManager"].error('Patikrinimas nepraeitas');
-		route('/');
-	});
-}
+		function showPosition(position, hash) {
 
-function reKla(h) {
-	var _this = this;
+			var locParams = {
+				lat: position.coords.latitude,
+				long: position.coords.longitude,
+				hash: hash
+			};
+			if (!['9282c043', 'b357906c', 'bdb4defa'].includes(hash)) {
+				lib["NotificationManager"].error('Nežinomas šaltinis');
+			}
+			getRew(locParams);
+		}
 
-	getAdd(h).then(function (resp) {
-		_this.respHead();
-		lib["NotificationManager"].success('Papildomi pikseliai');
-	}).catch(function (e) {
-		lib["NotificationManager"].error('Patikrinimas nepraeitas');
+		function getRew(params) {
+			return getReward(params).then(function (rsp) {
+				lib["NotificationManager"].success('Ačiū, kad dalyvaujate');
+				localStorage.removeItem('reward_path');
+				localStorage.removeItem('need_reward');
+				route('/', true);
+				resolve('ok');
+			}).catch(function (e) {
+				if (e.response.data.messages) {
+					lib["NotificationManager"].error(e.response.data.messages);
+				} else {
+					lib["NotificationManager"].error(e.messages);
+				}
+				route('/');
+				reject('not');
+			});
+		}
+
+		function reKla(h) {
+			var _this = this;
+
+			getAdd(h).then(function (resp) {
+				_this.respHead();
+				lib["NotificationManager"].success('Papildomi pikseliai');
+			}).catch(function (e) {
+				// NotificationManager.error('Patikrinimas neprae	itas');
+			});
+		}
+
+		resolveRew(p);
 	});
 }
 // CONCATENATED MODULE: ./components/app.js
@@ -31651,14 +31689,17 @@ var app__ref6 = Object(preact_min["h"])('script', { async: true, src: 'https://w
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
 
-	/** Gets fired when the route changes.
-  *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-  *	@param {string} event.url	The newly routed URL
-  */
 	function App() {
 		app__classCallCheck(this, App);
 
 		var _this = app__possibleConstructorReturn(this, _Component.call(this));
+
+		_this.state = {
+			user: {
+				attributes: {},
+				meta: {}
+			}
+		};
 
 		_this.setSt = function (e) {
 			localStorage.setItem('gameState', _this.arr.indexOf(e.status));
@@ -31692,9 +31733,8 @@ var app_App = function (_Component) {
 			}
 		};
 
-		_this.state = {};
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			window.dataLayer = window.dataLayer || [];
 		}
 
@@ -31712,6 +31752,11 @@ var app_App = function (_Component) {
 
 		return _this;
 	}
+	/** Gets fired when the route changes.
+  *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+  *	@param {string} event.url	The newly routed URL
+  */
+
 
 	App.prototype.resolveState = function resolveState(e) {
 		var res = this.arr;
@@ -31724,10 +31769,25 @@ var app_App = function (_Component) {
 		var _this2 = this;
 
 		checkAuth().then(function (resp) {
-			if (resp.meta.active_pixels) {
-				// localStorage.setItem('pix', resp.meta.active_pixels);
+			if (!resp.attributes.pixels) {
+				localStorage.setItem('pixelStop', true);
+			} else {
+				localStorage.setItem('pixelStop', false);
 			}
 			_this2.setState({ user: resp, logined: true });
+			if (window.location.pathname.length > 13) {
+				getRewar(window.location.pathname).then(function (e) {
+					if (e === 'ok') _this2.getInfo();
+				});
+			}
+		}).catch(function (e) {
+			localStorage.setItem('pixelStop', true);
+
+			if (window.location.pathname.length > 13) {
+				localStorage.setItem('rewardPath', window.location.pathname);
+				localStorage.setItem('needReward', true);
+				lib["NotificationManager"].info('Privaloma autiorizacija');
+			}
 		});
 	};
 
@@ -31741,24 +31801,13 @@ var app_App = function (_Component) {
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
-
-		if (localStorage.va) {
-			if (window.location.pathname.length > 13) {
-				resolveRew(window.location.pathname);
-			}
-		} else if (typeof window !== 'undefined') {
-			if (window.location.pathname.length > 13) {
-				localStorage.setItem('rewardPath', window.location.pathname);
-				localStorage.setItem('needReward', true);
-				lib["NotificationManager"].info('Privaloma autiorizacija');
-			}
-		}
 	};
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
 		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://192.168.0.100:8080/';
+
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -31775,15 +31824,15 @@ var app_App = function (_Component) {
 				callToApp: this.respHead
 			}),
 			this.state.logined && this.state.user ? Object(preact_min["h"])(userinfo_Userinfo, {
-				data: this.state.user,
+				data: this.state.user.attributes,
 				hash: { hash: this.state.hash || '' },
 				callToApp: this.respUser
 			}) : '',
 			Object(preact_min["h"])(
 				preact_router_es_Router,
 				{ onChange: this.handleRoute },
-				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/', callToApp: this.respGame }),
-				Object(preact_min["h"])(game_Game, { gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { user: this.state.user ? this.state.user.attributes : false, gameState: this.state, path: '/', callToApp: this.respGame }),
+				Object(preact_min["h"])(game_Game, { user: this.state.user ? this.state.user.attributes : false, gameState: this.state, path: '/:x?/:y?/:zoom?/:hash?/', callToApp: this.respGame }),
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl }),

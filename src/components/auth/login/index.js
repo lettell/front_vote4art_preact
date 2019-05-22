@@ -32,11 +32,9 @@ export default class Login extends Component {
 				if (localStorage.needReward) {
 					localStorage.removeItem('needReward');
 					route(localStorage.rewardPath);
-
 				}
 				else {
 					route('/');
-
 				}
 				
 			}
@@ -62,7 +60,7 @@ export default class Login extends Component {
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				FB.api('/me', (response) => {
-				facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
+					facebookLogin({ id: ''+response.id, name: response.name }).then(resp => {
 						if (resp.status === 'error') {
 							this.rules();
 						}
@@ -120,9 +118,9 @@ export default class Login extends Component {
 				<hr />
 				<div class={style.social}>
 					<div>
-					<button class="loginBtn loginBtn--facebook" onClick={this.fbLogin}>
+						<button class="loginBtn loginBtn--facebook" onClick={this.fbLogin}>
 						Facebook
-					</button>
+						</button>
 
 					</div>
 

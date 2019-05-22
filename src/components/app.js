@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Router, route } from 'preact-router';
+import { Router } from 'preact-router';
 // import { login } from '../utils/auth-service';
 
 import Header from './header';
@@ -12,18 +12,25 @@ import Footer from './footer';
 import { checkAuth } from '../utils/auth-service';
 import Userinfo from './userinfo';
 import { NotificationManager } from 'react-notifications';
-import { resolveRew } from '../utils/loc-service';
+import { getRewar } from '../utils/loc-service';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
+	state = {
+		user: {
+			attributes: {},
+			meta: {}
+		}
+	};
 	constructor() {
 		super();
-		this.state = {};
+		
+	
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
-		if (typeof window !== "undefined") { window.dataLayer = window.dataLayer || []; }
+		if (typeof window !== 'undefined') { window.dataLayer = window.dataLayer || []; }
 		
 
 		if ( typeof window !== 'undefined') {
@@ -59,18 +66,35 @@ export default class App extends Component {
 	}
 	getInfo() {
 		checkAuth().then( resp => {
-			if ( resp.meta.active_pixels ) {
-				// localStorage.setItem('pix', resp.meta.active_pixels);
+			if ( !resp.attributes.pixels ) {
+				localStorage.setItem('pixelStop', true);
+			}
+ else {
+				localStorage.setItem('pixelStop', false);
 			}
 			this.setState({ user: resp, logined: true });
+			if (window.location.pathname.length > 13) {
+				getRewar(window.location.pathname).then( e => {
+					if (e === 'ok') this.getInfo();
+				});
+			}
+		 }).catch(e => {
+			localStorage.setItem('pixelStop', true);
 
-		} );
+			if (window.location.pathname.length > 13) {
+				localStorage.setItem('rewardPath', window.location.pathname);
+				localStorage.setItem('needReward',  true);
+				NotificationManager.info('Privaloma autiorizacija');
+			}
+		});
 	}
+
 	respHead = e => {
 		this.getInfo();
 		
 		this.setState({ update: true  });
 	}
+
 
 	respGame = e => {
 		if (e.type === 'pixel') {
@@ -95,25 +119,13 @@ export default class App extends Component {
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
-
-		if (localStorage.va) {
-			if (window.location.pathname.length > 13) {
-				resolveRew(window.location.pathname);
-			}
-		}
-		else if (typeof window !== 'undefined') {
-			if (window.location.pathname.length > 13) {
-				localStorage.setItem('rewardPath', window.location.pathname);
-				localStorage.setItem('needReward',  true);
-				NotificationManager.info('Privaloma autiorizacija');
-			}
-		}
 	}
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-			const base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		const base = 'https://vote4art.eu/';
+		  // const base = 'https://192.168.0.100:8080/';
+		
 		return (
 			<div id="app">
 				<Helmet
@@ -132,20 +144,20 @@ export default class App extends Component {
 
 				{ this.state.logined  && this.state.user?
 					<Userinfo
-						data={this.state.user}
+						data={this.state.user.attributes}
 						hash={{ hash: this.state.hash || '' }}
 						callToApp={this.respUser}
 					/> : ''
 				}
 				<Router onChange={this.handleRoute}>
-					<Game gameState={this.state} path="/" callToApp={this.respGame} />
-					<Game  gameState={this.state} path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
+					<Game user={this.state.user ? this.state.user.attributes : false} gameState={this.state} path="/" callToApp={this.respGame} />
+					<Game user={this.state.user ? this.state.user.attributes : false} gameState={this.state} path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
 					<NotFound default />
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />
 
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
-				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140710174-1"></script>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140710174-1" />
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			
