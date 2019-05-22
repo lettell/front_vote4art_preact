@@ -11,9 +11,6 @@ export default class Game extends Component {
 			document.body.classList.add('noScroll');
 
 		 }
-		
-
-
 	}
 
 	checkFb() {
@@ -24,7 +21,7 @@ export default class Game extends Component {
 
  statusChangeCallback = (response) => {
 	 if (response.status === 'connected') {
-			this.props.callToApp({logined: true, type: 'userState'})		 
+		this.props.callToApp({logined: true, type: 'userState'})		 
 	 }
  } 
  componentDidMount() {
@@ -51,7 +48,6 @@ export default class Game extends Component {
 		}
 	}
 	render({ x, y, zoom }, {user}) {
-		console.log(user)
 		return (
 			<div class="container_main">
 				<Board user={user} callToApp={this.props.callToApp} x={x} y={y} zoom={zoom} />

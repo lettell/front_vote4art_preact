@@ -74,7 +74,7 @@ export default class Colors extends Component {
 		return (
 			<div>
 
-			<div class={this.state.colorOpen ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
+			<div>
 			<Elevation z={2} >
 				<div class={style.color_picker}>
 					<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
@@ -98,12 +98,7 @@ export default class Colors extends Component {
 				</div>
 			</Elevation>
 		</div>
-			<div class={style.mobile_toggle}>
-					<Fab exited={this.state.colorOpen} onClick={this.mToggler}>
-						<Icon >add_box</Icon>
-					</Fab>
-			</div>
-			</div>
+	</div>
 		);
 	}
 }

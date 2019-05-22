@@ -30490,12 +30490,6 @@ function colors__inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
-var colors__ref = Object(preact_min["h"])(
-	Icon_default.a,
-	null,
-	'add_box'
-);
-
 var colors_Colors = function (_Component) {
 	colors__inherits(Colors, _Component);
 
@@ -30581,7 +30575,7 @@ var colors_Colors = function (_Component) {
 			null,
 			Object(preact_min["h"])(
 				'div',
-				{ 'class': this.state.colorOpen ? 'animated fadeInRight' : 'none', style: 'padding-right:1em;' },
+				null,
 				Object(preact_min["h"])(
 					Elevation_default.a,
 					{ z: 2 },
@@ -30611,15 +30605,6 @@ var colors_Colors = function (_Component) {
 							})
 						)
 					)
-				)
-			),
-			Object(preact_min["h"])(
-				'div',
-				{ 'class': colors_style_default.a.mobile_toggle },
-				Object(preact_min["h"])(
-					Fab_default.a,
-					{ exited: this.state.colorOpen, onClick: this.mToggler },
-					colors__ref
 				)
 			)
 		);
@@ -30862,11 +30847,18 @@ var board_Board = function (_Component) {
 
 		var _this = board__possibleConstructorReturn(this, _Component.call(this));
 
+		_this.stopPixel = function () {
+			_this.setState({ needStop: true });
+			_this.setState({ color: false });
+		};
+
 		_this.removePixel = function (e) {
 			return _this.setState({ color: false });
 		};
 
 		_this.putPixel = function (e) {
+			_this.setState({ needStop: false });
+
 			if (!_this.state.color) return;
 			if (_this.pixelPoint[0] < 0 || _this.pixelPoint[0] > 1000) return;
 			if (_this.pixelPoint[1] < 0 || _this.pixelPoint[1] > 1000) return;
@@ -30883,17 +30875,18 @@ var board_Board = function (_Component) {
 			// this.zoomController.pause();
 			_this.svg = src_select('#voteForArt');
 			_this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', _this.state.color).attr('x', _this.pixelPoint[0]).attr('y', _this.pixelPoint[1]);
-
-			postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
-				if (resp.data && resp.data.length) {
-					_this.setAllPixels(resp.data);
-					_this.props.callToApp({ putPixel: -1, type: 'pixel' });
-					var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
-					if (_this.state.currentPhoto !== photo) {
-						_this.setState({ photoUpdate: 'done', currentPhoto: photo });
+			setTimeout(function () {
+				if (!_this.state.needStop) postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
+					if (resp.data && resp.data.length) {
+						_this.setAllPixels(resp.data);
+						_this.props.callToApp({ putPixel: -1, type: 'pixel' });
+						var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
+						if (_this.state.currentPhoto !== photo) {
+							_this.setState({ photoUpdate: 'done', currentPhoto: photo });
+						}
 					}
-				}
-			});
+				});
+			}, 3000);
 		};
 
 		_this.getCord = _this.getCord.bind(_this);
@@ -30963,6 +30956,10 @@ var board_Board = function (_Component) {
 		this.putPixel(e);
 	};
 
+	Board.prototype.dropColor = function dropColor() {
+		this.setState({ color: true });
+	};
+
 	Board.prototype.loadPixels = function loadPixels() {
 		var _this2 = this;
 
@@ -30983,10 +30980,11 @@ var board_Board = function (_Component) {
 	Board.prototype.setAllPixels = function setAllPixels(arr) {
 		var _this3 = this;
 
-		document.getElementById('voteForArt').innerHTML = '';
+		src_selectAll('.pix').remove();
+		// document.get('voteForArt').innerHTML = '';
 		this.svg = src_select('#voteForArt');
 		arr.forEach(function (element) {
-			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
+			_this3.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('class', 'pix').attr('fill', element.attributes.color).attr('x', element.attributes.x).attr('y', element.attributes.y);
 		});
 		this.setState({ activePixels: 'placed_on_board' });
 	};
@@ -31006,7 +31004,7 @@ var board_Board = function (_Component) {
 		this.loadPixels();
 		setInterval(function () {
 			_this4.loadPixels();
-		}, 1000);
+		}, 2000);
 
 		var b = this.base.querySelector('#voteForArt');
 		var a = this.base.querySelector('#gridArea');
@@ -31025,13 +31023,13 @@ var board_Board = function (_Component) {
 			{ 'class': board_style_default.a.wrap__board },
 			Object(preact_min["h"])(
 				'div',
-				{ id: 'currentPixel', onTap: this.removePixel, style: 'background: ' + this.state.color, 'class': this.state.color ? board_style_default.a.pixel_block : 'disabled' },
+				{ id: 'currentPixel', onTouchTap: this.stopPixel, style: 'background: ' + this.state.color, 'class': this.state.color ? board_style_default.a.pixel_block : 'disabled' },
 				Object(preact_min["h"])(
 					'div',
-					{ 'class': board_style_default.a.ctrl },
+					{ 'class': board_style_default.a.ctrl, onTouchTap: this.stopPixel },
 					Object(preact_min["h"])(
 						'span',
-						{ 'class': board_style_default.a.ctrl_text },
+						{ onTouchTap: this.stopPixel },
 						'At\u0161aukti pasirinka spalva'
 					)
 				)
@@ -31167,7 +31165,6 @@ var game_Game = function (_Component) {
 		if (typeof window !== "undefined") {
 			document.body.classList.add('noScroll');
 		}
-
 		return _this;
 	}
 
@@ -31208,7 +31205,6 @@ var game_Game = function (_Component) {
 		    zoom = _ref.zoom;
 		var user = _ref2.user;
 
-		console.log(user);
 		return Object(preact_min["h"])(
 			'div',
 			{ 'class': 'container_main' },
@@ -31386,7 +31382,7 @@ var userinfo_Userinfo = function (_Component) {
 					'h3',
 					null,
 					'Turimi pixeliai: ',
-					this.props.data && this.props.data.meta && this.props.data.meta.active_pixels ? this.props.data.meta.active_pixels : 0
+					this.props.data.meta.active_pixels + this.props.data.attributes.rewards
 				)
 			),
 			Object(preact_min["h"])(

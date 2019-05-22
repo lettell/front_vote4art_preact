@@ -97,9 +97,16 @@ export default class Board extends Component {
 		this.setState({ pixelPoint: [Math.floor((e.clientX - this.scaledX)  / this.scale), Math.floor((e.clientY - this.scaledY)  / this.scale)] });
 		this.putPixel(e);
 	}
+	stopPixel = () => {
+		this.setState({needStop: true});
+		this.setState({color: false});
 
+	}
+	dropColor() {
+		this.setState({color: true});
+	}
 	loadPixels() {
-		return getPixels().then(resp => {
+	return getPixels().then(resp => {
 			this.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
@@ -112,20 +119,25 @@ export default class Board extends Component {
 	}
 
 	setAllPixels(arr) {
-		document.getElementById('voteForArt').innerHTML = '';
+		d3.selectAll('.pix').remove()
+		// document.get('voteForArt').innerHTML = '';
 		this.svg =d3.select('#voteForArt');
 		arr.forEach(element => {
 			this.svg.append('svg:rect')
 				.attr('width', 1)
 				.attr('height', 1)
+				.attr('class', 'pix')
 				.attr('fill', element.attributes.color)
 				.attr('x', element.attributes.x)
 				.attr('y', element.attributes.y);
 		});
 		this.setState({ activePixels: 'placed_on_board' });
 	}
-	removePixel = (e) => this.setState({ color: false })
+	removePixel = (e) => this.setState({ color: false });
+
 	putPixel = (e) => {
+		this.setState({needStop: false});
+
 		if (!this.state.color) return;
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
 		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
@@ -147,17 +159,19 @@ export default class Board extends Component {
 			.attr('fill', this.state.color)
 			.attr('x', this.pixelPoint[0])
 			.attr('y', this.pixelPoint[1]);
-
-		postPixel(this.pixelPoint, this.state.color).then( resp => {
-			if (resp.data && resp.data.length){
-				this.setAllPixels(resp.data);
-				this.props.callToApp({ putPixel: -1, type: 'pixel' });
-				const photo = `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
-				if (this.state.currentPhoto !== photo ){
-					this.setState({ photoUpdate: 'done', currentPhoto: photo });
+		setTimeout(() => {
+		if(!this.state.needStop) postPixel(this.pixelPoint, this.state.color).then( resp => {
+				if (resp.data && resp.data.length){
+					this.setAllPixels(resp.data);
+					this.props.callToApp({ putPixel: -1, type: 'pixel' });
+					const photo = `https://nuotraukos.vote4art.eu/${resp.meta.photo}`;
+					if (this.state.currentPhoto !== photo ){
+						this.setState({ photoUpdate: 'done', currentPhoto: photo });
+					}
 				}
-			}
-		});
+			});
+		}, 3000);
+
 	}
 
 	componentWillMount() {
@@ -172,7 +186,7 @@ export default class Board extends Component {
 
 	componentDidMount() {
 		this.loadPixels();
-		setInterval( () => { this.loadPixels(); }, 1000);
+		setInterval( () => { this.loadPixels(); }, 2000);
 
 		const b = this.base.querySelector('#voteForArt');
 		const a = this.base.querySelector('#gridArea');
@@ -191,9 +205,9 @@ export default class Board extends Component {
 
 		return (
 			<div class={style.wrap__board}>
-				<div id="currentPixel" onTap={this.removePixel} style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
-					<div class={style.ctrl}>
-						<span class={style.ctrl_text}>
+				<div id="currentPixel" onTouchTap={this.stopPixel} style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
+					<div class={style.ctrl} onTouchTap={this.stopPixel} >
+						<span onTouchTap={this.stopPixel} >
 							Atšaukti pasirinka spalva 
 						</span>
 					</div>

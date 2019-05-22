@@ -20,7 +20,7 @@ export default class Userinfo extends Component {
 		return (
 			<div class={style.container}>
 				<div>
-					<h3>Turimi pixeliai: {this.props.data && this.props.data.meta && this.props.data.meta.active_pixels ? this.props.data.meta.active_pixels : 0}</h3>
+					<h3>Turimi pixeliai: {(this.props.data.meta.active_pixels + this.props.data.attributes.rewards)}</h3>
 				</div>
 				<div>
 					<h3>Vartotojas: {this.props.data.attributes.username}</h3>
