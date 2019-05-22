@@ -41,13 +41,10 @@ export default class App extends Component {
 		return {
 			status: res.splice(e, 1)[0]
 		};
-	}	// BASE_URL = 'http://localhost:3000',
+	}
 
-
-	s	// BASE_URL = 'http://localhost:3000',
-
-		// BASE_URL = 'http://localhost:3000',
-gameState', this.arr.indexOf(e.status));
+	setSt = (e) => {
+		 localStorage.setItem('gameState', this.arr.indexOf(e.status));
 		if (e.status === 'visited') this.setState({ logined: false, gameAutoload: false,  needTerms: false });
 		if (e.status === 'success') this.setState({ logined: true, gameAutoload: false, needTerms: false });
 		if (e.status === 'error') this.setState({ logined: true, gameAutoload: false, needTerms: true });
@@ -141,7 +138,7 @@ gameState', this.arr.indexOf(e.status));
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />
 
-				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
+				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=284507289101227" />
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			

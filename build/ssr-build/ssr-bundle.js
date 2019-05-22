@@ -586,7 +586,7 @@ module.exports = listCacheDelete;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hkx6","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__FjaZM","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__SLGQt","mdc-ripple-upgraded":"mdc-ripple-upgraded__1Ci9o","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__3ii8B","mdc-top-app-bar__row":"mdc-top-app-bar__row__1CpRj","mdc-top-app-bar__section":"mdc-top-app-bar__section__1Hipt","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__1Amxj","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__3qNoM","mdc-top-app-bar__title":"mdc-top-app-bar__title__2vzp8","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__2_mx3","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__30Tox","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__3TW14","mdc-top-app-bar--short":"mdc-top-app-bar--short__2F2yR","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__2bmIQ","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3smH_","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__4KUTF","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__10huN","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1Cxpn","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1TOrP","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3rW07","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__1qM7b","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__ziSnV","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__36ESG","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__g2lye","logo":"logo__3-ZOJ","topappbar":"topappbar__mpA_O","c_btn":"c_btn__25OKA","l_vrk":"l_vrk__rLLwQ","l_ek":"l_ek__3JPnA","row_two":"row_two__EGX-3","mobile_h":"mobile_h__afHFS","mobile_m":"mobile_m__2PuXH"};
+module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hkx6","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__FjaZM","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__SLGQt","mdc-ripple-upgraded":"mdc-ripple-upgraded__1Ci9o","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__3ii8B","mdc-top-app-bar__row":"mdc-top-app-bar__row__1CpRj","mdc-top-app-bar__section":"mdc-top-app-bar__section__1Hipt","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__1Amxj","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__3qNoM","mdc-top-app-bar__title":"mdc-top-app-bar__title__2vzp8","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__2_mx3","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__30Tox","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__3TW14","mdc-top-app-bar--short":"mdc-top-app-bar--short__2F2yR","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__2bmIQ","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3smH_","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__4KUTF","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__10huN","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1Cxpn","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1TOrP","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3rW07","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__1qM7b","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__ziSnV","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__36ESG","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__g2lye","logo":"logo__3-ZOJ","topappbar":"topappbar__mpA_O","c_btn":"c_btn__25OKA","l_vrk":"l_vrk__rLLwQ","l_ek":"l_ek__3JPnA","row_two":"row_two__EGX-3","mobile_login":"mobile_login__1Yh2C","mobile_h":"mobile_h__afHFS","mobile_m":"mobile_m__2PuXH"};
 
 /***/ }),
 
@@ -9860,6 +9860,8 @@ function login(pramas) {
 		username: pramas.username,
 		password: pramas.password
 	}).then(function (response) {
+		localStorage.setItem('visited', true);
+
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		switch (response.status) {
 			case 'info':
@@ -9888,6 +9890,8 @@ function signup(pramas) {
 		terms_and_conditions: pramas.terms_and_conditions
 
 	}).then(function (response) {
+		localStorage.setItem('visited', true);
+
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		switch (response.status) {
 			case 200:
@@ -9902,16 +9906,18 @@ function signup(pramas) {
 }
 function logout() {
 	// sendLogout();
+	localStorage.removeItem('provider');
 	clearIdToken();
 	clearAccessToken();
-	delete localStorage.va;
 	window.location.href = '/';
 }
 
 function facebookLogin(data) {
 	var url = BASE_URL + '/auth/facebook/?uid=' + data.id + '&name=' + data.name;
 	return axios_default.a.get(url).then(function (response) {
-		localStorage.setItem('provider', 'fb');
+		sessionStorage.setItem('provider', 'fb');
+		localStorage.setItem('visited', true);
+
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		if (response.data.status == 'error') {
 			lib["NotificationManager"].info('', 'Privalote sutikti su taisyklemis');
@@ -9928,6 +9934,8 @@ function acceptTerms() {
 	var url = BASE_URL_PRIVATE + '/users/accept_conditions';
 	return axios_default.a.put(url, { accept: true }, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
 		localStorage.setItem('windowovider', 'fb');
+		localStorage.removeItem('provider');
+
 		return response.data;
 	}).catch(function (error) {
 		lib["NotificationManager"].erwindowr(error.response.data, 'Klaida', 2000);
@@ -10010,7 +10018,7 @@ var login__ref = Object(preact_min["h"])(
 	'Prisijungti'
 );
 
-var login__ref2 = Object(preact_min["h"])('hr', null);
+var _ref2 = Object(preact_min["h"])('hr', null);
 
 var _ref3 = Object(preact_min["h"])(
 	'h4',
@@ -10034,9 +10042,9 @@ var login_Login = function (_Component) {
 
 					if (localStorage.needReward) {
 						localStorage.removeItem('needReward');
-						window.location.href = localStorage.rewardPath;
+						route(localStorage.rewardPath);
 					} else {
-						window.location.href = '/';
+						route('/');
 					}
 				}
 			});
@@ -10057,9 +10065,10 @@ var login_Login = function (_Component) {
 								_this.props.callToDialog('success');
 								if (localStorage.needReward) {
 									localStorage.removeItem('needReward');
-									window.location.href = localStorage.rewardPath;
+									route(localStorage.rewardPath);
 								} else {
-									window.location.href = '/';
+									route('/');
+									// window.location.href = '/';
 								}
 							}
 						});
@@ -10132,7 +10141,7 @@ var login_Login = function (_Component) {
 				{ onClick: this.fbLogin },
 				'Arba prisijunkite per'
 			),
-			login__ref2,
+			_ref2,
 			Object(preact_min["h"])(
 				'div',
 				{ 'class': login_style_default.a.social },
@@ -10175,24 +10184,24 @@ var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 var notifications = __webpack_require__("4gqW");
 var notifications_default = /*#__PURE__*/__webpack_require__.n(notifications);
 
-// EXTERNAL MODULE: ./components/dialogs/terms/style.css
-var terms_style = __webpack_require__("z4ZX");
-var terms_style_default = /*#__PURE__*/__webpack_require__.n(terms_style);
+// EXTERNAL MODULE: ./components/dialogs/rules/style.css
+var rules_style = __webpack_require__("LaXe");
+var rules_style_default = /*#__PURE__*/__webpack_require__.n(rules_style);
 
-// CONCATENATED MODULE: ./components/dialogs/terms/index.js
-
-
-function terms__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function terms__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function terms__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// CONCATENATED MODULE: ./components/dialogs/rules/index.js
 
 
+function rules__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function rules__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function rules__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
-var terms__ref = Object(preact_min["h"])(
+
+
+var rules__ref = Object(preact_min["h"])(
 	'div',
 	null,
 	Object(preact_min["h"])(
@@ -10298,20 +10307,20 @@ var terms__ref = Object(preact_min["h"])(
 	)
 );
 
-var Terms = function (_Component) {
-	terms__inherits(Terms, _Component);
+var Rules = function (_Component) {
+	rules__inherits(Rules, _Component);
 
-	function Terms() {
-		terms__classCallCheck(this, Terms);
+	function Rules() {
+		rules__classCallCheck(this, Rules);
 
-		return terms__possibleConstructorReturn(this, _Component.apply(this, arguments));
+		return rules__possibleConstructorReturn(this, _Component.apply(this, arguments));
 	}
 
-	Terms.prototype.render = function render() {
-		return terms__ref;
+	Rules.prototype.render = function render() {
+		return rules__ref;
 	};
 
-	return Terms;
+	return Rules;
 }(preact_min["Component"]);
 
 
@@ -10403,14 +10412,14 @@ var registration_Registration = function (_Component) {
 			signup(_this.state).then(function (resp) {
 				if (resp) {
 					_this.setState({});
-					_this.props.callToDialog('success');
+					_this.props.callToDialog('wellcome');
 					// atidziai atiduot statusa backend !!!
 
 					if (localStorage.needReward) {
 						localStorage.removeItem('needReward');
-						window.location.href = localStorage.rewardPath;
+						route(localStorage.rewardPath);
 					} else {
-						window.location.href = '/';
+						route('/');
 					}
 				}
 			});
@@ -10434,16 +10443,18 @@ var registration_Registration = function (_Component) {
 					FB.api('/me', function (response) {
 						facebookLogin({ id: "" + response.id, name: response.name }).then(function (resp) {
 							if (resp.status === 'error') {
+								localStorage.setItem('provider', 'fb');
+
 								_this.rules();
 							} else {
+								localStorage.removeItem('provider');
 								_this.props.callToDialog('success');
 								// atidziai atiduot statusa backend !!!
-
 								if (localStorage.needReward) {
 									localStorage.removeItem('needReward');
-									window.location.href = localStorage.rewardPath;
+									route(localStorage.rewardPath);
 								} else {
-									window.location.href = '/';
+									route('/');
 								}
 							}
 						});
@@ -10491,6 +10502,7 @@ var registration_Registration = function (_Component) {
 		var target = event.target;
 		var value = target.type === 'checkbox' ? target.checked : target.value;
 		var name = target.name;
+		localStorage.removeItem('provider');
 		this.setState((_setState = {}, _setState[name] = value, _setState));
 	};
 
@@ -10595,6 +10607,163 @@ var registration_Registration = function (_Component) {
 }(preact_min["Component"]);
 
 
+// EXTERNAL MODULE: ./components/dialogs/about/style.css
+var about_style = __webpack_require__("KOfj");
+var about_style_default = /*#__PURE__*/__webpack_require__.n(about_style);
+
+// CONCATENATED MODULE: ./components/dialogs/about/index.js
+
+
+function about__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function about__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function about__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var about__ref = Object(preact_min["h"])(
+	'article',
+	null,
+	Object(preact_min["h"])(
+		'p',
+		null,
+		' Sukurkime pie\u0161in\u012F, tapsiant\u012F m\u016Bs\u0173 istorijos dalimi ir gatv\u0117s meno k\u016Briniu!'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'U\u017Esiregistruokite, gaukite pikseli\u0173 ir prad\u0117kite pie\u0161ti. Nuo registracijos prad\u017Eios kas valand\u0105 gausite po vien\u0105 piksel\u012F. Dienos pikselius galite kaupti (iki 24 per dien\u0105), bet j\u0173 nei\u0161naudojus iki tos dienos pabaigos, vidurnakt\u012F pikseliai bus anuliuojami. Ie\u0161kokite bendramin\u010Di\u0173 pasirinkto pie\u0161inio \u012Fam\u017Einimui ir koordinuokite veiksmus.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Ateikite balsuoti \u012F Europos Parlamento rinkimus, skenuokite balsavimo apylink\u0117se esan\u010Dius QR kodus ant \u201EVote4Art\u201C plakat\u0173 ir gaukite dar daugiau pikseli\u0173. Taip prisid\u0117sime prie Europos ateities k\u016Brimo ir bendrai sukursime virtual\u0173 pie\u0161in\u012F, kuris taps m\u016Bs\u0173 vis\u0173 istorijos dalimi.'
+	)
+);
+
+var About = function (_Component) {
+	about__inherits(About, _Component);
+
+	function About() {
+		about__classCallCheck(this, About);
+
+		return about__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	About.prototype.render = function render() {
+		return about__ref;
+	};
+
+	return About;
+}(preact_min["Component"]);
+
+
+// EXTERNAL MODULE: ./components/dialogs/eu/style.css
+var eu_style = __webpack_require__("p69m");
+var eu_style_default = /*#__PURE__*/__webpack_require__.n(eu_style);
+
+// CONCATENATED MODULE: ./components/dialogs/eu/index.js
+
+
+function eu__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function eu__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function eu__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var eu__ref = Object(preact_min["h"])(
+	'article',
+	null,
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'I\u0161 anksto balsuoti galite gegu\u017E\u0117s 20\u201324  dienomis visose Lietuvos savivaldyb\u0117se. Gegu\u017E\u0117s 26 d. balsuoti galite bet kurioje Lietuvos rinkim\u0173 apylink\u0117je (nuo 7 iki 20 val.).'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Savivaldybi\u0173 ir apylinki\u0173 \u017Eem\u0117lap\u012F galite rasti \u010Dia ',
+		Object(preact_min["h"])(
+			'a',
+			{ href: 'https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100', target: '_blank' },
+			'\u010Dia'
+		)
+	)
+);
+
+var Eu = function (_Component) {
+	eu__inherits(Eu, _Component);
+
+	function Eu() {
+		eu__classCallCheck(this, Eu);
+
+		return eu__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	Eu.prototype.render = function render() {
+		return eu__ref;
+	};
+
+	return Eu;
+}(preact_min["Component"]);
+
+
+// EXTERNAL MODULE: ./components/dialogs/wellcome/style.css
+var wellcome_style = __webpack_require__("rXB5");
+var wellcome_style_default = /*#__PURE__*/__webpack_require__.n(wellcome_style);
+
+// CONCATENATED MODULE: ./components/dialogs/wellcome/index.js
+
+
+function wellcome__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function wellcome__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function wellcome__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var wellcome__ref = Object(preact_min["h"])(
+	'article',
+	null,
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'\u0160tai Jums pirmieji pikseliai, imkite jais ir tapykite. Pie\u0161iant kartu su kitais, inicijuojant ir papildant pie\u0161in\u012F, galite sukurti \u012Fsp\u016Bding\u0105 rezultat\u0105.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Nu\u0117j\u0119 balsuoti ir nuskenav\u0119 Vote4Art QR kod\u0105 rinkim\u0173 apylink\u0117je gausite 84 papildomus pikselius!'
+	)
+);
+
+var Wellcome = function (_Component) {
+	wellcome__inherits(Wellcome, _Component);
+
+	function Wellcome() {
+		wellcome__classCallCheck(this, Wellcome);
+
+		return wellcome__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	Wellcome.prototype.render = function render() {
+		return wellcome__ref;
+	};
+
+	return Wellcome;
+}(preact_min["Component"]);
+
+
 // CONCATENATED MODULE: ./components/header/index.js
 
 
@@ -10627,6 +10796,9 @@ function header__inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 // import 'preact-material-components/Button/style.css';
+
+
+
 
 
 
@@ -10665,70 +10837,16 @@ var _ref8 = Object(preact_min["h"])(
 );
 
 var _ref9 = Object(preact_min["h"])(
-	'article',
-	null,
-	Object(preact_min["h"])(
-		'p',
-		null,
-		' Sukurkime Lietuvos dyd\u017Eio mozaik\u0105!'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Taisykl\u0117s paprastos: u\u017Esiregistruokite, gaukite pikseli\u0173 ir sukurkite Lietuvos dyd\u017Eio pie\u0161in\u012F. Ateikite balsuoti \u012F Europos Parlamento rinkimus, skenuokite apylink\u0117se esan\u010Dius QR kodus esan\u010Dius ant Vote4Art plakat\u0173 ir gaukite dar daugiau pikseli\u0173!'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'O svarbiausia taisykl\u0117 paskutin\u0117 - i\u0161rei\u0161kite savo nuomon\u0119 Europos Parlamento rinkimuose ir formuokite ne tik mozaik\u0105, bet ir Europos ateit\u012F!'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Daugiau info apie EP rinkimus: ',
-		Object(preact_min["h"])(
-			'a',
-			{ 'class': 't_link', target: '_blank', href: 'https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections' },
-			'https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections'
-		)
-	),
-	'       '
+	'h1',
+	{ style: 'display: inline' },
+	'Sveiki !!!'
 );
 
-var _ref10 = Object(preact_min["h"])(
-	'article',
-	null,
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'2019-\u0173j\u0173 gegu\u017E\u0117s Europos Parlamento rinkimai tiesiogiai paveiks j\u016Bs\u0173 gyvenim\u0105. Jie nulems, k\u0105 ateinan\u010Diais metais darys Europa, kad i\u0161spr\u0119st\u0173 jums r\u016Bpimus darbo, verslo, saugumo, migracijos ir klimato kaitos klausimus.'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Europa yra m\u016Bs\u0173 vis\u0173, tod\u0117l \u0161iuos sprendimus tur\u0117tume priimti kartu. Taigi svarbu, kad balsuotum\u0117te ne tik j\u016Bs, bet ir j\u016Bs\u0173 \u0161eima, draugai, kaimynai bei kolegos. Kai balsuoja visi, tai ir laimi visi. '
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Kur galiu balsuoti?'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'I\u0161 anksto balsuoti galite gegu\u017E\u0117s 20-24 dienomis visose savivaldyb\u0117se. Gegu\u017E\u0117s 26\u2019\u0105 balsuoti galite bet kurioje Lietuvos rinkim\u0173 apylink\u0117je (nuo 7 iki 20 val.).'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Savivaldybi\u0173 ir apylinki\u0173 \u017Eem\u0117lap\u012F galite rasti \u010Dia ',
-		Object(preact_min["h"])(
-			'a',
-			{ href: 'https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100', target: '_blank' },
-			'\u010Dia'
-		)
-	)
-);
+var _ref10 = Object(preact_min["h"])(About, null);
+
+var _ref11 = Object(preact_min["h"])(Eu, null);
+
+var _ref12 = Object(preact_min["h"])(Wellcome, null);
 
 var header_Header = function (_Component) {
 	header__inherits(Header, _Component);
@@ -10764,11 +10882,19 @@ var header_Header = function (_Component) {
 					_this.dialog.MDComponent.close();
 				}, 1);
 			}
+			if (state === 'wellcome') {
+				// this.props.callToApp({ status: state, type: 'pixel'});
+				_this.props.callToApp({ type: 'registered' });
+				_this.setState({ dialogContent: 'wellcome' });
+			}
 		}, _this.acceptTerms = function () {
-			if (localStorage.provider && localStorage.provider === 'fb') {
+			if (localStorage.provider === 'fb') {
 				acceptTerms().then(function (resp) {
 					localStorage.setItem('userState', 'success');
-					_this.dialog.MDComponent.close();
+					_this.setState({ dialogContent: 'wellcome' });
+
+					// this.dialog.MDComponent.close();
+					// this.dialog.MDComponent.close();
 					_this.setState({});
 					_this.props.callToApp(true);
 				});
@@ -10777,6 +10903,7 @@ var header_Header = function (_Component) {
 				_this.setState({ dialogContent: 'registracija' });
 			}
 		}, _this.callBackFromRegterms = function (state) {
+
 			_this.setState({ scrollModal: true });
 			_this.setState({ dialogContent: 'rules', editrule: 'register', backState: state });
 		}, _this.openContent = function (e) {
@@ -10813,7 +10940,7 @@ var header_Header = function (_Component) {
 	Header.prototype.setUserState = function setUserState() {
 		this.setState({ userState: localStorage.userState });
 
-		if (!localStorage.va) {
+		if (!localStorage.visited) {
 			this.setState({ dialogContent: 'game' });
 			this.dialog.MDComponent.show();
 		}
@@ -10857,13 +10984,26 @@ var header_Header = function (_Component) {
 					null,
 					Object(preact_min["h"])(
 						TopAppBar_default.a.Section,
-						{ 'align-start': true },
+						{ 'align-center': true },
 						Object(preact_min["h"])('img', { 'class': header_style_default.a.logo, src: '/assets/images/logo.png' }),
 						header__ref3
 					),
 					Object(preact_min["h"])(
 						TopAppBar_default.a.Section,
 						{ 'align-center': true },
+						Object(preact_min["h"])(
+							'div',
+							{ 'class': header_style_default.a.mobile_login },
+							this.state.logined ? Object(preact_min["h"])(
+								Button_default.a,
+								{ onClick: this.logOut, secondary: true },
+								'Atsijungti'
+							) : Object(preact_min["h"])(
+								Button_default.a,
+								{ id: 'login', onClick: this.openContent, secondary: true },
+								'Prisijungti'
+							)
+						),
 						Object(preact_min["h"])(
 							'div',
 							{ 'class': header_style_default.a.c_btn },
@@ -10928,15 +11068,6 @@ var header_Header = function (_Component) {
 									Button_default.a,
 									{ id: 'eu', onClick: this.openContent, unelevated: true },
 									'EP rinkimai 2019'
-								),
-								this.state.logined ? Object(preact_min["h"])(
-									Button_default.a,
-									{ onClick: this.logOut, secondary: true },
-									'Atsijungti'
-								) : Object(preact_min["h"])(
-									Button_default.a,
-									{ id: 'login', onClick: this.openContent, secondary: true },
-									'Prisijungti'
 								)
 							)
 						)
@@ -10949,7 +11080,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Header,
 					null,
-					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : this.state.dialogContent === 'eu' ? _ref8 : '',
+					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : this.state.dialogContent === 'eu' ? _ref8 : this.state.dialogContent === 'wellcome' ? _ref9 : '',
 					Object(preact_min["h"])(
 						'span',
 						{ style: 'float: right;' },
@@ -10967,7 +11098,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Body,
 					{ scrollable: this.state.scrollModal },
-					this.state.dialogContent === 'game' ? _ref9 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Terms, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'eu' ? _ref10 : ''
+					this.state.dialogContent === 'game' ? _ref10 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Rules, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'eu' ? _ref11 : this.state.dialogContent === 'wellcome' ? _ref12 : ''
 				),
 				Object(preact_min["h"])(
 					Dialog_default.a.Footer,
@@ -30809,13 +30940,13 @@ var board__ref10 = Object(preact_min["h"])('path', {
 	id: 'LT-TE'
 });
 
-var _ref11 = Object(preact_min["h"])('path', {
+var board__ref11 = Object(preact_min["h"])('path', {
 	d: 'm 695.17599,137.16382 2.88,2.56 2.19,-0.21 5.29,6.63 0.88,4.22 -0.52,1.97 5.08,10.77 5.72,5.45 4.97,0.5 2.08,2.58 2.41,6.2 5.18,-1.21 5.6,1.09 3.18,2.39 0.63,1.94 2.89,0.12 0.85,1.56 1.71,0.66 5.23,-0.47 0.65,0.99 3.03,0.22 4.07,-1.4 0.02,5.82 1.89,0.26 0.91,6.37 -2.33,3.95 1.19,1.82 0.12,6.77 -3.05,2.52 -1.25,-0.52 -3.98,6.55 -5.12,2.36 -2.29,4.38 2.1,5.79 1.78,0.38 1.4,2.49 -3.11,4.56 1.91,2.71 -2.21,-0.26 2.35,6.91 -1.41,1.19 0.75,4.3 -3.06,0.07 -3.89,4.32 -1.95,-0.56 -1.53,0.63 -0.73,3.19 -3.64,1.83 1.37,1.5 3.11,-0.14 5.35,2.81 3.71,0.14 2.49,2.44 2.78,-1.59 0.28,1.47 1.09,-0.65 1.71,0.82 1.47,-1.6 -0.49,-1.36 1.92,-0.7 -0.35,2.23 0.89,0.82 1.79,-3.03 1.87,1.13 0.84,-2.25 1.99,1.8 3.57,0.66 1.56,1.59 5.91,-0.18 6.65,1.71 0.04,1.54 2.02,0.42 0.91,2.23 -0.62,4.45 -4.19,1.1 -2.94,3.35 -4.66,1.75 0,0 -0.41,-0.75 2.62,-1.68 -12.24,0.46 0.08,3.05 -1.87,0.32 0.88,-0.79 -0.68,-1.87 -3.67,-0.21 0.35,1.47 -2.2,0.21 1.72,0.98 0.02,0.94 -1.4,-0.17 0.25,1.83 -2.68,1.85 0.16,0.91 -4.31,0 0.15,0.77 -2.16,1.03 -2.78,-1.38 -2.07,2.52 -3.22,-0.61 -1.18,0.75 -3.59,-1.68 -1.37,2.52 -1.19,-1.35 -5.57,-0.54 -2.9,-2.06 -1.45,0.99 -7.78,-1.92 -2.22,0.91 -1.82,-1.17 -0.84,1.01 0.63,0.7 -1.87,0.58 -3.96,-5.91 -1.31,2.08 -2.75,-0.31 -0.29,-0.81 -1.25,4.13 -1.37,0.17 -3.45,-0.73 -0.15,-1.14 3.17,-4.8 1.14,-0.25 -4.41,-2.27 0.06,-2.39 -1.44,-0.82 1.31,-1.1 -0.24,-1.12 -4.36,-1.97 -1.93,1.9 -0.75,-1.01 -4.51,-1.36 -0.26,-3.02 -0.32,3.77 0.77,0.21 -1.5,-0.42 -0.37,-2.9 -0.63,2.78 -2.83,1.99 3.02,-0.3 -1.76,2.46 -0.89,-0.78 -3.54,0.64 -0.72,1.61 -3.62,-1.96 -2.11,1.35 -1.4,-1.4 -0.42,-2.32 -1.25,0.07 0.2,2.41 -1.94,-0.98 -0.82,1.92 -2.12,-1.59 0.36,-2.34 -3.62,-2.51 -4.75,1.05 1.91,1.95 -3.67,3.21 -1.62,-2.46 0.53,-1.24 -5.1,-6.23 -4.71,4.26 0.09,-1.85 -1.59,2.32 1.3,0.44 -2.41,1.81 -1.27,4.7 0.43,1.29 -3.78,-2.32 0.3,2.57 1.19,0.33 0.49,1.52 -0.79,0.52 0.55,0.96 1.32,-0.14 0.36,1.73 -1.18,0.25 -1,-1.05 -2.85,0.56 -1.49,5.87 1.83,0.07 -1.55,2.2 -1.11,-0.19 -0.43,2.55 1.02,2.89 2.75,0.68 1.04,1.78 3.24,0.6 0.08,5.63 1.44,0.28 2.82,3.64 1.96,-0.59 0.36,1.4 4.37,1.52 1.03,1.77 -2.6,0.16 -0.66,2.24 -0.88,0.12 -0.67,-1.75 -2.2,2.54 2.31,1.12 -0.5,2.3 -1.51,0 0.5,-1.23 -3.14,1.58 0.89,2.54 1.15,-2.09 1.31,0.37 -0.83,2.75 -1.39,1.16 1.15,0.98 -1.69,1.32 1.49,2.54 1.82,-0.7 0.25,1.1 -6.53,0.9 -1.23,-2.77 -1.39,1.05 -3.57,0.16 -0.77,-2.25 0.69,-1 -5.11,-2.52 -3.25,1.75 -2.47,-0.23 -1.07,-1.4 -0.36,3.7 -1.98,-0.42 -0.54,-1.49 -2.84,0.82 -1.19,4.02 -4.14,-0.72 -8.07,1.93 -5.27,-0.72 -1.79,1.56 -5.85,-0.77 -2.96,-2.88 -6.42,-0.21 -6.44,1.04 -0.62,-1.28 2.85,-2.67 -2.11,-3.98 0.12,-2.89 -1.18,0.16 -1.75,-1.44 -3.66,0.28 -0.73,-1.05 -1.29,1.37 -1.27,-1.61 0.87,-2 -0.8,-1.23 1.68,-2.17 -0.26,-2.19 1.89,-1.52 -0.97,-3.43 2.67,-0.26 5.73,-2.63 0.88,-1.57 -1.29,-2.19 1.17,-2.13 4.41,-0.18 -1.65,-1.59 -0.87,0.75 -0.55,-0.99 -2.27,0.54 -0.36,-3.22 -1.75,-1.48 -4.83,1.76 -2.66,-2.92 3.4,-4.66 1.17,-6.29 -4.5,0.96 -1.58,2.55 -0.48,-1.1 -5.26,-2.32 0.52,-3.2 -1.2,-2.46 -2.15,-0.49 0.41,-2.48 -1.18,-1.67 -2.45,0.99 -0.38,-1.5 -2.27,0.7 -1.7,-0.54 -3.35,1.15 -2.11,-1.1 -0.5,-7.31 -1.35,-3.59 -8.72,3.82 -1.66,-0.54 1.06,-3.26 -7.43,0.87 -6.98,-4.6 -0.57,0.42 0.49,-7.37 -1.55,-1.03 1.73,-3.83 2.76,1.9 1.51,-5.59 -5.73,-2.54 -2.19,-7.69 -0.92,0.21 0.24,0.85 -2.42,0.16 -2.9,-6.26 -3.23,-0.54 -1.84,1.93 -1.16,-0.61 -1.75,1.23 -1.32,-0.97 0.11,-4.52 0,0 -0.22,-2.5 2.57,-4.5 -1.09,-2.17 2.1,-1.55 -1.57,-4.08 1.47,-4.16 5.35,-2.47 1.23,0.26 -0.25,-4.61 -1.5,-3.23 -2.63,-1.92 -1.58,1.68 -2.39,0.57 -1.29,-0.74 -0.06,-4.39 6.96,-1.59 -0.94,1.68 3.6,1.89 1.74,-1.01 0.76,-2.32 1.26,-0.31 -1.63,-2.29 -2.19,0.12 -0.26,-1 -1.51,-0.07 1.27,-4.11 -0.37,-4.24 1.39,-0.8 2.94,2.81 2.39,-1.11 2.75,1.28 5.53,-3.05 2.13,2.05 0.24,1.9 2.74,0.47 0.44,-3.64 4.66,-0.76 3.36,1.35 6.32,-4.38 2.2,0.8 0.43,1.16 6.88,1.23 1.99,2.09 4.77,-0.5 -1.98,2.91 1.89,4.85 19.23,-7.4 0.01,-0.67 3.15,-0.38 2.29,3.18 2.08,1.15 1.13,-2.93 -1.82,-0.73 -0.34,-4.19 3.71,-1.26 1.16,0.74 2.62,-2.49 1.72,-3.58 3.13,-0.76 10.45,7.99 1.36,-2.7 3.58,1.25 -0.84,2.37 3.55,1.77 1.81,-0.07 1.11,-2.81 5.25,1.82 2.19,-5.21 1.99,2.39 1.44,-0.76 3.04,1.07 2.87,-2.65 1.18,0.38 0.76,4.87 0.99,-0.16 3.26,-3.79 2.17,-0.5 -0.02,-3.86 -1.03,-0.07 1.28,-1.09 0.03,-3.32 0.75,0.52 4.31,-1.47 2.86,1.9 4.4,0.71 0.61,-4.41 1.25,-2.02 -1.49,-4.15 1.91,0.52 -0.1,-5.22 2.94,1.47 4.18,-0.16 1.16,-0.88 0.5,-1.83 -1.05,-7.15 9.41,-1.88 -0.21,-2.8 1.87,-3.16 -2.69,-3.74 0.28,-2.93 4.18,-4.5 6.73,-1.21 0,0 0.98,3.78 5.63,9.69 3.75,4.66 z',
 	title: 'Utena',
 	id: 'LT-UT'
 });
 
-var _ref12 = Object(preact_min["h"])('path', {
+var board__ref12 = Object(preact_min["h"])('path', {
 	d: 'm 605.94599,509.50382 -1.9,-0.48 0.27,-1.23 3.66,-0.53 -2.03,2.24 z m -111.37,-288.09 -0.11,4.52 1.32,0.96 1.75,-1.22 1.16,0.61 1.83,-1.93 3.23,0.54 2.9,6.26 2.42,-0.16 -0.24,-0.85 0.92,-0.21 2.19,7.69 5.73,2.54 -1.51,5.59 -2.77,-1.9 -1.72,3.83 1.55,1.03 -0.49,7.37 0.58,-0.42 6.97,4.6 7.43,-0.87 -1.06,3.26 1.66,0.54 8.72,-3.82 1.35,3.59 0.5,7.31 2.11,1.1 3.35,-1.15 1.7,0.54 2.27,-0.7 0.37,1.5 2.46,-0.98 1.18,1.66 -0.41,2.48 2.15,0.49 1.2,2.46 -0.52,3.21 5.27,2.32 0.48,1.1 1.58,-2.55 4.5,-0.96 -1.18,6.29 -3.39,4.65 2.66,2.92 4.82,-1.75 1.75,1.47 0.36,3.22 2.27,-0.54 0.55,0.98 0.87,-0.75 1.66,1.59 -4.41,0.19 -1.18,2.13 1.3,2.19 -0.88,1.56 -5.73,2.64 -2.67,0.26 0.98,3.43 -1.9,1.52 0.27,2.19 -1.68,2.17 0.8,1.23 -0.87,2 1.27,1.61 1.28,-1.38 0.73,1.05 3.66,-0.28 1.75,1.44 1.18,-0.16 -0.12,2.89 2.11,3.98 -2.85,2.68 0.62,1.28 6.44,-1.05 6.43,0.21 2.95,2.88 5.85,0.77 1.79,-1.56 5.26,0.72 8.07,-1.93 4.14,0.72 1.19,-4.03 2.85,-0.81 0.53,1.49 1.98,0.42 0.36,-3.7 1.07,1.4 2.47,0.23 3.25,-1.75 5.12,2.51 -0.69,1 0.77,2.26 3.57,-0.16 1.39,-1.05 1.23,2.77 6.53,-0.91 -0.25,-1.09 -1.82,0.7 -1.5,-2.54 1.7,-1.33 -1.15,-0.98 1.39,-1.16 0.83,-2.75 -1.31,-0.37 -1.15,2.1 -0.9,-2.54 3.14,-1.58 -0.49,1.24 1.51,0 0.5,-2.31 -2.31,-1.12 2.21,-2.54 0.67,1.75 0.88,-0.12 0.66,-2.24 2.61,-0.16 -1.03,-1.77 -4.37,-1.52 -0.36,-1.4 -1.96,0.58 -2.82,-3.64 -1.44,-0.28 -0.08,-5.62 -3.23,-0.61 -1.04,-1.78 -2.75,-0.68 -1.02,-2.9 0.43,-2.55 1.11,0.19 1.55,-2.2 -1.83,-0.07 1.5,-5.87 2.85,-0.56 1,1.05 1.18,-0.26 -0.36,-1.73 -1.32,0.14 -0.55,-0.96 0.79,-0.51 -0.48,-1.52 -1.19,-0.33 -0.31,-2.57 3.78,2.32 -0.43,-1.29 1.27,-4.7 2.41,-1.8 -1.3,-0.44 1.59,-2.32 -0.09,1.85 4.72,-4.26 5.09,6.23 -0.52,1.24 1.62,2.46 3.67,-3.21 -1.91,-1.94 4.74,-1.05 3.62,2.51 -0.36,2.34 2.13,1.59 0.81,-1.92 1.94,0.98 -0.2,-2.41 1.26,-0.07 0.41,2.32 1.4,1.4 2.11,-1.36 3.62,1.97 0.72,-1.61 3.54,-0.63 0.88,0.77 1.76,-2.46 -3.02,0.3 2.83,-1.99 0.63,-2.79 0.37,2.9 1.5,0.42 -0.77,-0.21 0.32,-3.77 0.27,3.02 4.5,1.36 0.75,1.01 1.94,-1.9 4.36,1.97 0.24,1.12 -1.31,1.1 1.44,0.82 -0.07,2.39 4.41,2.27 -1.14,0.26 -3.17,4.79 0.15,1.15 3.45,0.72 1.38,-0.16 1.24,-4.14 0.29,0.82 2.75,0.3 1.31,-2.08 3.96,5.92 1.87,-0.58 -0.63,-0.7 0.84,-1.01 1.82,1.17 2.22,-0.91 7.78,1.92 1.46,-0.98 2.9,2.06 5.57,0.54 1.19,1.36 1.36,-2.52 3.59,1.68 1.18,-0.75 3.22,0.61 2.07,-2.52 2.78,1.38 2.17,-1.03 -0.15,-0.77 4.3,0 -0.16,-0.91 2.69,-1.85 -0.25,-1.82 1.4,0.16 -0.03,-0.94 -1.71,-0.98 2.19,-0.21 -0.35,-1.47 3.67,0.21 0.68,1.87 -0.88,0.79 1.87,-0.33 -0.08,-3.04 12.24,-0.47 -2.62,1.68 0.4,0.75 0,0 -2.07,3.02 0.32,5.45 -3.34,3.58 -1.4,-1.19 -2.35,1.64 1.47,4.88 2.18,1.17 -1.2,1.66 -2.14,-0.82 -0.75,2.78 -2.65,-0.98 -4.32,3.24 -4.98,-1.49 -5.67,2.38 -3.5,-3.85 -4.78,2.78 -0.28,2.57 -2.11,1.8 -4.48,-2.29 -1.55,0.68 -0.36,-1.03 -2.06,1.7 -0.84,-2.12 -4.72,-1.73 -1.74,1.19 -2.62,-0.05 0.36,2.17 -3.39,0.47 1.24,1.05 -1.28,1.03 -5.06,0.91 -4.48,2.98 -0.28,1.05 5.53,6.34 -1.22,0.54 0.35,1.28 -2.04,-0.4 -0.72,0.88 -0.66,6.12 -1.78,4.65 -1.92,1.6 -0.43,3.65 -3.03,2.07 -3.13,-0.7 -3.21,2.02 -2.07,-0.81 -1.52,3.81 -4.12,0.53 -0.6,1.42 0.97,1.95 -3.59,1.28 1.24,1.49 -8.74,-1.53 -2.1,-2.18 -0.63,1.02 -4.17,1.18 -2.33,2.72 -0.94,-0.32 -2.11,1.46 -2.66,-1.07 -1.12,1.65 -2.53,0.14 -1.07,7.4 -4.7,3.99 0.23,1.32 -1.91,2.34 -3.13,1.95 0.58,3.36 -1.35,3.87 -2.99,-0.02 -1.01,1.8 -1.18,3.72 1.74,7.91 -0.21,9.93 -1.48,4.75 0.76,4.08 -0.98,-0.14 -0.23,0.92 1.7,9.45 -0.78,1.66 1.94,3.06 1,9.87 -1.36,2.92 -9.27,6.6 -3.23,6.39 -2.63,8.61 -2.18,0.39 -2.22,2.04 0.24,0.71 2.75,-0.07 -1.1,1.86 1.4,5.98 -3.31,5.7 -1.46,-0.12 -0.28,-1.05 -0.95,2.27 0.79,3.85 -3.71,2.54 -1.06,4.9 -2.55,0.3 -0.21,2.08 1.99,0.34 0.35,3.91 4.85,-1.78 0.19,1.46 1.24,0.55 2.65,0.8 1.76,-1.69 1.39,1.44 2.69,-2.42 2.86,-0.05 3.41,5.44 -0.9,1.19 0.64,1.76 -0.76,1.55 1.36,1.42 1.26,-0.91 3.83,1.21 2.04,6.5 2.62,1.71 1.23,-0.87 -6.47,4.49 0.98,-0.25 2.78,3.97 0.83,2.17 -1.24,2.1 1,3.62 1.2,0.87 1.03,-0.43 0.05,1.75 -1.35,0.52 -0.45,-1.32 -2.15,0.02 -1.36,-2.19 -0.09,2.46 -1.55,0.02 -0.79,1.14 -0.19,-1.3 -4.12,-1.66 -0.23,2.64 -1.64,0.68 -0.68,-0.66 -0.2,3.73 -2.79,0 -1.94,2.62 -1.1,0.07 -2.3,-2.28 0.41,-1.18 -3.19,0.57 -0.6,-1.12 -4.32,-1.21 -1.72,0.87 -2.57,-1.91 -0.42,-1.87 -2.78,-2.48 0.59,-2.37 6.25,-2.6 0.05,-3.92 -2.25,-1.32 -0.24,-2.3 0.49,-0.43 0.94,1.23 1.32,-1.14 1.67,1.28 1.74,-0.39 -2.74,-4.45 0.44,-2.01 -2.17,-2.42 0.91,-1.62 -5.92,-2.35 -0.35,-5.23 -2.19,-0.94 -0.42,1.96 -2.12,0.07 0.21,1.51 -1.95,1.1 -1.99,-0.02 0.29,-1.55 -3.41,0.48 -0.92,-0.64 -1.76,3.61 -2.18,1.71 -1.36,-0.46 -2.65,1.12 -1.28,1.8 -2.39,-0.66 -1.8,1.21 -1.87,-1.37 -0.63,1.37 -4.69,-2.65 -2.21,4.86 -2.46,-2.6 -1.54,0.94 -2.66,5.04 0.17,3.83 -11.42,11.67 -5.83,7.88 -3.18,-1.11 -4.49,0.77 -3.03,-1.55 -2.42,-3.67 0.52,-1.34 -2.85,-1.59 -11.81,5.67 -5.06,-0.32 0,0 -1.03,-3.62 -1.83,-2.23 1.22,-1.32 -1.04,-0.02 -0.09,-2.71 -8.39,-3.69 1.1,-1.92 -0.8,-2.92 1.82,-1.19 1.36,0.62 1.26,-1.53 2.77,0.27 -0.31,-3.58 1.79,0.62 0.35,-1.69 3.59,0.18 1.92,-4.22 3.13,-0.32 -1.96,-2.21 1.46,-2.08 6.63,-0.46 -1.79,-6.17 1.14,-2.68 -2,-0.89 0.61,-0.69 -0.77,-3.8 2.36,-0.69 -0.33,-2.59 9.46,-1.83 -0.35,-2.77 3.02,-0.73 -1.03,-5.15 2.04,-0.76 -0.81,-3.3 -4.12,0.78 -1.8,1.51 -2.99,-0.48 -4.25,1.67 -1.58,3.55 -0.57,-1.9 -5.38,1.44 -2.03,-0.46 0.08,1.08 -1.02,0.23 0.37,1.99 -5.64,-0.09 -0.04,-1.08 -7.99,1.1 -1,-1.33 -0.27,2.18 -1.44,0.05 -0.75,1.6 -1.54,-4.65 1.18,-1.42 0.07,-3.25 -2.81,-0.78 -3.79,-3.76 -1.94,0.21 -0.95,1.35 -3.01,-1.05 -1.22,2.57 -1.07,-0.34 -1.55,1.28 -0.98,-0.73 -0.29,5.11 -0.82,0.34 -0.65,-1.26 -1.27,0.18 0.04,1.26 -2.34,-1.44 0.04,-2.15 -4.57,0.34 -1.32,1.08 -5.89,-0.23 -2.15,-2.89 -1.26,1.4 -0.94,-0.69 0.04,-1.83 2.55,-2.73 -0.74,-1.24 0.75,-1.26 -1.72,-2.41 -2.79,0.62 -1.14,-2.2 3.58,-1.7 -0.6,-3.92 -1.27,-0.14 -0.15,-3.44 0.87,-0.14 -1.1,-1.72 0.68,-1.59 0,0 1.83,-7.15 -0.41,-7.66 1.71,1.31 1.32,-1.61 1.31,0.35 1.42,-2.79 0.91,1.06 1.14,-0.62 -1.54,-5.2 -2.57,0.02 2.93,-1.87 -2.03,-5.92 -0.19,-4.26 2.19,-3.3 0.59,0.25 0.01,-1.25 3.92,-0.81 5.37,2.56 1.08,-2.79 -0.64,-3.35 1.19,-0.14 0.2,0.9 2.79,0.28 1.44,2.65 2.53,0.35 1.8,-0.81 0.47,-1.57 -1.27,-1.8 1.28,-1.18 -0.52,-1.64 1.15,-0.67 -0.25,-3.51 1.86,-0.35 -0.35,-2.33 -0.75,0.09 -0.76,-1.9 1.35,-2.01 0.32,-4.95 5.64,-3.7 5.56,-0.72 0.21,-1.57 1.51,1.37 1.04,-1.76 1.22,-0.21 -0.21,1.11 1.18,-0.35 -1.74,-12.67 1,-0.32 -0.4,-0.86 2.67,-0.12 0.67,-1 1.27,1.62 1.39,-0.6 1.28,-0.97 0.15,-3.29 -1.82,-1.86 -4.18,-1.72 -2.23,-3.13 0,0 -2.58,0 0,0 -5.35,1 -1.54,-4.39 -5.32,-2.32 -2.49,-4.11 -5.3,0.07 -3.66,-3.95 1.58,-1.58 0.16,-2.23 3.57,-1.3 -0.67,-3.63 5.49,-0.93 0.37,-0.98 -1.19,-0.7 0.61,-1.16 1.38,0.02 1.12,-1.44 -1.82,-0.47 -0.11,-2.96 -2.03,-2.3 -1.43,-0.07 -0.09,-0.75 -1.52,0.65 0.47,-1.51 -1.08,-0.23 0.61,-1.91 -1.24,-1.17 -0.01,-3.73 -1.56,-0.47 -1.3,1.07 -2.33,-2.77 0.31,-1.26 -1.14,-0.33 0.83,-0.65 -2.54,-2.92 1.92,-1.1 0.7,-1.73 -5.17,-1.07 -0.49,-1 -0.05,-2.24 -1.28,-1.8 0.25,-2.69 -1.44,-2.29 3.17,-4.16 -8.07,-2.6 -0.36,1.1 -1.78,-0.19 0.04,-1.26 -2.06,-0.21 2.08,-10.9 -1,0.09 -0.08,-2.62 -4.34,-0.4 1.12,-9.18 1.11,-0.4 -0.28,-4.1 1.96,-1.2 0.31,-3.24 2.89,-1.17 0.27,-5.42 0,0 5.85,0.47 -0.44,-2.37 4.38,-2.49 -1.04,-3.17 2.62,-1.27 -0.58,-4.21 0.98,-0.56 1.04,0.85 0.91,-0.54 1.51,1.46 4.22,0.68 6.13,-2.7 1.32,-3.36 -1.71,-2.56 -0.05,-3.13 -1.71,-3.06 2.22,-0.52 0,-1.15 1.55,-0.6 z',
 	title: 'Vilnius',
 	id: 'LT-VL'
@@ -31119,8 +31250,8 @@ var board_Board = function (_Component) {
 							board__ref8,
 							board__ref9,
 							board__ref10,
-							_ref11,
-							_ref12
+							board__ref11,
+							board__ref12
 						)
 					)
 				)
@@ -31192,22 +31323,21 @@ var game_Game = function (_Component) {
 					if (typeof window !== 'undefined') {
 						localStorage.setItem('userState', 0);
 					}
-
 					return this.setState({ dialogContent: 'game' });
 				}
 		}
 	};
 
-	Game.prototype.render = function render(_ref, _ref2) {
-		var x = _ref.x,
+	Game.prototype.render = function render(_ref, state) {
+		var callToApp = _ref.callToApp,
+		    x = _ref.x,
 		    y = _ref.y,
 		    zoom = _ref.zoom;
-		var user = _ref2.user;
 
 		return Object(preact_min["h"])(
 			'div',
 			{ 'class': 'container_main' },
-			Object(preact_min["h"])(board_Board, { user: user, callToApp: this.props.callToApp, x: x, y: y, zoom: zoom })
+			Object(preact_min["h"])(board_Board, { callToApp: this.props.callToApp, x: x, y: y, zoom: zoom })
 		);
 	};
 
@@ -31515,7 +31645,7 @@ var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets
 
 var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
-var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990' });
+var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=284507289101227' });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
@@ -31543,6 +31673,7 @@ var app_App = function (_Component) {
 
 		_this.respHead = function (e) {
 			_this.getInfo();
+
 			_this.setState({ update: true });
 		};
 
@@ -31589,9 +31720,9 @@ var app_App = function (_Component) {
 
 		checkAuth().then(function (resp) {
 			if (resp.meta.active_pixels) {
-				localStorage.setItem('pix', resp.meta.active_pixels);
+				// localStorage.setItem('pix', resp.meta.active_pixels);
 			}
-			_this2.setState({ user: resp });
+			_this2.setState({ user: resp, logined: true });
 		});
 	};
 
@@ -31615,7 +31746,7 @@ var app_App = function (_Component) {
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
 		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },
@@ -32532,6 +32663,14 @@ module.exports = Map;
 
 /***/ }),
 
+/***/ "KOfj":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__35MMF"};
+
+/***/ }),
+
 /***/ "KRuG":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33064,6 +33203,14 @@ function isArrayLike(value) {
 }
 
 module.exports = isArrayLike;
+
+/***/ }),
+
+/***/ "LaXe":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__1AdTR"};
 
 /***/ }),
 
@@ -48241,6 +48388,14 @@ module.exports = assignValue;
 
 /***/ }),
 
+/***/ "p69m":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__1Piqj"};
+
+/***/ }),
+
 /***/ "pK4Y":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48599,6 +48754,14 @@ function baseTimes(n, iteratee) {
 }
 
 module.exports = baseTimes;
+
+/***/ }),
+
+/***/ "rXB5":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__ls2pl"};
 
 /***/ }),
 
@@ -52281,14 +52444,6 @@ var merge = createAssigner(function (object, source, srcIndex) {
 });
 
 module.exports = merge;
-
-/***/ }),
-
-/***/ "z4ZX":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"profile":"profile__2qdmu"};
 
 /***/ }),
 
