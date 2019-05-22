@@ -41,16 +41,15 @@ export default class Game extends Component {
 				if (typeof window !== 'undefined') {
 					localStorage.setItem('userState', 0);
 				}
-
 				return this.setState({ dialogContent: 'game' });
 
 			}
 		}
 	}
-	render({ x, y, zoom }, {user}) {
+	render({callToApp, x, y, zoom}, state) {
 		return (
 			<div class="container_main">
-				<Board user={user} callToApp={this.props.callToApp} x={x} y={y} zoom={zoom} />
+				<Board  callToApp={this.props.callToApp} x={x} y={y} zoom={zoom} />
 			</div>
 		);
 	}

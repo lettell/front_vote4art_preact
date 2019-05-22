@@ -31,10 +31,12 @@ export default class Login extends Component {
 
 				if (localStorage.needReward) {
 					localStorage.removeItem('needReward');
-					window.location.href = localStorage.rewardPath;
+					route(localStorage.rewardPath);
+
 				}
 				else {
-					window.location.href = '/';
+					route('/');
+
 				}
 				
 			}
@@ -68,10 +70,11 @@ export default class Login extends Component {
 							this.props.callToDialog('success');
 							if (localStorage.needReward) {
 								localStorage.removeItem('needReward');
-								window.location.href = localStorage.rewardPath;
+								route(localStorage.rewardPath);
 							}
 							else {
-								window.location.href = '/';
+								route('/');
+								// window.location.href = '/';
 							}
 						}
 

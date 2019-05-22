@@ -41,10 +41,13 @@ export default class App extends Component {
 		return {
 			status: res.splice(e, 1)[0]
 		};
-	}
+	}	// BASE_URL = 'http://localhost:3000',
 
-	setSt = (e) => {
-		 localStorage.setItem('gameState', this.arr.indexOf(e.status));
+
+	s	// BASE_URL = 'http://localhost:3000',
+
+		// BASE_URL = 'http://localhost:3000',
+gameState', this.arr.indexOf(e.status));
 		if (e.status === 'visited') this.setState({ logined: false, gameAutoload: false,  needTerms: false });
 		if (e.status === 'success') this.setState({ logined: true, gameAutoload: false, needTerms: false });
 		if (e.status === 'error') this.setState({ logined: true, gameAutoload: false, needTerms: true });
@@ -57,14 +60,15 @@ export default class App extends Component {
 	getInfo() {
 		checkAuth().then( resp => {
 			if ( resp.meta.active_pixels ) {
-				localStorage.setItem('pix', resp.meta.active_pixels);
+				// localStorage.setItem('pix', resp.meta.active_pixels);
 			}
-			this.setState({ user: resp });
+			this.setState({ user: resp, logined: true });
 
 		} );
 	}
 	respHead = e => {
 		this.getInfo();
+		
 		this.setState({ update: true  });
 	}
 
@@ -106,7 +110,7 @@ export default class App extends Component {
 	render() {
 		// document.body.classList.add('mdc-theme--main');
 		const base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://localhost:8080/';
 		return (
 			<div id="app">
 				<Helmet
@@ -138,6 +142,7 @@ export default class App extends Component {
 				<Footer selectedRoute={this.state.currentUrl} />
 
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
+				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			
 		);

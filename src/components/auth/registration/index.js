@@ -37,15 +37,15 @@ export default class Registration extends Component {
 		signup(this.state).then( (resp) => {
 			if (resp) {
 				this.setState({});
-				this.props.callToDialog('success');
+				this.props.callToDialog('wellcome');
 				// atidziai atiduot statusa backend !!!
 		
 				if (localStorage.needReward) {
 					localStorage.removeItem('needReward');
-					window.location.href = localStorage.rewardPath;
+					route(localStorage.rewardPath);
 				}
 				else {
-					window.location.href = '/';
+					route('/');
 				}
 			}
 		});
@@ -62,6 +62,7 @@ export default class Registration extends Component {
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
+		localStorage.removeItem('provider');
 		this.setState({
 			[name]: value
 		});
@@ -81,18 +82,21 @@ export default class Registration extends Component {
 				FB.api('/me', (response) => {
 					facebookLogin({id: ""+response.id, name: response.name}).then(resp => {
 						if (resp.status === 'error') {
+							localStorage.setItem('provider', 'fb');
+
 							this.rules();
 						}
 						else {
+							localStorage.removeItem('provider');
 							this.props.callToDialog('success');
 							// atidziai atiduot statusa backend !!!
-					
 							if (localStorage.needReward) {
 								localStorage.removeItem('needReward');
-								window.location.href = localStorage.rewardPath;
+								route(localStorage.rewardPath);
+					
 							}
 							else {
-								window.location.href = '/';
+								route('/');
 							}
 
 						}

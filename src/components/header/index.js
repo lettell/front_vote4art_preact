@@ -15,7 +15,7 @@ import Button from 'preact-material-components/Button';
 // import 'preact-material-components/Drawer/style.css';
 // import 'preact-material-components/List/style.css';
 import 'react-notifications/lib/notifications.css';
-import Terms from '../dialogs/terms';
+import Rules from '../dialogs/rules';
 
 import style from './style.scss';
 
@@ -23,6 +23,9 @@ import 'preact-material-components/Menu/style.css';
 // import 'preact-material-components/Button/style.css';
 import 'preact-material-components/TabBar/style.css';
 import Registration from '../auth/registration';
+import About from '../dialogs/about';
+import Eu from '../dialogs/eu';
+import Wellcome from '../dialogs/wellcome';
 
 export default class Header extends Component {
 	state = {
@@ -39,7 +42,7 @@ export default class Header extends Component {
 	setUserState() {
 		this.setState({ userState: localStorage.userState });
 	
-		if (!localStorage.va) {
+		if (!localStorage.visited) {
 			this.setState({ dialogContent: 'game' });
 			this.dialog.MDComponent.show();
 		}
@@ -71,12 +74,20 @@ export default class Header extends Component {
 			}, 1);
 
 		}
+		if(state === 'wellcome') {
+			// this.props.callToApp({ status: state, type: 'pixel'});
+			this.props.callToApp({ type: 'registered'});
+			this.setState({ dialogContent: 'wellcome' });
+		}
 	}
 	acceptTerms = () => {
-		if (localStorage.provider && localStorage.provider === 'fb') {
+		if (localStorage.provider === 'fb') {
 			acceptTerms().then(resp => {
 				localStorage.setItem('userState', 'success');
-				this.dialog.MDComponent.close();
+				this.setState({ dialogContent: 'wellcome' });
+
+				// this.dialog.MDComponent.close();
+				// this.dialog.MDComponent.close();
 				this.setState({});
 				this.props.callToApp(true);
 			});
@@ -89,6 +100,7 @@ export default class Header extends Component {
 
 	}
 	callBackFromRegterms = (state) => {
+
 		this.setState({ scrollModal: true });
 		this.setState({ dialogContent: 'rules', editrule: 'register', backState: state });
 
@@ -141,11 +153,17 @@ export default class Header extends Component {
 	     	<NotificationContainer />
 				<TopAppBar className={`${style.topappbar} mdc-elevation--z3`}>
 					<TopAppBar.Row>
-						<TopAppBar.Section align-start>
+						<TopAppBar.Section align-center>
 							<img class={style.logo} src="/assets/images/logo.png" />
-							<TopAppBar.Title></TopAppBar.Title>
+									<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
+						<div class={style.mobile_login}>
+						{ this.state.logined ?
+   									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
+										<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+									}
+							</div>
 							<div class={style.c_btn}>
 								{/* <a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
 									<img class={style.l_ek} src='/assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
@@ -177,10 +195,6 @@ export default class Header extends Component {
 									<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 									<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
 									<Button id="eu" onClick={this.openContent} unelevated >EP rinkimai 2019</Button>
-									{ this.state.logined ?
-   									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
-										<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
-									}
 								</div>
 							</TopAppBar.Section>
 						</TopAppBar.Row>
@@ -200,7 +214,9 @@ export default class Header extends Component {
 										this.state.dialogContent === 'registracija'?
 											<h1 style="display: inline">REGISTRACIJA</h1>:
 											this.state.dialogContent === 'eu' ?
-												<h1 style="display: inline">EP rinkimai 2019</h1>: ''
+												<h1 style="display: inline">EP rinkimai 2019</h1>:
+												this.state.dialogContent === 'wellcome' ?
+													<h1 style="display: inline">Sveiki !!!</h1>: ''
 						}
 						<span style="float: right;">
 							<Dialog.FooterButton cancel>
@@ -212,40 +228,14 @@ export default class Header extends Component {
 					<Dialog.Body scrollable={this.state.scrollModal}>
 						{
 							this.state.dialogContent === 'game'?
-								<article>
-									<p>	Sukurkime Lietuvos dydžio mozaiką!</p>
-									<p>
-Taisyklės paprastos: užsiregistruokite, gaukite pikselių ir sukurkite Lietuvos dydžio piešinį. Ateikite balsuoti į Europos Parlamento rinkimus, skenuokite apylinkėse esančius QR kodus esančius ant Vote4Art plakatų ir gaukite dar daugiau pikselių!
-									</p>
-									<p>
-O svarbiausia taisyklė paskutinė - išreiškite savo nuomonę Europos Parlamento rinkimuose ir formuokite ne tik mozaiką, bet ir Europos ateitį!</p>
-									<p>
-Daugiau info apie EP rinkimus: <a class="t_link" target="_blank" href="https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections" >https://www.europarl.europa.eu/at-your-service/lt/be-heard/elections</a>
-									</p>							</article> :			this.state.dialogContent === 'rules'?
-									<Terms callHeader={this.callBackFromRegterms} />:
+							<About /> :			this.state.dialogContent === 'rules'?
+									<Rules callHeader={this.callBackFromRegterms} />:
 									this.state.dialogContent === 'login' ?
 										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :
 										this.state.dialogContent === 'registracija' ?
 											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :	this.state.dialogContent === 'eu' ?
-												<article>
-													<p>
-													2019-ųjų gegužės Europos Parlamento rinkimai tiesiogiai paveiks jūsų gyvenimą. Jie nulems, ką ateinančiais metais darys Europa, kad išspręstų jums rūpimus darbo, verslo, saugumo, migracijos ir klimato kaitos klausimus.
-													</p>
-													<p>
-													Europa yra mūsų visų, todėl šiuos sprendimus turėtume priimti kartu. Taigi svarbu, kad balsuotumėte ne tik jūs, bet ir jūsų šeima, draugai, kaimynai bei kolegos. Kai balsuoja visi, tai ir laimi visi.	</p>
-													<p>
-													Kur galiu balsuoti?
-													</p>
-													<p>
-													Iš anksto balsuoti galite gegužės 20-24 dienomis visose savivaldybėse.
-Gegužės 26’ą balsuoti galite bet kurioje Lietuvos rinkimų apylinkėje (nuo 7 iki 20 val.).
-													</p>
-													<p>
-													Savivaldybių ir apylinkių žemėlapį galite rasti čia <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=73a48b6892c340bf9399c4dd14feb92e&extent=1756927.6933%2C6956994.13%2C3635444.1005%2C7793520.9675%2C102100" target="_blank" >
-													čia
-														</a>
-													</p>
-												</article>:''
+												<Eu />:this.state.dialogContent === 'wellcome' ?
+													<Wellcome />: ''
 
 						}
 					</Dialog.Body>

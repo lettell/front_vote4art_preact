@@ -64,6 +64,8 @@ function login(pramas) {
 		password: pramas.password
 	})
 		.then((response) => {
+			localStorage.setItem('visited', true);
+
 			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 			switch (response.status) {
 				case 'info':
@@ -95,6 +97,8 @@ function signup(pramas) {
 
 
 	}).then((response) => {
+		localStorage.setItem('visited', true);
+
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		switch (response.status) {
 			case 200: {
@@ -109,16 +113,18 @@ function signup(pramas) {
 }
 function logout() {
 	// sendLogout();
+	localStorage.removeItem('provider');
 	clearIdToken();
 	clearAccessToken();
-	delete localStorage.va;
 	window.location.href = '/';
 }
 
 function facebookLogin(data) {
 	const url = `${BASE_URL}/auth/facebook/?uid=${data.id}&name=${data.name}`;
 	return axios.get(url).then(response => {
-		localStorage.setItem('provider', 'fb');
+		sessionStorage.setItem('provider', 'fb');
+		localStorage.setItem('visited', true);
+
 		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
 		if (response.data.status == 'error') {
 			NotificationManager.info('', 'Privalote sutikti su taisyklemis');
@@ -136,7 +142,9 @@ function facebookLogin(data) {
 export function acceptTerms() {
 	const url = `${BASE_URL_PRIVATE}/users/accept_conditions`;
 	return axios.put(url, { accept: true }, { headers: { Authorization: `Bearer ${getAccessToken()}` } }).then(response => {
-  	localStorage.setItem('windowovider', 'fb');
+		localStorage.setItem('windowovider', 'fb');
+		localStorage.removeItem('provider');
+
 		return response.data;
 	}).catch((error) => {
 		NotificationManager.erwindowr(error.response.data
