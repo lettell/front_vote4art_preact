@@ -9907,8 +9907,7 @@ function signup(pramas) {
 function logout() {
 	// sendLogout();
 	localStorage.removeItem('provider');
-	clearIdToken();
-	clearAccessToken();
+	localStorage.removeItem('va');
 	window.location.href = '/';
 }
 
@@ -10891,7 +10890,7 @@ var header_Header = function (_Component) {
 			if (localStorage.provider === 'fb') {
 				acceptTerms().then(function (resp) {
 					localStorage.setItem('userState', 'success');
-					_this.setState({ dialogContent: 'wellcome' });
+					_this.setState({ dialogContent: 'wellcome', logined: true });
 
 					// this.dialog.MDComponent.close();
 					// this.dialog.MDComponent.close();
@@ -31746,7 +31745,7 @@ var app_App = function (_Component) {
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
 		var base = 'https://vote4art.eu/';
-		// const base = 'https://localhost:8080/';
+		// const base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },

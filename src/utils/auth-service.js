@@ -114,8 +114,7 @@ function signup(pramas) {
 function logout() {
 	// sendLogout();
 	localStorage.removeItem('provider');
-	clearIdToken();
-	clearAccessToken();
+	localStorage.removeItem('va');
 	window.location.href = '/';
 }
 

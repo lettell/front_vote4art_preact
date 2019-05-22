@@ -77,14 +77,14 @@ export default class Header extends Component {
 		if(state === 'wellcome') {
 			// this.props.callToApp({ status: state, type: 'pixel'});
 			this.props.callToApp({ type: 'registered'});
-			this.setState({ dialogContent: 'wellcome' });
+			this.setState({ dialogContent: 'wellcome', logined: true });
 		}
 	}
 	acceptTerms = () => {
 		if (localStorage.provider === 'fb') {
 			acceptTerms().then(resp => {
 				localStorage.setItem('userState', 'success');
-				this.setState({ dialogContent: 'wellcome' });
+				this.setState({ dialogContent: 'wellcome', logined: true });
 
 				// this.dialog.MDComponent.close();
 				// this.dialog.MDComponent.close();
