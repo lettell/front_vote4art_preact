@@ -30875,7 +30875,7 @@ var board_Board = function (_Component) {
 			_this.svg = src_select('#voteForArt');
 			_this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', _this.state.color).attr('x', _this.pixelPoint[0]).attr('y', _this.pixelPoint[1]);
 			// setTimeout(() => {
-			if (!_this.state.needStop) postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
+			postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
 				if (resp.data && resp.data.length) {
 					_this.setAllPixels(resp.data);
 					_this.props.callToApp({ putPixel: -1, type: 'pixel' });
@@ -31614,8 +31614,8 @@ var app_App = function (_Component) {
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
-		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = 'https://vote4art.eu/';
+		var base = 'http://localhost:8080/';
 		return Object(preact_min["h"])(
 			'div',
 			{ id: 'app' },

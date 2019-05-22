@@ -160,7 +160,7 @@ export default class Board extends Component {
 			.attr('x', this.pixelPoint[0])
 			.attr('y', this.pixelPoint[1]);
 		// setTimeout(() => {
-		if(!this.state.needStop) postPixel(this.pixelPoint, this.state.color).then( resp => {
+			postPixel(this.pixelPoint, this.state.color).then( resp => {
 				if (resp.data && resp.data.length){
 					this.setAllPixels(resp.data);
 					this.props.callToApp({ putPixel: -1, type: 'pixel' });
