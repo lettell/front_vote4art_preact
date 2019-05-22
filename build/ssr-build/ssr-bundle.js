@@ -11100,24 +11100,23 @@ function getAdd(params) {
 }
 
 function postPixel(xy, color) {
-	var pix = parseInt(localStorage.pix);
-	if (!isNaN(pix) && pix > 0) {
-		if (typeof window !== "undefined") {
-			var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
-			var colo = color.trim();
-			if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
-			if (11 > color.length && 18 > color.length) return;
-			var pramas = {
-				x: xy[0],
-				y: xy[1],
-				color: colo.trim()
+	// let pix = parseInt(localStorage.pix);
+	// if (!isNaN(pix) && pix > 0) {
+	if (typeof window !== "undefined") {
+		var head = { headers: { Authorization: 'Bearer ' + localStorage.va } };
+		var colo = color.trim();
+		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
+		if (11 > color.length && 18 > color.length) return;
+		var pramas = {
+			x: xy[0],
+			y: xy[1],
+			color: colo.trim()
 
-			};
-			var url = vote4art_api_BASE_URL + '/pixels';
-			return axios_default.a.post(url, pramas, head).then(function (response) {
-				return JSON.parse(response.data);
-			});
-		}
+		};
+		var url = vote4art_api_BASE_URL + '/pixels';
+		return axios_default.a.post(url, pramas, head).then(function (response) {
+			return JSON.parse(response.data);
+		});
 	}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
@@ -30857,7 +30856,7 @@ var board_Board = function (_Component) {
 		};
 
 		_this.putPixel = function (e) {
-			_this.setState({ needStop: false });
+			// this.setState({needStop: false});
 
 			if (!_this.state.color) return;
 			if (_this.pixelPoint[0] < 0 || _this.pixelPoint[0] > 1000) return;
@@ -30875,18 +30874,18 @@ var board_Board = function (_Component) {
 			// this.zoomController.pause();
 			_this.svg = src_select('#voteForArt');
 			_this.svg.append('svg:rect').attr('width', 1).attr('height', 1).attr('fill', _this.state.color).attr('x', _this.pixelPoint[0]).attr('y', _this.pixelPoint[1]);
-			setTimeout(function () {
-				if (!_this.state.needStop) postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
-					if (resp.data && resp.data.length) {
-						_this.setAllPixels(resp.data);
-						_this.props.callToApp({ putPixel: -1, type: 'pixel' });
-						var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
-						if (_this.state.currentPhoto !== photo) {
-							_this.setState({ photoUpdate: 'done', currentPhoto: photo });
-						}
+			// setTimeout(() => {
+			if (!_this.state.needStop) postPixel(_this.pixelPoint, _this.state.color).then(function (resp) {
+				if (resp.data && resp.data.length) {
+					_this.setAllPixels(resp.data);
+					_this.props.callToApp({ putPixel: -1, type: 'pixel' });
+					var photo = 'https://nuotraukos.vote4art.eu/' + resp.meta.photo;
+					if (_this.state.currentPhoto !== photo) {
+						_this.setState({ photoUpdate: 'done', currentPhoto: photo });
 					}
-				});
-			}, 3000);
+				}
+			});
+			// }, 3000);
 		};
 
 		_this.getCord = _this.getCord.bind(_this);
@@ -31382,7 +31381,7 @@ var userinfo_Userinfo = function (_Component) {
 					'h3',
 					null,
 					'Turimi pixeliai: ',
-					this.props.data.meta.active_pixels + this.props.data.attributes.rewards
+					this.props.data.meta.active_pixels
 				)
 			),
 			Object(preact_min["h"])(

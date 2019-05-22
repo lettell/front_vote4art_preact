@@ -136,7 +136,7 @@ export default class Board extends Component {
 	removePixel = (e) => this.setState({ color: false });
 
 	putPixel = (e) => {
-		this.setState({needStop: false});
+		// this.setState({needStop: false});
 
 		if (!this.state.color) return;
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
@@ -159,7 +159,7 @@ export default class Board extends Component {
 			.attr('fill', this.state.color)
 			.attr('x', this.pixelPoint[0])
 			.attr('y', this.pixelPoint[1]);
-		setTimeout(() => {
+		// setTimeout(() => {
 		if(!this.state.needStop) postPixel(this.pixelPoint, this.state.color).then( resp => {
 				if (resp.data && resp.data.length){
 					this.setAllPixels(resp.data);
@@ -170,7 +170,7 @@ export default class Board extends Component {
 					}
 				}
 			});
-		}, 3000);
+		// }, 3000);
 
 	}
 

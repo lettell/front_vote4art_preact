@@ -26,8 +26,8 @@ function getAdd(params) {
 }
 
 function postPixel(xy, color) {
-	let pix = parseInt(localStorage.pix);
-	if (!isNaN(pix) && pix > 0) {
+	// let pix = parseInt(localStorage.pix);
+	// if (!isNaN(pix) && pix > 0) {
 		if (typeof window !== "undefined") {
 			const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
 			const colo = color.trim();
@@ -42,6 +42,5 @@ function postPixel(xy, color) {
 			const url = `${BASE_URL}/pixels`;
 			return axios.post(url, pramas, head).then(response => JSON.parse(response.data));
 		}
-}
 }
 // return axios.delete(url, { headers: { Authorization: getAccessToken() } }).then(response => console.log(response.data));
