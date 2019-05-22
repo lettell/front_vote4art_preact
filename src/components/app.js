@@ -23,7 +23,8 @@ export default class App extends Component {
 		super();
 		this.state = {};
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
-		window.dataLayer = window.dataLayer || [];
+		if (typeof window !== "undefined") { window.dataLayer = window.dataLayer || []; }
+		
 
 		if ( typeof window !== 'undefined') {
 			this.state = {

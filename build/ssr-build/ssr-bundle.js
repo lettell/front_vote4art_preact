@@ -10884,7 +10884,7 @@ var header_Header = function (_Component) {
 			if (state === 'wellcome') {
 				// this.props.callToApp({ status: state, type: 'pixel'});
 				_this.props.callToApp({ type: 'registered' });
-				_this.setState({ dialogContent: 'wellcome' });
+				_this.setState({ dialogContent: 'wellcome', logined: true });
 			}
 		}, _this.acceptTerms = function () {
 			if (localStorage.provider === 'fb') {
@@ -31646,6 +31646,8 @@ var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
 var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990' });
 
+var app__ref6 = Object(preact_min["h"])('script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=UA-140710174-1' });
+
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
 
@@ -31692,6 +31694,10 @@ var app_App = function (_Component) {
 
 		_this.state = {};
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
+		if (typeof window !== "undefined") {
+			window.dataLayer = window.dataLayer || [];
+		}
+
 		if (typeof window !== 'undefined') {
 			_this.state = {
 				gameState: localStorage.gameState || -1,
@@ -31725,7 +31731,14 @@ var app_App = function (_Component) {
 		});
 	};
 
+	App.prototype.gtag = function gtag() {
+		window.dataLayer.push(arguments);
+	};
+
 	App.prototype.componentDidMount = function componentDidMount() {
+		this.gtag('js', new Date());
+
+		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
 
@@ -31774,7 +31787,8 @@ var app_App = function (_Component) {
 				app__ref4
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl }),
-			app__ref5
+			app__ref5,
+			app__ref6
 		);
 	};
 
