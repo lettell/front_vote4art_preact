@@ -138,7 +138,7 @@ export default class App extends Component {
 				</Router>
 				<Footer selectedRoute={this.state.currentUrl} />
 
-				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=284507289101227" />
+				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			

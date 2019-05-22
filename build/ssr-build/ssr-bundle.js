@@ -31645,7 +31645,7 @@ var app__ref3 = Object(preact_min["h"])('link', { rel: 'preload', href: '/assets
 
 var app__ref4 = Object(preact_min["h"])(_04_NotFound, { 'default': true });
 
-var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=284507289101227' });
+var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, crossorigin: 'anonymous', src: 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990' });
 
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
