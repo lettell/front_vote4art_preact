@@ -23,6 +23,8 @@ export default class App extends Component {
 		super();
 		this.state = {};
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
+		window.dataLayer = window.dataLayer || [];
+
 		if ( typeof window !== 'undefined') {
 			this.state = {
 				gameState: localStorage.gameState || -1,
@@ -84,9 +86,12 @@ export default class App extends Component {
 
 		}
 	}
-
+	gtag(){window.dataLayer.push(arguments);}
 
 	componentDidMount() {
+		this.gtag('js', new Date());
+ 
+		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
 
@@ -139,6 +144,7 @@ export default class App extends Component {
 				<Footer selectedRoute={this.state.currentUrl} />
 
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140710174-1"></script>
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			
