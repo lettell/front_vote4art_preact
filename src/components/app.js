@@ -123,8 +123,8 @@ export default class App extends Component {
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
-		// const base = 'https://vote4art.eu/';
-		  const base = 'http://localhost:8080/';
+		const base = 'https://vote4art.eu/';
+		  // const base = 'http://localhost:8080/';
 		
 		return (
 			<div id="app">
