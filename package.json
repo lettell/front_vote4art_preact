@@ -33,6 +33,7 @@
     "shipit-deploy": "^4.1.4"
   },
   "dependencies": {
+    "@tippy.js/react": "^2.2.0",
     "auth0-js": "^9.10.2",
     "axios": "^0.18.0",
     "d3": "^5.9.2",

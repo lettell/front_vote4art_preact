@@ -6,7 +6,7 @@ import 'preact-material-components/Elevation/style.css';
 import Fab from 'preact-material-components/Fab';
 import 'preact-material-components/Fab/style.css';
 import CirclePicker from 'react-color/lib/Circle';
-import HuePicker from 'react-color/lib/Hue';
+import Slider from 'react-color/lib/Slider';
 import Icon from 'preact-material-components/Icon';
 
 export default class Colors extends Component {
@@ -74,25 +74,26 @@ export default class Colors extends Component {
 		return (
 			<div>
 
-			<div>
-			<Elevation z={2} >
-				<div class={style.color_picker}>
-					<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
-						<HuePicker
+			<div class={style.colorize}>
+			<Elevation z={2}>
+			<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
+			<Slider
 							color={this.state.currentCollor}
-							direction="vertical"
 							height="38vh"
-							width="16px"
+							width="320px"
 							onChangeComplete={this.handleSetColor}
 						/>
-					</div>
+			</div>
+
+				<div class={style.color_picker}>
+
 					<div>
 						<CirclePicker
 							color={this.state.currentCollor}
 							onChange={this.handleChange}
 							colors={this.colors}
-							height="40vh"
-							width="90px"
+							height="15vh"
+							width="385px"
 						/>
 					</div>
 				</div>

@@ -27,32 +27,32 @@ function getAdd(params) {
 
 function postPixel(xy, color) {
 
-	if (typeof window !== "undefined") {
+	if (typeof window !== 'undefined') {
 		if (localStorage.pixelStop === 'true')	{
-			return	NotificationManager.error("Išnaudotas limitas", '', 2000);
+			return	NotificationManager.error('Išnaudotas limitas', '', 2000);
 		}
 		
-			const head = { headers: { Authorization: `Bearer ${localStorage.va}` }}
-			const colo = color.trim();
-			if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
-			if (11 > color.length && 18 > color.length) return;
-			const pramas = {
-				x: xy[0],
-				y: xy[1],
-				color: colo.trim()
+		const head = { headers: { Authorization: `Bearer ${localStorage.va}` } };
+		const colo = color.trim();
+		if (xy[0] > 1000 && xy[0] < 0 && xy[1] > 1000 && xy[1] < 0) return;
+		if (11 > color.length && 18 > color.length) return;
+		const pramas = {
+			x: xy[0],
+			y: xy[1],
+			color: colo.trim()
 
-			};
-			const url = `${BASE_URL}/pixels`;
-			return axios.post(url, pramas, head)
-				.then(response => JSON.parse(response.data))
-				.catch(e => {
-					if (e.response.data.messages) {
-						NotificationManager.error(e.response.data.messages);
-					}
-					else {
-						NotificationManager.error(e.messages);
-					}
-				});
+		};
+		const url = `${BASE_URL}/pixels`;
+		return axios.post(url, pramas, head)
+			.then(response => JSON.parse(response.data))
+			.catch(e => {
+				if (e.response.data.messages) {
+					NotificationManager.error(e.response.data.messages);
+				}
+				else {
+					NotificationManager.error(e.messages);
+				}
+			});
 			
 
 		// dasidet notification

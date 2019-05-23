@@ -19,10 +19,10 @@ export default class Userinfo extends Component {
 		return (
 			<div class={style.container}>
 				<div>
-					<h3>Turimi pixeliai: {(this.props.data.pixels)}</h3>
+					<h4>Turimi pixeliai: {(this.props.data.pixels)}</h4>
 				</div>
 				<div>
-					<h3>Vartotojas: {this.props.data.username}</h3>
+					<h4>Vartotojas: {this.props.data.username}</h4>
 				</div>
 				{/* { this.state.showQr ?
 					<Qrread  callToInfo={this.callFromQr} /> : ''

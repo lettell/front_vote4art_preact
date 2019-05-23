@@ -11,7 +11,7 @@ import 'preact-material-components/Slider/style';
 import Colors from './colors';
 import style from './style';
 import Controls from './controls';
-
+import Icon from 'preact-material-components/Icon';
 export default class Board extends Component {
 	// callback
 	setColor(currentColor) {
@@ -52,8 +52,9 @@ export default class Board extends Component {
 	initZoom(elm) {
 		let pan = panzoom(elm,
 			{
+				
 				maxZoom: 100,
-				minZoom: 0.1,
+				minZoom: 0.3,
 				autocenter: true,
 				bounds: true
 			}
@@ -89,8 +90,8 @@ export default class Board extends Component {
 		if (!this.state.color) return;
 		this.mousePosition = [e.clientX, e.clientY];
 		this.setState({ mouseMove: true });
-		// if (x) clearTimeout(x); 
-    // let x = setTimeout(this.setState({ mouseMove: false }), 200); 
+		// if (x) clearTimeout(x);
+		// let x = setTimeout(this.setState({ mouseMove: false }), 200);
 	}
 
 	getCord(e) {
@@ -102,15 +103,15 @@ export default class Board extends Component {
 		this.putPixel(e);
 	}
 	stopPixel = () => {
-		this.setState({needStop: true});
-		this.setState({color: ''});
+		this.setState({ needStop: true });
+		this.setState({ color: '' });
 
 	}
 	dropColor() {
-		this.setState({color: true});
+		this.setState({ color: true });
 	}
 	loadPixels() {
-	return getPixels().then(resp => {
+		return getPixels().then(resp => {
 			this.setState({ activePixels: 'loaded' });
 			if (resp.data && resp.data.length){
 				this.setAllPixels(resp.data);
@@ -123,7 +124,7 @@ export default class Board extends Component {
 	}
 
 	setAllPixels(arr) {
-		d3.selectAll('.pix').remove()
+		d3.selectAll('.pix').remove();
 		// document.get('voteForArt').innerHTML = '';
 		this.svg =d3.select('#voteForArt');
 		arr.forEach(element => {
@@ -142,11 +143,11 @@ export default class Board extends Component {
 	putPixel = (e) => {
 		if (!this.state.color) return;
 		if (localStorage.pixelStop === 'true')	{
-			if(!localStorage.va) {
-				return NotificationManager.info("Autorizacija privaloma", '', 2000);
-			}else {
-				return NotificationManager.warning("Išnaudotas limitas", '', 2000);
+			if (!localStorage.va) {
+				return NotificationManager.info('Autorizacija privaloma', '', 2000);
 			}
+			return NotificationManager.warning('Išnaudotas limitas', '', 2000);
+			
 		}
 		if (this.pixelPoint[0] < 0 || this.pixelPoint[0] > 1000 ) return;
 		if (this.pixelPoint[1] < 0 || this.pixelPoint[1] > 1000) return;
@@ -207,17 +208,16 @@ export default class Board extends Component {
 		a.addEventListener('mousemove', this.mouseMove);
 
 	}
-	
-
 
 	render() {
 
 		return (
 			<div class={style.wrap__board}>
 				<div id="currentPixel" onTouchEnd={this.stopPixel} style={`background: ${this.state.color}`} class={this.state.color? style.pixel_block : 'disabled'}>
+				
 					<div class={style.ctrl} onTouchEnd={this.stopPixel} >
-						<span onTouchTap={this.stopPixel} >
-							Atšaukti pasirinkta spalva
+						<span class={style.ctrl_close} onTouchTap={this.stopPixel} >
+							<Icon>clear</Icon>
 						</span>
 					</div>
 				</div>
@@ -244,7 +244,7 @@ export default class Board extends Component {
 						class="pixelated"
 						// src="assets/images/test_image.png"
 						src={this.state.currentPhoto}
-					                     /> : ''}
+					                           /> : ''}
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" id="board" height="100%" >
 					<defs>
@@ -268,7 +268,7 @@ export default class Board extends Component {
 						</g>
 						<g fill="none">
 							<rect
-				  			id="zoomArea"
+								id="zoomArea"
 								width={this.scaledPixel}
 								height={this.scaledPixel}
 								x={Math.floor(this.scaledX)}

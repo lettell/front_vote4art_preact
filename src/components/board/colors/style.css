@@ -1,6 +1,7 @@
 .color_picker {
   display: flex;
-  padding: 1em;
+  padding: 1.5em;
+  width: 412px;
   background: rgba(214, 211, 211, 0.8);
 }
 .color {
@@ -8,6 +9,10 @@
   height: 44px;
   padding: 1em;
   margin: 0.3em;
+}
+.colorize {
+  max-width: 100vw;
+  overflow: auto;
 }
 .color:hover {
   border: 1px solid black;
