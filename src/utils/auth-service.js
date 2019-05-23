@@ -81,8 +81,8 @@ function login(pramas) {
 					break;
 			}
 		})
-		.catch((error) => {
-			NotificationManager.error(error.message
+		.catch((e) => {
+			NotificationManager.error(e.response.data
 				,'Klaida', 2000);
 		});
 }

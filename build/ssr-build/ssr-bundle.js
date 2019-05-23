@@ -10043,8 +10043,8 @@ function login(pramas) {
 				lib["NotificationManager"].warning('Warning message', 'Close after 3000ms', 3000);
 				break;
 		}
-	}).catch(function (error) {
-		lib["NotificationManager"].error(error.message, 'Klaida', 2000);
+	}).catch(function (e) {
+		lib["NotificationManager"].error(e.response.data, 'Klaida', 2000);
 	});
 }
 function signup(pramas) {
@@ -31986,7 +31986,7 @@ var app_App = function (_Component) {
 			{ id: 'app' },
 			Object(preact_min["h"])(Helmet_default.a, {
 				title: 'vote4art.eu',
-				base: { target: '_blank', href: base }
+				base: { href: base }
 			}),
 			app__ref,
 			app__ref2,
