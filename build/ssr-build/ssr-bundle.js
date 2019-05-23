@@ -31785,7 +31785,7 @@ function getRewar(path) {
 				long: position.coords.longitude,
 				hash: hash
 			};
-			if (!['9282c043', 'b357906c', 'bdb4defa'].includes(hash)) {
+			if (!['9282c043', 'b357906c', 'bdb4defa', 'bdb4dfff'].includes(hash)) {
 				lib["NotificationManager"].error('Nežinomas šaltinis');
 			}
 			getRew(locParams);
