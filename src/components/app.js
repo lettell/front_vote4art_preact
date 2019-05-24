@@ -11,6 +11,7 @@ import { checkAuth } from '../utils/auth-service';
 import Userinfo from './userinfo';
 import { NotificationManager } from 'react-notifications';
 import { getRewar } from '../utils/loc-service';
+import Fingerprint from 'fingerprintjs';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
@@ -25,8 +26,20 @@ export default class App extends Component {
 	};
 	constructor() {
 		super();
-		
-	
+		if (typeof window !== 'undefined') { 
+			if (window.requestIdleCallback) {
+				requestIdleCallback(() => {
+					this.fin = new Fingerprint().get();
+					this.getInfo(this.fin);
+
+				});
+			} else {
+				setTimeout(() => {
+					this.fin = new Fingerprint().get();
+					this.getInfo(this.fin);
+				}, 500);
+			}
+		}
 		this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') { window.dataLayer = window.dataLayer || []; }
 		
@@ -63,7 +76,8 @@ export default class App extends Component {
 		}
 	}
 	getInfo() {
-		checkAuth().then( resp => {
+
+		checkAuth(this.fin).then( resp => {
 			if ( !resp.attributes.pixels ) {
 				localStorage.setItem('pixelStop', true);
 			}
@@ -115,7 +129,6 @@ export default class App extends Component {
  
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
-		this.getInfo();
 		const s = document.createElement('script');
 		s.type = 'text/javascript';
 		s.async = true;

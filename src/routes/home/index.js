@@ -49,9 +49,7 @@ export default class Home extends Component {
 		}
 	
 	}
-	shouldComponentUpdate() {
-		console.log('tines should')
-	}
+	
 	render() {
 		return (
 			<div class={`${style.home} page`}>

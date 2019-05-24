@@ -9980,10 +9980,10 @@ BASE_URL_PRIVATE = BASE_URL + '/api/v1';
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
-function checkAuth() {
+function checkAuth(finger) {
 	var url = BASE_URL_PRIVATE + '/users/info';
 
-	return axios_default.a.get(url, { headers: { Authorization: 'Bearer ' + getAccessToken() } }).then(function (response) {
+	return axios_default.a.get(url, { headers: { Authorization: 'Bearer ' + localStorage.va, Finger: finger } }).then(function (response) {
 		var data = JSON.parse(response.data);
 		switch (response.status) {
 			case 'info':
@@ -10027,8 +10027,7 @@ function login(pramas) {
 		password: pramas.password
 	}).then(function (response) {
 		localStorage.setItem('visited', true);
-
-		localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+		localStorage.setItem('va', response.headers.authorization);
 		switch (response.status) {
 			case 'info':
 				lib["NotificationManager"].info('Info message');
@@ -31958,6 +31957,7 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
+
 var app__ref = Object(preact_min["h"])('link', { href: 'https://fonts.googleapis.com/css?family=Exo+2', rel: 'stylesheet' });
 
 var app__ref2 = Object(preact_min["h"])('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' });
@@ -32024,6 +32024,19 @@ var app_App = function (_Component) {
 			}
 		};
 
+		if (typeof window !== 'undefined') {
+			if (window.requestIdleCallback) {
+				requestIdleCallback(function () {
+					_this.fin = new fingerprint_default.a().get();
+					_this.getInfo(_this.fin);
+				});
+			} else {
+				setTimeout(function () {
+					_this.fin = new fingerprint_default.a().get();
+					_this.getInfo(_this.fin);
+				}, 500);
+			}
+		}
 		_this.arr = ['visited', 'success', 'error', 'logut', 'new'];
 		if (typeof window !== 'undefined') {
 			window.dataLayer = window.dataLayer || [];
@@ -32059,7 +32072,7 @@ var app_App = function (_Component) {
 	App.prototype.getInfo = function getInfo() {
 		var _this2 = this;
 
-		checkAuth().then(function (resp) {
+		checkAuth(this.fin).then(function (resp) {
 			if (!resp.attributes.pixels) {
 				localStorage.setItem('pixelStop', true);
 			} else {
@@ -32091,7 +32104,6 @@ var app_App = function (_Component) {
 
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
-		this.getInfo();
 		var s = document.createElement('script');
 		s.type = 'text/javascript';
 		s.async = true;

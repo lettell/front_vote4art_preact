@@ -15,10 +15,10 @@ export { getAccessToken, checkAuth, signup, login, facebookLogin,  logout };
 function getAccessToken() {
 	return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
-function checkAuth() {
+function checkAuth(finger) {
 	const url = `${BASE_URL_PRIVATE}/users/info`;
 
-	return axios.get(url,{ headers: { Authorization: `Bearer ${getAccessToken()}` } })
+	return axios.get(url,{ headers: { Authorization: `Bearer ${localStorage.va}`, Finger: finger } })
 		.then((response) => {
 			const data = JSON.parse(response.data);
 			switch (response.status) {
@@ -64,8 +64,7 @@ function login(pramas) {
 	})
 		.then((response) => {
 			localStorage.setItem('visited', true);
-
-			localStorage.setItem(ACCESS_TOKEN_KEY, response.headers.authorization);
+			localStorage.setItem('va', response.headers.authorization);
 			switch (response.status) {
 				case 'info':
 					NotificationManager.info('Info message');
