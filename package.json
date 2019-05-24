@@ -37,6 +37,8 @@
     "auth0-js": "^9.10.2",
     "axios": "^0.18.0",
     "d3": "^5.9.2",
+    "fingerprintjs": "^0.5.3",
+    "fingerprintjs2": "^2.1.0",
     "jwt-decode": "^2.2.0",
     "panzoom": "^8.0.0",
     "preact": "^8.2.1",
@@ -55,6 +57,7 @@
     "react-notifications": "^1.4.3",
     "react-qr-reader": "^2.2.1",
     "react-qr-scanner": "0.0.8",
-    "react-tooltip-lite": "^1.9.3"
+    "react-tooltip-lite": "^1.9.3",
+    "uniqid": "^5.0.3"
   }
 }

@@ -1,11 +1,9 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 // import { login } from '../utils/auth-service';
-
 import Header from './header';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
-
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
@@ -69,7 +67,7 @@ export default class App extends Component {
 			if ( !resp.attributes.pixels ) {
 				localStorage.setItem('pixelStop', true);
 			}
- else {
+			else {
 				localStorage.setItem('pixelStop', false);
 			}
 			this.setState({ user: resp, logined: true });
@@ -119,9 +117,9 @@ export default class App extends Component {
 		// patikrinam user;
 		this.getInfo();
 		const s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    s.innerHTML = `!function(f,b,e,v,n,t,s)
+		s.type = 'text/javascript';
+		s.async = true;
+		s.innerHTML = `!function(f,b,e,v,n,t,s)
 		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -131,13 +129,13 @@ export default class App extends Component {
 		'https://connect.facebook.net/en_US/fbevents.js');
 		fbq('init', '305085283706777'); 
 		fbq('track', 'PageView');`;
-    this.base.appendChild(s);
+		this.base.appendChild(s);
 	}
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
 		  const base = 'https://vote4art.eu/';
-		  // const base = ' http://192.168.0.100:46003';
+		  // const base = 'http://localhost:8080';
 		
 		return (
 			<div id="app">
@@ -172,9 +170,10 @@ export default class App extends Component {
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
 				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140710174-1" />
 				<noscript>
-				<img height="1" width="1" 
-				src="https://www.facebook.com/tr?id=305085283706777&ev=PageView
-				&noscript=1"/>
+					<img height="1" width="1"
+						src="https://www.facebook.com/tr?id=305085283706777&ev=PageView
+				&noscript=1" 
+				/>
 				</noscript>
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>

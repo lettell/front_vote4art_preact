@@ -87,12 +87,14 @@ function login(pramas) {
 		});
 }
 function signup(pramas) {
+
 	const url = `${BASE_URL}/api/v1/signup`;
 	return axios.post(url, {
 		username: pramas.username,
 		password: pramas.password,
 		password_confirmation: pramas.password_confirmation,
-		terms_and_conditions: pramas.terms_and_conditions
+		terms_and_conditions: pramas.terms_and_conditions,
+		finger: pramas.finger
 
 
 	}).then((response) => {

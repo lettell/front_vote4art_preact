@@ -9,6 +9,7 @@ import Checkbox from 'preact-material-components/Checkbox';
 
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
+import Fingerprint from 'fingerprintjs';
 
 import 'preact-material-components/TextField/style.css';
 
@@ -30,10 +31,21 @@ export default class Registration extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.validatePassword = this.validatePassword.bind(this);
 		this.registerSimple = this.registerSimple.bind(this);
+		
+		if (window.requestIdleCallback) {
+			requestIdleCallback(() => {
+				this.finger = new Fingerprint().get();
 
+			});
+		} else {
+			setTimeout(() => {
+				this.finger = new Fingerprint().get();
+			}, 500);
+		}
 	}
 	registerSimple = () => {
 		this.state.terms_and_conditions = this.cb.MDComponent.checked;
+		this.state.finger = this.finger;
 		signup(this.state).then( (resp) => {
 			if (resp) {
 				this.setState({});
