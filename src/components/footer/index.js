@@ -29,15 +29,13 @@ export default class Footer extends Component {
 							©2019 „Europos Komisijos atstovybė Lietuvoje“
 						</div>
 						<div>
-							<a class="t_link" target="_blank" href="https://privacy.vote4art.eu/index.html">
-								Sąlygos
-							</a>
-							<a  class="t_link" target="_blank" href="https://privacy.vote4art.eu/terms.html" >
+							<a  class="t_link" target="_blank" href="https://privacy.vote4art.eu/index.html" >
 								Privatumas
 							</a>
 						</div>
-					</div>
+			
 
+					</div>
 					<div class={style.block_two}>
 						<div>
 							<div>
@@ -48,10 +46,15 @@ export default class Footer extends Component {
 							</div>
 						</div>
 						<div class={style.wraper}>
-							<img class={style.l_ek} src="/assets/images/logo_ek.svg" alt="Eruropos Komisijos logo" />
-							<img class={style.l_vrk} src="/assets/images/VRK log 300x300.png" alt="VRK logo" />
+							<a  class="t_link" target="_blank" rel="noopener noreferrer" href="https://ec.europa.eu/lithuania/home_lt"  >
+								<img class={style.l_ek} src="/assets/images/logo_ek.svg" alt="Eruropos Komisijos logo" />
+							</a>
+   					<a  class="t_link" target="_blank" rel="noopener noreferrer" href="https://www.vrk.lt/" >
+								<img class={style.l_vrk} src="/assets/images/VRK log 300x300.png" alt="VRK logo" />
+							</a>
 						</div>
 					</div>
+
 
 				</div>
 			</div>

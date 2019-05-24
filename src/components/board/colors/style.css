@@ -1,8 +1,15 @@
 .color_picker {
   display: flex;
   padding: 1.5em;
+  flex-direction: column;
   width: 412px;
   background: rgba(214, 211, 211, 0.8);
+}
+.picker_info {
+  margin-top: -10px;
+  font-size: 11px;
+  margin-bottom: 10px;
+  color: slategrey;
 }
 .color {
   width: 44px;

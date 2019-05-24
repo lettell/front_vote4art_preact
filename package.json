@@ -54,6 +54,7 @@
     "react-material-ui-form-validator": "^2.0.8",
     "react-notifications": "^1.4.3",
     "react-qr-reader": "^2.2.1",
-    "react-qr-scanner": "0.0.8"
+    "react-qr-scanner": "0.0.8",
+    "react-tooltip-lite": "^1.9.3"
   }
 }

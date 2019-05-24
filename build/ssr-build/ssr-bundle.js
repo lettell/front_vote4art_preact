@@ -5398,7 +5398,7 @@ module.exports = toString;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"color_picker":"color_picker__3nt0y","color":"color__1NDm2","colorize":"colorize__2Yzf5","active":"active__25DOn","logo":"logo__1ECGO"};
+module.exports = {"color_picker":"color_picker__3nt0y","picker_info":"picker_info__Kaoq9","color":"color__1NDm2","colorize":"colorize__2Yzf5","active":"active__25DOn","logo":"logo__1ECGO"};
 
 /***/ }),
 
@@ -10764,6 +10764,60 @@ var registration_Registration = function (_Component) {
 }(preact_min["Component"]);
 
 
+// EXTERNAL MODULE: ./components/dialogs/aboutgame/style.css
+var aboutgame_style = __webpack_require__("sKR0");
+var aboutgame_style_default = /*#__PURE__*/__webpack_require__.n(aboutgame_style);
+
+// CONCATENATED MODULE: ./components/dialogs/aboutgame/index.js
+
+
+function aboutgame__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function aboutgame__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function aboutgame__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var aboutgame__ref = Object(preact_min["h"])(
+	'article',
+	null,
+	Object(preact_min["h"])(
+		'p',
+		null,
+		' Sukurkime pie\u0161in\u012F, tapsiant\u012F m\u016Bs\u0173 istorijos dalimi ir gatv\u0117s meno k\u016Briniu!'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'U\u017Esiregistruokite, gaukite pikseli\u0173 ir prad\u0117kite pie\u0161ti. Nuo registracijos prad\u017Eios kas valand\u0105 gausite po vien\u0105 piksel\u012F. Dienos pikselius galite kaupti (iki 48 per dien\u0105), bet j\u0173 nei\u0161naudojus iki tos dienos pabaigos, vidurnakt\u012F pikseliai bus anuliuojami. Ie\u0161kokite bendramin\u010Di\u0173 pasirinkto pie\u0161inio \u012Fam\u017Einimui ir koordinuokite veiksmus.'
+	),
+	Object(preact_min["h"])(
+		'p',
+		null,
+		'Ateikite balsuoti \u012F Europos Parlamento rinkimus, skenuokite balsavimo apylink\u0117se esan\u010Dius QR kodus ant \u201EVote4Art\u201C plakat\u0173 ir gaukite dar daugiau pikseli\u0173. Taip prisid\u0117sime prie Europos ateities k\u016Brimo ir bendrai sukursime virtual\u0173 pie\u0161in\u012F, kuris taps m\u016Bs\u0173 vis\u0173 istorijos dalimi.'
+	)
+);
+
+var Aboutgame = function (_Component) {
+	aboutgame__inherits(Aboutgame, _Component);
+
+	function Aboutgame() {
+		aboutgame__classCallCheck(this, Aboutgame);
+
+		return aboutgame__possibleConstructorReturn(this, _Component.apply(this, arguments));
+	}
+
+	Aboutgame.prototype.render = function render() {
+		return aboutgame__ref;
+	};
+
+	return Aboutgame;
+}(preact_min["Component"]);
+
+
 // EXTERNAL MODULE: ./components/dialogs/about/style.css
 var about_style = __webpack_require__("KOfj");
 var about_style_default = /*#__PURE__*/__webpack_require__.n(about_style);
@@ -10787,17 +10841,12 @@ var about__ref = Object(preact_min["h"])(
 	Object(preact_min["h"])(
 		'p',
 		null,
-		' Sukurkime pie\u0161in\u012F, tapsiant\u012F m\u016Bs\u0173 istorijos dalimi ir gatv\u0117s meno k\u016Briniu!'
+		'2019 met\u0173 vasar\u012F Europos Parlamento biuro ir Europos Komisijos atstovyb\u0117s Lietuvoje organizuotame Votecraft hakatone 50 jaun\u0173j\u0173 profesional\u0173 ie\u0161kojo nauj\u0173j\u0173 technologij\u0173 sprendim\u0173, kurie skatint\u0173 jaunus \u017Emones dalyvauti 2019 m. gegu\u017E\u0117s 26 d. vyksian\u010Diuose Europos Parlamento (EP) rinkimuose. Votecraft hakatono metu dalyviai pasi\u016Bl\u0117 dvylika id\u0117j\u0173, kurios ne tik gal\u0117t\u0173 skatinti jaunus \u017Emones dalyvauti EP rinkimuose, bet ir pad\u0117t\u0173 jiems pasiruo\u0161ti bei kviest\u0173 diskusijai apie Europos ateit\u012F.'
 	),
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'U\u017Esiregistruokite, gaukite pikseli\u0173 ir prad\u0117kite pie\u0161ti. Nuo registracijos prad\u017Eios kas valand\u0105 gausite po vien\u0105 piksel\u012F. Dienos pikselius galite kaupti (iki 24 per dien\u0105), bet j\u0173 nei\u0161naudojus iki tos dienos pabaigos, vidurnakt\u012F pikseliai bus anuliuojami. Ie\u0161kokite bendramin\u010Di\u0173 pasirinkto pie\u0161inio \u012Fam\u017Einimui ir koordinuokite veiksmus.'
-	),
-	Object(preact_min["h"])(
-		'p',
-		null,
-		'Ateikite balsuoti \u012F Europos Parlamento rinkimus, skenuokite balsavimo apylink\u0117se esan\u010Dius QR kodus ant \u201EVote4Art\u201C plakat\u0173 ir gaukite dar daugiau pikseli\u0173. Taip prisid\u0117sime prie Europos ateities k\u016Brimo ir bendrai sukursime virtual\u0173 pie\u0161in\u012F, kuris taps m\u016Bs\u0173 vis\u0173 istorijos dalimi.'
+		'Europos Komisijos atstovyb\u0117 Lietuvoje patik\u0117jo hakatono nugal\u0117toj\u0173 komandos sukurtu projektu \u201EVote4Art\u201C ir kartu su Vyriausi\u0105ja rinkim\u0173 komisija nusprend\u0117 j\u012F \u012Fgyvendinti gegu\u017E\u0117s 21\u201326 d. \u201EVote4Art\u201C \u2013 azarti\u0161kas \u017Eaidimas, kurio tikslas \u2013 pakviesti jaunim\u0105 dalyvauti rinkimuose ir tuo pa\u010Diu sukurti virtual\u0173 pie\u0161in\u012F, tapsiant\u012F m\u016Bs\u0173 istorijos dalimi ir gatv\u0117s meno k\u016Briniu.'
 	)
 );
 
@@ -10900,7 +10949,7 @@ var wellcome__ref = Object(preact_min["h"])(
 	Object(preact_min["h"])(
 		'p',
 		null,
-		'Nu\u0117j\u0119 balsuoti ir nuskenav\u0119 Vote4Art QR kod\u0105 rinkim\u0173 apylink\u0117je gausite 84 papildomus pikselius!'
+		'Nu\u0117j\u0119 balsuoti ir nuskenav\u0119 Vote4Art QR kod\u0105 rinkim\u0173 apylink\u0117je gausite 168 papildomus pikselius!'
 	)
 );
 
@@ -10959,6 +11008,8 @@ function header__inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
+
+
 var header__ref2 = Object(preact_min["h"])(lib["NotificationContainer"], null);
 
 var header__ref3 = Object(preact_min["h"])(TopAppBar_default.a.Title, null);
@@ -10990,20 +11041,28 @@ var _ref7 = Object(preact_min["h"])(
 var _ref8 = Object(preact_min["h"])(
 	'h1',
 	{ style: 'display: inline' },
-	'EP rinkimai 2019'
+	'EP RINKIMAI 2019'
 );
 
 var _ref9 = Object(preact_min["h"])(
 	'h1',
 	{ style: 'display: inline' },
-	'Sveiki !!!'
+	'SVEIKI !!!'
 );
 
-var _ref10 = Object(preact_min["h"])(About, null);
+var _ref10 = Object(preact_min["h"])(
+	'h1',
+	{ style: 'display: inline' },
+	'APIE PROJEKT\u0104'
+);
 
-var _ref11 = Object(preact_min["h"])(Eu, null);
+var _ref11 = Object(preact_min["h"])(Aboutgame, null);
 
-var _ref12 = Object(preact_min["h"])(Wellcome, null);
+var _ref12 = Object(preact_min["h"])(Eu, null);
+
+var _ref13 = Object(preact_min["h"])(Wellcome, null);
+
+var _ref14 = Object(preact_min["h"])(About, null);
 
 var header_Header = function (_Component) {
 	header__inherits(Header, _Component);
@@ -11166,6 +11225,11 @@ var header_Header = function (_Component) {
 							{ 'class': header_style_default.a.c_btn },
 							Object(preact_min["h"])(
 								Button_default.a,
+								{ id: 'about', onClick: this.openContent, unelevated: true },
+								'APIE PROJEKT\u0104'
+							),
+							Object(preact_min["h"])(
+								Button_default.a,
 								{ id: 'game', onClick: this.openContent, unelevated: true },
 								'\u017DAIDIMAS'
 							),
@@ -11177,7 +11241,7 @@ var header_Header = function (_Component) {
 							Object(preact_min["h"])(
 								Button_default.a,
 								{ id: 'eu', onClick: this.openContent, unelevated: true },
-								'EP rinkimai 2019'
+								'EP RINKIMAI 2019'
 							)
 						)
 					),
@@ -11213,6 +11277,11 @@ var header_Header = function (_Component) {
 								{ 'class': header_style_default.a.mobile_m },
 								Object(preact_min["h"])(
 									Button_default.a,
+									{ id: 'about', onClick: this.openContent, unelevated: true },
+									'APIE PROJEKT\u0104'
+								),
+								Object(preact_min["h"])(
+									Button_default.a,
 									{ id: 'game', onClick: this.openContent, unelevated: true },
 									'\u017DAIDIMAS'
 								),
@@ -11237,7 +11306,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Header,
 					null,
-					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : this.state.dialogContent === 'eu' ? _ref8 : this.state.dialogContent === 'wellcome' ? _ref9 : '',
+					this.state.dialogContent === 'rules' ? header__ref4 : this.state.dialogContent === 'game' ? header__ref5 : this.state.dialogContent === 'login' ? _ref6 : this.state.dialogContent === 'registracija' ? _ref7 : this.state.dialogContent === 'eu' ? _ref8 : this.state.dialogContent === 'wellcome' ? _ref9 : this.state.dialogContent === 'about' ? _ref10 : '',
 					Object(preact_min["h"])(
 						'span',
 						{ style: 'float: right;' },
@@ -11255,7 +11324,7 @@ var header_Header = function (_Component) {
 				Object(preact_min["h"])(
 					Dialog_default.a.Body,
 					{ scrollable: this.state.scrollModal },
-					this.state.dialogContent === 'game' ? _ref10 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Rules, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'eu' ? _ref11 : this.state.dialogContent === 'wellcome' ? _ref12 : ''
+					this.state.dialogContent === 'game' ? _ref11 : this.state.dialogContent === 'rules' ? Object(preact_min["h"])(Rules, { callHeader: this.callBackFromRegterms }) : this.state.dialogContent === 'login' ? Object(preact_min["h"])(login_Login, { callToDialog: this.callBackFromLogin, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'registracija' ? Object(preact_min["h"])(registration_Registration, { callToDialog: this.callBackFromRegistration, backState: this.state.backState, callToRules: this.callBackFromRegterms }) : this.state.dialogContent === 'eu' ? _ref12 : this.state.dialogContent === 'wellcome' ? _ref13 : this.state.dialogContent === 'about' ? _ref14 : ''
 				),
 				Object(preact_min["h"])(
 					Dialog_default.a.Footer,
@@ -11264,7 +11333,7 @@ var header_Header = function (_Component) {
 						Button_default.a,
 						{ onClick: this.acceptTerms, secondary: true },
 						'SUTINKU'
-					) : '' : this.state.dialogContent === 'game' ? Object(preact_min["h"])(
+					) : '' : this.state.dialogContent === 'game' && !this.state.logined ? Object(preact_min["h"])(
 						Button_default.a,
 						{ id: 'registracija', onClick: this.openContent, secondary: true },
 						'\u017DAISTI'
@@ -30891,6 +30960,11 @@ var colors_Colors = function (_Component) {
 						'div',
 						{ 'class': colors_style_default.a.color_picker },
 						Object(preact_min["h"])(
+							'small',
+							{ 'class': colors_style_default.a.picker_info },
+							'Paspaud\u0119 ant spalvos du kartus, galite atidaryti i\u0161samesn\u0119 spalv\u0173 palet\u0119'
+						),
+						Object(preact_min["h"])(
 							'div',
 							null,
 							Object(preact_min["h"])(Circle_default.a, {
@@ -30960,6 +31034,12 @@ var controls__ref4 = Object(preact_min["h"])(
 	'border_all'
 );
 
+var controls__ref5 = Object(preact_min["h"])(
+	Fab_default.a.Icon,
+	null,
+	'center_focus_strong'
+);
+
 var controls_Controls = function (_Component) {
 	controls__inherits(Controls, _Component);
 
@@ -30980,6 +31060,11 @@ var controls_Controls = function (_Component) {
 		this.props.callbackFromBoardSecond(this.state.grid);
 	};
 
+	Controls.prototype.center = function center(e) {
+		var params = { center: true };
+		this.props.callbackFromBoard(params);
+	};
+
 	function Controls() {
 		controls__classCallCheck(this, Controls);
 
@@ -30987,6 +31072,7 @@ var controls_Controls = function (_Component) {
 
 		_this.zoom = _this.zoom.bind(_this);
 		_this.grid = _this.grid.bind(_this);
+		_this.center = _this.center.bind(_this);
 
 		_this.state = {
 			grid: false
@@ -31012,6 +31098,11 @@ var controls_Controls = function (_Component) {
 				Fab_default.a,
 				{ mini: true, 'class': controls_style_default.a.btn_grid, ripple: true, raised: true, onClick: this.grid },
 				this.state.grid ? controls__ref3 : controls__ref4
+			),
+			Object(preact_min["h"])(
+				Fab_default.a,
+				{ mini: true, 'class': controls_style_default.a.btn_grid, ripple: true, raised: true, onClick: this.center },
+				controls__ref5
 			)
 		);
 	};
@@ -31119,7 +31210,7 @@ var board__ref12 = Object(preact_min["h"])('path', {
 	id: 'LT-UT'
 });
 
-var _ref13 = Object(preact_min["h"])('path', {
+var board__ref13 = Object(preact_min["h"])('path', {
 	d: 'm 605.94599,509.50382 -1.9,-0.48 0.27,-1.23 3.66,-0.53 -2.03,2.24 z m -111.37,-288.09 -0.11,4.52 1.32,0.96 1.75,-1.22 1.16,0.61 1.83,-1.93 3.23,0.54 2.9,6.26 2.42,-0.16 -0.24,-0.85 0.92,-0.21 2.19,7.69 5.73,2.54 -1.51,5.59 -2.77,-1.9 -1.72,3.83 1.55,1.03 -0.49,7.37 0.58,-0.42 6.97,4.6 7.43,-0.87 -1.06,3.26 1.66,0.54 8.72,-3.82 1.35,3.59 0.5,7.31 2.11,1.1 3.35,-1.15 1.7,0.54 2.27,-0.7 0.37,1.5 2.46,-0.98 1.18,1.66 -0.41,2.48 2.15,0.49 1.2,2.46 -0.52,3.21 5.27,2.32 0.48,1.1 1.58,-2.55 4.5,-0.96 -1.18,6.29 -3.39,4.65 2.66,2.92 4.82,-1.75 1.75,1.47 0.36,3.22 2.27,-0.54 0.55,0.98 0.87,-0.75 1.66,1.59 -4.41,0.19 -1.18,2.13 1.3,2.19 -0.88,1.56 -5.73,2.64 -2.67,0.26 0.98,3.43 -1.9,1.52 0.27,2.19 -1.68,2.17 0.8,1.23 -0.87,2 1.27,1.61 1.28,-1.38 0.73,1.05 3.66,-0.28 1.75,1.44 1.18,-0.16 -0.12,2.89 2.11,3.98 -2.85,2.68 0.62,1.28 6.44,-1.05 6.43,0.21 2.95,2.88 5.85,0.77 1.79,-1.56 5.26,0.72 8.07,-1.93 4.14,0.72 1.19,-4.03 2.85,-0.81 0.53,1.49 1.98,0.42 0.36,-3.7 1.07,1.4 2.47,0.23 3.25,-1.75 5.12,2.51 -0.69,1 0.77,2.26 3.57,-0.16 1.39,-1.05 1.23,2.77 6.53,-0.91 -0.25,-1.09 -1.82,0.7 -1.5,-2.54 1.7,-1.33 -1.15,-0.98 1.39,-1.16 0.83,-2.75 -1.31,-0.37 -1.15,2.1 -0.9,-2.54 3.14,-1.58 -0.49,1.24 1.51,0 0.5,-2.31 -2.31,-1.12 2.21,-2.54 0.67,1.75 0.88,-0.12 0.66,-2.24 2.61,-0.16 -1.03,-1.77 -4.37,-1.52 -0.36,-1.4 -1.96,0.58 -2.82,-3.64 -1.44,-0.28 -0.08,-5.62 -3.23,-0.61 -1.04,-1.78 -2.75,-0.68 -1.02,-2.9 0.43,-2.55 1.11,0.19 1.55,-2.2 -1.83,-0.07 1.5,-5.87 2.85,-0.56 1,1.05 1.18,-0.26 -0.36,-1.73 -1.32,0.14 -0.55,-0.96 0.79,-0.51 -0.48,-1.52 -1.19,-0.33 -0.31,-2.57 3.78,2.32 -0.43,-1.29 1.27,-4.7 2.41,-1.8 -1.3,-0.44 1.59,-2.32 -0.09,1.85 4.72,-4.26 5.09,6.23 -0.52,1.24 1.62,2.46 3.67,-3.21 -1.91,-1.94 4.74,-1.05 3.62,2.51 -0.36,2.34 2.13,1.59 0.81,-1.92 1.94,0.98 -0.2,-2.41 1.26,-0.07 0.41,2.32 1.4,1.4 2.11,-1.36 3.62,1.97 0.72,-1.61 3.54,-0.63 0.88,0.77 1.76,-2.46 -3.02,0.3 2.83,-1.99 0.63,-2.79 0.37,2.9 1.5,0.42 -0.77,-0.21 0.32,-3.77 0.27,3.02 4.5,1.36 0.75,1.01 1.94,-1.9 4.36,1.97 0.24,1.12 -1.31,1.1 1.44,0.82 -0.07,2.39 4.41,2.27 -1.14,0.26 -3.17,4.79 0.15,1.15 3.45,0.72 1.38,-0.16 1.24,-4.14 0.29,0.82 2.75,0.3 1.31,-2.08 3.96,5.92 1.87,-0.58 -0.63,-0.7 0.84,-1.01 1.82,1.17 2.22,-0.91 7.78,1.92 1.46,-0.98 2.9,2.06 5.57,0.54 1.19,1.36 1.36,-2.52 3.59,1.68 1.18,-0.75 3.22,0.61 2.07,-2.52 2.78,1.38 2.17,-1.03 -0.15,-0.77 4.3,0 -0.16,-0.91 2.69,-1.85 -0.25,-1.82 1.4,0.16 -0.03,-0.94 -1.71,-0.98 2.19,-0.21 -0.35,-1.47 3.67,0.21 0.68,1.87 -0.88,0.79 1.87,-0.33 -0.08,-3.04 12.24,-0.47 -2.62,1.68 0.4,0.75 0,0 -2.07,3.02 0.32,5.45 -3.34,3.58 -1.4,-1.19 -2.35,1.64 1.47,4.88 2.18,1.17 -1.2,1.66 -2.14,-0.82 -0.75,2.78 -2.65,-0.98 -4.32,3.24 -4.98,-1.49 -5.67,2.38 -3.5,-3.85 -4.78,2.78 -0.28,2.57 -2.11,1.8 -4.48,-2.29 -1.55,0.68 -0.36,-1.03 -2.06,1.7 -0.84,-2.12 -4.72,-1.73 -1.74,1.19 -2.62,-0.05 0.36,2.17 -3.39,0.47 1.24,1.05 -1.28,1.03 -5.06,0.91 -4.48,2.98 -0.28,1.05 5.53,6.34 -1.22,0.54 0.35,1.28 -2.04,-0.4 -0.72,0.88 -0.66,6.12 -1.78,4.65 -1.92,1.6 -0.43,3.65 -3.03,2.07 -3.13,-0.7 -3.21,2.02 -2.07,-0.81 -1.52,3.81 -4.12,0.53 -0.6,1.42 0.97,1.95 -3.59,1.28 1.24,1.49 -8.74,-1.53 -2.1,-2.18 -0.63,1.02 -4.17,1.18 -2.33,2.72 -0.94,-0.32 -2.11,1.46 -2.66,-1.07 -1.12,1.65 -2.53,0.14 -1.07,7.4 -4.7,3.99 0.23,1.32 -1.91,2.34 -3.13,1.95 0.58,3.36 -1.35,3.87 -2.99,-0.02 -1.01,1.8 -1.18,3.72 1.74,7.91 -0.21,9.93 -1.48,4.75 0.76,4.08 -0.98,-0.14 -0.23,0.92 1.7,9.45 -0.78,1.66 1.94,3.06 1,9.87 -1.36,2.92 -9.27,6.6 -3.23,6.39 -2.63,8.61 -2.18,0.39 -2.22,2.04 0.24,0.71 2.75,-0.07 -1.1,1.86 1.4,5.98 -3.31,5.7 -1.46,-0.12 -0.28,-1.05 -0.95,2.27 0.79,3.85 -3.71,2.54 -1.06,4.9 -2.55,0.3 -0.21,2.08 1.99,0.34 0.35,3.91 4.85,-1.78 0.19,1.46 1.24,0.55 2.65,0.8 1.76,-1.69 1.39,1.44 2.69,-2.42 2.86,-0.05 3.41,5.44 -0.9,1.19 0.64,1.76 -0.76,1.55 1.36,1.42 1.26,-0.91 3.83,1.21 2.04,6.5 2.62,1.71 1.23,-0.87 -6.47,4.49 0.98,-0.25 2.78,3.97 0.83,2.17 -1.24,2.1 1,3.62 1.2,0.87 1.03,-0.43 0.05,1.75 -1.35,0.52 -0.45,-1.32 -2.15,0.02 -1.36,-2.19 -0.09,2.46 -1.55,0.02 -0.79,1.14 -0.19,-1.3 -4.12,-1.66 -0.23,2.64 -1.64,0.68 -0.68,-0.66 -0.2,3.73 -2.79,0 -1.94,2.62 -1.1,0.07 -2.3,-2.28 0.41,-1.18 -3.19,0.57 -0.6,-1.12 -4.32,-1.21 -1.72,0.87 -2.57,-1.91 -0.42,-1.87 -2.78,-2.48 0.59,-2.37 6.25,-2.6 0.05,-3.92 -2.25,-1.32 -0.24,-2.3 0.49,-0.43 0.94,1.23 1.32,-1.14 1.67,1.28 1.74,-0.39 -2.74,-4.45 0.44,-2.01 -2.17,-2.42 0.91,-1.62 -5.92,-2.35 -0.35,-5.23 -2.19,-0.94 -0.42,1.96 -2.12,0.07 0.21,1.51 -1.95,1.1 -1.99,-0.02 0.29,-1.55 -3.41,0.48 -0.92,-0.64 -1.76,3.61 -2.18,1.71 -1.36,-0.46 -2.65,1.12 -1.28,1.8 -2.39,-0.66 -1.8,1.21 -1.87,-1.37 -0.63,1.37 -4.69,-2.65 -2.21,4.86 -2.46,-2.6 -1.54,0.94 -2.66,5.04 0.17,3.83 -11.42,11.67 -5.83,7.88 -3.18,-1.11 -4.49,0.77 -3.03,-1.55 -2.42,-3.67 0.52,-1.34 -2.85,-1.59 -11.81,5.67 -5.06,-0.32 0,0 -1.03,-3.62 -1.83,-2.23 1.22,-1.32 -1.04,-0.02 -0.09,-2.71 -8.39,-3.69 1.1,-1.92 -0.8,-2.92 1.82,-1.19 1.36,0.62 1.26,-1.53 2.77,0.27 -0.31,-3.58 1.79,0.62 0.35,-1.69 3.59,0.18 1.92,-4.22 3.13,-0.32 -1.96,-2.21 1.46,-2.08 6.63,-0.46 -1.79,-6.17 1.14,-2.68 -2,-0.89 0.61,-0.69 -0.77,-3.8 2.36,-0.69 -0.33,-2.59 9.46,-1.83 -0.35,-2.77 3.02,-0.73 -1.03,-5.15 2.04,-0.76 -0.81,-3.3 -4.12,0.78 -1.8,1.51 -2.99,-0.48 -4.25,1.67 -1.58,3.55 -0.57,-1.9 -5.38,1.44 -2.03,-0.46 0.08,1.08 -1.02,0.23 0.37,1.99 -5.64,-0.09 -0.04,-1.08 -7.99,1.1 -1,-1.33 -0.27,2.18 -1.44,0.05 -0.75,1.6 -1.54,-4.65 1.18,-1.42 0.07,-3.25 -2.81,-0.78 -3.79,-3.76 -1.94,0.21 -0.95,1.35 -3.01,-1.05 -1.22,2.57 -1.07,-0.34 -1.55,1.28 -0.98,-0.73 -0.29,5.11 -0.82,0.34 -0.65,-1.26 -1.27,0.18 0.04,1.26 -2.34,-1.44 0.04,-2.15 -4.57,0.34 -1.32,1.08 -5.89,-0.23 -2.15,-2.89 -1.26,1.4 -0.94,-0.69 0.04,-1.83 2.55,-2.73 -0.74,-1.24 0.75,-1.26 -1.72,-2.41 -2.79,0.62 -1.14,-2.2 3.58,-1.7 -0.6,-3.92 -1.27,-0.14 -0.15,-3.44 0.87,-0.14 -1.1,-1.72 0.68,-1.59 0,0 1.83,-7.15 -0.41,-7.66 1.71,1.31 1.32,-1.61 1.31,0.35 1.42,-2.79 0.91,1.06 1.14,-0.62 -1.54,-5.2 -2.57,0.02 2.93,-1.87 -2.03,-5.92 -0.19,-4.26 2.19,-3.3 0.59,0.25 0.01,-1.25 3.92,-0.81 5.37,2.56 1.08,-2.79 -0.64,-3.35 1.19,-0.14 0.2,0.9 2.79,0.28 1.44,2.65 2.53,0.35 1.8,-0.81 0.47,-1.57 -1.27,-1.8 1.28,-1.18 -0.52,-1.64 1.15,-0.67 -0.25,-3.51 1.86,-0.35 -0.35,-2.33 -0.75,0.09 -0.76,-1.9 1.35,-2.01 0.32,-4.95 5.64,-3.7 5.56,-0.72 0.21,-1.57 1.51,1.37 1.04,-1.76 1.22,-0.21 -0.21,1.11 1.18,-0.35 -1.74,-12.67 1,-0.32 -0.4,-0.86 2.67,-0.12 0.67,-1 1.27,1.62 1.39,-0.6 1.28,-0.97 0.15,-3.29 -1.82,-1.86 -4.18,-1.72 -2.23,-3.13 0,0 -2.58,0 0,0 -5.35,1 -1.54,-4.39 -5.32,-2.32 -2.49,-4.11 -5.3,0.07 -3.66,-3.95 1.58,-1.58 0.16,-2.23 3.57,-1.3 -0.67,-3.63 5.49,-0.93 0.37,-0.98 -1.19,-0.7 0.61,-1.16 1.38,0.02 1.12,-1.44 -1.82,-0.47 -0.11,-2.96 -2.03,-2.3 -1.43,-0.07 -0.09,-0.75 -1.52,0.65 0.47,-1.51 -1.08,-0.23 0.61,-1.91 -1.24,-1.17 -0.01,-3.73 -1.56,-0.47 -1.3,1.07 -2.33,-2.77 0.31,-1.26 -1.14,-0.33 0.83,-0.65 -2.54,-2.92 1.92,-1.1 0.7,-1.73 -5.17,-1.07 -0.49,-1 -0.05,-2.24 -1.28,-1.8 0.25,-2.69 -1.44,-2.29 3.17,-4.16 -8.07,-2.6 -0.36,1.1 -1.78,-0.19 0.04,-1.26 -2.06,-0.21 2.08,-10.9 -1,0.09 -0.08,-2.62 -4.34,-0.4 1.12,-9.18 1.11,-0.4 -0.28,-4.1 1.96,-1.2 0.31,-3.24 2.89,-1.17 0.27,-5.42 0,0 5.85,0.47 -0.44,-2.37 4.38,-2.49 -1.04,-3.17 2.62,-1.27 -0.58,-4.21 0.98,-0.56 1.04,0.85 0.91,-0.54 1.51,1.46 4.22,0.68 6.13,-2.7 1.32,-3.36 -1.71,-2.56 -0.05,-3.13 -1.71,-3.06 2.22,-0.52 0,-1.15 1.55,-0.6 z',
 	title: 'Vilnius',
 	id: 'LT-VL'
@@ -31136,6 +31227,10 @@ var board_Board = function (_Component) {
 	};
 
 	Board.prototype.setZoom = function setZoom(zoom) {
+		if (zoom.center) {
+			var b = this.base.querySelector('#voteForArt');
+			return this.initZoom(b);
+		}
 		this.zoomController.smoothZoom(zoom.cx, zoom.cy, zoom.zoomBy);
 	};
 
@@ -31222,15 +31317,15 @@ var board_Board = function (_Component) {
 			autocenter: true,
 			bounds: true
 		});
-		// let scal = 12.793964287799751;
-		// let x = 5909.330227150821 ;
-		// let y = 3358.0606079162935;
-		// // pan.zoomAbs(x, y, scal);
+		this.base.querySelector('svg').focus();
+		// pan.smoothZoom(cx, cy, 0);
+
 
 		// pan.zoomAbs(
 		// 	558, 428, 30.809340591854905		);
 
 		pan.on('transform', this.transform);
+		this.center = pan.getTransform();
 		this.setState({ zoom: 'ok' });
 		this.zoomController = pan;
 	};
@@ -31315,15 +31410,12 @@ var board_Board = function (_Component) {
 		this.loadPixels();
 		setInterval(function () {
 			_this4.loadPixels();
-		}, 2300);
+		}, 3000);
 
 		var b = this.base.querySelector('#voteForArt');
+		this.initZoom(b);
 		var a = this.base.querySelector('#gridArea');
-		this.currentZoom = {
-			x: this.base.clientWidth - a.width,
-			y: this.base.clientWidth / 2
-		};
-		this.initZoom(b, this.currentZoom);
+
 		a.addEventListener('mousemove', this.mouseMove);
 	};
 
@@ -31371,7 +31463,7 @@ var board_Board = function (_Component) {
 			),
 			Object(preact_min["h"])(
 				'svg',
-				{ xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '100%', id: 'board', height: '100%' },
+				{ xmlns: 'http://www.w3.org/2000/svg', focusable: 'true', tabindex: '-1', xmlnsXlink: 'http://www.w3.org/1999/xlink', width: '100%', height: '100%', id: 'board' },
 				Object(preact_min["h"])(
 					'defs',
 					null,
@@ -31431,7 +31523,7 @@ var board_Board = function (_Component) {
 							board__ref10,
 							board__ref11,
 							board__ref12,
-							_ref13
+							board__ref13
 						)
 					)
 				)
@@ -31574,11 +31666,6 @@ var footer__ref2 = Object(preact_min["h"])(
 	Object(preact_min["h"])(
 		'a',
 		{ 'class': 't_link', target: '_blank', href: 'https://privacy.vote4art.eu/index.html' },
-		'S\u0105lygos'
-	),
-	Object(preact_min["h"])(
-		'a',
-		{ 'class': 't_link', target: '_blank', href: 'https://privacy.vote4art.eu/terms.html' },
 		'Privatumas'
 	)
 );
@@ -31631,8 +31718,16 @@ var footer_Footer = function (_Component) {
 					Object(preact_min["h"])(
 						'div',
 						{ 'class': footer_style_default.a.wraper },
-						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_ek, src: '/assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' }),
-						Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_vrk, src: '/assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+						Object(preact_min["h"])(
+							'a',
+							{ 'class': 't_link', target: '_blank', rel: 'noopener noreferrer', href: 'https://ec.europa.eu/lithuania/home_lt' },
+							Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_ek, src: '/assets/images/logo_ek.svg', alt: 'Eruropos Komisijos logo' })
+						),
+						Object(preact_min["h"])(
+							'a',
+							{ 'class': 't_link', target: '_blank', rel: 'noopener noreferrer', href: 'https://www.vrk.lt/' },
+							Object(preact_min["h"])('img', { 'class': footer_style_default.a.l_vrk, src: '/assets/images/VRK log 300x300.png', alt: 'VRK logo' })
+						)
 					)
 				)
 			)
@@ -31688,7 +31783,7 @@ var userinfo_Userinfo = function (_Component) {
 				Object(preact_min["h"])(
 					'h4',
 					null,
-					'Turimi pixeliai: ',
+					'Turimi pikseliai: ',
 					this.props.data.pixels
 				)
 			),
@@ -31859,6 +31954,13 @@ var app__ref5 = Object(preact_min["h"])('script', { async: true, defer: true, cr
 
 var app__ref6 = Object(preact_min["h"])('script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=UA-140710174-1' });
 
+var app__ref7 = Object(preact_min["h"])(
+	'noscript',
+	null,
+	Object(preact_min["h"])('img', { height: '1', width: '1',
+		src: 'https://www.facebook.com/tr?id=305085283706777&ev=PageView &noscript=1' })
+);
+
 var app_App = function (_Component) {
 	app__inherits(App, _Component);
 
@@ -31888,7 +31990,6 @@ var app_App = function (_Component) {
 
 		_this.respHead = function (e) {
 			_this.getInfo();
-
 			_this.setState({ update: true });
 		};
 
@@ -31974,12 +32075,17 @@ var app_App = function (_Component) {
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
+		var s = document.createElement('script');
+		s.type = 'text/javascript';
+		s.async = true;
+		s.innerHTML = '!function(f,b,e,v,n,t,s)\n\t\t{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\n\t\tn.callMethod.apply(n,arguments):n.queue.push(arguments)};\n\t\tif(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';\n\t\tn.queue=[];t=b.createElement(e);t.async=!0;\n\t\tt.src=v;s=b.getElementsByTagName(e)[0];\n\t\ts.parentNode.insertBefore(t,s)}(window,document,\'script\',\n\t\t\'https://connect.facebook.net/en_US/fbevents.js\');\n\t\tfbq(\'init\', \'305085283706777\'); \n\t\tfbq(\'track\', \'PageView\');';
+		this.base.appendChild(s);
 	};
 
 	App.prototype.render = function render() {
 		// document.body.classList.add('mdc-theme--main');
 		var base = 'https://vote4art.eu/';
-		// const base = 'http://localhost:8080/';
+		// const base = ' http://192.168.0.100:46003';
 
 		return Object(preact_min["h"])(
 			'div',
@@ -32010,7 +32116,8 @@ var app_App = function (_Component) {
 			),
 			Object(preact_min["h"])(footer_Footer, { selectedRoute: this.state.currentUrl }),
 			app__ref5,
-			app__ref6
+			app__ref6,
+			app__ref7
 		);
 	};
 
@@ -36892,7 +36999,7 @@ module.exports = isIterateeCall;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hXqL","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__2n0gV","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__35lIu","mdc-ripple-upgraded":"mdc-ripple-upgraded__9EL6t","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__RrBSg","mdc-top-app-bar__row":"mdc-top-app-bar__row__3_1pV","mdc-top-app-bar__section":"mdc-top-app-bar__section__1T77V","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__3gN3n","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__2ys-q","mdc-top-app-bar__title":"mdc-top-app-bar__title__2kTtf","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__GaF0B","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__1hyX2","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__2ESUS","mdc-top-app-bar--short":"mdc-top-app-bar--short__e5Xrl","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__uOikP","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3-_8d","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__3DPij","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__2smUC","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1QYhd","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1khmo","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3iLPQ","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__2mwSI","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__31ySe","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__2rVhl","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__3m6sI","logo":"logo__1TZyF","l_ek":"l_ek__19_eR","l_vrk":"l_vrk__2135_","topappbar":"topappbar__3IqGU","c_btn":"c_btn__3cgip","footer":"footer__3_VRr","block_one":"block_one__36fBT","footer_row":"footer_row__25IPl","wraper":"wraper__17wsU","block_two":"block_two__3LMiZ"};
+module.exports = {"mdc-top-app-bar":"mdc-top-app-bar__1hXqL","mdc-top-app-bar__action-item":"mdc-top-app-bar__action-item__2n0gV","mdc-top-app-bar__navigation-icon":"mdc-top-app-bar__navigation-icon__35lIu","mdc-ripple-upgraded":"mdc-ripple-upgraded__9EL6t","mdc-ripple-upgraded--background-focused":"mdc-ripple-upgraded--background-focused__RrBSg","mdc-top-app-bar__row":"mdc-top-app-bar__row__3_1pV","mdc-top-app-bar__section":"mdc-top-app-bar__section__1T77V","mdc-top-app-bar__section--align-start":"mdc-top-app-bar__section--align-start__3gN3n","mdc-top-app-bar__section--align-end":"mdc-top-app-bar__section--align-end__2ys-q","mdc-top-app-bar__title":"mdc-top-app-bar__title__2kTtf","mdc-ripple-upgraded--unbounded":"mdc-ripple-upgraded--unbounded__GaF0B","mdc-ripple-upgraded--foreground-activation":"mdc-ripple-upgraded--foreground-activation__1hyX2","mdc-ripple-upgraded--foreground-deactivation":"mdc-ripple-upgraded--foreground-deactivation__2ESUS","mdc-top-app-bar--short":"mdc-top-app-bar--short__e5Xrl","mdc-top-app-bar--short-collapsed":"mdc-top-app-bar--short-collapsed__uOikP","mdc-top-app-bar--short-has-action-item":"mdc-top-app-bar--short-has-action-item__3-_8d","mdc-top-app-bar--dense":"mdc-top-app-bar--dense__3DPij","mdc-top-app-bar--prominent":"mdc-top-app-bar--prominent__2smUC","mdc-top-app-bar--fixed":"mdc-top-app-bar--fixed__1QYhd","mdc-top-app-bar--fixed-scrolled":"mdc-top-app-bar--fixed-scrolled__1khmo","mdc-top-app-bar--fixed-adjust":"mdc-top-app-bar--fixed-adjust__3iLPQ","mdc-top-app-bar--dense-fixed-adjust":"mdc-top-app-bar--dense-fixed-adjust__2mwSI","mdc-top-app-bar--short-fixed-adjust":"mdc-top-app-bar--short-fixed-adjust__31ySe","mdc-top-app-bar--prominent-fixed-adjust":"mdc-top-app-bar--prominent-fixed-adjust__2rVhl","mdc-top-app-bar--dense-prominent-fixed-adjust":"mdc-top-app-bar--dense-prominent-fixed-adjust__3m6sI","logo":"logo__1TZyF","topappbar":"topappbar__3IqGU","c_btn":"c_btn__3cgip","footer":"footer__3_VRr","block_one":"block_one__36fBT","footer_row":"footer_row__25IPl","block_two":"block_two__3LMiZ","wraper":"wraper__17wsU","l_ek":"l_ek__19_eR","l_vrk":"l_vrk__2135_"};
 
 /***/ }),
 
@@ -49353,6 +49460,14 @@ default_1.ActionIcon = CardActionIcon;
 default_1.Media = CardMedia;
 default_1.CardMediaContent = CardMediaContent;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "sKR0":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"profile":"profile__2VKbB"};
 
 /***/ }),
 

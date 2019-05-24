@@ -19,7 +19,7 @@ export default class Userinfo extends Component {
 		return (
 			<div class={style.container}>
 				<div>
-					<h4>Turimi pixeliai: {(this.props.data.pixels)}</h4>
+					<h4>Turimi pikseliai: {(this.props.data.pixels)}</h4>
 				</div>
 				<div>
 					<h4>Vartotojas: {this.props.data.username}</h4>

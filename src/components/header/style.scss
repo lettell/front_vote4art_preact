@@ -47,23 +47,8 @@
     width: auto;
     align-self: center;
   }
-  .l_ek {
-    display: none;
-  }
-  .l_vrk {
-    display: none;
-  }
 }
 
-@media only screen and (max-width: 890px) {
-  .l_ek {
-    height: 88px;
-    width: auto;
-  }
-  .l_vrk {
-    height: 64px;
-  }
-}
 @media (max-width: 492px) {
   .logo {
     height: 33px;
@@ -72,7 +57,7 @@
     align-self: center;
   }
 }
-@media (max-width: 410px) {
+@media (max-width: 692px) {
   .mobile_login {
     display: block;
   }
@@ -89,7 +74,7 @@
     height: 46px;
     margin:  0 auto;
     margin-right: 0;
-    margin-left: 88px;
+    margin-left: 10px;
 
     width: auto;
     align-self: center;

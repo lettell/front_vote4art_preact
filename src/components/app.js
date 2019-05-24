@@ -91,7 +91,6 @@ export default class App extends Component {
 
 	respHead = e => {
 		this.getInfo();
-		
 		this.setState({ update: true  });
 	}
 
@@ -119,12 +118,26 @@ export default class App extends Component {
 		this.gtag('config', 'UA-140710174-1');
 		// patikrinam user;
 		this.getInfo();
+		const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.innerHTML = `!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '305085283706777'); 
+		fbq('track', 'PageView');`;
+    this.base.appendChild(s);
 	}
 
 	render() {
 		// document.body.classList.add('mdc-theme--main');
 		  const base = 'https://vote4art.eu/';
-		  // const base = 'http://localhost:8080/';
+		  // const base = ' http://192.168.0.100:46003';
 		
 		return (
 			<div id="app">
@@ -158,6 +171,11 @@ export default class App extends Component {
 
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=449621362498990" />
 				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140710174-1" />
+				<noscript>
+				<img height="1" width="1" 
+				src="https://www.facebook.com/tr?id=305085283706777&ev=PageView
+				&noscript=1"/>
+				</noscript>
 				{/* local 284507289101227 prod 449621362498990 */}
 			</div>
 			

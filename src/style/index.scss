@@ -63,7 +63,6 @@ svg#board {
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
 }
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -135,6 +134,9 @@ svg#board {
   height: calc( 100vh - 64px);
   position: relative;
 }
+.mdc-button {
+  font-size: 17px;
+}
 .shadow {
   box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
  }
@@ -165,15 +167,20 @@ svg#board {
 }
 @media (max-width: 492px) {
   .mdc-dialog__header__title {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
+
+
+.mdc-dialog__header {
+    padding: 15px 10px 0;
+}
   .mdc-button {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.05em;
   }
 }
-@media (max-width: 410px) {
+@media (max-width: 692px) {
   .logo {
     height: 46px;
     margin:  0 auto;

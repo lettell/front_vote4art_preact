@@ -20,6 +20,10 @@ export default class Board extends Component {
 		this.setState(currentColor);
 	}
 	setZoom(zoom) {
+		if (zoom.center) {
+			const b = this.base.querySelector('#voteForArt');
+			return this.initZoom(b);
+		}
 		this.zoomController
 			.smoothZoom(zoom.cx, zoom.cy, zoom.zoomBy);
 	}
@@ -59,15 +63,15 @@ export default class Board extends Component {
 				bounds: true
 			}
 		);
-		// let scal = 12.793964287799751;
-		// let x = 5909.330227150821 ;
-		// let y = 3358.0606079162935;
-		// // pan.zoomAbs(x, y, scal);
+		this.base.querySelector('svg').focus();
+		// pan.smoothZoom(cx, cy, 0);
+
 		
 		// pan.zoomAbs(
 		// 	558, 428, 30.809340591854905		);
 		
 		pan.on('transform', this.transform);
+		this.center = pan.getTransform();
 		this.setState({ zoom: 'ok' });
 		this.zoomController = pan;
 	}
@@ -196,15 +200,12 @@ export default class Board extends Component {
 
 	componentDidMount() {
 		this.loadPixels();
-		setInterval( () => { this.loadPixels(); }, 2300);
+		setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
+		this.initZoom(b);
 		const a = this.base.querySelector('#gridArea');
-		this.currentZoom = {
-		 x: this.base.clientWidth - a.width,
-		 y: this.base.clientWidth / 2
-		};
-		this.initZoom(b, this.currentZoom);
+
 		a.addEventListener('mousemove', this.mouseMove);
 
 	}
@@ -246,7 +247,7 @@ export default class Board extends Component {
 						src={this.state.currentPhoto}
 					                           /> : ''}
 				</div>
-				 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" id="board" height="100%" >
+				 <svg xmlns="http://www.w3.org/2000/svg" focusable="true" tabindex="-1" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" height="100%" id="board"  >
 					<defs>
 						<pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
 							{this.state.grid ?

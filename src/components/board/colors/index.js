@@ -16,7 +16,7 @@ export default class Colors extends Component {
 	constructor() {
 		super();
 		if ( typeof window !== 'undefined') {
-		this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
+			this.colors = localStorage.userColors ? JSON.parse(localStorage.userColors) : ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ffffff', '#ff5722', '#000000', '#607d8b'];
 		}
 		this.openColorPicker = this.openColorPicker.bind(this);
 		this.setColorEvent = this.setColorEvent.bind(this);
@@ -34,16 +34,17 @@ export default class Colors extends Component {
 		this.setState({ currentCollor: color.hex, openColors: true });
 
 	}
+
 	handleChange(color, event) {
 		setTimeout(() => {
-			if(!this.state.openColors && this.state.colorOpen) this.mToggler();
+			if (!this.state.openColors && this.state.colorOpen) this.mToggler();
 		}, 1000);
 		const params = { color: `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})` };
 		this.setState({ openColors: false, currentCollor: color.hex });
 		this.props.callbackFromBoard(params);
 	}
  	mToggler() {
-	 	this.setState({colorOpen: !this.state.colorOpen})
+	 	this.setState({ colorOpen: !this.state.colorOpen });
  	}
 	
 	openColorPicker(e) {
@@ -74,32 +75,32 @@ export default class Colors extends Component {
 		return (
 			<div>
 
-			<div class={style.colorize}>
-			<Elevation z={2}>
-			<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
-			<Slider
-							color={this.state.currentCollor}
-							height="38vh"
-							width="320px"
-							onChangeComplete={this.handleSetColor}
-						/>
-			</div>
+				<div class={style.colorize}>
+					<Elevation z={2}>
+						<div class={this.state.openColors ? 'animated fadeInRight': 'none'} style="padding-right:1em;">
+							<Slider
+								color={this.state.currentCollor}
+								height="38vh"
+								width="320px"
+								onChangeComplete={this.handleSetColor}
+							/>
+						</div>
 
-				<div class={style.color_picker}>
-
-					<div>
-						<CirclePicker
-							color={this.state.currentCollor}
-							onChange={this.handleChange}
-							colors={this.colors}
-							height="15vh"
-							width="385px"
-						/>
-					</div>
+						<div class={style.color_picker}>
+							<small class={style.picker_info}>Paspaudę ant spalvos du kartus, galite atidaryti išsamesnę spalvų paletę</small>
+							<div>
+								<CirclePicker
+									color={this.state.currentCollor}
+									onChange={this.handleChange}
+									colors={this.colors}
+									height="15vh"
+									width="385px"
+								/>
+							</div>
+						</div>
+					</Elevation>
 				</div>
-			</Elevation>
-		</div>
-	</div>
+			</div>
 		);
 	}
 }

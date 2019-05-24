@@ -23,7 +23,9 @@ import 'preact-material-components/Menu/style.css';
 // import 'preact-material-components/Button/style.css';
 import 'preact-material-components/TabBar/style.css';
 import Registration from '../auth/registration';
+import Aboutgame from '../dialogs/aboutgame';
 import About from '../dialogs/about';
+
 import Eu from '../dialogs/eu';
 import Wellcome from '../dialogs/wellcome';
 
@@ -168,9 +170,10 @@ export default class Header extends Component {
 								{/* <a href="https://ec.europa.eu/lithuania/home_lt" target="_blank">
 									<img class={style.l_ek} src='/assets/images/logo_ek.svg' alt="Eruropos Komisijos logo" />
 								</a> */}
+								<Button id="about" onClick={this.openContent} unelevated>APIE PROJEKTĄ</Button>
 								<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 								<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
-								<Button id="eu" onClick={this.openContent} unelevated >EP rinkimai 2019</Button>
+								<Button id="eu" onClick={this.openContent} unelevated >EP RINKIMAI 2019</Button>
 
 								{/* <a href="https://www.vrk.lt/" target="_blank">
 									<img class={style.l_vrk} src='/assets/images/VRK log 300x300.png' alt="VRK logo" />
@@ -192,6 +195,7 @@ export default class Header extends Component {
 						<TopAppBar.Row>
 							<TopAppBar.Section align-center shrink-to-fit>
 								<div class={style.mobile_m}>
+									<Button id="about" onClick={this.openContent} unelevated>APIE PROJEKTĄ</Button>
 									<Button id="game" onClick={this.openContent} unelevated>ŽAIDIMAS</Button>
 									<Button id="rules" onClick={this.openContent} unelevated >TAISYKLĖS</Button>
 									<Button id="eu" onClick={this.openContent} unelevated >EP rinkimai 2019</Button>
@@ -214,9 +218,12 @@ export default class Header extends Component {
 										this.state.dialogContent === 'registracija'?
 											<h1 style="display: inline">REGISTRACIJA</h1>:
 											this.state.dialogContent === 'eu' ?
-												<h1 style="display: inline">EP rinkimai 2019</h1>:
+												<h1 style="display: inline">EP RINKIMAI 2019</h1>:
 												this.state.dialogContent === 'wellcome' ?
-													<h1 style="display: inline">Sveiki !!!</h1>: ''
+													<h1 style="display: inline">SVEIKI !!!</h1>:
+													this.state.dialogContent === 'about' ?
+														<h1 style="display: inline">APIE PROJEKTĄ</h1>:''
+														
 						}
 						<span style="float: right;">
 							<Dialog.FooterButton cancel>
@@ -228,14 +235,15 @@ export default class Header extends Component {
 					<Dialog.Body scrollable={this.state.scrollModal}>
 						{
 							this.state.dialogContent === 'game'?
-								<About /> :			this.state.dialogContent === 'rules'?
+								<Aboutgame /> :			this.state.dialogContent === 'rules'?
 									<Rules callHeader={this.callBackFromRegterms} />:
 									this.state.dialogContent === 'login' ?
 										<Login callToDialog={this.callBackFromLogin} callToRules={this.callBackFromRegterms}  /> :
 										this.state.dialogContent === 'registracija' ?
 											<Registration callToDialog={this.callBackFromRegistration} backState={this.state.backState} callToRules={this.callBackFromRegterms} /> :	this.state.dialogContent === 'eu' ?
 												<Eu />:this.state.dialogContent === 'wellcome' ?
-													<Wellcome />: ''
+													<Wellcome />:this.state.dialogContent === 'about' ?
+													<About />: ''
 
 						}
 					</Dialog.Body>
@@ -245,7 +253,7 @@ export default class Header extends Component {
 								this.state.editrule ?
 									<Button onClick={this.acceptTerms} secondary>SUTINKU</Button>
 									:'':
-								 this.state.dialogContent === 'game' ?
+								 this.state.dialogContent === 'game' && !this.state.logined?
 									<Button id="registracija" onClick={this.openContent} secondary>ŽAISTI</Button>:
 									this.state.dialogContent === 'login'?
 										'':
