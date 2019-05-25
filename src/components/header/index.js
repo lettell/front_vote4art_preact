@@ -157,7 +157,8 @@ export default class Header extends Component {
 					<TopAppBar.Row>
 						<TopAppBar.Section align-center>
 							<img onClick={this.goHome} class={style.logo} src="/assets/images/logo.png" />
-							<Button onClick={this.goRead} unelevated >DALIVAVAU</Button>
+							{this.state.logined?
+							<Button onClick={this.goRead} unelevated >DALIVAVAU</Button>: ''}
 
 							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
