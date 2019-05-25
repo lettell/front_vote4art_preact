@@ -133,7 +133,6 @@ export default class Header extends Component {
 
 	linkTo = path => () => {
 		route(path);
-		this.closeDrawer();
 	};
 	componentWillReceiveProps ({ gameState }) {
 		if (gameState)	this.setState(gameState);
@@ -148,7 +147,8 @@ export default class Header extends Component {
 
 
 	goHome = this.linkTo('/');
-	goToMyProfile = this.linkTo('/profile');
+
+	goRead = this.linkTo('/dalivavau');
 	render(props) {
 		return (
 			<div>
@@ -156,7 +156,9 @@ export default class Header extends Component {
 				<TopAppBar className={`${style.topappbar} mdc-elevation--z3`}>
 					<TopAppBar.Row>
 						<TopAppBar.Section align-center>
-							<img class={style.logo} src="/assets/images/logo.png" />
+							<img onClick={this.goHome} class={style.logo} src="/assets/images/logo.png" />
+							<Button onClick={this.goRead} unelevated >DALIVAVAU</Button>
+
 							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
@@ -187,6 +189,7 @@ export default class Header extends Component {
 									<Button onClick={this.logOut} secondary>Atsijungti</Button> :
 									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 								}
+								
 							</div>
 				
 						</TopAppBar.Section>

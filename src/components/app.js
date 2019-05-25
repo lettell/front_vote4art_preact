@@ -4,6 +4,7 @@ import { Router } from 'preact-router';
 import Header from './header';
 import NotFound from '../routes/404';
 import Game from '../routes/game';
+import Read from '../routes/read';
 
 import Helmet from 'preact-helmet';
 import Footer from './footer';
@@ -106,7 +107,6 @@ export default class App extends Component {
 		this.setState({ update: true  });
 	}
 
-
 	respGame = e => {
 		if (e.type === 'pixel') {
 			this.respHead();
@@ -148,7 +148,7 @@ export default class App extends Component {
 	render() {
 		// document.body.classList.add('mdc-theme--main');
 		  const base = 'https://vote4art.eu/';
-		  // const base = 'http://localhost:8080';
+		  // const base = 'https://localhost:8080';
 		
 		return (
 			<div id="app">
@@ -174,6 +174,7 @@ export default class App extends Component {
 					/> : ''
 				}
 				<Router onChange={this.handleRoute}>
+					<Read path="/dalivavau" />
 					<Game user={this.state.user ? this.state.user.attributes : false} gameState={this.state} path="/" callToApp={this.respGame} />
 					<Game user={this.state.user ? this.state.user.attributes : false} gameState={this.state} path="/:x?/:y?/:zoom?/:hash?/" callToApp={this.respGame} />
 					<NotFound default />
