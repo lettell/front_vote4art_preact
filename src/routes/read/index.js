@@ -14,7 +14,7 @@ export default class Read extends Component {
 	}
 	handleScan = data => {
     if (data) {
-			const h = data.sartWitch('https://12pikseliu.vote4art.eu/bdb4defa47d2a4c76acb4369d10aaf39eu');
+			const h = data.startsWith('https://12pikseliu.vote4art.eu/bdb4defa47d2a4c76acb4369d10aaf39eu');
 			if (h)	window.location.href = '/ba/bdb4dfffffffflt2019@eurinkimaiads';
     }
   }
