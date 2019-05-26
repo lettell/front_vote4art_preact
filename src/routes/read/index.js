@@ -10,12 +10,12 @@ export default class Read extends Component {
 		this.state = {
 			result: ''
 		}
-
+		this.handleScan = this.handleScan.bind(this);
 	}
 	handleScan = data => {
     if (data) {
-			const h = data.slice(30);
-			route(`/ba${h}`)
+			const h = data.sartWitch('https://12pikseliu.vote4art.eu/bdb4defa47d2a4c76acb4369d10aaf39eu');
+			if (h)	window.location.href = '/ba/bdb4dfffffffflt2019@eurinkimaiads';
     }
   }
   handleError = err => {
