@@ -199,8 +199,8 @@ export default class Board extends Component {
 	}
 
 	componentDidMount() {
-		this.loadPixels();
-		setInterval( () => { this.loadPixels(); }, 3000);
+		// this.loadPixels();
+		// setInterval( () => { this.loadPixels(); }, 3000);
 
 		const b = this.base.querySelector('#voteForArt');
 		this.initZoom(b);
@@ -239,13 +239,13 @@ export default class Board extends Component {
 						background-color: white;
 					`}
 				>
-					{this.state.currentPhoto ? <img
+					<img
 						width={this.scaledPixel}
 						height={this.scaledPixel}
 						class="pixelated"
 						// src="assets/images/test_image.png"
-						src={this.state.currentPhoto}
-					                           /> : ''}
+						src="https://nuotraukos.vote4art.eu/bg_1558904364523.png"
+					/>
 				</div>
 				 <svg xmlns="http://www.w3.org/2000/svg" focusable="true" tabindex="-1" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" height="100%" id="board"  >
 					<defs>
