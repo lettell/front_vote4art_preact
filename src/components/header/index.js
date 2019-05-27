@@ -255,7 +255,7 @@ export default class Header extends Component {
 
 						}
 					</Dialog.Body>
-					<Dialog.Footer>
+					{/* <Dialog.Footer>
 						{
 							this.state.dialogContent === 'rules'?
 								this.state.editrule ?
@@ -269,7 +269,7 @@ export default class Header extends Component {
 											'': ''
 
 						}
-					</Dialog.Footer>
+					</Dialog.Footer> */}
 				</Dialog>
 			</div>
 		);
