@@ -157,16 +157,19 @@ export default class Header extends Component {
 					<TopAppBar.Row>
 						<TopAppBar.Section align-center>
 							<img onClick={this.goHome} class={style.logo} src="/assets/images/logo.png" />
-							{this.state.logined?
-							<Button onClick={this.goRead} unelevated >Balsavau</Button>: ''}
+							{
+							// 	this.state.logined?
+							// <Button onClick={this.goRead} unelevated >Balsavau</Button>: ''
+							}
 
 							<TopAppBar.Title></TopAppBar.Title>
 						</TopAppBar.Section>
 						<TopAppBar.Section align-center >
 							<div class={style.mobile_login}>
-								{ this.state.logined ?
-   									<Button onClick={this.logOut} secondary>Atsijungti</Button>:
-									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+								{ 
+									// this.state.logined ?
+   								// 	<Button onClick={this.logOut} secondary>Atsijungti</Button>:
+									// <Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 								}
 							</div>
 							<div class={style.c_btn}>
@@ -186,9 +189,10 @@ export default class Header extends Component {
 
 						<TopAppBar.Section align-end shrink-to-fit >
 							<div class={style.mobile_h}>
-								{ this.state.logined ?
-									<Button onClick={this.logOut} secondary>Atsijungti</Button> :
-									<Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
+								{
+									// this.state.logined ?
+									// <Button onClick={this.logOut} secondary>Atsijungti</Button> :
+									// <Button id="login" onClick={this.openContent} secondary>Prisijungti</Button>
 								}
 								
 							</div>
